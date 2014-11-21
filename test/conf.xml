@@ -5,6 +5,11 @@
     <!ATTLIST Text id ID #IMPLIED>
     <!ATTLIST Focus id ID #IMPLIED>
     <!ATTLIST Value id ID #IMPLIED>
+    <!ATTLIST Radio id ID #IMPLIED>
+    <!ATTLIST TextField id ID #IMPLIED>
+    <!ATTLIST CheckBox id ID #IMPLIED>
+    <!ATTLIST Dropdown id ID #IMPLIED>
+    <!ATTLIST Combo id ID #IMPLIED>
 ]>
 <Configuration>
 
@@ -29,10 +34,13 @@
 		<Number>1</Number>
 		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</IRI>
 	</Question>
-	
 	<Question>
 		<Number>2</Number>
 		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</IRI>
+	</Question>
+	<Question>
+		<Number>3</Number>
+		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1C</IRI>
 	</Question>
 	
 </Configuration>

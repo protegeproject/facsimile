@@ -40,6 +40,10 @@ public class Question {
 	 * HTML form element types
 	 */
 	public enum QuestionType {
-		TEXTFIELD, CHECKBOX, DROPDOWN, RADIO, COMBO
+		TEXTFIELD, CHECKBOX, DROPDOWN, RADIO, COMBO;
+		
+		public String toString() {
+	        return name().charAt(0) + name().substring(1).toLowerCase();
+	    }
 	}
 }

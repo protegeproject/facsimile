@@ -15,8 +15,8 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectOneOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
-import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
@@ -27,6 +27,7 @@ import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.question.Question;
+import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br/>
@@ -39,6 +40,7 @@ public class FormGenerator {
 	private OWLDataFactory df;
 	private Configuration conf;
 	private boolean verbose;
+	private Map<OWLClassExpression,QuestionType> questionTypes;
 	
 	
 	/**
@@ -53,6 +55,7 @@ public class FormGenerator {
 		this.man = ont.getOWLOntologyManager();
 		this.df = man.getOWLDataFactory();
 		this.verbose = verbose;
+		this.questionTypes = initQuestionTypes();
 	}
 	
 	
@@ -104,8 +107,8 @@ public class FormGenerator {
 						if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 							if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(value)) {
 								OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-								
-								System.out.println("\tQuestion type: " + filler);
+								QuestionType type = findQuestionType(filler);
+								System.out.println("\tQuestion type: " + type);
 							}
 						}
 					}
@@ -113,6 +116,16 @@ public class FormGenerator {
 			}
 		}
 		return questions;
+	}
+	
+	
+	private QuestionType findQuestionType(OWLClassExpression ce) {
+		QuestionType type = null;
+		if(questionTypes.containsKey(ce))
+			type = questionTypes.get(ce);
+		else if(ce instanceof OWLObjectOneOf)
+			type = QuestionType.DROPDOWN;
+		return type;
 	}
 	
 	
@@ -125,5 +138,14 @@ public class FormGenerator {
 	public void printAllQuestions() {
 		printQuestions("");
 	}
+
 	
+	private Map<OWLClassExpression,QuestionType> initQuestionTypes() {
+		Map<OWLClassExpression,QuestionType> qTypes = new HashMap<OWLClassExpression,QuestionType>();
+		OWLClassExpression text = df.getOWLClass(conf.getTextInputBinding());
+		OWLClassExpression radio = df.getOWLClass(conf.getRadioInputBinding());
+		qTypes.put(text, QuestionType.TEXTFIELD);
+		qTypes.put(radio, QuestionType.RADIO);
+		return qTypes;
+	}
 }
