@@ -12,9 +12,9 @@ public class Question {
 	
 	/**
 	 * Constructor
-	 * @param questionNumber
-	 * @param questionTitle
-	 * @param questionType
+	 * @param questionNumber	Number of the question
+	 * @param questionTitle	Title (text) of the question
+	 * @param questionType	Type of question, i.e., HTML form element type
 	 */
 	public Question(int questionNumber, String questionTitle, QuestionType questionType) {
 		this.questionNumber = questionNumber;
@@ -23,14 +23,28 @@ public class Question {
 	}
 	
 	
+	/**
+	 * Get the question number as established by the configuration file, or by its parse order
+	 * @return Integer representing the question number
+	 */
 	public int getQuestionNumber() {
 		return questionNumber;
 	}
 	
+	
+	/**
+	 * Get the title of the question
+	 * @return String representing the question title
+	 */
 	public String getQuestionTitle() {
 		return questionTitle;
 	}
 	
+	
+	/**
+	 * Get the HTML form question type given by an element of the QuestionType enumeration 
+	 * @return QuestionType representing the type of HTML form element
+	 */
 	public QuestionType getQuestionType() {
 		return questionType;
 	}

@@ -16,7 +16,7 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
-import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
+import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
 
 /**
  * @author Rafael S. Goncalves <br/>
@@ -34,7 +34,7 @@ public class Runner {
 		config.setLoadAnnotationAxioms(false);
 		
 		File f = new File(args[0]); // ontology file
-		String folderPath = f.getParentFile().getAbsolutePath() + sep; // path of root folder where given ontology (and its imports) are located 
+		String folderPath = f.getParentFile().getAbsolutePath() + sep; // path of root folder where ontology (and its imports) are located 
 		
 		// IRI mappers for imported ontologies
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), 
@@ -48,9 +48,9 @@ public class Runner {
 		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
 		System.out.println("done");
 		
-		Configuration conf = new Configuration(new File(args[1]));
+		Configuration conf = new Configuration(new File(args[1]), true);
 		
-		FormGenerator gen = new FormGenerator(ont, conf, verbose);
-		gen.printQuestions("_Back_");
+		QuestionParser gen = new QuestionParser(ont, conf, verbose);
+		gen.getQuestions("_Back_");
 	}
 }

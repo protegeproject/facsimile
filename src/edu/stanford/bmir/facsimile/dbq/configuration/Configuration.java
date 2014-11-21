@@ -24,15 +24,18 @@ public class Configuration {
 	private Document doc;
 	private BiMap<Integer,IRI> questions;
 	private BiMap<IRI,Integer> questionsInv;
+	private boolean verbose;
 	
 	/**
 	 * Constructor
 	 * @param file	XML document file
+	 * @param verbose	true for verbose mode
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	public Configuration(File file) throws ParserConfigurationException, SAXException, IOException {
+	public Configuration(File file, boolean verbose) throws ParserConfigurationException, SAXException, IOException {
+		this.verbose = verbose;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		this.doc = db.parse(file);
@@ -42,11 +45,23 @@ public class Configuration {
 	
 	
 	/**
+	 * Constructor 
+	 * @param file	XML document file
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
+	public Configuration(File file) throws ParserConfigurationException, SAXException, IOException {
+		this(file, false);
+	}
+	
+	
+	/**
 	 * Get a map which represents the ordering of questions according to the configuration file
 	 * @return Map of questions to the individual IRI they stand for   
 	 */
 	private BiMap<Integer,IRI> getQuestionOrdering() {
-		System.out.println("Checking configuration file for question order... ");
+		if(verbose) System.out.println("Checking configuration file for question order... ");
 		BiMap<Integer,IRI> qs = HashBiMap.create();
 		NodeList nl = doc.getElementsByTagName("Question");
 		for(int i = 0; i < nl.getLength(); i++) {
@@ -61,7 +76,7 @@ public class Configuration {
 					iri = children.item(j).getTextContent();
 			}
 			qs.put(nr, IRI.create(iri));
-			System.out.println("\tQuestion " + nr + ": " + iri);
+			if(verbose) System.out.println("\tQuestion " + nr + ": " + iri);
 		}
 		return qs;
 	}
