@@ -7,11 +7,32 @@
     <!ATTLIST Value id ID #IMPLIED>
 ]>
 <Configuration>
+
 	<InputQuestionClass id="class">http://purl.org/facsimile/dbq#DBQQuestion</InputQuestionClass>
 	<OutputQuestionClass id="outclass">http://purl.org/facsimile/dbq#DBQQuestion</OutputQuestionClass>
+	
 	<PropertyBindings>
 		<Text id="text">http://purl.org/facsimile/cfa#hasText</Text>
 		<Focus id="focus">http://purl.org/facsimile/cfa#hasFocus</Focus>
 		<Value id="value">http://purl.org/facsimile/cfa#hasValue</Value>
 	</PropertyBindings>
+	
+	<QuestionTypeBindings>
+		<Radio id="radio">http://purl.org/facsimile/cfa#BooleanValue</Radio>
+		<TextField id="textfield">http://purl.org/facsimile/cfa#StringValue</TextField>
+		<CheckBox id="checkbox"></CheckBox>
+		<Dropdown id="dropdown"></Dropdown>
+		<Combo id="combo"></Combo>
+	</QuestionTypeBindings>
+	
+	<Question>
+		<Number>1</Number>
+		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</IRI>
+	</Question>
+	
+	<Question>
+		<Number>2</Number>
+		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</IRI>
+	</Question>
+	
 </Configuration>

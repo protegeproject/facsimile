@@ -35,7 +35,11 @@ public class Question {
 		return questionType;
 	}
 	
+	
+	/**
+	 * HTML form element types
+	 */
 	public enum QuestionType {
-		TEXTFIELD, CHECKBOX, DROPDOWN, RADIO
+		TEXTFIELD, CHECKBOX, DROPDOWN, RADIO, COMBO
 	}
 }

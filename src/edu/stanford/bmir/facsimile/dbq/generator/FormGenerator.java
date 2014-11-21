@@ -1,13 +1,23 @@
 package edu.stanford.bmir.facsimile.dbq.generator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.semanticweb.owlapi.model.AxiomType;
+import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
@@ -16,6 +26,7 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.question.Question;
 
 /**
  * @author Rafael S. Goncalves <br/>
@@ -30,6 +41,12 @@ public class FormGenerator {
 	private boolean verbose;
 	
 	
+	/**
+	 * Constructor
+	 * @param ont
+	 * @param conf
+	 * @param verbose
+	 */
 	public FormGenerator(OWLOntology ont, Configuration conf, boolean verbose) {
 		this.ont = ont;
 		this.conf = conf;
@@ -45,7 +62,7 @@ public class FormGenerator {
 	 * as it is in the given ontology
 	 * @return Map of questions (represented as individuals) to the sets of axioms associated with each question 
 	 */
-	private Map<OWLNamedIndividual,Set<OWLAxiom>> parseQuestions(String type) {
+	private Set<Question> collectQuestions(String type) {
 		if(verbose) System.out.print("Parsing questions... ");
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = new HashMap<OWLNamedIndividual,Set<OWLAxiom>>();
 		
@@ -58,23 +75,55 @@ public class FormGenerator {
 				map.put(i, ont.getReferencingAxioms(i, Imports.INCLUDED));
 		}
 		if(verbose) System.out.println("done");
-		return map;
+		return parseQuestions(map);
 	}
 	
 	
 	
-	public void printQuestions() {
-		Map<OWLNamedIndividual,Set<OWLAxiom>> map = parseQuestions("");
+	private Set<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		Set<Question> questions = new HashSet<Question>();
+		OWLDataProperty text = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
+		OWLObjectProperty value = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
 		
+		int counter = 0;
 		for(OWLNamedIndividual i : map.keySet()) {
-			System.out.println("Processing question: " + i.getIRI().getShortForm());
+			counter++;
+			System.out.println("Processing question " + counter + ": " + i.getIRI().getShortForm());
+			String qText = "";
 			Set<OWLAxiom> axioms = map.get(i);
 			for(OWLAxiom ax : axioms) {
 				if(ax.isLogicalAxiom()) {
-					System.out.println("\t" + ax);
+					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
+						if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(text)) {
+							qText = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
+							System.out.println("\tQuestion text: " + qText);
+						}
+					}
+					if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
+						OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
+						if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
+							if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(value)) {
+								OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
+								
+								System.out.println("\tQuestion type: " + filler);
+							}
+						}
+					}
 				}
 			}
 		}
+		return questions;
+	}
+	
+	
+	
+	public void printQuestions(String type) {
+		Set<Question> questions = collectQuestions(type);
+	}
+	
+	
+	public void printAllQuestions() {
+		printQuestions("");
 	}
 	
 }

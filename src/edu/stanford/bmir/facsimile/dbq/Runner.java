@@ -51,6 +51,6 @@ public class Runner {
 		Configuration conf = new Configuration(new File(args[1]));
 		
 		FormGenerator gen = new FormGenerator(ont, conf, verbose);
-		gen.printQuestions();
+		gen.printQuestions("_Back_");
 	}
 }
