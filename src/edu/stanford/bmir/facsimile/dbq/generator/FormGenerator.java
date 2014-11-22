@@ -1,6 +1,6 @@
 package edu.stanford.bmir.facsimile.dbq.generator;
 
-import java.util.Set;
+import java.util.List;
 
 import org.w3c.dom.Document;
 
@@ -12,16 +12,16 @@ import edu.stanford.bmir.facsimile.dbq.question.Question;
  * School of Medicine, Stanford University <br/>
  */
 public class FormGenerator {
-	private Set<Question> questions;
+	private List<Question> questions;
 	private boolean verbose;
 	
 	
 	/**
 	 * Constructor
-	 * @param questions	Set of questions to populate the form
+	 * @param questions	List of questions to populate the form
 	 * @param verbose	true for verbose mode
 	 */
-	public FormGenerator(Set<Question> questions, boolean verbose) {
+	public FormGenerator(List<Question> questions, boolean verbose) {
 		this.questions = questions;
 		this.verbose = verbose;
 	}
@@ -29,9 +29,9 @@ public class FormGenerator {
 	
 	/**
 	 * Constructor
-	 * @param questions	Set of questions to populate the form
+	 * @param questions	List of questions to populate the form
 	 */
-	public FormGenerator(Set<Question> questions) {
+	public FormGenerator(List<Question> questions) {
 		this(questions, false);
 	}
 	
@@ -41,7 +41,10 @@ public class FormGenerator {
 	 * @return Document representing an HTML form
 	 */
 	public Document generateHTMLForm() {
+		if(verbose) System.out.println("Generating HTML form... ");
+		
 		// TODO
+		
 		return null;
 	}
 	

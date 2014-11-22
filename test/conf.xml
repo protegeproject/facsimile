@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE Configuration [
-    <!ATTLIST InputQuestionClass id ID #IMPLIED>
-    <!ATTLIST OutputQuestionClass id ID #IMPLIED>
-    <!ATTLIST Text id ID #IMPLIED>
-    <!ATTLIST Focus id ID #IMPLIED>
-    <!ATTLIST Value id ID #IMPLIED>
-    <!ATTLIST Radio id ID #IMPLIED>
-    <!ATTLIST TextField id ID #IMPLIED>
-    <!ATTLIST CheckBox id ID #IMPLIED>
-    <!ATTLIST Dropdown id ID #IMPLIED>
-    <!ATTLIST Combo id ID #IMPLIED>
+<!DOCTYPE configuration [
+    <!ATTLIST class id ID #IMPLIED>
+    <!ATTLIST binding id ID #IMPLIED>
+    <!ATTLIST input id ID #IMPLIED>
 ]>
-<Configuration>
-
-	<InputQuestionClass id="class">http://purl.org/facsimile/dbq#DBQQuestion</InputQuestionClass>
-	<OutputQuestionClass id="outclass">http://purl.org/facsimile/dbq#DBQQuestion</OutputQuestionClass>
-	
-	<PropertyBindings>
-		<Text id="text">http://purl.org/facsimile/cfa#hasText</Text>
-		<Focus id="focus">http://purl.org/facsimile/cfa#hasFocus</Focus>
-		<Value id="value">http://purl.org/facsimile/cfa#hasValue</Value>
-	</PropertyBindings>
-	
-	<QuestionTypeBindings>
-		<Radio id="radio">http://purl.org/facsimile/cfa#BooleanValue</Radio>
-		<TextField id="textfield">http://purl.org/facsimile/cfa#StringValue</TextField>
-		<CheckBox id="checkbox"></CheckBox>
-		<Dropdown id="dropdown"></Dropdown>
-		<Combo id="combo"></Combo>
-	</QuestionTypeBindings>
-	
-	<Question>
-		<Number>1</Number>
-		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</IRI>
-	</Question>
-	<Question>
-		<Number>2</Number>
-		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</IRI>
-	</Question>
-	<Question>
-		<Number>3</Number>
-		<IRI>http://purl.org/facsimile/dbq#DBQ_Back_Q1C</IRI>
-	</Question>
-	
-</Configuration>
+<configuration>	
+	<classBindings>
+		<class id="class">http://purl.org/facsimile/dbq#DBQQuestion</class>
+		<class id="sectionclass">http://purl.org/facsimile/dbq#DBQSection</class>
+		<class id="outclass">http://purl.org/facsimile/dbq#DBQQuestion</class>
+	</classBindings>		
+	<propertyBindings>
+		<!-- question property bindings -->
+		<binding id="text">http://purl.org/facsimile/cfa#hasText</binding>
+		<binding id="focus">http://purl.org/facsimile/cfa#hasFocus</binding>
+		<binding id="value">http://purl.org/facsimile/cfa#hasValue</binding>
+		<!-- section property bindings -->
+		<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
+		<binding id="sectionsortinglabel">http://purl.org/facsimile/cfa#hasSortingLabel</binding>
+		<binding id="sectionquestion">http://purl.org/facsimile/datamodel#hasQuestion</binding>
+	</propertyBindings>
+	<questionTypeBindings>
+		<input id="radio">http://purl.org/facsimile/cfa#BooleanValue</input>
+		<input id="textfield">http://purl.org/facsimile/cfa#StringValue</input>
+		<input id="checkbox"></input>
+		<input id="dropdown"></input>
+		<input id="combo"></input>
+	</questionTypeBindings>	
+	<form>
+		<section>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1C</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q2</iri>
+				</question>
+			</questionList>
+		</section>
+	</form>
+</configuration>

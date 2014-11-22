@@ -1,7 +1,8 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,14 +15,17 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectOneOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
@@ -37,6 +41,7 @@ public class QuestionParser {
 	private OWLOntology ont;
 	private OWLOntologyManager man;
 	private OWLDataFactory df;
+	private OWLReasoner reasoner;
 	private Configuration conf;
 	private boolean verbose;
 	private Map<OWLClassExpression,QuestionType> questionTypes;
@@ -52,6 +57,7 @@ public class QuestionParser {
 		this.conf = conf;
 		this.man = ont.getOWLOntologyManager();
 		this.df = man.getOWLDataFactory();
+		this.reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
 		this.verbose = verbose;
 		this.questionTypes = initQuestionTypes();
 	}
@@ -70,15 +76,13 @@ public class QuestionParser {
 	/**
 	 * Extract questions (individuals) and their corresponding axioms from the ontology
 	 * @param type	Specific type of question desired (if any). The given string is matched against the individual name 
-	 * as it is in the given ontology
-	 * @return Map of questions (represented as individuals) to the sets of axioms associated with each question 
+	 * @return Map of questions to the sets of axioms associated with each of them 
 	 */
-	private Set<Question> collectQuestions(String type) {
+	private Map<OWLNamedIndividual,Set<OWLAxiom>> collectQuestionAxioms(String type) {
 		if(verbose) System.out.print("Parsing questions... ");
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = new HashMap<OWLNamedIndividual,Set<OWLAxiom>>();
 		
 		OWLClass questionClass = df.getOWLClass(conf.getQuestionClass());
-		StructuralReasoner reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
 		Set<OWLNamedIndividual> instances = reasoner.getInstances(questionClass, false).getFlattened();
 		
 		for(OWLNamedIndividual i : instances) {
@@ -86,42 +90,55 @@ public class QuestionParser {
 				map.put(i, ont.getReferencingAxioms(i, Imports.INCLUDED));
 		}
 		if(verbose) System.out.println("done");
-		return parseQuestions(map);
+		return map;
 	}
 	
 	
 	
-	private Set<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
-		Set<Question> questions = new HashSet<Question>();
+	private List<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		List<Question> questions = new ArrayList<Question>();
 		OWLDataProperty text = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
 		OWLObjectProperty value = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
+		OWLObjectProperty focus = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
 		
-		int counter = 0;
 		for(OWLNamedIndividual i : map.keySet()) {
-			counter++;
-			System.out.println("Processing question " + counter + ": " + i.getIRI().getShortForm());
-			String qText = "";
+			if(verbose) System.out.println("Processing question: " + i.getIRI().getShortForm());
+			String qText = "", qFocus = ""; QuestionType qType = null; int qNumber = 0;
+			
 			Set<OWLAxiom> axioms = map.get(i);
 			for(OWLAxiom ax : axioms) {
 				if(ax.isLogicalAxiom()) {
 					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
 						if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(text)) {
 							qText = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
-							System.out.println("\tQuestion text: " + qText);
+							if(verbose) System.out.println("\tQuestion text: " + qText);
+						}
+					}
+					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION)) {
+						if(((OWLObjectPropertyAssertionAxiom)ax).getProperty().equals(focus)) {
+							OWLIndividual ind = ((OWLObjectPropertyAssertionAxiom)ax).getObject();
+							if(ind.isNamed())
+								qFocus = ((OWLNamedIndividual)ind).getIRI().getShortForm();
+							else
+								qFocus = ind.toString();
+							
+							if(verbose) System.out.println("\tQuestion focus: " + qFocus);
 						}
 					}
 					if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
 						OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 						if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 							if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(value)) {
-								OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-								QuestionType type = findQuestionType(filler);
-								System.out.println("\tQuestion type: " + type);
+								qType = findQuestionType(((OWLObjectSomeValuesFrom)ce).getFiller());
+								if(verbose) System.out.println("\tQuestion type: " + qType);
 							}
 						}
 					}
 				}
 			}
+			
+//			if(conf.containsQuestion(i.getIRI()))
+//				conf.getQuestionNumber(i.getIRI())
 		}
 		return questions;
 	}
@@ -131,7 +148,7 @@ public class QuestionParser {
 		QuestionType type = null;
 		if(questionTypes.containsKey(ce))
 			type = questionTypes.get(ce);
-		else if(ce instanceof OWLObjectOneOf)
+		else if(ce instanceof OWLObjectOneOf /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ ) //TODO
 			type = QuestionType.DROPDOWN;
 		return type;
 	}
@@ -139,20 +156,22 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the set of questions of a specific type instantiated in the given ontology
-	 * @return Set of question objects
+	 * Get the list of questions of a specific type instantiated in the given ontology
+	 * @return List of question objects
 	 */
-	public Set<Question> getQuestions(String type) {
-		Set<Question> questions = collectQuestions(type);
+	public List<Question> getQuestions(String type) {
+		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type); 
+		List<Question> questions = parseQuestions(map);
+		
 		return questions;
 	}
 	
 	
 	/**
-	 * Get the set of all questions instantiated in the given ontology
-	 * @return Set of question objects
+	 * Get the list of all questions instantiated in the given ontology
+	 * @return List of question objects
 	 */
-	public Set<Question> getAllQuestions() {
+	public List<Question> getAllQuestions() {
 		return getQuestions("");
 	}
 
