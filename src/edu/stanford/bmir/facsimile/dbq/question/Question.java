@@ -7,18 +7,20 @@ package edu.stanford.bmir.facsimile.dbq.question;
  */
 public class Question {
 	private int questionNumber;
-	private String questionTitle;
+	private String questionText, questionFocus;
 	private QuestionType questionType;
 	
 	/**
 	 * Constructor
 	 * @param questionNumber	Number of the question
-	 * @param questionTitle	Title (text) of the question
+	 * @param questionText	Title (text) of the question
+	 * @param questionFocus	Focus of the question
 	 * @param questionType	Type of question, i.e., HTML form element type
 	 */
-	public Question(int questionNumber, String questionTitle, QuestionType questionType) {
+	public Question(int questionNumber, String questionText, String questionFocus, QuestionType questionType) {
 		this.questionNumber = questionNumber;
-		this.questionTitle = questionTitle;
+		this.questionText = questionText;
+		this.questionFocus = questionFocus;
 		this.questionType = questionType;
 	}
 	
@@ -36,8 +38,17 @@ public class Question {
 	 * Get the title of the question
 	 * @return String representing the question title
 	 */
-	public String getQuestionTitle() {
-		return questionTitle;
+	public String getQuestionText() {
+		return questionText;
+	}
+	
+	
+	/**
+	 * Get the focus of the question (output type class)
+	 * @return String representing the focus of the question
+	 */
+	public String getQuestionFocus() {
+		return questionFocus;
 	}
 	
 	

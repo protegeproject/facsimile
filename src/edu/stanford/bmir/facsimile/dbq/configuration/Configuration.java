@@ -2,6 +2,10 @@ package edu.stanford.bmir.facsimile.dbq.configuration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,11 +13,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
+import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br/>
@@ -22,9 +26,9 @@ import com.google.common.collect.HashBiMap;
  */
 public class Configuration {
 	private Document doc;
-	private BiMap<Integer,IRI> questions;
-	private BiMap<IRI,Integer> questionsInv;
+	private List<IRI> list;
 	private boolean verbose;
+	private Map<IRI,QuestionType> questionTypes;
 	
 	/**
 	 * Constructor
@@ -39,8 +43,8 @@ public class Configuration {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		this.doc = db.parse(file);
-		questions = getQuestionOrdering();
-		questionsInv = questions.inverse();
+		questionTypes = new HashMap<IRI,QuestionType>();
+		list = findQuestionOrdering();
 	}
 	
 	
@@ -57,28 +61,73 @@ public class Configuration {
 	
 	
 	/**
-	 * Get a map which represents the ordering of questions according to the configuration file
-	 * @return Map of questions to the individual IRI they stand for   
+	 * Gather a list questions as they are ordered in the configuration file
+	 * @return List of questions
 	 */
-	private BiMap<Integer,IRI> getQuestionOrdering() {
+	private List<IRI> findQuestionOrdering() {
+		List<IRI> list = new ArrayList<IRI>();
 		if(verbose) System.out.println("Checking configuration file for question order... ");
-		BiMap<Integer,IRI> qs = HashBiMap.create();
-		NodeList nl = doc.getElementsByTagName("Question");
+		NodeList nl = doc.getElementsByTagName("question");
 		for(int i = 0; i < nl.getLength(); i++) {
-			NodeList children = nl.item(i).getChildNodes();
-			String iri = ""; int nr = 0;
-			for(int j = 0; j < children.getLength(); j++) {
-				String nodename = children.item(j).getNodeName();
-				if(nodename.equalsIgnoreCase("number"))
-					nr = Integer.parseInt(children.item(j).getTextContent());
-				
-				if(nodename.equalsIgnoreCase("iri"))
-					iri = children.item(j).getTextContent();
-			}
-			qs.put(nr, IRI.create(iri));
-			if(verbose) System.out.println("\tQuestion " + nr + ": " + iri);
+			Node curNode = nl.item(i);
+			IRI iri = IRI.create(getIRI(curNode));
+			list.add(iri);
+			if(verbose) System.out.print("\tQuestion " + (i+1) + ": " + iri);
+			
+			if(curNode.hasAttributes())
+				checkQuestionType(iri, curNode);
+			if(verbose) System.out.println();
 		}
-		return qs;
+		return list;
+	}
+	
+	
+	/**
+	 * Get the IRI of the given node in the configuration file
+	 * @param curNode	Current node
+	 * @return String representation of the IRI
+	 */
+	private String getIRI(Node curNode) {
+		NodeList children = curNode.getChildNodes();
+		String iri = "";
+		for(int j = 0; j < children.getLength(); j++) {
+			if(children.item(j).getNodeName().equalsIgnoreCase("iri"))
+				iri = children.item(j).getTextContent();
+		}
+		return iri;
+	}
+	
+	
+	/**
+	 * Get the type of question given as an attribute
+	 * @param iri	IRI of the question individual
+	 * @param curNode	Current node being checked
+	 */
+	private void checkQuestionType(IRI iri, Node curNode) {
+		Node n = curNode.getAttributes().getNamedItem("type");
+		if(n != null) {
+			QuestionType qType = null;
+			String type = n.getNodeValue();
+			for(int i = 0; i<QuestionType.values().length; i++) {
+				if(type.equalsIgnoreCase(QuestionType.values()[i].toString()))
+					qType = QuestionType.values()[i];
+			}
+			if(verbose) System.out.print(" (type: " + qType + ")");
+			questionTypes.put(iri, qType);
+		}
+	}
+	
+	
+	/**
+	 * Check if the configuration file contains a question type for the given question
+	 * @param i	IRI of the question
+	 * @return true if question type is defined in the configuration file, false otherwise
+	 */
+	public boolean hasDefinedType(IRI i) {
+		if(questionTypes.containsKey(i))
+			return true;
+		else
+			return false;
 	}
 	
 	
@@ -88,7 +137,7 @@ public class Configuration {
 	 * @return true if configuration file specifies this question, false otherwise
 	 */
 	public boolean containsQuestion(IRI i) {
-		if(questions.containsValue(i))
+		if(list.contains(i))
 			return true;
 		else
 			return false;
@@ -102,9 +151,19 @@ public class Configuration {
 	 */
 	public Integer getQuestionNumber(IRI i) {
 		if(containsQuestion(i))
-			return questionsInv.get(i);
+			return list.indexOf(i)+1;
 		else
 			return 0;
+	}
+	
+	
+	/**
+	 * Get the question type for the given question
+	 * @param i	IRI of individual representing a question
+	 * @return Question type
+	 */
+	public QuestionType getQuestionType(IRI i) {
+		return questionTypes.get(i);
 	}
 	
 	
@@ -117,7 +176,10 @@ public class Configuration {
 	}
 	
 
-	//TODO
+	/**
+	 * Get the property IRI which represents the questions' focus
+	 * @return OWL data property IRI
+	 */
 	public IRI getQuestionFocusPropertyBinding() {
 		return IRI.create((doc.getElementById("focus").getTextContent()));
 	}
@@ -193,5 +255,23 @@ public class Configuration {
 	 */
 	public IRI getComboInputBinding() {
 		return IRI.create(doc.getElementById("combo").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the list of questions (sorted by configuration file parsing order)
+	 * @return List of ordered questions
+	 */
+	public List<IRI> getQuestionOrder() {
+		return list;
+	}
+	
+	
+	/**
+	 * Get the map of question IRIs to their respective type as defined in the configuration file
+	 * @return Map of IRIs to question types
+	 */
+	public Map<IRI,QuestionType> getQuestionTypes() {
+		return questionTypes;
 	}
 }

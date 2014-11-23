@@ -48,5 +48,50 @@
 				</question>
 			</questionList>
 		</section>
+		<section>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_2</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<questionList>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5B</iri>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5C</iri>
+				</question>
+				<question type="dropdown">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5D</iri>
+				</question>
+				<question type="radio">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5E</iri>
+				</question>
+				<question type="combo">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5F</iri>
+				</question>
+			</questionList>
+		</section>		
 	</form>
 </configuration>

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.ClassExpressionType;
+import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
@@ -45,6 +46,8 @@ public class QuestionParser {
 	private Configuration conf;
 	private boolean verbose;
 	private Map<OWLClassExpression,QuestionType> questionTypes;
+	private OWLDataProperty textDataProperty;
+	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
 	
 	/**
 	 * Constructor
@@ -55,11 +58,14 @@ public class QuestionParser {
 	public QuestionParser(OWLOntology ont, Configuration conf, boolean verbose) {
 		this.ont = ont;
 		this.conf = conf;
-		this.man = ont.getOWLOntologyManager();
-		this.df = man.getOWLDataFactory();
-		this.reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
 		this.verbose = verbose;
-		this.questionTypes = initQuestionTypes();
+		man = ont.getOWLOntologyManager();
+		df = man.getOWLDataFactory();
+		reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
+		questionTypes = initQuestionTypes();
+		textDataProperty = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
+		valueObjectProperty = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
+		focusObjectProperty = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
 	}
 	
 	
@@ -95,75 +101,107 @@ public class QuestionParser {
 	
 	
 	
+	/**
+	 * Parse the questions in the ontology according to the order in the configuration file
+	 * @param map	Map of questions (individuals) to the set of axioms that they occur in
+	 * @return List of questions
+	 */
 	private List<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		List<Question> questions = new ArrayList<Question>();
-		OWLDataProperty text = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
-		OWLObjectProperty value = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
-		OWLObjectProperty focus = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
-		
-		for(OWLNamedIndividual i : map.keySet()) {
-			if(verbose) System.out.println("Processing question: " + i.getIRI().getShortForm());
-			String qText = "", qFocus = ""; QuestionType qType = null; int qNumber = 0;
-			
-			Set<OWLAxiom> axioms = map.get(i);
+		List<IRI> qOrder = conf.getQuestionOrder();
+		for(int i = 0; i<qOrder.size(); i++) {
+			IRI indIri = qOrder.get(i);
+			OWLNamedIndividual ind = df.getOWLNamedIndividual(indIri);
+			if(verbose) System.out.println("Processing question: " + ind.getIRI().getShortForm());
+			String qText = "", qFocus = ""; QuestionType qType = null;
+			Set<OWLAxiom> axioms = map.get(ind);
 			for(OWLAxiom ax : axioms) {
 				if(ax.isLogicalAxiom()) {
-					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
-						if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(text)) {
-							qText = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
-							if(verbose) System.out.println("\tQuestion text: " + qText);
-						}
-					}
-					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION)) {
-						if(((OWLObjectPropertyAssertionAxiom)ax).getProperty().equals(focus)) {
-							OWLIndividual ind = ((OWLObjectPropertyAssertionAxiom)ax).getObject();
-							if(ind.isNamed())
-								qFocus = ((OWLNamedIndividual)ind).getIRI().getShortForm();
-							else
-								qFocus = ind.toString();
-							
-							if(verbose) System.out.println("\tQuestion focus: " + qFocus);
-						}
-					}
-					if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
-						OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
-						if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
-							if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(value)) {
-								qType = findQuestionType(((OWLObjectSomeValuesFrom)ce).getFiller());
-								if(verbose) System.out.println("\tQuestion type: " + qType);
-							}
-						}
-					}
+					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
+						qText = getQuestionText(ax, textDataProperty);
+					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
+						qFocus = getQuestionFocus(ax, focusObjectProperty);
+					if(ax.isOfType(AxiomType.CLASS_ASSERTION) && qType == null)
+						qType = getQuestionType(indIri, ax, valueObjectProperty);
 				}
 			}
+			if(qType == null) qType = QuestionType.CHECKBOX; // question type not defined in ontology or configuration file
 			
-//			if(conf.containsQuestion(i.getIRI()))
-//				conf.getQuestionNumber(i.getIRI())
+			Question q = new Question(i, qText, qFocus, qType);
+			if(verbose) printQuestionInfo(q);
+			questions.add(q);
 		}
 		return questions;
 	}
 	
 	
-	private QuestionType findQuestionType(OWLClassExpression ce) {
-		QuestionType type = null;
-		if(questionTypes.containsKey(ce))
-			type = questionTypes.get(ce);
-		else if(ce instanceof OWLObjectOneOf /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ ) //TODO
-			type = QuestionType.DROPDOWN;
-		return type;
+	/**
+	 * Get the type of question, i.e., what the HTML form output will be
+	 * @param ax	Class assertion axiom
+	 * @param valueObjectProperty	Object property that represents the input of the question
+	 * @return Type of question
+	 */
+	private QuestionType getQuestionType(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
+		QuestionType qType = null;
+		if(conf.hasDefinedType(questionIri))
+			qType = conf.getQuestionType(questionIri);
+		else {
+			OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
+			if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
+				if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
+					OWLClassExpression ce2 = ((OWLObjectSomeValuesFrom)ce).getFiller();
+					if(questionTypes.containsKey(ce2))
+						qType = questionTypes.get(ce2);
+					else if(ce2 instanceof OWLObjectOneOf /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ ) //TODO
+						qType = QuestionType.DROPDOWN;
+				}
+			}
+		}
+		return qType;
 	}
 	
 	
+	/**
+	 * Get the focus of the question, i.e., the desired input w.r.t. the modeling of the ontology
+	 * @param ax	Object property assertion axiom
+	 * @param focus	Object property that represents the focus of the question
+	 * @return String describing the focus of the question
+	 */
+	private String getQuestionFocus(OWLAxiom ax, OWLObjectProperty focus) {
+		String qFocus = "";
+		if(((OWLObjectPropertyAssertionAxiom)ax).getProperty().equals(focus)) {
+			OWLIndividual ind = ((OWLObjectPropertyAssertionAxiom)ax).getObject();
+			if(ind.isNamed())
+				qFocus = ((OWLNamedIndividual)ind).getIRI().getShortForm();
+			else
+				qFocus = ind.toString();
+		}
+		return qFocus;
+	}
+	
 	
 	/**
-	 * Get the list of questions of a specific type instantiated in the given ontology
-	 * @return List of question objects
+	 * Get the main text of the question
+	 * @param ax	Data property assertion axioms
+	 * @param text	Data property that represents the text (or title) of a text
+	 * @return Text of the question
+	 */
+	private String getQuestionText(OWLAxiom ax, OWLDataProperty text) {
+		String qText = "";
+		if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(text))
+			qText = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
+		return qText;
+	}
+	
+	
+	/**
+	 * Get the list of questions of a specific type instantiated in the given ontology, where type is a string that is matched 
+	 * against the individuals' names 
+	 * @return List of question
 	 */
 	public List<Question> getQuestions(String type) {
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type); 
-		List<Question> questions = parseQuestions(map);
-		
-		return questions;
+		return parseQuestions(map);
 	}
 	
 	
@@ -187,5 +225,16 @@ public class QuestionParser {
 		qTypes.put(text, QuestionType.TEXTFIELD);
 		qTypes.put(radio, QuestionType.RADIO);
 		return qTypes;
+	}
+	
+	
+	/**
+	 * Print details about the given question
+	 * @param q	Question
+	 */
+	private void printQuestionInfo(Question q) {
+		System.out.println("\tQuestion text: " + q.getQuestionText());
+		System.out.println("\tQuestion focus: " + q.getQuestionFocus());
+		System.out.println("\tQuestion type: " + q.getQuestionType());
 	}
 }
