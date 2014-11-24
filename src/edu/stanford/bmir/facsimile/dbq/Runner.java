@@ -2,6 +2,7 @@ package edu.stanford.bmir.facsimile.dbq;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -16,12 +17,13 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.question.Question;
 import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
 
 /**
- * @author Rafael S. Goncalves <br/>
- * Stanford Center for Biomedical Informatics Research (BMIR) <br/>
- * School of Medicine, Stanford University <br/>
+ * @author Rafael S. Goncalves <br>
+ * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+ * School of Medicine, Stanford University <br>
  */
 public class Runner {
 
@@ -48,9 +50,9 @@ public class Runner {
 		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
 		System.out.println("done");
 		
-		Configuration conf = new Configuration(new File(args[1]), true);
+		Configuration conf = new Configuration(new File(args[1]), verbose);
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		gen.getQuestions("_Back_");
+		List<Question> questions = gen.getQuestions("_Back_");
 	}
 }

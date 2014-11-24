@@ -3,9 +3,9 @@ package edu.stanford.bmir.facsimile.dbq.question;
 import java.util.List;
 
 /**
- * @author Rafael S. Goncalves <br/>
- * Stanford Center for Biomedical Informatics Research (BMIR) <br/>
- * School of Medicine, Stanford University <br/>
+ * @author Rafael S. Goncalves <br>
+ * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+ * School of Medicine, Stanford University <br>
  */
 public class Question {
 	private int questionNumber;

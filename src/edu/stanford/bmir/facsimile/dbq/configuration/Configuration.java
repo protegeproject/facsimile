@@ -20,9 +20,9 @@ import org.xml.sax.SAXException;
 import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 
 /**
- * @author Rafael S. Goncalves <br/>
- * Stanford Center for Biomedical Informatics Research (BMIR) <br/>
- * School of Medicine, Stanford University <br/>
+ * @author Rafael S. Goncalves <br>
+ * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+ * School of Medicine, Stanford University <br>
  */
 public class Configuration {
 	private Document doc;

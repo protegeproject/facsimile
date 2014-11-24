@@ -1,6 +1,7 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,9 +38,9 @@ import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 
 /**
- * @author Rafael S. Goncalves <br/>
- * Stanford Center for Biomedical Informatics Research (BMIR) <br/>
- * School of Medicine, Stanford University <br/>
+ * @author Rafael S. Goncalves <br>
+ * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+ * School of Medicine, Stanford University <br>
  */
 public class QuestionParser {
 	private OWLOntology ont;
@@ -133,34 +134,35 @@ public class QuestionParser {
 	 * @return Question instance
 	 */
 	private Question getQuestionDetails(int index, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
-		List<String> options = new ArrayList<String>();
-		String qText = "", qFocus = ""; QuestionType qType = null;
+		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
 		for(OWLAxiom ax : axioms) {
 			if(ax.isLogicalAxiom()) {
 				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
 					qText = getQuestionText(ax, textDataProperty);
 				if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
 					qFocus = getQuestionFocus(ax, focusObjectProperty);
-				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && qType == null)
-					qType = getQuestionType(ind.getIRI(), ax, valueObjectProperty);
+				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
+					qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
 			}
 		}
-		if(qType == null) {
-			qType = QuestionType.CHECKBOX;
+		if(qOpts.getQuestionType() == null) {
+			qOpts.setQuestionType(QuestionType.TEXTFIELD);
 			System.out.println("\t!! Question type not defined in ontology or configuration file. "
-					+ "Defaulting to checkbox !!");
+					+ "Defaulting to text field !!");
 		}
-		return new Question(index, qText, qFocus, qType, options);
+		return new Question(index, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
 	}
 	
 	
 	/**
 	 * Get the type of question, i.e., what the HTML form output will be
+	 * @param questionIri	IRI of the question individual
 	 * @param ax	Class assertion axiom
 	 * @param valueObjectProperty	Object property that represents the input of the question
 	 * @return Type of question
 	 */
-	private QuestionType getQuestionType(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
+	private QuestionOptions getQuestionOptions(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
+		List<String> opts = new ArrayList<String>();
 		QuestionType qType = null;
 		if(conf.hasDefinedType(questionIri))
 			qType = conf.getQuestionType(questionIri);
@@ -174,13 +176,15 @@ public class QuestionParser {
 					else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
 						qType = QuestionType.DROPDOWN;
 						OWLObjectOneOf optsEnum = (OWLObjectOneOf)filler;
-						List<String> opts = getOptionsFromEnumeration(optsEnum);
-						// TODO
+						opts = getOptionsFromEnumeration(optsEnum);
 					}
 				}
 			}
 		}
-		return qType;
+		if(qType != null && qType.equals(QuestionType.RADIO)) 
+			opts.addAll(Arrays.asList("YES","NO"));
+		
+		return new QuestionOptions(questionIri, qType, opts);
 	}
 	
 	
@@ -213,14 +217,11 @@ public class QuestionParser {
 	 */
 	private List<String> sortOptionList(List<String> list ) {
 		Collections.sort(list);
-		if(verbose) System.out.print("\tQuestion options: ");
 		for(int i = 0; i<list.size(); i++) {
 			String opt = list.get(i);
 			opt = opt.replaceFirst("^0+(?!$)", ""); // remove leading zeroes
 			list.remove(i); list.add(i, opt);
-			if(verbose) System.out.print(opt + " ");
 		}
-		if(verbose) System.out.println();
 		return list;
 	}
 	
@@ -261,6 +262,7 @@ public class QuestionParser {
 	/**
 	 * Get the list of questions of a specific type instantiated in the given ontology, where type is a string that is matched 
 	 * against the individuals' names 
+	 * @param type	Type of question (i.e., IRI name fragment)
 	 * @return List of question
 	 */
 	public List<Question> getQuestions(String type) {
@@ -300,5 +302,13 @@ public class QuestionParser {
 		System.out.println("\tQuestion text: " + q.getQuestionText());
 		System.out.println("\tQuestion focus: " + q.getQuestionFocus());
 		System.out.println("\tQuestion type: " + q.getQuestionType());
+		System.out.print("\tQuestion options: ");
+		if(!q.getQuestionType().equals(QuestionType.TEXTFIELD)) {
+			for(String opt : q.getQuestionOptions())
+				System.out.print(opt + " ");
+		}
+		else 
+			System.out.print("none (text field)");
+		if(verbose) System.out.println();
 	}
 }
