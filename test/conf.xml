@@ -15,6 +15,7 @@
 		<binding id="text">http://purl.org/facsimile/cfa#hasText</binding>
 		<binding id="focus">http://purl.org/facsimile/cfa#hasFocus</binding>
 		<binding id="value">http://purl.org/facsimile/cfa#hasValue</binding>
+		<binding id="datavalue">http://purl.org/facsimile/cfa#hasDataValue</binding>
 		<!-- section property bindings -->
 		<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 		<binding id="sectionsortinglabel">http://purl.org/facsimile/cfa#hasSortingLabel</binding>

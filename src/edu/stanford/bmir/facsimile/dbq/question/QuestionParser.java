@@ -1,11 +1,13 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
@@ -17,6 +19,7 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectOneOf;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -46,7 +49,7 @@ public class QuestionParser {
 	private Configuration conf;
 	private boolean verbose;
 	private Map<OWLClassExpression,QuestionType> questionTypes;
-	private OWLDataProperty textDataProperty;
+	private OWLDataProperty textDataProperty, dataValueProperty;
 	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
 	
 	/**
@@ -66,6 +69,7 @@ public class QuestionParser {
 		textDataProperty = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
 		valueObjectProperty = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
 		focusObjectProperty = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
+		dataValueProperty = df.getOWLDataProperty(conf.getQuestionDataValuePropertyBinding());
 	}
 	
 	
@@ -110,28 +114,43 @@ public class QuestionParser {
 		List<Question> questions = new ArrayList<Question>();
 		List<IRI> qOrder = conf.getQuestionOrder();
 		for(int i = 0; i<qOrder.size(); i++) {
-			IRI indIri = qOrder.get(i);
-			OWLNamedIndividual ind = df.getOWLNamedIndividual(indIri);
+			OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
 			if(verbose) System.out.println("Processing question: " + ind.getIRI().getShortForm());
-			String qText = "", qFocus = ""; QuestionType qType = null;
 			Set<OWLAxiom> axioms = map.get(ind);
-			for(OWLAxiom ax : axioms) {
-				if(ax.isLogicalAxiom()) {
-					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
-						qText = getQuestionText(ax, textDataProperty);
-					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
-						qFocus = getQuestionFocus(ax, focusObjectProperty);
-					if(ax.isOfType(AxiomType.CLASS_ASSERTION) && qType == null)
-						qType = getQuestionType(indIri, ax, valueObjectProperty);
-				}
-			}
-			if(qType == null) qType = QuestionType.CHECKBOX; // question type not defined in ontology or configuration file
-			
-			Question q = new Question(i, qText, qFocus, qType);
+			Question q = getQuestionDetails(i, ind, axioms);
 			if(verbose) printQuestionInfo(q);
 			questions.add(q);
 		}
 		return questions;
+	}
+	
+	
+	/**
+	 * Given a question, gather its details: text, focus, type, and possible answers
+	 * @param index	Question number
+	 * @param ind	Individual representing a question
+	 * @param axioms	 Set of axioms where the individual is mentioned 
+	 * @return Question instance
+	 */
+	private Question getQuestionDetails(int index, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
+		List<String> options = new ArrayList<String>();
+		String qText = "", qFocus = ""; QuestionType qType = null;
+		for(OWLAxiom ax : axioms) {
+			if(ax.isLogicalAxiom()) {
+				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
+					qText = getQuestionText(ax, textDataProperty);
+				if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
+					qFocus = getQuestionFocus(ax, focusObjectProperty);
+				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && qType == null)
+					qType = getQuestionType(ind.getIRI(), ax, valueObjectProperty);
+			}
+		}
+		if(qType == null) {
+			qType = QuestionType.CHECKBOX;
+			System.out.println("\t!! Question type not defined in ontology or configuration file. "
+					+ "Defaulting to checkbox !!");
+		}
+		return new Question(index, qText, qFocus, qType, options);
 	}
 	
 	
@@ -149,15 +168,60 @@ public class QuestionParser {
 			OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 			if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 				if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
-					OWLClassExpression ce2 = ((OWLObjectSomeValuesFrom)ce).getFiller();
-					if(questionTypes.containsKey(ce2))
-						qType = questionTypes.get(ce2);
-					else if(ce2 instanceof OWLObjectOneOf /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ ) //TODO
+					OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
+					if(questionTypes.containsKey(filler))
+						qType = questionTypes.get(filler);
+					else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
 						qType = QuestionType.DROPDOWN;
+						OWLObjectOneOf optsEnum = (OWLObjectOneOf)filler;
+						List<String> opts = getOptionsFromEnumeration(optsEnum);
+						// TODO
+					}
 				}
 			}
 		}
 		return qType;
+	}
+	
+	
+	/**
+	 * Get the list of options contained in an enumeration 
+	 * @param optsEnum	Class expression
+	 * @return List of answer options
+	 */
+	private List<String> getOptionsFromEnumeration(OWLObjectOneOf optsEnum) {
+		List<String> list = new ArrayList<String>();
+		for(OWLNamedIndividual ind : optsEnum.getIndividualsInSignature()) {
+			Set<OWLAxiom> usg = ont.getReferencingAxioms(ind, Imports.INCLUDED);
+			for(OWLAxiom ax : usg) {
+				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
+					if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(dataValueProperty)) {
+						OWLLiteral lit = ((OWLDataPropertyAssertionAxiom)ax).getObject();
+						list.add(StringUtils.leftPad(lit.getLiteral(), 6, '0')); // add leading zeroes for proper sorting
+					}
+				}
+			}
+		}
+		return sortOptionList(list);
+	}
+	
+	
+	/**
+	 * Sort a given list of options
+	 * @param list	List of options in the order gathered
+	 * @return Sorted list of options
+	 */
+	private List<String> sortOptionList(List<String> list ) {
+		Collections.sort(list);
+		if(verbose) System.out.print("\tQuestion options: ");
+		for(int i = 0; i<list.size(); i++) {
+			String opt = list.get(i);
+			opt = opt.replaceFirst("^0+(?!$)", ""); // remove leading zeroes
+			list.remove(i); list.add(i, opt);
+			if(verbose) System.out.print(opt + " ");
+		}
+		if(verbose) System.out.println();
+		return list;
 	}
 	
 	

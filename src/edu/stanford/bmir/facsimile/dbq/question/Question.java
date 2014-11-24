@@ -1,5 +1,7 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
+import java.util.List;
+
 /**
  * @author Rafael S. Goncalves <br/>
  * Stanford Center for Biomedical Informatics Research (BMIR) <br/>
@@ -9,6 +11,7 @@ public class Question {
 	private int questionNumber;
 	private String questionText, questionFocus;
 	private QuestionType questionType;
+	private List<String> options;
 	
 	/**
 	 * Constructor
@@ -16,12 +19,14 @@ public class Question {
 	 * @param questionText	Title (text) of the question
 	 * @param questionFocus	Focus of the question
 	 * @param questionType	Type of question, i.e., HTML form element type
+	 * @param options	List of options, i.e., possible answers to the question
 	 */
-	public Question(int questionNumber, String questionText, String questionFocus, QuestionType questionType) {
+	public Question(int questionNumber, String questionText, String questionFocus, QuestionType questionType, List<String> options) {
 		this.questionNumber = questionNumber;
 		this.questionText = questionText;
 		this.questionFocus = questionFocus;
 		this.questionType = questionType;
+		this.options = options;
 	}
 	
 	
@@ -58,6 +63,15 @@ public class Question {
 	 */
 	public QuestionType getQuestionType() {
 		return questionType;
+	}
+	
+	
+	/**
+	 * Get the list of possible answers to this question
+	 * @return List of options
+	 */
+	public List<String> getQuestionOptions() {
+		return options;
 	}
 	
 	

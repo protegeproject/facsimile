@@ -195,6 +195,15 @@ public class Configuration {
 	
 	
 	/**
+	 * Get the data property IRI which is used to represent the numeric value of a question's option
+	 * @return OWL data property IRI
+	 */
+	public IRI getQuestionDataValuePropertyBinding() {
+		return IRI.create(doc.getElementById("datavalue").getTextContent());
+	}
+	
+	
+	/**
 	 * Get the OWL class IRI which represents the type of questions, i.e., questions are instances of this class
 	 * @return OWL class IRI
 	 */
