@@ -17,6 +17,7 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
 import edu.stanford.bmir.facsimile.dbq.question.Question;
 import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
 
@@ -54,5 +55,8 @@ public class Runner {
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
 		List<Question> questions = gen.getQuestions("_Back_");
+		
+		FormGenerator form = new FormGenerator(questions, verbose);
+		form.generateHTMLForm(new File("/Users/rgoncalves/Documents/workspace/facsimile/test/index.html"), "DBQ Form");
 	}
 }

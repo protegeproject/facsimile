@@ -162,16 +162,18 @@ public class QuestionParser {
 	 * @return Type of question
 	 */
 	private QuestionOptions getQuestionOptions(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
+		OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 		List<String> opts = new ArrayList<String>();
 		QuestionType qType = null;
-		if(conf.hasDefinedType(questionIri))
+		if(conf.hasDefinedType(questionIri)) {
 			qType = conf.getQuestionType(questionIri);
+			opts = getOptions(ce);
+		}
 		else {
-			OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 			if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 				if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
 					OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-					if(questionTypes.containsKey(filler))
+					if(questionTypes.containsKey(filler)) // string or boolean values
 						qType = questionTypes.get(filler);
 					else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
 						qType = QuestionType.DROPDOWN;
@@ -185,6 +187,22 @@ public class QuestionParser {
 			opts.addAll(Arrays.asList("YES","NO"));
 		
 		return new QuestionOptions(questionIri, qType, opts);
+	}
+	
+	
+	
+	private List<String> getOptions(OWLClassExpression ce) {
+		List<String> opts = new ArrayList<String>();
+		if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
+			if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
+				OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
+				if(filler instanceof OWLObjectOneOf) {
+					OWLObjectOneOf optsEnum = (OWLObjectOneOf)filler;
+					opts = getOptionsFromEnumeration(optsEnum);
+				}
+			}
+		}
+		return opts;
 	}
 	
 	

@@ -34,9 +34,9 @@ public class Configuration {
 	 * Constructor
 	 * @param file	XML document file
 	 * @param verbose	true for verbose mode
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws IOException
+	 * @throws ParserConfigurationException	Configuration error
+	 * @throws SAXException	Parse error
+	 * @throws IOException	IO error
 	 */
 	public Configuration(File file, boolean verbose) throws ParserConfigurationException, SAXException, IOException {
 		this.verbose = verbose;
@@ -51,9 +51,9 @@ public class Configuration {
 	/**
 	 * Constructor 
 	 * @param file	XML document file
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws IOException
+	 * @throws ParserConfigurationException	Configuration error
+	 * @throws SAXException	Parse error
+	 * @throws IOException	IO error
 	 */
 	public Configuration(File file) throws ParserConfigurationException, SAXException, IOException {
 		this(file, false);
