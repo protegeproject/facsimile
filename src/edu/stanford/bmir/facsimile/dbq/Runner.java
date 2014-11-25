@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.model.IRI;
@@ -14,7 +12,6 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;
-import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
@@ -27,7 +24,12 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
  */
 public class Runner {
 	
-	private static OWLOntology loadOntology(Configuration conf) throws OWLOntologyCreationException {
+	/**
+	 * Load ontology specified in a configuration
+	 * @param conf	Configuration
+	 * @return OWL ontology
+	 */
+	private static OWLOntology loadOntology(Configuration conf) {
 		File f = new File(conf.getOntologyPath());
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
@@ -38,7 +40,12 @@ public class Runner {
 		for(IRI i : map.keySet())
 			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create("file:" + map.get(i))));
 		
-		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
+		OWLOntology ont = null;
+		try {
+			ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+		}
 		System.out.println("done");
 		return ont;
 	}
@@ -60,7 +67,12 @@ public class Runner {
 	}
 	
 	
-	public static void main(String[] args) throws OWLOntologyCreationException, ParserConfigurationException, SAXException, IOException {
+	/**
+	 * Main
+	 * @param args	Configuration file path
+	 * @throws IOException	IO exception
+	 */
+	public static void main(String[] args) throws IOException {
 		Configuration conf = null; OWLOntology ont = null;
 		boolean verbose = false;
 		
@@ -79,9 +91,12 @@ public class Runner {
 		
 		if(conf != null) {
 			ont = Runner.loadOntology(conf);
+			String outputPath = conf.getOutputFilePath();
+			System.out.println("Output file: " + outputPath);
+			
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
 			FormGenerator form = new FormGenerator(gen.getQuestions("_Back_"), verbose);
-//			form.generateHTMLForm(new File("	"), "DBQ Form"); // TODO output
+			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle());
 		}
 		else {
 			if(ont == null)

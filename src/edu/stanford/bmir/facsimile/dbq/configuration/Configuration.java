@@ -27,7 +27,7 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 public class Configuration {
 	private Document doc;
 	private List<IRI> list;
-	private String ontPath;
+	private String ontPath, outPath, title;
 	private Map<IRI,String> imports;
 	private boolean verbose;
 	private Map<IRI,QuestionType> questionTypes;
@@ -44,6 +44,7 @@ public class Configuration {
 		imports = new HashMap<IRI,String>();
 		list = findQuestionOrdering();
 		gatherOntologyFiles();
+		gatherOutputInformation();
 	}
 	
 	
@@ -76,6 +77,27 @@ public class Configuration {
 	
 	
 	/**
+	 * Retrieve output information
+	 */
+	private void gatherOutputInformation() {
+		NodeList nl = doc.getElementsByTagName("output");
+		for(int i = 0; i < nl.getLength(); i++) {
+			Node n = nl.item(i);
+			if(n.hasChildNodes() && n.getChildNodes().getLength() > 0) {
+				for(int j = 0; j < n.getChildNodes().getLength(); j++) {
+					Node c = n.getChildNodes().item(j);
+					if(c.getNodeName().equals("file")) {
+						outPath = c.getTextContent();
+						if(c.hasAttributes() && c.getAttributes().getNamedItem("title") != null)
+							title = c.getAttributes().getNamedItem("title").getTextContent();
+					}
+				}
+			}
+		}
+	}
+	
+	
+	/**
 	 * Retrieve ontology files (including imports)
 	 */
 	private void gatherOntologyFiles() {
@@ -89,7 +111,7 @@ public class Configuration {
 						imports.put(IRI.create(iri), n.getTextContent());
 				}
 			}
-			else
+			else if(n.getParentNode().getNodeName().equals("input"))
 				ontPath = n.getTextContent();
 		}
 	}
@@ -335,5 +357,23 @@ public class Configuration {
 	 */
 	public Map<IRI,String> getImportsMap() {
 		return imports;
+	}
+	
+	
+	/**
+	 * Get the file path of the output file
+	 * @return String with the file path of the output file
+	 */
+	public String getOutputFilePath() {
+		return outPath;
+	}
+
+	
+	/**
+	 * Get the title of the (HTML) output file
+	 * @return String describing the title of the output file
+	 */
+	public String getOutputFileTitle() {
+		return title;
 	}
 }

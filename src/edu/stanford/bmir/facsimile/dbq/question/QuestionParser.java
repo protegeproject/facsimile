@@ -169,16 +169,14 @@ public class QuestionParser {
 			qType = conf.getQuestionType(questionIri);
 			opts = getOptions(ce);
 		}
-		else {
-			if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
-				if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
-					OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-					if(questionTypes.containsKey(filler)) // string or boolean values
-						qType = questionTypes.get(filler);
-					else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
-						qType = QuestionType.DROPDOWN;
-						opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
-					}
+		else if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
+			if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
+				OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
+				if(questionTypes.containsKey(filler)) // string or boolean values
+					qType = questionTypes.get(filler);
+				else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
+					qType = QuestionType.DROPDOWN;
+					opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
 				}
 			}
 		}
