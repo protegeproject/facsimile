@@ -26,7 +26,7 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
  */
 public class Configuration {
 	private Document doc;
-	private List<IRI> list;
+	private List<IRI> questionList, sectionList;
 	private String ontPath, outPath, title;
 	private Map<IRI,String> imports;
 	private boolean verbose;
@@ -42,7 +42,8 @@ public class Configuration {
 		doc = loadConfigurationFile(file);
 		questionTypes = new HashMap<IRI,QuestionType>();
 		imports = new HashMap<IRI,String>();
-		list = findQuestionOrdering();
+		questionList = getQuestions();
+		sectionList = getSections();
 		gatherOntologyFiles();
 		gatherOutputInformation();
 	}
@@ -86,7 +87,7 @@ public class Configuration {
 			if(n.hasChildNodes() && n.getChildNodes().getLength() > 0) {
 				for(int j = 0; j < n.getChildNodes().getLength(); j++) {
 					Node c = n.getChildNodes().item(j);
-					if(c.getNodeName().equals("file")) {
+					if(c.getNodeName().equalsIgnoreCase("file")) {
 						outPath = c.getTextContent();
 						if(c.hasAttributes() && c.getAttributes().getNamedItem("title") != null)
 							title = c.getAttributes().getNamedItem("title").getTextContent();
@@ -104,24 +105,43 @@ public class Configuration {
 		NodeList nl = doc.getElementsByTagName("ontology");
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node n = nl.item(i);
-			if(n.getParentNode().getNodeName().equals("imports")) {
+			if(n.getParentNode().getNodeName().equalsIgnoreCase("imports")) {
 				if(n.hasAttributes()) {
 					String iri = n.getAttributes().getNamedItem("iri").getTextContent();
 					if(iri != null)
 						imports.put(IRI.create(iri), n.getTextContent());
 				}
 			}
-			else if(n.getParentNode().getNodeName().equals("input"))
+			else if(n.getParentNode().getNodeName().equalsIgnoreCase("input"))
 				ontPath = n.getTextContent();
 		}
 	}
 	
 	
 	/**
-	 * Gather a list questions as they are ordered in the configuration file
-	 * @return List of questions
+	 * Gather a list of sections specified in the configuration file
+	 * @return List of sections' IRIs
 	 */
-	private List<IRI> findQuestionOrdering() {
+	private List<IRI> getSections() {
+		List<IRI> list = new ArrayList<IRI>();
+		NodeList nl = doc.getElementsByTagName("section");
+		for(int i = 0; i < nl.getLength(); i++) {
+			Node n = nl.item(i);
+			for(int j = 0; j < n.getChildNodes().getLength(); j++) {
+				Node child = n.getChildNodes().item(j);
+				if(child.getNodeName().equalsIgnoreCase("iri"))
+					list.add(IRI.create(child.getTextContent()));
+			}
+		}
+		return list;
+	}
+	
+	
+	/**
+	 * Gather a list questions as they are ordered in the configuration file
+	 * @return List of questions' IRIs
+	 */
+	private List<IRI> getQuestions() {
 		List<IRI> list = new ArrayList<IRI>();
 		if(verbose) System.out.println("Checking configuration file for question order... ");
 		NodeList nl = doc.getElementsByTagName("question");
@@ -194,7 +214,7 @@ public class Configuration {
 	 * @return true if configuration file specifies this question, false otherwise
 	 */
 	public boolean containsQuestion(IRI i) {
-		if(list.contains(i))
+		if(questionList.contains(i))
 			return true;
 		else
 			return false;
@@ -208,7 +228,7 @@ public class Configuration {
 	 */
 	public Integer getQuestionNumber(IRI i) {
 		if(containsQuestion(i))
-			return list.indexOf(i)+1;
+			return questionList.indexOf(i)+1;
 		else
 			return 0;
 	}
@@ -329,7 +349,7 @@ public class Configuration {
 	 * @return List of ordered questions
 	 */
 	public List<IRI> getQuestionOrder() {
-		return list;
+		return questionList;
 	}
 	
 	
@@ -375,5 +395,14 @@ public class Configuration {
 	 */
 	public String getOutputFileTitle() {
 		return title;
+	}
+	
+	
+	/**
+	 * Get the list of sections specified in the configuration file
+	 * @return List of sections' IRIs
+	 */
+	public List<IRI> getSectionsList() {
+		return sectionList;
 	}
 }

@@ -43,6 +43,7 @@
 	</bindings>
 	<form>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
 			<questionList>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</iri>
@@ -56,6 +57,7 @@
 			</questionList>
 		</section>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_2</iri>
 			<questionList>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q2</iri>
@@ -63,6 +65,7 @@
 			</questionList>
 		</section>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_3</iri>
 			<questionList>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_1</iri>
@@ -73,6 +76,7 @@
 			</questionList>
 		</section>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_4</iri>
 			<questionList>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1</iri>
@@ -89,6 +93,7 @@
 			</questionList>
 		</section>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_5</iri>
 			<questionList>
 				<question type="checkbox">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5B</iri>
