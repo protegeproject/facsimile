@@ -77,22 +77,22 @@ public class FormGenerator {
 		case CHECKBOX:
 			for(String opt : q.getQuestionOptions())
 				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "\n");
+						+ "\" value=\"" + opt.toLowerCase() + "\"/>" + opt.toLowerCase() + "\n");
 			break;
 		case DROPDOWN:
-			bw.write("<input list=\"q" + (q.getQuestionNumber()+1) + "\">\n");
-			bw.write("<datalist id=\"q" + (q.getQuestionNumber()+1) + "\">\n");
+//			bw.write("<input list=\"q" + (q.getQuestionNumber()+1) + "\"/>\n");
+			bw.write("<select id=\"q" + (q.getQuestionNumber()+1) + "\">\n");
 			for(String opt : q.getQuestionOptions())
 				bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
-			bw.write("</datalist>\n");
+			bw.write("</select>\n");
 			break;
 		case RADIO:
 			for(String opt : q.getQuestionOptions())
 				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt + "\">" + opt + "\n");
+						+ "\" value=\"" + opt + "\"/>" + opt + "\n");
 			break;
 		case TEXTFIELD:
-			bw.write("<input type=\"text\" size=\"200\">\n");
+			bw.write("<input type=\"text\" size=\"200\"/>\n");
 			break;
 		case COMBO:
 			break;

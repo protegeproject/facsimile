@@ -2,7 +2,7 @@ package edu.stanford.bmir.facsimile.dbq;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -18,7 +18,6 @@ import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
-import edu.stanford.bmir.facsimile.dbq.question.Question;
 import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
 
 /**
@@ -27,36 +26,69 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
  * School of Medicine, Stanford University <br>
  */
 public class Runner {
-
-	public static void main(String[] args) throws OWLOntologyCreationException, ParserConfigurationException, SAXException, IOException {
-		String sep = File.separator;
-		boolean verbose = true;
-		
+	
+	private static OWLOntology loadOntology(Configuration conf) throws OWLOntologyCreationException {
+		File f = new File(conf.getOntologyPath());
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
 		config.setLoadAnnotationAxioms(false);
 		
-		File f = new File(args[0]); // ontology file
-		String folderPath = f.getParentFile().getAbsolutePath() + sep; // path of root folder where ontology (and its imports) are located 
+		System.out.print("Loading ontology: " + f.getAbsolutePath() + "... ");
+		Map<IRI, String> map = conf.getImportsMap();
+		for(IRI i : map.keySet())
+			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create("file:" + map.get(i))));
 		
-		// IRI mappers for imported ontologies
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), 
-				IRI.create("file:" + folderPath + "datamodel.owl")));
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/cfa"), 
-				IRI.create("file:" + folderPath + "ides_cfa.owl")));
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://who.int/icf"), 
-				IRI.create("file:" + folderPath + "icf_simplified_2013.11.22.owl")));
-		
-		System.out.print("Loading ontology... ");
 		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
 		System.out.println("done");
+		return ont;
+	}
+	
+	
+	/**
+	 * Print usage message 
+	 */
+	private static void printUsage() {
+		System.out.println(" Usage:\n\t-ont [ONTOLOGY] -config [CONFIGURATION] [OPTIONS]");
+		System.out.println();
+		System.out.println("	[ONTOLOGY]	An input ontology file path or URL");
+		System.out.println();
+		System.out.println("	[CONFIGURATION]	An XML configuration file specifying class, property, and question bindings");
+		System.out.println();
+		System.out.println("	[OPTIONS]");
+		System.out.println("	-v		verbose mode");
+		System.out.println();
+	}
+	
+	
+	public static void main(String[] args) throws OWLOntologyCreationException, ParserConfigurationException, SAXException, IOException {
+		Configuration conf = null; OWLOntology ont = null;
+		boolean verbose = false;
 		
-		Configuration conf = new Configuration(new File(args[1]), verbose);
+		for(int i = 0; i < args.length; i++) {
+			String arg = args[i].trim();
+			if(arg.equalsIgnoreCase("-config")) {
+				if(++i == args.length) throw new RuntimeException("\n-config must be followed by a path to a configuration file.\n");
+				System.out.print("Loading configuration: " + args[i] + "... ");
+				if(!args[i].startsWith("-"))
+					conf = new Configuration(new File(args[i].trim()), verbose);
+				System.out.println("done");
+			}
+			if(arg.equalsIgnoreCase("-v"))
+				verbose = true;
+		}
 		
-		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		List<Question> questions = gen.getQuestions("_Back_");
-		
-		FormGenerator form = new FormGenerator(questions, verbose);
-		form.generateHTMLForm(new File("/Users/rgoncalves/Documents/workspace/facsimile/test/index.html"), "DBQ Form");
+		if(conf != null) {
+			ont = Runner.loadOntology(conf);
+			QuestionParser gen = new QuestionParser(ont, conf, verbose);
+			FormGenerator form = new FormGenerator(gen.getQuestions("_Back_"), verbose);
+//			form.generateHTMLForm(new File("	"), "DBQ Form"); // TODO output
+		}
+		else {
+			if(ont == null)
+				System.err.println("\nCould not load ontology; an ontology URI must follow the -ont flag.\n");
+			if(conf == null)
+				System.err.println("\nCould not load configuration file; the path to the configuration must follow the -config flag.\n");
+			Runner.printUsage(); System.exit(0);
+		}
 	}
 }

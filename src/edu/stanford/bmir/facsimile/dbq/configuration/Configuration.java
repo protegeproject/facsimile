@@ -27,6 +27,8 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 public class Configuration {
 	private Document doc;
 	private List<IRI> list;
+	private String ontPath;
+	private Map<IRI,String> imports;
 	private boolean verbose;
 	private Map<IRI,QuestionType> questionTypes;
 	
@@ -34,29 +36,62 @@ public class Configuration {
 	 * Constructor
 	 * @param file	XML document file
 	 * @param verbose	true for verbose mode
-	 * @throws ParserConfigurationException	Configuration error
-	 * @throws SAXException	Parse error
-	 * @throws IOException	IO error
 	 */
-	public Configuration(File file, boolean verbose) throws ParserConfigurationException, SAXException, IOException {
+	public Configuration(File file, boolean verbose) {
 		this.verbose = verbose;
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		this.doc = db.parse(file);
+		doc = loadConfigurationFile(file);
 		questionTypes = new HashMap<IRI,QuestionType>();
+		imports = new HashMap<IRI,String>();
 		list = findQuestionOrdering();
+		gatherOntologyFiles();
 	}
 	
 	
 	/**
 	 * Constructor 
 	 * @param file	XML document file
-	 * @throws ParserConfigurationException	Configuration error
-	 * @throws SAXException	Parse error
-	 * @throws IOException	IO error
 	 */
-	public Configuration(File file) throws ParserConfigurationException, SAXException, IOException {
+	public Configuration(File file) {
 		this(file, false);
+	}
+	
+	
+	/**
+	 * Load XML configuration file 
+	 * @param f	File
+	 * @return XML document instance 
+	 */
+	private Document loadConfigurationFile(File f) {
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = null;
+		Document doc = null;
+		try {
+			db = dbf.newDocumentBuilder();
+			doc = db.parse(f);
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		return doc;
+	}
+	
+	
+	/**
+	 * Retrieve ontology files (including imports)
+	 */
+	private void gatherOntologyFiles() {
+		NodeList nl = doc.getElementsByTagName("ontology");
+		for(int i = 0; i < nl.getLength(); i++) {
+			Node n = nl.item(i);
+			if(n.getParentNode().getNodeName().equals("imports")) {
+				if(n.hasAttributes()) {
+					String iri = n.getAttributes().getNamedItem("iri").getTextContent();
+					if(iri != null)
+						imports.put(IRI.create(iri), n.getTextContent());
+				}
+			}
+			else
+				ontPath = n.getTextContent();
+		}
 	}
 	
 	
@@ -282,5 +317,23 @@ public class Configuration {
 	 */
 	public Map<IRI,QuestionType> getQuestionTypes() {
 		return questionTypes;
+	}
+	
+	
+	/**
+	 * Get file path to main ontology input
+	 * @return File path
+	 */
+	public String getOntologyPath() {
+		return ontPath;
+	}
+	
+	
+	/**
+	 * Get the map of imported ontologies' IRIs and file paths
+	 * @return Map of IRIs and file paths of imported ontologies
+	 */
+	public Map<IRI,String> getImportsMap() {
+		return imports;
 	}
 }

@@ -177,8 +177,7 @@ public class QuestionParser {
 						qType = questionTypes.get(filler);
 					else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
 						qType = QuestionType.DROPDOWN;
-						OWLObjectOneOf optsEnum = (OWLObjectOneOf)filler;
-						opts = getOptionsFromEnumeration(optsEnum);
+						opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
 					}
 				}
 			}
@@ -190,16 +189,18 @@ public class QuestionParser {
 	}
 	
 	
-	
+	/**
+	 * Get the answer options from a given class expression 
+	 * @param ce	OWL class expression
+	 * @return List of options represented by the given class expression
+	 */
 	private List<String> getOptions(OWLClassExpression ce) {
 		List<String> opts = new ArrayList<String>();
 		if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 			if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
 				OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-				if(filler instanceof OWLObjectOneOf) {
-					OWLObjectOneOf optsEnum = (OWLObjectOneOf)filler;
-					opts = getOptionsFromEnumeration(optsEnum);
-				}
+				if(filler instanceof OWLObjectOneOf)
+					opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
 			}
 		}
 		return opts;
