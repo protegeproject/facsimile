@@ -16,6 +16,7 @@ public class QuestionOptions {
 	private QuestionType type; 
 	private List<String> options;
 	
+	
 	/**
 	 * Constructor
 	 * @param question	IRI of question individual

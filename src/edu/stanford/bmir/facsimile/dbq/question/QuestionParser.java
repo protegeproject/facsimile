@@ -53,6 +53,7 @@ public class QuestionParser {
 	private OWLDataProperty textDataProperty, dataValueProperty;
 	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
 	
+	
 	/**
 	 * Constructor
 	 * @param ont	OWL ontology document
@@ -93,7 +94,7 @@ public class QuestionParser {
 		if(verbose) System.out.print("Parsing questions... ");
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = new HashMap<OWLNamedIndividual,Set<OWLAxiom>>();
 		
-		OWLClass questionClass = df.getOWLClass(conf.getQuestionClass());
+		OWLClass questionClass = df.getOWLClass(conf.getQuestionInputClass());
 		Set<OWLNamedIndividual> instances = reasoner.getInstances(questionClass, false).getFlattened();
 		
 		for(OWLNamedIndividual i : instances) {
@@ -113,7 +114,7 @@ public class QuestionParser {
 	 */
 	private List<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		List<Question> questions = new ArrayList<Question>();
-		List<IRI> qOrder = conf.getQuestionOrder();
+		List<IRI> qOrder = conf.getQuestionList();
 		for(int i = 0; i<qOrder.size(); i++) {
 			OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
 			if(verbose) System.out.println("Processing question: " + ind.getIRI().getShortForm());
@@ -123,6 +124,16 @@ public class QuestionParser {
 			questions.add(q);
 		}
 		return questions;
+	}
+	
+	
+	private void getSectionsAndRespectiveQuestions() {
+		List<IRI> sections = conf.getSectionList();
+		for(IRI i : sections) {
+			OWLNamedIndividual ind = df.getOWLNamedIndividual(i);
+			
+		}
+		
 	}
 	
 	

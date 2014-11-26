@@ -24,19 +24,20 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
  */
 public class Runner {
 	
+	
 	/**
 	 * Load ontology specified in a configuration
 	 * @param conf	Configuration
 	 * @return OWL ontology
 	 */
 	private static OWLOntology loadOntology(Configuration conf) {
-		File f = new File(conf.getOntologyPath());
+		File f = new File(conf.getInputOntologyPath());
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
 		config.setLoadAnnotationAxioms(false);
 		
 		System.out.print("Loading ontology: " + f.getAbsolutePath() + "... ");
-		Map<IRI, String> map = conf.getImportsMap();
+		Map<IRI, String> map = conf.getInputImportsMap();
 		for(IRI i : map.keySet())
 			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create("file:" + map.get(i))));
 		

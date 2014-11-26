@@ -32,6 +32,7 @@ public class Configuration {
 	private boolean verbose;
 	private Map<IRI,QuestionType> questionTypes;
 	
+	
 	/**
 	 * Constructor
 	 * @param file	XML document file
@@ -221,6 +222,28 @@ public class Configuration {
 	}
 	
 	
+	/*	QUESTION NUMBER AND TYPE	*/
+	
+	
+	/**
+	 * Get the question type for the given question
+	 * @param i	IRI of individual representing a question
+	 * @return Question type
+	 */
+	public QuestionType getQuestionType(IRI i) {
+		return questionTypes.get(i);
+	}
+	
+	
+	/**
+	 * Get the map of question IRIs to their respective type as defined in the configuration file
+	 * @return Map of IRIs to question types
+	 */
+	public Map<IRI,QuestionType> getQuestionTypes() {
+		return questionTypes;
+	}
+	
+	
 	/**
 	 * Get the question number for a given question (represented by its IRI)
 	 * @param i	IRI of individual representing a question
@@ -234,14 +257,98 @@ public class Configuration {
 	}
 	
 	
+	/*	QUESTION AND SECTION LISTS	*/
+	
+
 	/**
-	 * Get the question type for the given question
-	 * @param i	IRI of individual representing a question
-	 * @return Question type
+	 * Get the list of questions (sorted by configuration file parsing order)
+	 * @return List of ordered questions
 	 */
-	public QuestionType getQuestionType(IRI i) {
-		return questionTypes.get(i);
+	public List<IRI> getQuestionList() {
+		return questionList;
 	}
+	
+	
+	/**
+	 * Get the list of sections specified in the configuration file
+	 * @return List of sections' IRIs
+	 */
+	public List<IRI> getSectionList() {
+		return sectionList;
+	}
+	
+	
+	/*	INPUT AND OUTPUT FILES	*/
+	
+	
+	/**
+	 * Get file path to main ontology input
+	 * @return File path
+	 */
+	public String getInputOntologyPath() {
+		return ontPath;
+	}
+	
+	
+	/**
+	 * Get the map of imported ontologies' IRIs and file paths
+	 * @return Map of IRIs and file paths of imported ontologies
+	 */
+	public Map<IRI,String> getInputImportsMap() {
+		return imports;
+	}
+	
+	
+	/**
+	 * Get the file path of the output file
+	 * @return String with the file path of the output file
+	 */
+	public String getOutputFilePath() {
+		return outPath;
+	}
+
+	
+	/**
+	 * Get the title of the (HTML) output file
+	 * @return String describing the title of the output file
+	 */
+	public String getOutputFileTitle() {
+		return title;
+	}
+
+	
+	/*	CLASS BINDINGS	*/
+	
+	
+	/**
+	 * Get the OWL class IRI which represents the type of questions, i.e., questions are instances of this class
+	 * @return OWL class IRI
+	 */
+	public IRI getQuestionInputClass() {
+		return IRI.create((doc.getElementById("class").getTextContent()));
+	}
+	
+	
+	/**
+	 * Get the OWL class IRI which represents the type of output class desired, i.e., 
+	 * each form input will become an instance of this class
+	 * @return OWL class IRI
+	 */
+	public IRI getQuestionOutputClass() {
+		return IRI.create((doc.getElementById("outclass").getTextContent()));
+	}
+	
+	
+	/**
+	 * Get the OWL class IRI which represents the type of sections, i.e., sections are instances of this class
+	 * @return OWL class IRI
+	 */
+	public IRI getSectionInputClass() {
+		return IRI.create(doc.getElementById("sectionclass").getTextContent());
+	}
+	
+	
+	/*	PROPERTY BINDINGS	*/
 	
 	
 	/**
@@ -281,22 +388,33 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the OWL class IRI which represents the type of questions, i.e., questions are instances of this class
-	 * @return OWL class IRI
+	 * Get the OWL data property IRI that gives a heading value to a section instance
+	 * @return OWL data property IRI
 	 */
-	public IRI getQuestionClass() {
-		return IRI.create((doc.getElementById("class").getTextContent()));
+	public IRI getSectionHeaderPropertyBinding() {
+		return IRI.create(doc.getElementById("sectionheading").getTextContent());
 	}
 	
 	
 	/**
-	 * Get the OWL class IRI which represents the type of output class desired, i.e., 
-	 * each form input will become an instance of this class
-	 * @return OWL class IRI
+	 * Get the OWL data property IRI that gives a sorting label to a section instance
+	 * @return OWL data property IRI
 	 */
-	public IRI getOutputQuestionClass() {
-		return IRI.create((doc.getElementById("outclass").getTextContent()));
+	public IRI getSectionSortingLabelPropertyBinding() {
+		return IRI.create(doc.getElementById("sectionsortinglabel").getTextContent());
 	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'hasQuestion'
+	 * @return OWL object property IRI
+	 */
+	public IRI getSectionHasQuestionPropertyBinding() {
+		return IRI.create(doc.getElementById("sectionquestion").getTextContent());
+	}
+	
+	
+	/*	QUESTION INPUT TYPES (HTML FORM)	*/
 	
 	
 	/**
@@ -341,68 +459,5 @@ public class Configuration {
 	 */
 	public IRI getComboInputBinding() {
 		return IRI.create(doc.getElementById("combo").getTextContent());
-	}
-	
-	
-	/**
-	 * Get the list of questions (sorted by configuration file parsing order)
-	 * @return List of ordered questions
-	 */
-	public List<IRI> getQuestionOrder() {
-		return questionList;
-	}
-	
-	
-	/**
-	 * Get the map of question IRIs to their respective type as defined in the configuration file
-	 * @return Map of IRIs to question types
-	 */
-	public Map<IRI,QuestionType> getQuestionTypes() {
-		return questionTypes;
-	}
-	
-	
-	/**
-	 * Get file path to main ontology input
-	 * @return File path
-	 */
-	public String getOntologyPath() {
-		return ontPath;
-	}
-	
-	
-	/**
-	 * Get the map of imported ontologies' IRIs and file paths
-	 * @return Map of IRIs and file paths of imported ontologies
-	 */
-	public Map<IRI,String> getImportsMap() {
-		return imports;
-	}
-	
-	
-	/**
-	 * Get the file path of the output file
-	 * @return String with the file path of the output file
-	 */
-	public String getOutputFilePath() {
-		return outPath;
-	}
-
-	
-	/**
-	 * Get the title of the (HTML) output file
-	 * @return String describing the title of the output file
-	 */
-	public String getOutputFileTitle() {
-		return title;
-	}
-	
-	
-	/**
-	 * Get the list of sections specified in the configuration file
-	 * @return List of sections' IRIs
-	 */
-	public List<IRI> getSectionsList() {
-		return sectionList;
 	}
 }
