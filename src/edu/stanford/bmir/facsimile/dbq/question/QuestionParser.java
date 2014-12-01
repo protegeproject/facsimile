@@ -114,8 +114,8 @@ public class QuestionParser {
 	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
 		Map<IRI,List<IRI>> sections = conf.getSectionMap();
-		for(IRI iri : sections.keySet()) {
-			List<IRI> qOrder = sections.get(iri);
+		for(IRI section : sections.keySet()) {
+			List<IRI> qOrder = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
 			for(int i = 0; i < qOrder.size(); i++) {
 				OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
@@ -125,9 +125,26 @@ public class QuestionParser {
 				if(verbose) printQuestionInfo(q);
 				questions.add(q);
 			}
-			qSections.add(new QuestionSection("", questions));
+			qSections.add(new QuestionSection(getSectionHeader(section), questions));
 		}
 		return qSections;
+	}
+	
+	
+	/**
+	 * Get the section header for a given section IRI
+	 * @param iri	IRI of the section
+	 * @return Header of the section
+	 */
+	private String getSectionHeader(IRI iri) {
+		String header = "";
+		OWLNamedIndividual ind = df.getOWLNamedIndividual(iri);
+		OWLDataProperty dp = df.getOWLDataProperty(conf.getSectionHeaderPropertyBinding());		
+		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
+			if(ax instanceof OWLDataPropertyAssertionAxiom && ax.containsEntityInSignature(dp))
+				header = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
+		}
+		return header;
 	}
 	
 	

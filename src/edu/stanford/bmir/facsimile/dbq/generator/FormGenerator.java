@@ -17,17 +17,17 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
  * School of Medicine, Stanford University <br>
  */
 public class FormGenerator {
-	private List<QuestionSection> questions;
+	private List<QuestionSection> questionSections;
 	private boolean verbose;
 	
 	
 	/**
 	 * Constructor
-	 * @param questions	List of questions to populate the form
+	 * @param questionSections	List of questions to populate the form
 	 * @param verbose	true for verbose mode
 	 */
-	public FormGenerator(List<QuestionSection> questions, boolean verbose) {
-		this.questions = questions;
+	public FormGenerator(List<QuestionSection> questionSections, boolean verbose) {
+		this.questionSections = questionSections;
 		this.verbose = verbose;
 	}
 	
@@ -53,9 +53,9 @@ public class FormGenerator {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 		bw.write("<html>\n<head>\n<title>" + title + "</title>\n</head>\n<body>\n");
 		bw.write("<h1>DBQ Form</h1><br>\n<form>\n");
-		for(int i = 0; i<questions.size(); i++) {
-			QuestionSection s = questions.get(i);
-			bw.write("<hr><h2>Section " + s.getSectionHeader() + "</h2>");
+		for(int i = 0; i < questionSections.size(); i++) {
+			QuestionSection s = questionSections.get(i);
+			bw.write("<hr>\n<h2>Section " + (i+1) + ": " + s.getSectionHeader() + "</h2>\n");
 			for(Question q : s.getSectionQuestions()) { 
 				bw.write("<p>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
 				writeOutQuestion(bw, q);
