@@ -48,22 +48,27 @@ public class FormGenerator {
 	 * @return Document representing an HTML form
 	 * @throws IOException 	IO error
 	 */
-	public Document generateHTMLForm(File f, String title) throws IOException {
+	public Document generateHTMLForm(File f, String title, String cssClass) throws IOException {
 		if(verbose) System.out.print("Generating HTML form... ");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-		bw.write("<html>\n<head>\n<title>" + title + "</title>\n</head>\n<body>\n");
-		bw.write("<h1>DBQ Form</h1><br>\n<form>\n");
+		bw.write("<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n");
+		bw.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n");
+		bw.write("<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n");
+		bw.write("</head>\n<body>\n<div class=\"" + cssClass + "\">\n");
+		bw.write("<h1>DBQ Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n");
+		bw.write("<form action=\"\" method=\"post\" id=\"form\">\n");
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
-			bw.write("<hr>\n<h2>Section " + (i+1) + ": " + s.getSectionHeader() + "</h2>\n");
+			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div>\n");
 			for(Question q : s.getSectionQuestions()) { 
-				bw.write("<p>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
+				bw.write("<div class=\"inner-wrap\">\n<label>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
 				writeOutQuestion(bw, q);
-				bw.write("</p>\n");
+				bw.write("</label>\n</div>\n");
 			}
+			if(i<questionSections.size()-1) bw.write("<hr>\n");
 		}
-		bw.write("<hr><input type=\"submit\" value=\"Submit\">\n");
-		bw.write("</form>\n</body>\n</html>\n");
+		bw.write("<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\"/></div>\n");
+		bw.write("</form>\n</div>\n</body>\n</html>\n");
 		bw.close();
 		if(verbose) System.out.println("done");
 		return null;
@@ -81,10 +86,9 @@ public class FormGenerator {
 		case CHECKBOX:
 			for(String opt : q.getQuestionOptions())
 				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt.toLowerCase() + "\"/>" + opt.toLowerCase() + "\n");
+						+ "\" value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</input>\n");
 			break;
 		case DROPDOWN:
-//			bw.write("<input list=\"q" + (q.getQuestionNumber()+1) + "\"/>\n");
 			bw.write("<select id=\"q" + (q.getQuestionNumber()+1) + "\">\n");
 			for(String opt : q.getQuestionOptions())
 				bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
@@ -93,7 +97,7 @@ public class FormGenerator {
 		case RADIO:
 			for(String opt : q.getQuestionOptions())
 				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt + "\"/>" + opt + "\n");
+						+ "\" value=\"" + opt + "\">" + opt + "</input>\n");
 			break;
 		case TEXTFIELD:
 			bw.write("<input type=\"text\" size=\"200\"/>\n");

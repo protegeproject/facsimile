@@ -94,7 +94,7 @@ public class Runner {
 			
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
 			FormGenerator form = new FormGenerator(gen.getSections("_Back_"), verbose);
-			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle());
+			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle(), conf.getCSSStyleClass());
 		}
 		else {
 			if(ont == null)

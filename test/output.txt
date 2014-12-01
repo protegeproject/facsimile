@@ -1,80 +1,104 @@
-Loading configuration: /Users/rgoncalves/Documents/workspace/facsimile/test/conf.xml... done
+Loading configuration file: /Users/rgoncalves/Documents/workspace/facsimile/test/conf.xml... 
+   Section: http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q1A
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q1B
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q1C
+   Section: http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_2
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q2
+   Section: http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_3
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q3_1
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q3_2
+   Section: http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_4
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2
+   Section: http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_5
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q5B (type: Checkbox)
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q5C (type: Checkbox)
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q5D (type: Dropdown)
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q5E (type: Radio)
+	Question: http://purl.org/facsimile/dbq#DBQ_Back_Q5F (type: Combo)
+done
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 Loading ontology: /Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_dbq.owl... done
 Output file: /Users/rgoncalves/Documents/workspace/facsimile/test/test.html
 Parsing questions... done
-Processing question: DBQ_Back_Q1A
+   Processing question: DBQ_Back_Q1A
 	Question text: DOES THE VETERAN NOW HAVE OR HAS HE/SHE EVER BEEN DIAGNOSED WITH A THORACOLUMBAR SPINE (back) CONDITION?
 	Question focus: ThoracolumbarCondition
 	Question type: Radio
 	Question options: YES NO 
-Processing question: DBQ_Back_Q1B
+   Processing question: DBQ_Back_Q1B
 	!! Question type not defined in ontology or configuration file. Defaulting to text field !!
 	Question text: PROVIDE ONLY DIAGNOSIS THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS
 	Question focus: DiagnosisRelatedToThoracolumbarSpine
 	Question type: Textfield
 	Question options: none (text field)
-Processing question: DBQ_Back_Q1C
+   Processing question: DBQ_Back_Q1C
 	!! Question type not defined in ontology or configuration file. Defaulting to text field !!
 	Question text: IF THERE ARE ADDITIONAL DIAGNOSES THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS, LIST USING ABOVE FORMAT
 	Question focus: DiagnosisRelatedToThoracolumbarSpine
 	Question type: Textfield
 	Question options: none (text field)
-Processing question: DBQ_Back_Q2
+   Processing question: DBQ_Back_Q2
 	Question text: DESCRIBE THE HISTORY (including onset and course) OF THE VETERAN'S THORACOLUMBAR SPINE (back) CONDITION (brief summary)
 	Question focus: ThoracolumbarCondition
 	Question type: Textfield
 	Question options: none (text field)
-Processing question: DBQ_Back_Q3_1
+   Processing question: DBQ_Back_Q3_1
 	Question text: DOES THE VETERAN REPORT THAT FLARE-UPS IMPACT THE FUNCTION OF THE THORACOLUMBAR SPINE (back)?
 	Question focus: ImpairmentOfThoracolumbarSpineCauseByFlareUps
 	Question type: Radio
 	Question options: YES NO 
-Processing question: DBQ_Back_Q3_2
+   Processing question: DBQ_Back_Q3_2
 	Question text: IF YES, DOCUMENT THE VETERAN'S DESCRIPTION OF THE IMPACT OF FLARE-UPS IN HIS OR HER OWN WORDS
 	Question focus: ImpairmentOfThoracolumbarSpineCauseByFlareUps
 	Question type: Textfield
 	Question options: none (text field)
-Processing question: DBQ_Back_Q4A_1
+   Processing question: DBQ_Back_Q4A_1
 	Question text: SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)
 	Question focus: trunk_flexion_initial
 	Question type: Dropdown
 	Question options: 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 
-Processing question: DBQ_Back_Q4A_2
+   Processing question: DBQ_Back_Q4A_2
 	Question text: SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 	Question focus: trunk_flexion_painful_initial
 	Question type: Dropdown
 	Question options: 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 
-Processing question: DBQ_Back_Q4B_1
+   Processing question: DBQ_Back_Q4B_1
 	Question text: SELECT WHERE EXTENSION ENDS (normal endpoint is 30)
 	Question focus: trunk_extension_initial
 	Question type: Dropdown
 	Question options: 0 5 10 15 20 25 
-Processing question: DBQ_Back_Q4B_2
+   Processing question: DBQ_Back_Q4B_2
 	Question text: SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 	Question focus: trunk_extension_painful_initial
 	Question type: Dropdown
 	Question options: 0 5 10 15 20 25 
-Processing question: DBQ_Back_Q5B
+   Processing question: DBQ_Back_Q5B
 	Question text: SELECT WHERE POST-TEST FORWARD FLEXION ENDS
 	Question focus: trunk_flexion_post_test
 	Question type: Checkbox
 	Question options: 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 
-Processing question: DBQ_Back_Q5C
+   Processing question: DBQ_Back_Q5C
 	Question text: SELECT WHERE POST-TEST EXTENSION ENDS:
 	Question focus: trunk_extension_post_test
 	Question type: Checkbox
 	Question options: 
-Processing question: DBQ_Back_Q5D
+   Processing question: DBQ_Back_Q5D
 	Question text: SELECT WHERE POST-TEST RIGHT LATERAL FLEXION ENDS
 	Question focus: trunk_right_lateral_flexion_post_test
 	Question type: Dropdown
 	Question options: 0 5 10 15 20 25 
-Processing question: DBQ_Back_Q5E
+   Processing question: DBQ_Back_Q5E
 	Question text: SELECT WHERE POST-TEST LEFT LATERAL FLEXION ENDS
 	Question focus: trunk_left_lateral_flexion_post_test
 	Question type: Radio
 	Question options: YES NO 
-Processing question: DBQ_Back_Q5F
+   Processing question: DBQ_Back_Q5F
 	Question text: SELECT WHERE POST-TEST RIGHT LATERAL ROTATION ENDS
 	Question focus: trunk_right_lateral_rotation_post_test
 	Question type: Combo

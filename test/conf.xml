@@ -15,6 +15,7 @@
 	</input>
 	<output>
 		<file title="DBQ Form">/Users/rgoncalves/Documents/workspace/facsimile/test/test.html</file>
+		<cssstyle>bmir-style</cssstyle>
 	</output>
 	<bindings>
 		<!-- question and section classes bindings -->

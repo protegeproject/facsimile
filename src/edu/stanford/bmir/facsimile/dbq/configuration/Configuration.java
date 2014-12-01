@@ -27,7 +27,7 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
  */
 public class Configuration {
 	private Document doc;
-	private String ontPath, outPath, title;
+	private String ontPath, outPath, title, cssStyle;
 	private Map<IRI,String> imports;
 	private Map<IRI,QuestionType> questionTypes;
 	private Map<IRI,List<IRI>> sections;
@@ -93,6 +93,8 @@ public class Configuration {
 						if(c.hasAttributes() && c.getAttributes().getNamedItem("title") != null)
 							title = c.getAttributes().getNamedItem("title").getTextContent();
 					}
+					if(c.getNodeName().equalsIgnoreCase("cssstyle"))
+						cssStyle = c.getTextContent();
 				}
 			}
 		}
@@ -264,7 +266,7 @@ public class Configuration {
 	}
 	
 	
-	/*	INPUT AND OUTPUT FILES	*/
+	/*	INPUT AND OUTPUT	*/
 	
 	
 	/**
@@ -300,6 +302,15 @@ public class Configuration {
 	 */
 	public String getOutputFileTitle() {
 		return title;
+	}
+	
+	
+	/**
+	 * Get the CSS style class to be used in the form output
+	 * @return String specifying the output CSS class
+	 */
+	public String getCSSStyleClass() {
+		return cssStyle;
 	}
 
 	
