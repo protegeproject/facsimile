@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,11 +27,11 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
  */
 public class Configuration {
 	private Document doc;
-	private List<IRI> questionList, sectionList;
 	private String ontPath, outPath, title;
 	private Map<IRI,String> imports;
-	private boolean verbose;
 	private Map<IRI,QuestionType> questionTypes;
+	private Map<IRI,List<IRI>> sections;
+	private boolean verbose;
 	
 	
 	/**
@@ -43,8 +44,7 @@ public class Configuration {
 		doc = loadConfigurationFile(file);
 		questionTypes = new HashMap<IRI,QuestionType>();
 		imports = new HashMap<IRI,String>();
-		questionList = getQuestions();
-		sectionList = getSections();
+		sections = getSections();
 		gatherOntologyFiles();
 		gatherOutputInformation();
 	}
@@ -120,43 +120,64 @@ public class Configuration {
 	
 	
 	/**
-	 * Gather a list of sections specified in the configuration file
-	 * @return List of sections' IRIs
+	 * Gather a map of sections specified in the configuration file and their questions
+	 * @return Map of sections' IRIs and their respective questions
 	 */
-	private List<IRI> getSections() {
-		List<IRI> list = new ArrayList<IRI>();
+	private Map<IRI,List<IRI>> getSections() {
+		Map<IRI,List<IRI>> sections = new TreeMap<IRI,List<IRI>>();
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) {
-			Node n = nl.item(i);
-			for(int j = 0; j < n.getChildNodes().getLength(); j++) {
-				Node child = n.getChildNodes().item(j);
-				if(child.getNodeName().equalsIgnoreCase("iri"))
-					list.add(IRI.create(child.getTextContent()));
+			NodeList children = nl.item(i).getChildNodes();
+			List<IRI> questions = new ArrayList<IRI>(); IRI section = null;
+			for(int j = 0; j < children.getLength(); j++) {
+				Node child = children.item(j);
+				if(child.getNodeName().equalsIgnoreCase("iri")) {
+					section = IRI.create(child.getTextContent());
+					if(verbose) System.out.println("   Section: " + section);
+				}
+				if(child.getNodeName().equalsIgnoreCase("questionlist"))
+					questions.addAll(getQuestions(child));
 			}
+			sections.put(section, questions);
 		}
-		return list;
+		return sections;
 	}
 	
 	
 	/**
-	 * Gather a list questions as they are ordered in the configuration file
-	 * @return List of questions' IRIs
+	 * Gather the list of questions in a given (questionlist) node
+	 * @param n	Questionlist node
+	 * @return List of question IRIs
 	 */
-	private List<IRI> getQuestions() {
-		List<IRI> list = new ArrayList<IRI>();
-		if(verbose) System.out.println("Checking configuration file for question order... ");
-		NodeList nl = doc.getElementsByTagName("question");
+	private List<IRI> getQuestions(Node n) {
+		List<IRI> questions = new ArrayList<IRI>();
+		NodeList nl = n.getChildNodes();
 		for(int i = 0; i < nl.getLength(); i++) {
-			Node curNode = nl.item(i);
-			IRI iri = IRI.create(getIRI(curNode));
-			list.add(iri);
-			if(verbose) System.out.print("\tQuestion " + (i+1) + ": " + iri);
-			
-			if(curNode.hasAttributes())
-				checkQuestionType(iri, curNode);
-			if(verbose) System.out.println();
+			IRI iri = getQuestion(nl.item(i));
+			if(iri != null)
+				questions.add(iri);
 		}
-		return list;
+		return questions;
+	}
+	
+	
+	/**
+	 * Get the question IRI of a given question node
+	 * @param curNode	Question node
+	 * @return IRI of the question
+	 */
+	private IRI getQuestion(Node curNode) {
+		String s = getIRI(curNode);
+		IRI iri = null;
+		if(!s.equals("")) {
+			iri = IRI.create(s);
+			if(verbose) System.out.print("\tQuestion: " + iri);
+		}
+		if(curNode.hasAttributes())
+			checkQuestionType(iri, curNode);
+		
+		if(iri != null && verbose) System.out.println();
+		return iri;
 	}
 	
 	
@@ -186,7 +207,7 @@ public class Configuration {
 		if(n != null) {
 			QuestionType qType = null;
 			String type = n.getNodeValue();
-			for(int i = 0; i<QuestionType.values().length; i++) {
+			for(int i = 0; i < QuestionType.values().length; i++) {
 				if(type.equalsIgnoreCase(QuestionType.values()[i].toString()))
 					qType = QuestionType.values()[i];
 			}
@@ -209,20 +230,7 @@ public class Configuration {
 	}
 	
 	
-	/**
-	 * Check if the question map contains a given question (represented by its IRI)
-	 * @param i	IRI of individual representing a question
-	 * @return true if configuration file specifies this question, false otherwise
-	 */
-	public boolean containsQuestion(IRI i) {
-		if(questionList.contains(i))
-			return true;
-		else
-			return false;
-	}
-	
-	
-	/*	QUESTION NUMBER AND TYPE	*/
+	/*	QUESTION TYPE	*/
 	
 	
 	/**
@@ -244,37 +252,15 @@ public class Configuration {
 	}
 	
 	
-	/**
-	 * Get the question number for a given question (represented by its IRI)
-	 * @param i	IRI of individual representing a question
-	 * @return Question number as an integer
-	 */
-	public Integer getQuestionNumber(IRI i) {
-		if(containsQuestion(i))
-			return questionList.indexOf(i)+1;
-		else
-			return 0;
-	}
-	
-	
-	/*	QUESTION AND SECTION LISTS	*/
-	
-
-	/**
-	 * Get the list of questions (sorted by configuration file parsing order)
-	 * @return List of ordered questions
-	 */
-	public List<IRI> getQuestionList() {
-		return questionList;
-	}
+	/*	SECTION - QUESTION MAP	*/
 	
 	
 	/**
-	 * Get the list of sections specified in the configuration file
-	 * @return List of sections' IRIs
+	 * Get the map of sections and their corresponding questions specified in the configuration file
+	 * @return Map of sections' IRIs to the questions they contain 
 	 */
-	public List<IRI> getSectionList() {
-		return sectionList;
+	public Map<IRI,List<IRI>> getSectionMap() {
+		return sections;
 	}
 	
 	

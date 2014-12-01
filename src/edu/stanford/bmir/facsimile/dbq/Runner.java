@@ -24,7 +24,6 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
  */
 public class Runner {
 	
-	
 	/**
 	 * Load ontology specified in a configuration
 	 * @param conf	Configuration
@@ -44,9 +43,7 @@ public class Runner {
 		OWLOntology ont = null;
 		try {
 			ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
-		} catch (OWLOntologyCreationException e) {
-			e.printStackTrace();
-		}
+		} catch (OWLOntologyCreationException e) { e.printStackTrace(); }
 		System.out.println("done");
 		return ont;
 	}
@@ -81,9 +78,9 @@ public class Runner {
 			String arg = args[i].trim();
 			if(arg.equalsIgnoreCase("-config")) {
 				if(++i == args.length) throw new RuntimeException("\n-config must be followed by a path to a configuration file.\n");
-				System.out.print("Loading configuration: " + args[i] + "... ");
+				System.out.println("Loading configuration file: " + args[i] + "... ");
 				if(!args[i].startsWith("-"))
-					conf = new Configuration(new File(args[i].trim()), verbose);
+					conf = new Configuration(new File(args[i].trim()), true);
 				System.out.println("done");
 			}
 			if(arg.equalsIgnoreCase("-v"))
@@ -96,7 +93,7 @@ public class Runner {
 			System.out.println("Output file: " + outputPath);
 			
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
-			FormGenerator form = new FormGenerator(gen.getQuestions("_Back_"), verbose);
+			FormGenerator form = new FormGenerator(gen.getSections("_Back_"), verbose);
 			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle());
 		}
 		else {

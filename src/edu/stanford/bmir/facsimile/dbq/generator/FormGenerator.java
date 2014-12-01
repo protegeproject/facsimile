@@ -9,6 +9,7 @@ import java.util.List;
 import org.w3c.dom.Document;
 
 import edu.stanford.bmir.facsimile.dbq.question.Question;
+import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -16,7 +17,7 @@ import edu.stanford.bmir.facsimile.dbq.question.Question;
  * School of Medicine, Stanford University <br>
  */
 public class FormGenerator {
-	private List<Question> questions;
+	private List<QuestionSection> questions;
 	private boolean verbose;
 	
 	
@@ -25,7 +26,7 @@ public class FormGenerator {
 	 * @param questions	List of questions to populate the form
 	 * @param verbose	true for verbose mode
 	 */
-	public FormGenerator(List<Question> questions, boolean verbose) {
+	public FormGenerator(List<QuestionSection> questions, boolean verbose) {
 		this.questions = questions;
 		this.verbose = verbose;
 	}
@@ -35,7 +36,7 @@ public class FormGenerator {
 	 * Constructor
 	 * @param questions	List of questions to populate the form
 	 */
-	public FormGenerator(List<Question> questions) {
+	public FormGenerator(List<QuestionSection> questions) {
 		this(questions, false);
 	}
 	
@@ -53,12 +54,15 @@ public class FormGenerator {
 		bw.write("<html>\n<head>\n<title>" + title + "</title>\n</head>\n<body>\n");
 		bw.write("<h1>DBQ Form</h1><br>\n<form>\n");
 		for(int i = 0; i<questions.size(); i++) {
-			Question q = questions.get(i);
-			bw.write("<p>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
-			writeOutQuestion(bw, q);
-			bw.write("</p>\n");
+			QuestionSection s = questions.get(i);
+			bw.write("<hr><h2>Section " + s.getSectionHeader() + "</h2>");
+			for(Question q : s.getSectionQuestions()) { 
+				bw.write("<p>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
+				writeOutQuestion(bw, q);
+				bw.write("</p>\n");
+			}
 		}
-		bw.write("<input type=\"submit\" value=\"Submit\">\n");
+		bw.write("<hr><input type=\"submit\" value=\"Submit\">\n");
 		bw.write("</form>\n</body>\n</html>\n");
 		bw.close();
 		if(verbose) System.out.println("done");

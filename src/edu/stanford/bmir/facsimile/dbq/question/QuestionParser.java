@@ -106,34 +106,28 @@ public class QuestionParser {
 	}
 	
 	
-	
 	/**
 	 * Parse the questions in the ontology according to the order in the configuration file
 	 * @param map	Map of questions (individuals) to the set of axioms that they occur in
 	 * @return List of questions
 	 */
-	private List<Question> parseQuestions(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
-		List<Question> questions = new ArrayList<Question>();
-		List<IRI> qOrder = conf.getQuestionList();
-		for(int i = 0; i<qOrder.size(); i++) {
-			OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
-			if(verbose) System.out.println("Processing question: " + ind.getIRI().getShortForm());
-			Set<OWLAxiom> axioms = map.get(ind);
-			Question q = getQuestionDetails(i, ind, axioms);
-			if(verbose) printQuestionInfo(q);
-			questions.add(q);
+	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
+		Map<IRI,List<IRI>> sections = conf.getSectionMap();
+		for(IRI iri : sections.keySet()) {
+			List<IRI> qOrder = sections.get(iri);
+			List<Question> questions = new ArrayList<Question>();
+			for(int i = 0; i < qOrder.size(); i++) {
+				OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
+				if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+				Set<OWLAxiom> axioms = map.get(ind);
+				Question q = getQuestionDetails(i, ind, axioms);
+				if(verbose) printQuestionInfo(q);
+				questions.add(q);
+			}
+			qSections.add(new QuestionSection("", questions));
 		}
-		return questions;
-	}
-	
-	
-	private void getSectionsAndRespectiveQuestions() {
-		List<IRI> sections = conf.getSectionList();
-		for(IRI i : sections) {
-			OWLNamedIndividual ind = df.getOWLNamedIndividual(i);
-			
-		}
-		
+		return qSections;
 	}
 	
 	
@@ -288,23 +282,23 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the list of questions of a specific type instantiated in the given ontology, where type is a string that is matched 
-	 * against the individuals' names 
+	 * Get the list of sections, and questions of a specific type, instantiated in the given ontology, 
+	 * where type is a string that is matched against the individuals' names 
 	 * @param type	Type of question (i.e., IRI name fragment)
 	 * @return List of question
 	 */
-	public List<Question> getQuestions(String type) {
+	public List<QuestionSection> getSections(String type) {
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type); 
-		return parseQuestions(map);
+		return parseSections(map);
 	}
 	
 	
 	/**
-	 * Get the list of all questions instantiated in the given ontology
-	 * @return List of question objects
+	 * Get the list of all sections & questions instantiated in the given ontology
+	 * @return List of question sections
 	 */
-	public List<Question> getAllQuestions() {
-		return getQuestions("");
+	public List<QuestionSection> getAllSections() {
+		return getSections("");
 	}
 
 	
