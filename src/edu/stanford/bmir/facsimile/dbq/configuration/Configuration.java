@@ -30,7 +30,7 @@ public class Configuration {
 	private String ontPath, outPath, title, cssStyle;
 	private Map<IRI,String> imports;
 	private Map<IRI,QuestionType> questionTypes;
-	private Map<IRI,List<IRI>> sections;
+	private Map<IRI,List<List<IRI>>> sections;
 	private boolean verbose;
 	
 	
@@ -125,12 +125,12 @@ public class Configuration {
 	 * Gather a map of sections specified in the configuration file and their questions
 	 * @return Map of sections' IRIs and their respective questions
 	 */
-	private Map<IRI,List<IRI>> getSections() {
-		Map<IRI,List<IRI>> sections = new TreeMap<IRI,List<IRI>>();
+	private Map<IRI,List<List<IRI>>> getSections() {
+		Map<IRI,List<List<IRI>>> sections = new TreeMap<IRI,List<List<IRI>>>();
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) {
 			NodeList children = nl.item(i).getChildNodes();
-			List<IRI> questions = new ArrayList<IRI>(); IRI section = null;
+			List<List<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
 				if(child.getNodeName().equalsIgnoreCase("iri")) {
@@ -138,14 +138,15 @@ public class Configuration {
 					if(verbose) System.out.println("   Section: " + section);
 				}
 				if(child.getNodeName().equalsIgnoreCase("questionlist"))
-					questions.addAll(getQuestions(child));
+					questions = getQuestions(child);
 			}
 			// TODO
 //			Node s = nl.item(i).getAttributes().getNamedItem("id");
 //			if(s != null && s.getTextContent().equalsIgnoreCase("init"))
 //				section = IRI.create("");
 			
-			sections.put(section, questions);
+			if(section != null && questions != null && !questions.isEmpty())
+				sections.put(section, questions);
 		}
 		return sections;
 	}
@@ -156,13 +157,30 @@ public class Configuration {
 	 * @param n	Questionlist node
 	 * @return List of question IRIs
 	 */
-	private List<IRI> getQuestions(Node n) {
-		List<IRI> questions = new ArrayList<IRI>();
-		NodeList nl = n.getChildNodes();
+	private List<List<IRI>> getQuestions(Node n) {
+		List<List<IRI>> questions = new ArrayList<List<IRI>>();
+		NodeList nl = n.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) {
-			IRI iri = getQuestion(nl.item(i));
-			if(iri != null)
-				questions.add(iri);
+			NodeList children = nl.item(i).getChildNodes(); // <iri>'s
+			List<IRI> subquestions = new ArrayList<IRI>();
+			for(int j = 0; j < children.getLength(); j++) {
+				if(children.item(j).getNodeName().equalsIgnoreCase("iri")) {
+					Node curNode = children.item(j);
+					String iriTxt = curNode.getTextContent();
+					if(!iriTxt.equals("")) {
+						IRI iri = IRI.create(iriTxt);
+						if(iri != null) {
+							subquestions.add(iri);
+							if(verbose) System.out.print("\tQuestion: " + iriTxt);
+						}
+						if(curNode.hasAttributes())
+							checkQuestionType(iri, curNode);
+						if(iri != null && verbose) System.out.println();
+					}
+				}
+			}
+			if(!subquestions.isEmpty())
+				questions.add(subquestions);
 		}
 		return questions;
 	}
@@ -173,35 +191,35 @@ public class Configuration {
 	 * @param curNode	Question node
 	 * @return IRI of the question
 	 */
-	private IRI getQuestion(Node curNode) {
-		String s = getIRI(curNode);
-		IRI iri = null;
-		if(!s.equals("")) {
-			iri = IRI.create(s);
-			if(verbose) System.out.print("\tQuestion: " + iri);
-		}
-		if(curNode.hasAttributes())
-			checkQuestionType(iri, curNode);
-		
-		if(iri != null && verbose) System.out.println();
-		return iri;
-	}
-	
-	
-	/**
-	 * Get the IRI of the given node in the configuration file
-	 * @param curNode	Current node
-	 * @return String representation of the IRI
-	 */
-	private String getIRI(Node curNode) {
-		NodeList children = curNode.getChildNodes();
-		String iri = "";
-		for(int j = 0; j < children.getLength(); j++) {
-			if(children.item(j).getNodeName().equalsIgnoreCase("iri"))
-				iri = children.item(j).getTextContent();
-		}
-		return iri;
-	}
+//	private IRI getQuestion(Node curNode) {
+//		String s = getIRI(curNode);
+//		IRI iri = null;
+//		if(!s.equals("")) {
+//			iri = IRI.create(s);
+//			if(verbose) System.out.print("\tQuestion: " + iri);
+//		}
+//		if(curNode.hasAttributes())
+//			checkQuestionType(iri, curNode);
+//		
+//		if(iri != null && verbose) System.out.println();
+//		return iri;
+//	}
+//	
+//	
+//	/**
+//	 * Get the IRI of the given node in the configuration file
+//	 * @param curNode	Current node
+//	 * @return String representation of the IRI
+//	 */
+//	private String getIRI(Node curNode) {
+//		NodeList children = curNode.getChildNodes();
+//		String iri = "";
+//		for(int j = 0; j < children.getLength(); j++) {
+//			if(children.item(j).getNodeName().equalsIgnoreCase("iri"))
+//				iri = children.item(j).getTextContent();
+//		}
+//		return iri;
+//	}
 	
 	
 	/**
@@ -266,7 +284,7 @@ public class Configuration {
 	 * Get the map of sections and their corresponding questions specified in the configuration file
 	 * @return Map of sections' IRIs to the questions they contain 
 	 */
-	public Map<IRI,List<IRI>> getSectionMap() {
+	public Map<IRI,List<List<IRI>>> getSectionMap() {
 		return sections;
 	}
 	

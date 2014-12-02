@@ -117,17 +117,21 @@ public class QuestionParser {
 	 */
 	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
-		Map<IRI,List<IRI>> sections = conf.getSectionMap(); int counter = 1;
+		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
+		int counter = 1;
 		for(IRI section : sections.keySet()) {
-			List<IRI> qOrder = sections.get(section);
+			List<List<IRI>> qOrder = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
 			for(int i = 0; i < qOrder.size(); i++) {
-				OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
-				if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
-				Set<OWLAxiom> axioms = map.get(ind);
-				Question q = getQuestionDetails(i, counter, ind, axioms);
-				if(verbose) printQuestionInfo(q);
-				questions.add(q);
+				List<IRI> qList = qOrder.get(i);
+				for(int j = 0; j < qList.size(); j++) {
+					OWLNamedIndividual ind = df.getOWLNamedIndividual(qList.get(j));
+					if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm() + " (question index: " + i + ")");
+					Set<OWLAxiom> axioms = map.get(ind);
+					Question q = getQuestionDetails(i, counter, ind, axioms);
+					if(verbose) printQuestionInfo(q);
+					questions.add(q);
+				}
 			}
 			qSections.add(new QuestionSection(getSectionHeader(section), questions));
 			counter++;
