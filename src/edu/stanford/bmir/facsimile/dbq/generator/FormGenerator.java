@@ -45,13 +45,14 @@ public class FormGenerator {
 	 * Generate the HTML form
 	 * @param f	Output file
 	 * @param title	Title of the HTML webpage
+	 * @param cssClass	CSS style class to be used 
 	 * @return Document representing an HTML form
 	 * @throws IOException 	IO error
 	 */
 	public Document generateHTMLForm(File f, String title, String cssClass) throws IOException {
 		if(verbose) System.out.print("Generating HTML form... ");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-		bw.write("<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n");
+		bw.write("<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n");
 		bw.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n");
 		bw.write("<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n");
 		bw.write("</head>\n<body>\n<div class=\"" + cssClass + "\">\n");
@@ -59,13 +60,11 @@ public class FormGenerator {
 		bw.write("<form action=\"\" method=\"post\" id=\"form\">\n");
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
-			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div>\n");
-			for(Question q : s.getSectionQuestions()) { 
-				bw.write("<div class=\"inner-wrap\">\n<label>" + (q.getQuestionNumber()+1) + ") " + q.getQuestionText() + "<br>\n");
-				writeOutQuestion(bw, q);
-				bw.write("</label>\n</div>\n");
-			}
-			if(i<questionSections.size()-1) bw.write("<hr>\n");
+			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div><br>\n");
+			List<Question> questions = s.getSectionQuestions();
+			for(int j = 0; j < questions.size(); j++)
+				writeOutQuestion(bw, questions.get(j));
+			if(i<questionSections.size()-1) bw.write("<br><hr><br>\n");
 		}
 		bw.write("<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\"/></div>\n");
 		bw.write("</form>\n</div>\n</body>\n</html>\n");
@@ -82,30 +81,50 @@ public class FormGenerator {
 	 * @throws IOException	IO error
 	 */
 	private void writeOutQuestion(BufferedWriter bw, Question q) throws IOException {
+		String qName = getQuestionName(q);
+		String labelInit = "<p>" + q.getQuestionNumber() + ") " + q.getQuestionText() + "<br><br>\n";
+		bw.write("<div class=\"inner-wrap\">\n");
 		switch(q.getQuestionType()) {
 		case CHECKBOX:
+			bw.write(labelInit);
 			for(String opt : q.getQuestionOptions())
-				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</input>\n");
+				bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
+						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n");
 			break;
 		case DROPDOWN:
-			bw.write("<select id=\"q" + (q.getQuestionNumber()+1) + "\">\n");
+			bw.write(labelInit + "<select name=" + qName + ">\n");
 			for(String opt : q.getQuestionOptions())
 				bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
 			bw.write("</select>\n");
 			break;
 		case RADIO:
+			bw.write(labelInit);
 			for(String opt : q.getQuestionOptions())
-				bw.write("<input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=\"q" + (q.getQuestionNumber()+1) 
-						+ "\" value=\"" + opt + "\">" + opt + "</input>\n");
+				bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
+						+ " value=\"" + opt + "\">" + opt + "</label>\n");
 			break;
-		case TEXTFIELD:
-			bw.write("<input type=\"text\" size=\"200\"/>\n");
+		case TEXTAREA:
+			bw.write(labelInit + "<textarea name=" + qName + "></textarea>\n");
+			break;
+		case TEXT:
+			bw.write(labelInit + "<input type=\"text\" name=" + qName + "/>\n");
 			break;
 		case COMBO:
+			bw.write(labelInit);
 			break;
 		default:
 			break;
 		}
+		bw.write("</p>\n</div>\n");
+	}
+	
+	
+	/**
+	 * Get the name identifier of a given question. The identifier will be of the form: s1q2 for question 2 of section 1
+	 * @param q	Question instance
+	 * @return String representation of the question identifier
+	 */
+	private String getQuestionName(Question q) {
+		return "\"s" + q.getSectionNumber() + "q" + q.getQuestionNumber() + "\"";
 	}
 }

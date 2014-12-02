@@ -12,7 +12,7 @@
 }
 
 .bmir-style .inner-wrap {
-    padding: 30px;
+    padding: 15px;
     background: #F8F8F8;
     border-radius: 6px;
     margin-bottom: 15px;
@@ -47,6 +47,13 @@
     margin-bottom: 5px;
 }
 
+.bmir-style p {
+    display: block;
+    font: 13px Arial, Helvetica, sans-serif;
+    color: #888;
+    margin-bottom: 5px;
+}
+
 .bmir-style input[type="text"],
 .bmir-style input[type="date"],
 .bmir-style input[type="datetime"],
@@ -58,6 +65,7 @@
 .bmir-style input[type="password"],
 .bmir-style textarea,
 .bmir-style select {
+	resize: vertical;
     background: #FFF;
     display: block;
     box-sizing: border-box;

@@ -113,7 +113,7 @@ public class QuestionParser {
 	 */
 	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
-		Map<IRI,List<IRI>> sections = conf.getSectionMap();
+		Map<IRI,List<IRI>> sections = conf.getSectionMap(); int counter = 1;
 		for(IRI section : sections.keySet()) {
 			List<IRI> qOrder = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
@@ -121,11 +121,12 @@ public class QuestionParser {
 				OWLNamedIndividual ind = df.getOWLNamedIndividual(qOrder.get(i));
 				if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
 				Set<OWLAxiom> axioms = map.get(ind);
-				Question q = getQuestionDetails(i, ind, axioms);
+				Question q = getQuestionDetails(i, counter, ind, axioms);
 				if(verbose) printQuestionInfo(q);
 				questions.add(q);
 			}
 			qSections.add(new QuestionSection(getSectionHeader(section), questions));
+			counter++;
 		}
 		return qSections;
 	}
@@ -151,11 +152,12 @@ public class QuestionParser {
 	/**
 	 * Given a question, gather its details: text, focus, type, and possible answers
 	 * @param index	Question number
+	 * @param sectionNr	Section number
 	 * @param ind	Individual representing a question
 	 * @param axioms	 Set of axioms where the individual is mentioned 
 	 * @return Question instance
 	 */
-	private Question getQuestionDetails(int index, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
+	private Question getQuestionDetails(int index, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
 		for(OWLAxiom ax : axioms) {
 			if(ax.isLogicalAxiom()) {
@@ -168,11 +170,11 @@ public class QuestionParser {
 			}
 		}
 		if(qOpts.getQuestionType() == null) {
-			qOpts.setQuestionType(QuestionType.TEXTFIELD);
+			qOpts.setQuestionType(QuestionType.TEXTAREA);
 			System.out.println("\t!! Question type not defined in ontology or configuration file. "
 					+ "Defaulting to text field !!");
 		}
-		return new Question(index, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
+		return new Question(index+1, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
 	}
 	
 	
@@ -311,7 +313,7 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the list of all sections & questions instantiated in the given ontology
+	 * Get the list of all sections and questions instantiated in the given ontology
 	 * @return List of question sections
 	 */
 	public List<QuestionSection> getAllSections() {
@@ -327,7 +329,7 @@ public class QuestionParser {
 		Map<OWLClassExpression,QuestionType> qTypes = new HashMap<OWLClassExpression,QuestionType>();
 		OWLClassExpression text = df.getOWLClass(conf.getTextInputBinding());
 		OWLClassExpression radio = df.getOWLClass(conf.getRadioInputBinding());
-		qTypes.put(text, QuestionType.TEXTFIELD);
+		qTypes.put(text, QuestionType.TEXTAREA);
 		qTypes.put(radio, QuestionType.RADIO);
 		return qTypes;
 	}
@@ -342,7 +344,7 @@ public class QuestionParser {
 		System.out.println("\tQuestion focus: " + q.getQuestionFocus());
 		System.out.println("\tQuestion type: " + q.getQuestionType());
 		System.out.print("\tQuestion options: ");
-		if(!q.getQuestionType().equals(QuestionType.TEXTFIELD)) {
+		if(!q.getQuestionType().equals(QuestionType.TEXTAREA)) {
 			for(String opt : q.getQuestionOptions())
 				System.out.print(opt + " ");
 		}
