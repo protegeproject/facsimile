@@ -116,19 +116,22 @@ public class QuestionParser {
 	 * @return List of questions
 	 */
 	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
 		int counter = 1;
-		for(IRI section : sections.keySet()) {
-			List<List<IRI>> qOrder = sections.get(section);
+		for(IRI section : sections.keySet()) { // foreach section
+			List<List<IRI>> qList = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
-			for(int i = 0; i < qOrder.size(); i++) {
-				List<IRI> qList = qOrder.get(i);
-				for(int j = 0; j < qList.size(); j++) {
-					OWLNamedIndividual ind = df.getOWLNamedIndividual(qList.get(j));
-					if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm() + " (question index: " + i + ")");
-					Set<OWLAxiom> axioms = map.get(ind);
-					Question q = getQuestionDetails(i, counter, ind, axioms);
+			for(int i = 0; i < qList.size(); i++) {
+				List<IRI> subquestions = qList.get(i);
+				for(int j = 0; j < subquestions.size(); j++) {
+					OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
+					if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+					String qNumber = "" + alphabet[i];
+					if(subquestions.size()>1)
+						qNumber += "" + (j+1);
+					Question q = getQuestionDetails(qNumber, counter, ind, map.get(ind));
 					if(verbose) printQuestionInfo(q);
 					questions.add(q);
 				}
@@ -159,13 +162,13 @@ public class QuestionParser {
 	
 	/**
 	 * Given a question, gather its details: text, focus, type, and possible answers
-	 * @param index	Question number
+	 * @param qNr	Question number
 	 * @param sectionNr	Section number
 	 * @param ind	Individual representing a question
 	 * @param axioms	 Set of axioms where the individual is mentioned 
 	 * @return Question instance
 	 */
-	private Question getQuestionDetails(int index, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
+	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
 		for(OWLAxiom ax : axioms) {
 			if(ax.isLogicalAxiom()) {
@@ -182,7 +185,7 @@ public class QuestionParser {
 			System.out.println("\t!! Question type not defined in ontology or configuration file. "
 					+ "Defaulting to text field !!");
 		}
-		return new Question(index+1, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
+		return new Question(qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
 	}
 	
 	

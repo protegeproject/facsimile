@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!DOCTYPE configuration [
+	<!ELEMENT configuration (input,output,bindings,form)>
+	<!ELEMENT input (ontology+,imports?)>
+	<!ELEMENT form (section+)>
+	<!ELEMENT section (iri?,questionList+)>
+	<!ELEMENT questionList (question+)>
+	<!ELEMENT question (iri+)>
     <!ATTLIST class id ID #IMPLIED>
     <!ATTLIST binding id ID #IMPLIED>
     <!ATTLIST input id ID #IMPLIED>
@@ -17,6 +23,7 @@
 	<output>
 		<file title="DBQ Form">/Users/rgoncalves/Documents/workspace/facsimile/test/test.html</file>
 		<cssstyle>bmir-style</cssstyle>
+		<questionformat>numerical</questionformat>
 	</output>
 	<bindings>
 		<!-- question and section classes bindings -->
@@ -95,32 +102,22 @@
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2</iri>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2</iri>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2</iri>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2</iri>
 				</question>
 				<question>
@@ -181,11 +178,7 @@
 			<questionList>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionL_ms</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionR_ms</iri>
-				</question>
-				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_Normal</iri>
 				</question>
 				<question>

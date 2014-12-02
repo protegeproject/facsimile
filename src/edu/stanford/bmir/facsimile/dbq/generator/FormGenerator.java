@@ -82,9 +82,7 @@ public class FormGenerator {
 	 */
 	private void writeOutQuestion(BufferedWriter bw, Question q) throws IOException {
 		String qName = getQuestionName(q);
-		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		String qNumber = "" + alphabet[q.getQuestionNumber()-1];
-		
+		String qNumber = q.getQuestionNumber();
 		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + q.getQuestionText() + "<br><br>\n";
 		bw.write("<div class=\"inner-wrap\">\n");
 		switch(q.getQuestionType()) {

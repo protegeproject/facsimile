@@ -8,8 +8,8 @@ import java.util.List;
  * School of Medicine, Stanford University <br>
  */
 public class Question {
-	private int questionNumber, sectionNumber;
-	private String questionText, questionFocus;
+	private int sectionNumber;
+	private String questionText, questionFocus, questionNumber;
 	private QuestionType questionType;
 	private List<String> options;
 	
@@ -23,7 +23,7 @@ public class Question {
 	 * @param questionType	Type of question, i.e., HTML form element type
 	 * @param options	List of options, i.e., possible answers to the question
 	 */
-	public Question(int questionNumber, int sectionNumber, String questionText, String questionFocus, 
+	public Question(String questionNumber, int sectionNumber, String questionText, String questionFocus, 
 			QuestionType questionType, List<String> options) {
 		this.questionNumber = questionNumber;
 		this.sectionNumber = sectionNumber; 
@@ -36,9 +36,9 @@ public class Question {
 	
 	/**
 	 * Get the question number as established by the configuration file, or by its parse order
-	 * @return Integer representing the question number
+	 * @return String representing the question number
 	 */
-	public int getQuestionNumber() {
+	public String getQuestionNumber() {
 		return questionNumber;
 	}
 	
