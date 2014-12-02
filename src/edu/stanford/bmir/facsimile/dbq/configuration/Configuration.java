@@ -140,6 +140,11 @@ public class Configuration {
 				if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions.addAll(getQuestions(child));
 			}
+			// TODO
+//			Node s = nl.item(i).getAttributes().getNamedItem("id");
+//			if(s != null && s.getTextContent().equalsIgnoreCase("init"))
+//				section = IRI.create("");
+			
 			sections.put(section, questions);
 		}
 		return sections;
@@ -219,6 +224,9 @@ public class Configuration {
 	}
 	
 	
+	/*	QUESTION TYPE	*/
+	
+	
 	/**
 	 * Check if the configuration file contains a question type for the given question
 	 * @param i	IRI of the question
@@ -230,9 +238,6 @@ public class Configuration {
 		else
 			return false;
 	}
-	
-	
-	/*	QUESTION TYPE	*/
 	
 	
 	/**

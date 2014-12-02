@@ -89,6 +89,11 @@ public class Question {
 	
 	
 	/**
+	 * 
+	 * @author Rafael S. Goncalves <br>
+	 * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+	 * School of Medicine, Stanford University <br>
+	 * <br>
 	 * HTML form element types
 	 */
 	public enum QuestionType {

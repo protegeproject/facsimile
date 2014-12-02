@@ -19,6 +19,10 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLDataRange;
+import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
+import org.semanticweb.owlapi.model.OWLDatatypeRestriction;
+import org.semanticweb.owlapi.model.OWLFacetRestriction;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -243,6 +247,15 @@ public class QuestionParser {
 					if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(dataValueProperty)) {
 						OWLLiteral lit = ((OWLDataPropertyAssertionAxiom)ax).getObject();
 						list.add(StringUtils.leftPad(lit.getLiteral(), 6, '0')); // add leading zeroes for proper sorting
+					}
+				}
+				else if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
+					OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
+					if(ce instanceof OWLDataSomeValuesFrom) {
+						OWLDataRange r = ((OWLDataSomeValuesFrom)ce).getFiller();
+						OWLDatatypeRestriction res = (OWLDatatypeRestriction)r;
+						for(OWLFacetRestriction fr : res.getFacetRestrictions())
+							list.add(fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
 					}
 				}
 			}

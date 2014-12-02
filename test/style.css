@@ -41,10 +41,11 @@
 }
 
 .bmir-style label {
-    display: block;
+    display: inline;
     font: 13px Arial, Helvetica, sans-serif;
     color: #888;
     margin-bottom: 5px;
+    padding-right: 10px;
 }
 
 .bmir-style p {
@@ -67,7 +68,7 @@
 .bmir-style select {
 	resize: vertical;
     background: #FFF;
-    display: block;
+    display: inline;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

@@ -3,6 +3,7 @@
     <!ATTLIST class id ID #IMPLIED>
     <!ATTLIST binding id ID #IMPLIED>
     <!ATTLIST input id ID #IMPLIED>
+    <!ATTLIST section id ID #IMPLIED>
 ]>
 <configuration>
 	<input>
@@ -44,6 +45,14 @@
 		</questionTypeBindings>	
 	</bindings>
 	<form>
+		<!--
+		<section id="init">
+			<questionList>
+				<question>NAME OF PATIENT/VETERAN</question>
+				<question>PATIENT/VETERAN'S SOCIAL SECURITY NUMBER</question>
+			</questionList>
+		</section>
+		-->
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
 			<questionList>
@@ -92,6 +101,33 @@
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
 				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4G</iri>
+				</question>
 			</questionList>
 		</section>
 		<section>
@@ -112,7 +148,52 @@
 				<question type="combo">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5F</iri>
 				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5G</iri>
+				</question>
 			</questionList>
-		</section>		
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_6</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_7</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7B</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionL_ms</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionR_ms</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_Normal</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B</iri>
+				</question>
+			</questionList>
+		</section>
 	</form>
 </configuration>
