@@ -6,10 +6,10 @@
 	<!ELEMENT section (iri?,questionList+)>
 	<!ELEMENT questionList (question+)>
 	<!ELEMENT question (iri+)>
-    <!ATTLIST class id ID #IMPLIED>
-    <!ATTLIST binding id ID #IMPLIED>
-    <!ATTLIST input id ID #IMPLIED>
-    <!ATTLIST section id ID #IMPLIED>
+	<!ATTLIST class id ID #IMPLIED>
+	<!ATTLIST binding id ID #IMPLIED>
+	<!ATTLIST input id ID #IMPLIED>
+	<!ATTLIST section id ID #IMPLIED>
 ]>
 <configuration>
 	<input>
@@ -23,7 +23,6 @@
 	<output>
 		<file title="DBQ Form">/Users/rgoncalves/Documents/workspace/facsimile/test/test.html</file>
 		<cssstyle>bmir-style</cssstyle>
-		<questionformat>numerical</questionformat>
 	</output>
 	<bindings>
 		<!-- question and section classes bindings -->

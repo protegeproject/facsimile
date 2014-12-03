@@ -30,7 +30,12 @@ public class Runner {
 	 * @return OWL ontology
 	 */
 	private static OWLOntology loadOntology(Configuration conf) {
-		File f = new File(conf.getInputOntologyPath());
+		String inputFile = conf.getInputOntologyPath();
+		if(inputFile == null) {
+			System.err.println("\n!! Error: Input ontology file path not specified in configuration file !!\n");
+			System.exit(1);
+		}
+		File f = new File(inputFile);
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
 		config.setLoadAnnotationAxioms(false);
@@ -53,11 +58,9 @@ public class Runner {
 	 * Print usage message 
 	 */
 	private static void printUsage() {
-		System.out.println(" Usage:\n\t-ont [ONTOLOGY] -config [CONFIGURATION] [OPTIONS]");
+		System.out.println(" Usage:\n\t-config [CONFIGURATION] [OPTIONS]");
 		System.out.println();
-		System.out.println("	[ONTOLOGY]	An input ontology file path or URL");
-		System.out.println();
-		System.out.println("	[CONFIGURATION]	An XML configuration file specifying class, property, and question bindings");
+		System.out.println("	[CONFIGURATION]	An XML configuration file input, output, entity bindings, and section/question ordering");
 		System.out.println();
 		System.out.println("	[OPTIONS]");
 		System.out.println("	-v		verbose mode");
@@ -67,27 +70,32 @@ public class Runner {
 	
 	/**
 	 * Main
-	 * @param args	Configuration file path
+	 * @param args	Configuration file path, verbose flag
 	 * @throws IOException	IO exception
 	 */
 	public static void main(String[] args) throws IOException {
-		Configuration conf = null; OWLOntology ont = null;
-		boolean verbose = false;
-		
+		boolean verbose = false; File file = null;
 		for(int i = 0; i < args.length; i++) {
 			String arg = args[i].trim();
 			if(arg.equalsIgnoreCase("-config")) {
-				if(++i == args.length) throw new RuntimeException("\n-config must be followed by a path to a configuration file.\n");
-				System.out.println("Loading configuration file: " + args[i] + "... ");
+				if(++i == args.length) {
+					System.err.println("\n!! Error: -config must be followed by a path to a configuration file !!\n");
+					Runner.printUsage(); System.exit(1);
+				}
 				if(!args[i].startsWith("-"))
-					conf = new Configuration(new File(args[i].trim()), true);
-				System.out.println("done");
+					file = new File(args[i].trim());
 			}
 			if(arg.equalsIgnoreCase("-v"))
 				verbose = true;
 		}
 		
-		if(conf != null) {
+		OWLOntology ont = null;
+		if(file != null) {
+			System.out.println("Loading configuration file: " + file.getAbsolutePath() + "... ");
+			Configuration conf = new Configuration(file, verbose);
+			conf.loadConfiguration();
+			System.out.println("done");
+			
 			ont = Runner.loadOntology(conf);
 			String outputPath = conf.getOutputFilePath();
 			System.out.println("Output file: " + outputPath);
@@ -95,13 +103,9 @@ public class Runner {
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
 			FormGenerator form = new FormGenerator(gen.getSections("_Back_"), verbose);
 			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle(), conf.getCSSStyleClass());
-		}
-		else {
-			if(ont == null)
-				System.err.println("\nCould not load ontology; an ontology URI must follow the -ont flag.\n");
-			if(conf == null)
-				System.err.println("\nCould not load configuration file; the path to the configuration must follow the -config flag.\n");
-			Runner.printUsage(); System.exit(0);
+		} else {
+			System.err.println("\n!! Error: Could not load configuration file; the path to the configuration must follow the -config flag !!\n");
+			Runner.printUsage(); System.exit(1);
 		}
 	}
 }

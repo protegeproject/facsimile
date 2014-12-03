@@ -31,6 +31,7 @@ public class Configuration {
 	private Map<IRI,String> imports;
 	private Map<IRI,QuestionType> questionTypes;
 	private Map<IRI,List<List<IRI>>> sections;
+	private File file;
 	private boolean verbose;
 	
 	
@@ -40,13 +41,8 @@ public class Configuration {
 	 * @param verbose	true for verbose mode
 	 */
 	public Configuration(File file, boolean verbose) {
+		this.file = file;
 		this.verbose = verbose;
-		doc = loadConfigurationFile(file);
-		questionTypes = new HashMap<IRI,QuestionType>();
-		imports = new HashMap<IRI,String>();
-		sections = getSections();
-		gatherOntologyFiles();
-		gatherOutputInformation();
 	}
 	
 	
@@ -56,6 +52,19 @@ public class Configuration {
 	 */
 	public Configuration(File file) {
 		this(file, false);
+	}
+	
+	
+	/**
+	 * Load configuration file and initialize data structures
+	 */
+	public void loadConfiguration() {
+		doc = loadConfigurationFile(file);
+		questionTypes = new HashMap<IRI,QuestionType>();
+		imports = new HashMap<IRI,String>();
+		sections = getSections();
+		gatherOntologyFiles();
+		gatherOutputInformation();
 	}
 	
 	
