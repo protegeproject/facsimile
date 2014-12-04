@@ -199,6 +199,12 @@
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7B</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7B_2</iri>
+					</question>
 				</question>
 			</questionList>
 		</section>
@@ -206,9 +212,16 @@
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8</iri>
 			<questionList>
 				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionL_ms</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionR_ms</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_Normal</iri>
+					<iri></iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionL_ms</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionR_ms</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_Normal</iri>
+					</question>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B</iri>

@@ -12,25 +12,29 @@
 }
 
 .bmir-style .inner-wrap {
-    padding: 15px;
+    padding: 10px;
     background: #F8F8F8;
     border-radius: 6px;
     margin-bottom: 5px;
+    padding-bottom: 15px;
 }
 
 .bmir-style .inner-wrap-alt {
-    padding: 15px;
+    padding: 10px;
     background: #F8F8F8;
     border-radius: 6px;
     margin-bottom: 5px;
     margin-left: 50px;
+    padding-bottom: 15px;
 }
 
 .bmir-style .question-holder {
-	padding: 0px;
+	padding: 1px;
     background: #F8F8F8;
     border-radius: 6px;
     margin-bottom: 5px;
+    padding-left: 15px;
+	padding-bottom: 6px;
 }
 
 .bmir-style h1 {
@@ -67,15 +71,6 @@
     display: block;
     font: 13px Arial, Helvetica, sans-serif;
     color: #888;
-    margin-bottom: 5px;
-}
-
-.bmir-style .question-holder p {
-    display: block;
-    font: 13px Arial, Helvetica, sans-serif;
-    color: #888;
-	padding-left: 10px;
-	padding-top: 12px;
     margin-bottom: 5px;
 }
 

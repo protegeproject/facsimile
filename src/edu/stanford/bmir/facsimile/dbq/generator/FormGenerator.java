@@ -84,42 +84,42 @@ public class FormGenerator {
 		String qName = getQuestionName(q);
 		String qNumber = q.getQuestionNumber();
 		String qText = q.getQuestionText();
-		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "<br><br>\n";
-		if(!qText.isEmpty()) {
+		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "\n";
+		if(!qText.isEmpty() || (qText.isEmpty() && q.isSubquestion())) {
 			if(q.isSubquestion())
 				bw.write("<div class=\"inner-wrap-alt\">\n");
 			else
 				bw.write("<div class=\"inner-wrap\">\n");
 			switch(q.getQuestionType()) {
 			case CHECKBOX:
-				bw.write(labelInit);
+				bw.write(labelInit + "<br><br>\n");
 				for(String opt : q.getQuestionOptions())
 					bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
 							+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n");
 				break;
 			case DROPDOWN:
-				bw.write(labelInit + "<select name=" + qName + ">\n");
+				bw.write(labelInit + "<br><br>\n" + "<select name=" + qName + ">\n");
 				for(String opt : q.getQuestionOptions())
 					bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
 				bw.write("</select>\n");
 				break;
 			case RADIO:
-				bw.write(labelInit);
+				bw.write(labelInit + "<br><br>\n");
 				for(String opt : q.getQuestionOptions())
 					bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
 							+ " value=\"" + opt + "\">" + opt + "</label>\n");
 				break;
 			case TEXTAREA:
-				bw.write(labelInit + "<textarea name=" + qName + "></textarea>\n");
+				bw.write(labelInit + "<br><br>\n" + "<textarea name=" + qName + "></textarea>\n");
 				break;
 			case TEXT:
-				bw.write(labelInit + "<input type=\"text\" name=" + qName + "/>\n");
+				bw.write(labelInit + "<br><br>\n" + "<input type=\"text\" name=" + qName + "/>\n");
 				break;
 			case NONE:
 				bw.write(labelInit);
 				break;
 			case COMBO:
-				bw.write(labelInit);
+				bw.write(labelInit + "<br><br>\n");
 				break;
 			default:
 				break;
@@ -127,7 +127,7 @@ public class FormGenerator {
 			bw.write("</p>\n</div>\n");
 		}
 		else
-			bw.write("<div class=\"question-holder\">" + labelInit + "</div>");
+			bw.write("<div class=\"question-holder\">" + labelInit + "</p>\n</div>");
 	}
 	
 	
