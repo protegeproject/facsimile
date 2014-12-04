@@ -47,15 +47,15 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
  * School of Medicine, Stanford University <br>
  */
 public class QuestionParser {
-	private OWLOntology ont;
-	private OWLOntologyManager man;
-	private OWLDataFactory df;
-	private OWLReasoner reasoner;
-	private Configuration conf;
-	private boolean verbose;
+	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
 	private Map<OWLClassExpression,QuestionType> questionTypes;
 	private OWLDataProperty textDataProperty, dataValueProperty;
-	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
+	private OWLOntologyManager man;
+	private OWLReasoner reasoner;
+	private OWLOntology ont;
+	private OWLDataFactory df;
+	private Configuration conf;
+	private boolean verbose;
 	
 	
 	/**
@@ -71,11 +71,8 @@ public class QuestionParser {
 		man = ont.getOWLOntologyManager();
 		df = man.getOWLDataFactory();
 		reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
-		questionTypes = initQuestionTypes();
-		textDataProperty = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
-		valueObjectProperty = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
-		focusObjectProperty = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
-		dataValueProperty = df.getOWLDataProperty(conf.getQuestionDataValuePropertyBinding());
+		initQuestionTypes();
+		initBindings();
 	}
 	
 	
@@ -87,8 +84,8 @@ public class QuestionParser {
 	public QuestionParser(OWLOntology ont, Configuration conf) {
 		this(ont, conf, false);
 	}
-	
-	
+
+		
 	/**
 	 * Extract questions (individuals) and their corresponding axioms from the ontology
 	 * @param type	Specific type of question desired (if any). The given string is matched against the individual name 
@@ -129,9 +126,13 @@ public class QuestionParser {
 					OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
 					if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
 					String qNumber = "" + alphabet[i];
-					if(subquestions.size()>1)
-						qNumber += "" + (j+1);
-					Question q = getQuestionDetails(qNumber, counter, ind, map.get(ind));
+					Question q = null;
+					if(subquestions.size()>1 && j>0) {
+						qNumber += "" + j;
+						q = getQuestionDetails(qNumber, counter, ind, map.get(ind), true);
+					}
+					else 
+						q = getQuestionDetails(qNumber, counter, ind, map.get(ind), false);
 					if(verbose) printQuestionInfo(q);
 					questions.add(q);
 				}
@@ -168,7 +169,7 @@ public class QuestionParser {
 	 * @param axioms	 Set of axioms where the individual is mentioned 
 	 * @return Question instance
 	 */
-	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms) {
+	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms, boolean subquestion) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
 		for(OWLAxiom ax : axioms) {
 			if(ax.isLogicalAxiom()) {
@@ -185,7 +186,7 @@ public class QuestionParser {
 			System.out.println("\t!! Question type not defined in ontology or configuration file. "
 					+ "Defaulting to text field !!");
 		}
-		return new Question(qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions());
+		return new Question(qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
 	}
 	
 	
@@ -342,16 +343,25 @@ public class QuestionParser {
 
 	
 	/**
-	 * Retrieve question type bindings from the configuration file 
-	 * @return Map of OWL class expressions to what HTML form question type they should be  
+	 * Initialize question type bindings from the configuration file   
 	 */
-	private Map<OWLClassExpression,QuestionType> initQuestionTypes() {
-		Map<OWLClassExpression,QuestionType> qTypes = new HashMap<OWLClassExpression,QuestionType>();
+	private void initQuestionTypes() {
+		questionTypes = new HashMap<OWLClassExpression,QuestionType>();
 		OWLClassExpression text = df.getOWLClass(conf.getTextInputBinding());
 		OWLClassExpression radio = df.getOWLClass(conf.getRadioInputBinding());
-		qTypes.put(text, QuestionType.TEXTAREA);
-		qTypes.put(radio, QuestionType.RADIO);
-		return qTypes;
+		questionTypes.put(text, QuestionType.TEXTAREA);
+		questionTypes.put(radio, QuestionType.RADIO);
+	}
+	
+	
+	/**
+	 * Initialize entity bindings from configuration file
+	 */
+	private void initBindings() {
+		textDataProperty = df.getOWLDataProperty(conf.getQuestionTextPropertyBinding());
+		valueObjectProperty = df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding());
+		focusObjectProperty = df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding());
+		dataValueProperty = df.getOWLDataProperty(conf.getQuestionDataValuePropertyBinding());
 	}
 	
 	

@@ -83,40 +83,51 @@ public class FormGenerator {
 	private void writeOutQuestion(BufferedWriter bw, Question q) throws IOException {
 		String qName = getQuestionName(q);
 		String qNumber = q.getQuestionNumber();
-		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + q.getQuestionText() + "<br><br>\n";
-		bw.write("<div class=\"inner-wrap\">\n");
-		switch(q.getQuestionType()) {
-		case CHECKBOX:
-			bw.write(labelInit);
-			for(String opt : q.getQuestionOptions())
-				bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
-						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n");
-			break;
-		case DROPDOWN:
-			bw.write(labelInit + "<select name=" + qName + ">\n");
-			for(String opt : q.getQuestionOptions())
-				bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
-			bw.write("</select>\n");
-			break;
-		case RADIO:
-			bw.write(labelInit);
-			for(String opt : q.getQuestionOptions())
-				bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
-						+ " value=\"" + opt + "\">" + opt + "</label>\n");
-			break;
-		case TEXTAREA:
-			bw.write(labelInit + "<textarea name=" + qName + "></textarea>\n");
-			break;
-		case TEXT:
-			bw.write(labelInit + "<input type=\"text\" name=" + qName + "/>\n");
-			break;
-		case COMBO:
-			bw.write(labelInit);
-			break;
-		default:
-			break;
+		String qText = q.getQuestionText();
+		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "<br><br>\n";
+		if(!qText.isEmpty()) {
+			if(q.isSubquestion())
+				bw.write("<div class=\"inner-wrap-alt\">\n");
+			else
+				bw.write("<div class=\"inner-wrap\">\n");
+			switch(q.getQuestionType()) {
+			case CHECKBOX:
+				bw.write(labelInit);
+				for(String opt : q.getQuestionOptions())
+					bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
+							+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n");
+				break;
+			case DROPDOWN:
+				bw.write(labelInit + "<select name=" + qName + ">\n");
+				for(String opt : q.getQuestionOptions())
+					bw.write("<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n");
+				bw.write("</select>\n");
+				break;
+			case RADIO:
+				bw.write(labelInit);
+				for(String opt : q.getQuestionOptions())
+					bw.write("<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
+							+ " value=\"" + opt + "\">" + opt + "</label>\n");
+				break;
+			case TEXTAREA:
+				bw.write(labelInit + "<textarea name=" + qName + "></textarea>\n");
+				break;
+			case TEXT:
+				bw.write(labelInit + "<input type=\"text\" name=" + qName + "/>\n");
+				break;
+			case NONE:
+				bw.write(labelInit);
+				break;
+			case COMBO:
+				bw.write(labelInit);
+				break;
+			default:
+				break;
+			}
+			bw.write("</p>\n</div>\n");
 		}
-		bw.write("</p>\n</div>\n");
+		else
+			bw.write("<div class=\"question-holder\">" + labelInit + "</div>");
 	}
 	
 	

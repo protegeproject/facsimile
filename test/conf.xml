@@ -5,7 +5,7 @@
 	<!ELEMENT form (section+)>
 	<!ELEMENT section (iri?,questionList+)>
 	<!ELEMENT questionList (question+)>
-	<!ELEMENT question (iri+)>
+	<!ELEMENT question (iri,question?)>
 	<!ATTLIST class id ID #IMPLIED>
 	<!ATTLIST binding id ID #IMPLIED>
 	<!ATTLIST input id ID #IMPLIED>
@@ -13,11 +13,11 @@
 ]>
 <configuration>
 	<input>
-		<ontology>/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_dbq.owl</ontology>
+		<ontology>/Users/rgoncalves/Documents/workspace/facsimile/test/ontology/ides_dbq.owl</ontology>
 		<imports>
-			<ontology iri="http://purl.org/facsimile/datamodel">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/datamodel.owl</ontology>
-			<ontology iri="http://purl.org/facsimile/cfa">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_cfa.owl</ontology>
-			<ontology iri="http://who.int/icf">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/icf_simplified_2013.11.22.owl</ontology>		
+			<ontology iri="http://purl.org/facsimile/datamodel">/Users/rgoncalves/Documents/workspace/facsimile/test/ontology/datamodel.owl</ontology>
+			<ontology iri="http://purl.org/facsimile/cfa">/Users/rgoncalves/Documents/workspace/facsimile/test/ontology/ides_cfa.owl</ontology>
+			<ontology iri="http://who.int/icf">/Users/rgoncalves/Documents/workspace/facsimile/test/ontology/icf_simplified_2013.11.22.owl</ontology>		
 		</imports>
 	</input>
 	<output>
@@ -95,29 +95,59 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_4</iri>
 			<questionList>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2</iri>
+					</question>
 				</question>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
+					</question>
 				</question>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2</iri>
+					</question>
 				</question>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2</iri>
+					</question>
 				</question>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2</iri>
+					</question>
 				</question>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1</iri>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2</iri>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2</iri>
+					</question>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4G</iri>

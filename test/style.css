@@ -15,7 +15,22 @@
     padding: 15px;
     background: #F8F8F8;
     border-radius: 6px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.bmir-style .inner-wrap-alt {
+    padding: 15px;
+    background: #F8F8F8;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    margin-left: 50px;
+}
+
+.bmir-style .question-holder {
+	padding: 0px;
+    background: #F8F8F8;
+    border-radius: 6px;
+    margin-bottom: 5px;
 }
 
 .bmir-style h1 {
@@ -52,6 +67,15 @@
     display: block;
     font: 13px Arial, Helvetica, sans-serif;
     color: #888;
+    margin-bottom: 5px;
+}
+
+.bmir-style .question-holder p {
+    display: block;
+    font: 13px Arial, Helvetica, sans-serif;
+    color: #888;
+	padding-left: 10px;
+	padding-top: 12px;
     margin-bottom: 5px;
 }
 

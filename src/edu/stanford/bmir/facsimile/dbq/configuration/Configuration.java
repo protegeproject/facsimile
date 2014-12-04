@@ -170,22 +170,17 @@ public class Configuration {
 		List<List<IRI>> questions = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) {
-			NodeList children = nl.item(i).getChildNodes(); // <iri>'s
+			NodeList children = nl.item(i).getChildNodes(); // <iri>, <subquestions>'s
 			List<IRI> subquestions = new ArrayList<IRI>();
 			for(int j = 0; j < children.getLength(); j++) {
+				Node curNode = children.item(j);
 				if(children.item(j).getNodeName().equalsIgnoreCase("iri")) {
-					Node curNode = children.item(j);
-					String iriTxt = curNode.getTextContent();
-					if(!iriTxt.equals("")) {
-						IRI iri = IRI.create(iriTxt);
-						if(iri != null) {
-							subquestions.add(iri);
-							if(verbose) System.out.print("\tQuestion: " + iriTxt);
-						}
-						if(curNode.hasAttributes())
-							checkQuestionType(iri, curNode);
-						if(iri != null && verbose) System.out.println();
-					}
+					IRI iri = getQuestionIRI(curNode, false);
+					if(iri != null) subquestions.add(0,iri);
+				}
+				if(children.item(j).getNodeName().equalsIgnoreCase("question")) {
+					IRI iri = getQuestionIRI(curNode, true);
+					if(iri != null) subquestions.add(iri);
 				}
 			}
 			if(!subquestions.isEmpty())
@@ -196,40 +191,30 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the question IRI of a given question node
-	 * @param curNode	Question node
-	 * @return IRI of the question
+	 * Get IRI of question at the given node
+	 * @param node	Current node
+	 * @return IRI of question in given node
 	 */
-//	private IRI getQuestion(Node curNode) {
-//		String s = getIRI(curNode);
-//		IRI iri = null;
-//		if(!s.equals("")) {
-//			iri = IRI.create(s);
-//			if(verbose) System.out.print("\tQuestion: " + iri);
-//		}
-//		if(curNode.hasAttributes())
-//			checkQuestionType(iri, curNode);
-//		
-//		if(iri != null && verbose) System.out.println();
-//		return iri;
-//	}
-//	
-//	
-//	/**
-//	 * Get the IRI of the given node in the configuration file
-//	 * @param curNode	Current node
-//	 * @return String representation of the IRI
-//	 */
-//	private String getIRI(Node curNode) {
-//		NodeList children = curNode.getChildNodes();
-//		String iri = "";
-//		for(int j = 0; j < children.getLength(); j++) {
-//			if(children.item(j).getNodeName().equalsIgnoreCase("iri"))
-//				iri = children.item(j).getTextContent();
-//		}
-//		return iri;
-//	}
-	
+	private IRI getQuestionIRI(Node node, boolean subquestion) {
+		String iriTxt = node.getTextContent();
+		IRI iri = null;
+		if(!iriTxt.equals("")) {
+			iri = IRI.create(iriTxt);
+			if(iri != null && verbose) {
+				if(!subquestion)
+					System.out.print("\tQuestion: " + iriTxt);
+				else
+					System.out.print("\t   Subquestion: " + iriTxt);
+			}
+			if(subquestion && node.hasAttributes())
+				checkQuestionType(iri, node);
+			if(!subquestion && node.getParentNode().hasAttributes())
+				checkQuestionType(iri, node.getParentNode());
+			if(iri != null && verbose) System.out.println();
+		}
+		return iri;
+	}
+
 	
 	/**
 	 * Get the type of question given as an attribute
