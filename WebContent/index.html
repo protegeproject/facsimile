@@ -9,15 +9,13 @@
 	<body>
 		<div class="bmir-style">
 			<h1>Form Generator<span>Upload configuration file and generate a form</span></h1>
-			<form action="generateForm" enctype="multipart/form-data" method="post" id="form">
+			<form action="form" enctype="multipart/form-data" method="post">
 				<p>Choose configuration file: &nbsp;
 					<input type="file" name="conf">
 				</p>
 				<br>
-				<p>Choose form to generate:</p>
 				<div class="button-section">
-					<input type="submit" name="back" value="Back (thoracolumbar spine) conditions" onclick="this.form.submit();"/>
-					<input type="submit" name="knee" value="Knee and lower leg conditions" onclick="this.form.submit();"/>
+					<input type="submit" name="generate" value="Generate form" onclick="this.form.submit();"/>
 				</div>
 			</form>
 		</div>

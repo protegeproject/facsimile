@@ -1,6 +1,8 @@
 package edu.stanford.bmir.facsimile.dbq;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
@@ -23,13 +25,65 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
  * School of Medicine, Stanford University <br>
  */
 public class Runner {
+	private File config;
+	private boolean verbose;
+	private Configuration conf;
+	
+	
+	/**
+	 * Constructor
+	 * @param config	Configuration file
+	 * @param verbose	Verbose mode
+	 */
+	public Runner(File config, boolean verbose) {
+		this.config = config;
+		this.verbose = verbose;
+	}
+	
+	
+	/**
+	 * Generate form to a local file specified in the configuration file
+	 * @throws IOException	IO exception
+	 */
+	public void generateFormToLocalFile() throws IOException {		
+		String output = run();
+		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(conf.getOutputFilePath())));
+		bw.write(output);
+		bw.close();
+	}
+	
+	
+	/**
+	 * Execute form generation procedure
+	 * @return String containing HTML code for the form
+	 * @throws IOException	IO exception
+	 */
+	public String run() throws IOException {
+		System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
+		if(verbose) System.out.println();
+		conf = new Configuration(config, verbose);
+		conf.loadConfiguration();
+		System.out.println("done");
+
+		OWLOntology ont = loadOntology(conf);
+		String outputPath = conf.getOutputFilePath();
+		if(outputPath != null)
+			System.out.println("Output file: " + outputPath);
+		
+		QuestionParser gen = new QuestionParser(ont, conf, verbose);
+		FormGenerator form = new FormGenerator(gen.getAllSections());
+		String output = form.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+		System.out.println("finished");
+		return output;
+	}
+	
 	
 	/**
 	 * Load ontology specified in a configuration
 	 * @param conf	Configuration
 	 * @return OWL ontology
 	 */
-	private static OWLOntology loadOntology(Configuration conf) {
+	private OWLOntology loadOntology(Configuration conf) {
 		String inputFile = conf.getInputOntologyPath();
 		if(inputFile == null) {
 			System.err.println("\n!! Error: Input ontology file path not specified in configuration file !!\n");
@@ -88,24 +142,9 @@ public class Runner {
 			if(arg.equalsIgnoreCase("-v"))
 				verbose = true;
 		}
-		
-		OWLOntology ont = null;
-		if(file != null) {
-			System.out.print("Loading configuration file: " + file.getAbsolutePath() + "... ");
-			if(verbose) System.out.println();
-			Configuration conf = new Configuration(file, verbose);
-			conf.loadConfiguration();
-			System.out.println("done");
-			
-			ont = Runner.loadOntology(conf);
-			String outputPath = conf.getOutputFilePath();
-			System.out.println("Output file: " + outputPath);
-			
-			QuestionParser gen = new QuestionParser(ont, conf, verbose);
-			FormGenerator form = new FormGenerator(gen.getSections("_Back_"));
-			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle(), conf.getCSSStyleClass());
-			System.out.println("finished");
-		} else {
+		if(file != null)
+			new Runner(file, verbose).generateFormToLocalFile();
+		else {
 			System.err.println("\n!! Error: Could not load configuration file; the path to the configuration must follow the -config flag !!\n");
 			Runner.printUsage(); System.exit(1);
 		}

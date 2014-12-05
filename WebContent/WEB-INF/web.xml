@@ -3,11 +3,7 @@
   <display-name>facsimile</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
   	<servlet-name>FormGeneratorRunner</servlet-name>
@@ -15,7 +11,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>FormGeneratorRunner</servlet-name>
-  	<url-pattern>/generateForm</url-pattern>
+  	<url-pattern>/form</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>FormInputHandler</servlet-name>
@@ -23,6 +19,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>FormInputHandler</servlet-name>
-  	<url-pattern>/processInput</url-pattern>
+  	<url-pattern>/submit</url-pattern>
   </servlet-mapping>
 </web-app>
