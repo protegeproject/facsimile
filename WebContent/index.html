@@ -3,7 +3,7 @@
 	<head>
 		<title>Form Generator</title>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -15,7 +15,8 @@
 				</p>
 				<br>
 				<div class="button-section">
-					<input type="submit" name="generate" value="Generate form" onclick="this.form.submit();"/>
+					<input type="submit" name="generate" value="Generate form" onclick="document.getElementById('loader').style.display='inline';this.value='Generating...';this.disabled=true;this.form.submit();"/>&nbsp;
+					<img id="loader" src="style/loader1.gif" style="display:none;vertical-align:middle;"/>
 				</div>
 			</form>
 		</div>
