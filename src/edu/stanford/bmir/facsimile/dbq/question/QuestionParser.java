@@ -92,17 +92,13 @@ public class QuestionParser {
 	 * @return Map of questions to the sets of axioms associated with each of them 
 	 */
 	private Map<OWLNamedIndividual,Set<OWLAxiom>> collectQuestionAxioms(String type) {
-		if(verbose) System.out.print("Parsing questions... ");
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = new HashMap<OWLNamedIndividual,Set<OWLAxiom>>();
-		
 		OWLClass questionClass = df.getOWLClass(conf.getQuestionInputClass());
 		Set<OWLNamedIndividual> instances = reasoner.getInstances(questionClass, false).getFlattened();
-		
 		for(OWLNamedIndividual i : instances) {
 			if(i.getIRI().getShortForm().contains(type))
 				map.put(i, ont.getReferencingAxioms(i, Imports.INCLUDED));
 		}
-		if(verbose) System.out.println("done");
 		return map;
 	}
 	
@@ -199,7 +195,7 @@ public class QuestionParser {
 		}
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(QuestionType.TEXTAREA);
-			System.out.println("\t!! Question type not defined in ontology or configuration file. "
+			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text field !!");
 		}
 		return new Question(qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
@@ -344,8 +340,11 @@ public class QuestionParser {
 	 * @return List of question
 	 */
 	public List<QuestionSection> getSections(String type) {
-		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type); 
-		return parseSections(map);
+		System.out.println("Parsing questions and sections... ");
+		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type);
+		List<QuestionSection> list = parseSections(map);
+		System.out.println("done");
+		return list;
 	}
 	
 	
@@ -390,12 +389,14 @@ public class QuestionParser {
 		System.out.println("\tQuestion focus: " + q.getQuestionFocus());
 		System.out.println("\tQuestion type: " + q.getQuestionType());
 		System.out.print("\tQuestion options: ");
-		if(!q.getQuestionType().equals(QuestionType.TEXTAREA)) {
+		if(q.getQuestionType().equals(QuestionType.NONE))
+			System.out.print("none");
+		else if(!q.getQuestionType().equals(QuestionType.TEXTAREA)) {
 			for(String opt : q.getQuestionOptions())
 				System.out.print(opt + " ");
 		}
 		else 
-			System.out.print("none (text field)");
+			System.out.print("none (text input)");
 		if(verbose) System.out.println();
 	}
 }

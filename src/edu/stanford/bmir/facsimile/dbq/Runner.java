@@ -91,7 +91,8 @@ public class Runner {
 		
 		OWLOntology ont = null;
 		if(file != null) {
-			System.out.println("Loading configuration file: " + file.getAbsolutePath() + "... ");
+			System.out.print("Loading configuration file: " + file.getAbsolutePath() + "... ");
+			if(verbose) System.out.println();
 			Configuration conf = new Configuration(file, verbose);
 			conf.loadConfiguration();
 			System.out.println("done");
@@ -101,8 +102,9 @@ public class Runner {
 			System.out.println("Output file: " + outputPath);
 			
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
-			FormGenerator form = new FormGenerator(gen.getSections("_Back_"), verbose);
+			FormGenerator form = new FormGenerator(gen.getSections("_Back_"));
 			form.generateHTMLForm(new File(outputPath), conf.getOutputFileTitle(), conf.getCSSStyleClass());
+			System.out.println("finished");
 		} else {
 			System.err.println("\n!! Error: Could not load configuration file; the path to the configuration must follow the -config flag !!\n");
 			Runner.printUsage(); System.exit(1);

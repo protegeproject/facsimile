@@ -18,26 +18,14 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
  */
 public class FormGenerator {
 	private List<QuestionSection> questionSections;
-	private boolean verbose;
 	
 	
 	/**
 	 * Constructor
 	 * @param questionSections	List of questions to populate the form
-	 * @param verbose	true for verbose mode
 	 */
-	public FormGenerator(List<QuestionSection> questionSections, boolean verbose) {
+	public FormGenerator(List<QuestionSection> questionSections) {
 		this.questionSections = questionSections;
-		this.verbose = verbose;
-	}
-	
-	
-	/**
-	 * Constructor
-	 * @param questions	List of questions to populate the form
-	 */
-	public FormGenerator(List<QuestionSection> questions) {
-		this(questions, false);
 	}
 	
 	
@@ -50,7 +38,7 @@ public class FormGenerator {
 	 * @throws IOException 	IO error
 	 */
 	public Document generateHTMLForm(File f, String title, String cssClass) throws IOException {
-		if(verbose) System.out.print("Generating HTML form... ");
+		System.out.print("Generating HTML form... ");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 		bw.write("<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n");
 		bw.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n");
@@ -73,7 +61,7 @@ public class FormGenerator {
 		bw.write("<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\"/></div>\n");
 		bw.write("</form>\n</div>\n</body>\n</html>\n");
 		bw.close();
-		if(verbose) System.out.println("done");
+		System.out.println("done");
 		return null;
 	}
 	
