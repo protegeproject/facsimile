@@ -45,7 +45,7 @@ public class FormGenerator {
 		bw.write("<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n");
 		bw.write("</head>\n<body>\n<div class=\"" + cssClass + "\">\n");
 		bw.write("<h1>DBQ Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n");
-		bw.write("<form action=\"\" method=\"post\" id=\"form\">\n");
+		bw.write("<form action=\"processInput\" method=\"post\" id=\"form\">\n");
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
 			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div>");
