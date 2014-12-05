@@ -178,7 +178,8 @@ public class QuestionParser {
 	 * @param qNr	Question number
 	 * @param sectionNr	Section number
 	 * @param ind	Individual representing a question
-	 * @param axioms	 Set of axioms where the individual is mentioned 
+	 * @param axioms	 Set of axioms where the individual is mentioned
+	 * @param subquestion	true if question has a parent question, false otherwise 
 	 * @return Question instance
 	 */
 	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms, boolean subquestion) {

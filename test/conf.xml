@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!DOCTYPE configuration [
 	<!ELEMENT configuration (input,output,bindings,form)>
-	<!ELEMENT input (ontology+,imports?)>
+	<!ELEMENT input (ontology+,imports*)>
 	<!ELEMENT form (section+)>
 	<!ELEMENT section (iri?,questionList+)>
 	<!ELEMENT questionList (question+)>
-	<!ELEMENT question (iri,question?)>
+	<!ELEMENT question (iri,question*)>
 	<!ATTLIST class id ID #IMPLIED>
 	<!ATTLIST binding id ID #IMPLIED>
-	<!ATTLIST input id ID #IMPLIED>
 	<!ATTLIST section id ID #IMPLIED>
+	<!ATTLIST question type CDATA #IMPLIED>
 ]>
 <configuration>
 	<input>
@@ -44,11 +44,11 @@
 			<binding id="sectionquestion">http://purl.org/facsimile/dbq#hasQuestion</binding>
 		</propertyBindings>
 		<questionTypeBindings>
-			<input id="radio">http://purl.org/facsimile/cfa#BooleanValue</input>
-			<input id="textfield">http://purl.org/facsimile/cfa#StringValue</input>
-			<input id="checkbox"></input>
-			<input id="dropdown"></input>
-			<input id="combo"></input>
+			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
+			<binding id="textfield">http://purl.org/facsimile/cfa#StringValue</binding>
+			<binding id="checkbox"></binding>
+			<binding id="dropdown"></binding>
+			<binding id="combo"></binding>
 		</questionTypeBindings>	
 	</bindings>
 	<form>

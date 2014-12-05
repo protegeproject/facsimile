@@ -193,6 +193,7 @@ public class Configuration {
 	/**
 	 * Get IRI of question at the given node
 	 * @param node	Current node
+	 * @param subquestion	true if question has a parent question, false otherwise
 	 * @return IRI of question in given node
 	 */
 	private IRI getQuestionIRI(Node node, boolean subquestion) {
