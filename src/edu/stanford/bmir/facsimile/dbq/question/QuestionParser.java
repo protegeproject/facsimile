@@ -118,6 +118,7 @@ public class QuestionParser {
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
 		int counter = 1;
 		for(IRI section : sections.keySet()) { // foreach section
+			OWLNamedIndividual sectionInd = df.getOWLNamedIndividual(section);
 			List<List<IRI>> qList = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
 			for(int i = 0; i < qList.size(); i++) {
@@ -137,7 +138,7 @@ public class QuestionParser {
 					questions.add(q);
 				}
 			}
-			qSections.add(new QuestionSection(getSectionHeader(section), questions));
+			qSections.add(new QuestionSection(getSectionHeader(sectionInd), getSectionText(sectionInd), questions));
 			counter++;
 		}
 		return qSections;
@@ -146,18 +147,33 @@ public class QuestionParser {
 	
 	/**
 	 * Get the section header for a given section IRI
-	 * @param iri	IRI of the section
+	 * @param ind	Section individual
 	 * @return Header of the section
 	 */
-	private String getSectionHeader(IRI iri) {
+	private String getSectionHeader(OWLNamedIndividual ind) {
 		String header = "";
-		OWLNamedIndividual ind = df.getOWLNamedIndividual(iri);
 		OWLDataProperty dp = df.getOWLDataProperty(conf.getSectionHeaderPropertyBinding());		
 		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
 			if(ax instanceof OWLDataPropertyAssertionAxiom && ax.containsEntityInSignature(dp))
 				header = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
 		}
 		return header;
+	}
+	
+	
+	/**
+	 * Get the text that appears at the beginning of a given section 
+	 * @param ind	Section individual
+	 * @return Text of a section
+	 */
+	private String getSectionText(OWLNamedIndividual ind) {
+		String text = "";
+		OWLDataProperty dp = df.getOWLDataProperty(conf.getSectionTextPropertyBinding());
+		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
+			if(ax instanceof OWLDataPropertyAssertionAxiom && ax.containsEntityInSignature(dp))
+				text = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
+		}
+		return text;
 	}
 	
 	

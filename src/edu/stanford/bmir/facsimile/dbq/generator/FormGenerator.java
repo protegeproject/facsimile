@@ -60,7 +60,11 @@ public class FormGenerator {
 		bw.write("<form action=\"\" method=\"post\" id=\"form\">\n");
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
-			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div><br>\n");
+			bw.write("<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div>");
+			String sectText = s.getSectionText();
+			if(!sectText.equalsIgnoreCase(""))
+				bw.write("<p>" + sectText + "</p>");
+			bw.write("<br>\n");
 			List<Question> questions = s.getSectionQuestions();
 			for(int j = 0; j < questions.size(); j++)
 				writeOutQuestion(bw, questions.get(j));

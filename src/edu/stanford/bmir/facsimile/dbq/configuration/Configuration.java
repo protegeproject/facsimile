@@ -411,6 +411,15 @@ public class Configuration {
 	
 	
 	/**
+	 * Get the OWL data property IRI that is used to specify the text at the beginning of a section
+	 * @return OWL data property IRI
+	 */
+	public IRI getSectionTextPropertyBinding() {
+		return IRI.create(doc.getElementById("sectiontext").getTextContent());
+	}
+	
+	
+	/**
 	 * Get the OWL data property IRI that gives a sorting label to a section instance
 	 * @return OWL data property IRI
 	 */

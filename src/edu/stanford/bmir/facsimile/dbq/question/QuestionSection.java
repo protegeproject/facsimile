@@ -8,17 +8,19 @@ import java.util.List;
  * School of Medicine, Stanford University <br>
  */
 public class QuestionSection {
-	private String header;
+	private String header, text;
 	private List<Question> questions;
 	
 	
 	/**
 	 * Constructor
 	 * @param header	Section header/title
+	 * @param text	Section text
 	 * @param questions	List of questions (IRIs)
 	 */
-	public QuestionSection(String header, List<Question> questions) {
+	public QuestionSection(String header, String text, List<Question> questions) {
 		this.header = header;
+		this.text = text;
 		this.questions = questions;
 	}
 	
@@ -29,6 +31,15 @@ public class QuestionSection {
 	 */
 	public String getSectionHeader() {
 		return header;
+	}
+	
+	
+	/**
+	 * Get the text of the section
+	 * @return Section text
+	 */
+	public String getSectionText() {
+		return text;
 	}
 	
 	
