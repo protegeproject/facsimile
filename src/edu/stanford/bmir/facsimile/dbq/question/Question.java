@@ -2,12 +2,15 @@ package edu.stanford.bmir.facsimile.dbq.question;
 
 import java.util.List;
 
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+
 /**
  * @author Rafael S. Goncalves <br>
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
 public class Question {
+	private OWLNamedIndividual ind;
 	private int sectionNumber;
 	private String questionText, questionFocus, questionNumber;
 	private QuestionType questionType;
@@ -17,6 +20,7 @@ public class Question {
 	
 	/**
 	 * Constructor
+	 * @param ind	Question individual
 	 * @param questionNumber	Number of the question
 	 * @param sectionNumber	Number of the section this question appears
 	 * @param questionText	Title (text) of the question
@@ -25,8 +29,9 @@ public class Question {
 	 * @param options	List of options, i.e., possible answers to the question
 	 * @param subquestion	true if question has a parent question, false otherwise
 	 */
-	public Question(String questionNumber, int sectionNumber, String questionText, String questionFocus, 
+	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
 			QuestionType questionType, List<String> options, boolean subquestion) {
+		this.ind = ind;
 		this.questionNumber = questionNumber;
 		this.sectionNumber = sectionNumber; 
 		this.questionText = questionText;
@@ -34,6 +39,15 @@ public class Question {
 		this.questionType = questionType;
 		this.options = options;
 		this.subquestion = subquestion;
+	}
+	
+	
+	/**
+	 * Get the OWL individual that represents this question
+	 * @return OWL individual
+	 */
+	public OWLNamedIndividual getQuestionIndividual() {
+		return ind;
 	}
 	
 	

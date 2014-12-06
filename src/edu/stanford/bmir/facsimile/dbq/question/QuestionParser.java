@@ -199,7 +199,7 @@ public class QuestionParser {
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text field !!");
 		}
-		return new Question(qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
+		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
 	}
 	
 	

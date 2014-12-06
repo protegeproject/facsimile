@@ -38,7 +38,7 @@ public class FormGenerator {
 		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n";
 		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n";
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
-		output += "<h1>DBQ Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
+		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
@@ -52,7 +52,7 @@ public class FormGenerator {
 				output += writeOutQuestion(questions.get(j));
 			if(i<questionSections.size()-1) output += "<br><hr><br>\n";
 		}
-		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\"/></div>\n";
+		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\" onclick=\"this.form.submit();\"/></div>\n";
 		output += "</form>\n</div>\n</body>\n</html>\n";
 		System.out.println("done");
 		return output;
@@ -67,7 +67,7 @@ public class FormGenerator {
 	 */
 	private String writeOutQuestion(Question q) throws IOException {
 		String output = "";
-		String qName = getQuestionName(q);
+		String qName = "\"" + q.getQuestionIndividual().getIRI().toString() + "\"";
 		String qNumber = q.getQuestionNumber();
 		String qText = q.getQuestionText();
 		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "\n";
@@ -123,6 +123,7 @@ public class FormGenerator {
 	 * @param q	Question instance
 	 * @return String representation of the question identifier
 	 */
+	@SuppressWarnings("unused")
 	private String getQuestionName(Question q) {
 		return "\"s" + q.getSectionNumber() + "q" + q.getQuestionNumber() + "\"";
 	}

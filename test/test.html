@@ -9,25 +9,25 @@
 <body>
 <div class="bmir-style">
 <h1>DBQ Form<span>Please answer all questions and submit your answers at the end</span></h1><br>
-<form action="processInput" method="post" id="form">
+<form action="submit" method="post" id="form">
 <div class="section"><span>1</span>Diagnosis</div><p>sample initial section text</p><br>
 <div class="inner-wrap">
 <p>A) DOES THE VETERAN NOW HAVE OR HAS HE/SHE EVER BEEN DIAGNOSED WITH A THORACOLUMBAR SPINE (back) CONDITION?
 <br><br>
-<label><input type="radio" name="s1qa" value="YES">YES</label>
-<label><input type="radio" name="s1qa" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q1A" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q1A" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap">
 <p>B) PROVIDE ONLY DIAGNOSIS THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS
 <br><br>
-<textarea name="s1qb"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q1B"></textarea>
 </p>
 </div>
 <div class="inner-wrap">
 <p>C) IF THERE ARE ADDITIONAL DIAGNOSES THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS, LIST USING ABOVE FORMAT
 <br><br>
-<textarea name="s1qc"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q1C"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -35,7 +35,7 @@
 <div class="inner-wrap">
 <p>A) DESCRIBE THE HISTORY (including onset and course) OF THE VETERAN'S THORACOLUMBAR SPINE (back) CONDITION (brief summary)
 <br><br>
-<textarea name="s2qa"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q2"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -43,14 +43,14 @@
 <div class="inner-wrap">
 <p>A) DOES THE VETERAN REPORT THAT FLARE-UPS IMPACT THE FUNCTION OF THE THORACOLUMBAR SPINE (back)?
 <br><br>
-<label><input type="radio" name="s3qa" value="YES">YES</label>
-<label><input type="radio" name="s3qa" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q3_1" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q3_1" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap">
 <p>B) IF YES, DOCUMENT THE VETERAN'S DESCRIPTION OF THE IMPACT OF FLARE-UPS IN HIS OR HER OWN WORDS
 <br><br>
-<textarea name="s3qb"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -62,7 +62,7 @@
 <div class="inner-wrap-alt">
 <p>A1) SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)
 <br><br>
-<select name="s4qa1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -88,7 +88,7 @@
 <div class="inner-wrap-alt">
 <p>A2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qa2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -116,7 +116,7 @@
 </div><div class="inner-wrap-alt">
 <p>B1) SELECT WHERE EXTENSION ENDS (normal endpoint is 30)
 <br><br>
-<select name="s4qb1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -130,7 +130,7 @@
 <div class="inner-wrap-alt">
 <p>B2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qb2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -146,7 +146,7 @@
 </div><div class="inner-wrap-alt">
 <p>C1) SELECT WHERE RIGHT LATERAL FLEXION ENDS (normal endpoint is 30)
 <br><br>
-<select name="s4qc1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -160,7 +160,7 @@
 <div class="inner-wrap-alt">
 <p>C2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qc2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -176,7 +176,7 @@
 </div><div class="inner-wrap-alt">
 <p>D1) SELECT WHERE LEFT LATERAL FLEXION ENDS (normal endpoint is 30)
 <br><br>
-<select name="s4qd1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -190,7 +190,7 @@
 <div class="inner-wrap-alt">
 <p>D2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qd2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -206,7 +206,7 @@
 </div><div class="inner-wrap-alt">
 <p>E1) SELECT WHERE RIGHT LATERAL ROTATION ENDS (normal endpoint is 30)
 <br><br>
-<select name="s4qe1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -220,7 +220,7 @@
 <div class="inner-wrap-alt">
 <p>E2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qe2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -236,7 +236,7 @@
 </div><div class="inner-wrap-alt">
 <p>F1) SELECT WHERE LEFT LATERAL ROTATION ENDS (normal endpoint is 30)
 <br><br>
-<select name="s4qf1">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -250,7 +250,7 @@
 <div class="inner-wrap-alt">
 <p>F2) SELECT WHERE OBJECTIVE EVIDENCE OF PAINFUL MOTION BEGINS
 <br><br>
-<select name="s4qf2">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -265,7 +265,7 @@
 <p>G) IF ROM FOR THIS VETERAN DOES NOT CONFORM TO THE NORMAL RANGE OF MOTION IDENTIFIED ABOVE BUT IS NORMAL FOR THIS
 VETERAN (for reasons other than a back condition, such as age, body habitus, neurologic disease), EXPLAIN
 <br><br>
-<textarea name="s4qg"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q4G"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -273,25 +273,25 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>A) SELECT WHERE POST-TEST FORWARD FLEXION ENDS
 <br><br>
-<label><input type="checkbox" name="s5qa" value="0">0</label>
-<label><input type="checkbox" name="s5qa" value="5">5</label>
-<label><input type="checkbox" name="s5qa" value="10">10</label>
-<label><input type="checkbox" name="s5qa" value="15">15</label>
-<label><input type="checkbox" name="s5qa" value="20">20</label>
-<label><input type="checkbox" name="s5qa" value="25">25</label>
-<label><input type="checkbox" name="s5qa" value="30">30</label>
-<label><input type="checkbox" name="s5qa" value="35">35</label>
-<label><input type="checkbox" name="s5qa" value="40">40</label>
-<label><input type="checkbox" name="s5qa" value="45">45</label>
-<label><input type="checkbox" name="s5qa" value="50">50</label>
-<label><input type="checkbox" name="s5qa" value="55">55</label>
-<label><input type="checkbox" name="s5qa" value="60">60</label>
-<label><input type="checkbox" name="s5qa" value="65">65</label>
-<label><input type="checkbox" name="s5qa" value="70">70</label>
-<label><input type="checkbox" name="s5qa" value="75">75</label>
-<label><input type="checkbox" name="s5qa" value="80">80</label>
-<label><input type="checkbox" name="s5qa" value="85">85</label>
-<label><input type="checkbox" name="s5qa" value=">=90">>=90</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="0">0</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="5">5</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="10">10</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="15">15</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="20">20</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="25">25</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="30">30</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="35">35</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="40">40</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="45">45</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="50">50</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="55">55</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="60">60</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="65">65</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="70">70</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="75">75</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="80">80</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value="85">85</label>
+<label><input type="checkbox" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5B" value=">=90">>=90</label>
 </p>
 </div>
 <div class="inner-wrap">
@@ -302,7 +302,7 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>C) SELECT WHERE POST-TEST RIGHT LATERAL FLEXION ENDS
 <br><br>
-<select name="s5qc">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q5D">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -316,8 +316,8 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>D) SELECT WHERE POST-TEST LEFT LATERAL FLEXION ENDS
 <br><br>
-<label><input type="radio" name="s5qd" value="YES">YES</label>
-<label><input type="radio" name="s5qd" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5E" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q5E" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap">
@@ -328,7 +328,7 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>F) SELECT WHERE POST-TEST LEFT LATERAL ROTATION ENDS
 <br><br>
-<select name="s5qf">
+<select name="http://purl.org/facsimile/dbq#DBQ_Back_Q5G">
 <option value="0">0</option>
 <option value="5">5</option>
 <option value="10">10</option>
@@ -344,21 +344,21 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>A) DOES THE VETERAN HAVE ADDITIONAL LIMITATION IN ROM OF THE THORACOLUMBAR SPINE (back) FOLLOWING REPETITIVE-USE TESTING?
 <br><br>
-<label><input type="radio" name="s6qa" value="YES">YES</label>
-<label><input type="radio" name="s6qa" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q6A" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q6A" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap">
 <p>B) DOES THE VETERAN HAVE ANY FUNCTIONAL LOSS AND/OR FUNCTIONAL IMPAIRMENT OF THE THORACOLUMBAR SPINE (back)?
 <br><br>
-<label><input type="radio" name="s6qb" value="YES">YES</label>
-<label><input type="radio" name="s6qb" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q6B" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q6B" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap">
 <p>C) IF THE VETERAN HAS FUNCTIONAL LOSS, FUNCTIONAL IMPAIRMENT AND/OR ADDITIONAL LIMITATION OF ROM OF THE THORACOLUMBAR SPINE (back) AFTER REPETITIVE USE, INDICATE THE CONTRIBUTING FACTORS OF DISABILITY BELOW:
 <br><br>
-<textarea name="s6qc"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q6C"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -366,8 +366,8 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 <div class="inner-wrap">
 <p>A) DOES THE VETERAN HAVE LOCALIZED TENDERNESS OR PAIN TO PALPATION FOR JOINTS AND/OR SOFT TISSUE OF THE THORACOLUMBAR SPINE (back)?
 <br><br>
-<label><input type="radio" name="s7qa" value="YES">YES</label>
-<label><input type="radio" name="s7qa" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q7A" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q7A" value="NO">NO</label>
 </p>
 </div>
 <div class="question-holder"><p>B) 
@@ -375,14 +375,14 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 </div><div class="inner-wrap-alt">
 <p>B1) DOES THE VETERAN HAVE GUARDING OR MUSCLE SPASM OF THE THORACOLUMBAR SPINE (back)?
 <br><br>
-<label><input type="radio" name="s7qb1" value="YES">YES</label>
-<label><input type="radio" name="s7qb1" value="NO">NO</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1" value="YES">YES</label>
+<label><input type="radio" name="http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1" value="NO">NO</label>
 </p>
 </div>
 <div class="inner-wrap-alt">
 <p>B2) 
 <br><br>
-<textarea name="s7qb2"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q7B_2"></textarea>
 </p>
 </div>
 <br><hr><br>
@@ -392,19 +392,19 @@ VETERAN (for reasons other than a back condition, such as age, body habitus, neu
 </div><div class="inner-wrap-alt">
 <p>A1) 
 <br><br>
-<textarea name="s8qa1"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q8A_HipFlexionR_ms"></textarea>
 </p>
 </div>
 <div class="inner-wrap-alt">
 <p>A2) 
 <br><br>
-<textarea name="s8qa2"></textarea>
+<textarea name="http://purl.org/facsimile/dbq#DBQ_Back_Q8A_Normal"></textarea>
 </p>
 </div>
 <div class="question-holder"><p>B) 
 </p>
 </div><br><br>
-<div class="button-section"><input type="submit" value="Submit"/></div>
+<div class="button-section"><input type="submit" value="Submit" onclick="this.form.submit();"/></div>
 </form>
 </div>
 </body>
