@@ -64,13 +64,11 @@ public class FormInputHandler extends HttpServlet {
 			request.getSession().setAttribute("uuid", uuid);
 			PrintWriter pw = response.getWriter();
 			System.out.println("\nParsing form input...");
-			System.out.println("\tUUID: " + uuid);
-			System.out.println("\tDate: " + date);
-			
-			Enumeration<String> paramNames = request.getParameterNames();
+			System.out.println("  UUID: " + uuid);
+			System.out.println("  Date: " + date + "\n");
 			
 			// CSV file
-			String csv = getCSVFile(paramNames, request);
+			String csv = getCSVFile(request.getParameterNames(), request);
 			if(request.getSession().getAttribute(uuid + "-csv") == null) {
 				request.getSession().setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
@@ -95,9 +93,9 @@ public class FormInputHandler extends HttpServlet {
 		while(paramNames.hasMoreElements()) {
 			String paramName = (String)paramNames.nextElement();
 			csv += paramName + ",";
-			System.out.print("Question: " + paramName + "\n");
+			System.out.print("  Question: " + paramName + "\n");
 			String[] params = request.getParameterValues(paramName);
-			System.out.print("Answer(s): ");
+			System.out.print("  Answer(s): ");
 			for(int i = 0; i < params.length; i++) {
 				csv += params[i];
 				System.out.print(params[i] + " ");
