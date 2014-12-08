@@ -6,19 +6,27 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>FormGeneratorRunner</servlet-name>
-  	<servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.FormGeneratorRunner</servlet-class>
+    <servlet-name>FormGeneratorRunner</servlet-name>
+    <servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.FormGeneratorRunner</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>FormGeneratorRunner</servlet-name>
-  	<url-pattern>/form</url-pattern>
+    <servlet-name>FormGeneratorRunner</servlet-name>
+    <url-pattern>/form</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>FormInputHandler</servlet-name>
-  	<servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.FormInputHandler</servlet-class>
+    <servlet-name>FormInputHandler</servlet-name>
+    <servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.FormInputHandler</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>FormInputHandler</servlet-name>
-  	<url-pattern>/submit</url-pattern>
+    <servlet-name>FormInputHandler</servlet-name>
+    <url-pattern>/submit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+	<servlet-name>OutputFileHandler</servlet-name>
+	<servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.OutputFileHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>OutputFileHandler</servlet-name>
+	<url-pattern>/file</url-pattern>
   </servlet-mapping>
 </web-app>
