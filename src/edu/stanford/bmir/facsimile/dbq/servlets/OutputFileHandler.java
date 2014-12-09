@@ -58,13 +58,9 @@ public class OutputFileHandler extends HttpServlet {
 			file = (String) request.getSession().getAttribute(uuid + "-csv");
 			response.setHeader("Content-Disposition", "attachment; filename=\"form.csv\"");
 			break;
-		case "XML":
-			file = (String) request.getSession().getAttribute(uuid + "-xml");
-			response.setHeader("Content-Disposition", "attachment; filename=\"form.xml\"");
-			break;
-		case "RDF":
-			file = (String) request.getSession().getAttribute(uuid + "-rdf");
-			response.setHeader("Content-Disposition", "attachment; filename=\"form.xml\"");
+		case "OWL":
+			file = (String) request.getSession().getAttribute(uuid + "-owl");
+			response.setHeader("Content-Disposition", "attachment; filename=\"form.owl\"");
 			break;
 		}
 		pw.write(file);

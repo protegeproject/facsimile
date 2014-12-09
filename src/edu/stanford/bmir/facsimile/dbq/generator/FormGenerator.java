@@ -70,6 +70,7 @@ public class FormGenerator {
 		String qName = "\"" + q.getQuestionIndividual().getIRI().toString() + "\"";
 		String qNumber = q.getQuestionNumber();
 		String qText = q.getQuestionText();
+		
 		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "\n";
 		if(!qText.isEmpty() || (qText.isEmpty() && q.isSubquestion())) {
 			if(q.isSubquestion())

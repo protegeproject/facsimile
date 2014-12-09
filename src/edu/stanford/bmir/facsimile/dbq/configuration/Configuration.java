@@ -149,11 +149,6 @@ public class Configuration {
 				if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions = getQuestions(child);
 			}
-			// TODO
-//			Node s = nl.item(i).getAttributes().getNamedItem("id");
-//			if(s != null && s.getTextContent().equalsIgnoreCase("init"))
-//				section = IRI.create("");
-			
 			if(section != null && questions != null && !questions.isEmpty())
 				sections.put(section, questions);
 		}
@@ -340,7 +335,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getQuestionInputClass() {
-		return IRI.create((doc.getElementById("class").getTextContent()));
+		return IRI.create((doc.getElementById("question").getTextContent()));
 	}
 	
 	
@@ -359,7 +354,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getSectionInputClass() {
-		return IRI.create(doc.getElementById("sectionclass").getTextContent());
+		return IRI.create(doc.getElementById("section").getTextContent());
 	}
 	
 	
@@ -371,7 +366,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionTextPropertyBinding() {
-		return IRI.create((doc.getElementById("text").getTextContent()));
+		return IRI.create((doc.getElementById("questiontext").getTextContent()));
 	}
 	
 
@@ -380,7 +375,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionFocusPropertyBinding() {
-		return IRI.create((doc.getElementById("focus").getTextContent()));
+		return IRI.create((doc.getElementById("questionfocus").getTextContent()));
 	}
 	
 	
@@ -389,7 +384,7 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getQuestionValuePropertyBinding() {
-		return IRI.create((doc.getElementById("value").getTextContent()));
+		return IRI.create((doc.getElementById("questionvalue").getTextContent()));
 	}
 	
 	
@@ -398,7 +393,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionDataValuePropertyBinding() {
-		return IRI.create(doc.getElementById("datavalue").getTextContent());
+		return IRI.create(doc.getElementById("questiondatavalue").getTextContent());
 	}
 	
 	
@@ -455,7 +450,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getTextInputBinding() {
-		return IRI.create(doc.getElementById("textfield").getTextContent());
+		return IRI.create(doc.getElementById("textarea").getTextContent());
 	}
 	
 	

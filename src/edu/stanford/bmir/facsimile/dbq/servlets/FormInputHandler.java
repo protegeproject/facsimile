@@ -68,8 +68,8 @@ public class FormInputHandler extends HttpServlet {
 			System.out.println("  Date: " + date + "\n");
 			
 			// CSV file
-			String csv = getCSVFile(request.getParameterNames(), request);
 			if(request.getSession().getAttribute(uuid + "-csv") == null) {
+				String csv = getCSVFile(request.getParameterNames(), request);
 				request.getSession().setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
 			}
