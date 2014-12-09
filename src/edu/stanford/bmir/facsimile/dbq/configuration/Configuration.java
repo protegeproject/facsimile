@@ -340,16 +340,6 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the OWL class IRI which represents the type of output class desired, i.e., 
-	 * each form input will become an instance of this class
-	 * @return OWL class IRI
-	 */
-	public IRI getQuestionOutputClass() {
-		return IRI.create((doc.getElementById("outclass").getTextContent()));
-	}
-	
-	
-	/**
 	 * Get the OWL class IRI which represents the type of sections, i.e., sections are instances of this class
 	 * @return OWL class IRI
 	 */
@@ -412,15 +402,6 @@ public class Configuration {
 	 */
 	public IRI getSectionTextPropertyBinding() {
 		return IRI.create(doc.getElementById("sectiontext").getTextContent());
-	}
-	
-	
-	/**
-	 * Get the OWL data property IRI that gives a sorting label to a section instance
-	 * @return OWL data property IRI
-	 */
-	public IRI getSectionSortingLabelPropertyBinding() {
-		return IRI.create(doc.getElementById("sectionsortinglabel").getTextContent());
 	}
 	
 	

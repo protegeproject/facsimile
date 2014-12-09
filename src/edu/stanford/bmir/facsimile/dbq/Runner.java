@@ -31,6 +31,7 @@ public class Runner {
 	private boolean verbose;
 	private Configuration conf;
 	private List<QuestionSection> questions;
+	private Map<String,Map<String,String>> questionOptions;
 	
 	
 	/**
@@ -75,6 +76,8 @@ public class Runner {
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
 		questions = gen.getAllSections();
+		questionOptions = gen.getQuestionOptions();
+		
 		FormGenerator form = new FormGenerator(questions);
 		String output = form.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
 		
@@ -94,6 +97,20 @@ public class Runner {
 			return questions;
 		} else
 			return questions;
+	}
+	
+	
+	/**
+	 * Get the map of question IRIs and their options 
+	 * @return Map of question IRIs to their answer options
+	 */
+	public Map<String,Map<String,String>> getQuestionOptions() {
+		if(questionOptions == null) {
+			try { run(); } 
+			catch (IOException e) { e.printStackTrace(); }
+			return questionOptions;
+		} else
+			return questionOptions;
 	}
 	
 	

@@ -30,7 +30,7 @@
     
     <!-- Create WAR -->
     <target name="war" depends="compile">
-        <war destfile="dbq-form-generator.war" webxml="${web}/web.xml">
+        <war destfile="form-generator.war" webxml="${web}/web.xml">
             <fileset dir="WebContent"/>
             <lib dir="${lib}"/>
             <classes dir="${build}/"/>

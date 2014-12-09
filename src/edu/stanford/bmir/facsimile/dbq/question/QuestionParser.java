@@ -1,11 +1,14 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -49,6 +52,7 @@ import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
 public class QuestionParser {
 	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
 	private Map<OWLClassExpression,QuestionType> questionTypes;
+	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
 	private OWLOntologyManager man;
 	private OWLReasoner reasoner;
@@ -71,6 +75,7 @@ public class QuestionParser {
 		man = ont.getOWLOntologyManager();
 		df = man.getOWLDataFactory();
 		reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
+		questionOptions = new HashMap<String,Map<String,String>>();
 		initQuestionTypes();
 		initBindings();
 	}
@@ -212,7 +217,8 @@ public class QuestionParser {
 	 */
 	private QuestionOptions getQuestionOptions(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
 		OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
-		List<String> opts = new ArrayList<String>();
+		Map<String,String> opts = new LinkedHashMap<String,String>();
+		
 		QuestionType qType = null;
 		if(conf.hasDefinedType(questionIri)) {
 			qType = conf.getQuestionType(questionIri);
@@ -229,10 +235,12 @@ public class QuestionParser {
 				}
 			}
 		}
-		if(qType != null && qType.equals(QuestionType.RADIO)) 
-			opts.addAll(Arrays.asList("YES","NO"));
-		
-		return new QuestionOptions(questionIri, qType, opts);
+		if(qType != null && qType.equals(QuestionType.RADIO)) { 
+			opts.put("yes", "YES");
+			opts.put("no", "NO");
+		}
+		questionOptions.put(questionIri.toString(), opts);
+		return new QuestionOptions(questionIri, qType, new ArrayList<String>(opts.values()));
 	}
 	
 	
@@ -241,8 +249,8 @@ public class QuestionParser {
 	 * @param ce	OWL class expression
 	 * @return List of options represented by the given class expression
 	 */
-	private List<String> getOptions(OWLClassExpression ce) {
-		List<String> opts = new ArrayList<String>();
+	private Map<String,String> getOptions(OWLClassExpression ce) {
+		Map<String,String> opts = new HashMap<String,String>();
 		if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
 			if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
 				OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
@@ -255,19 +263,19 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the list of options contained in an enumeration 
+	 * Get the map of options' IRIs to options' text that are contained in an enumeration class expression 
 	 * @param optsEnum	Class expression
-	 * @return List of answer options
+	 * @return Map of answer options' IRIs to text
 	 */
-	private List<String> getOptionsFromEnumeration(OWLObjectOneOf optsEnum) {
-		List<String> list = new ArrayList<String>();
+	private Map<String,String> getOptionsFromEnumeration(OWLObjectOneOf optsEnum) {
+		Map<String,String> opts = new HashMap<String,String>();
 		for(OWLNamedIndividual ind : optsEnum.getIndividualsInSignature()) {
 			Set<OWLAxiom> usg = ont.getReferencingAxioms(ind, Imports.INCLUDED);
 			for(OWLAxiom ax : usg) {
 				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
 					if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(dataValueProperty)) {
 						OWLLiteral lit = ((OWLDataPropertyAssertionAxiom)ax).getObject();
-						list.add(StringUtils.leftPad(lit.getLiteral(), 6, '0')); // add leading zeroes for proper sorting
+						opts.put(ind.getIRI().toString(), StringUtils.leftPad(lit.getLiteral(), 6, '0')); // add leading zeroes for proper sorting
 					}
 				}
 				else if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
@@ -276,28 +284,32 @@ public class QuestionParser {
 						OWLDataRange r = ((OWLDataSomeValuesFrom)ce).getFiller();
 						OWLDatatypeRestriction res = (OWLDatatypeRestriction)r;
 						for(OWLFacetRestriction fr : res.getFacetRestrictions())
-							list.add(fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
+							opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
 					}
 				}
 			}
 		}
-		return sortOptionList(list);
+		return sortMap(opts);
 	}
 	
 	
 	/**
-	 * Sort a given list of options
-	 * @param list	List of options in the order gathered
-	 * @return Sorted list of options
+	 * Sort a given map according to its values
+	 * @param map	Unsorted map
+	 * @return Sorted map
 	 */
-	private List<String> sortOptionList(List<String> list ) {
-		Collections.sort(list);
-		for(int i = 0; i<list.size(); i++) {
-			String opt = list.get(i);
-			opt = opt.replaceFirst("^0+(?!$)", ""); // remove leading zeroes
-			list.remove(i); list.add(i, opt);
-		}
-		return list;
+	private Map<String,String> sortMap(Map<String,String> map) {
+		Set<Entry<String,String>> set = map.entrySet();
+        List<Entry<String,String>> list = new LinkedList<Entry<String,String>>(set);
+        Collections.sort(list, new Comparator<Entry<String,String>>() {
+            public int compare(Entry<String,String> o1, Entry<String,String> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            } 
+        } );
+        Map<String,String> newMap = new LinkedHashMap<String,String>();
+        for(Entry<String,String> entry : list)
+        	newMap.put(entry.getKey(), entry.getValue().replaceFirst("^0+(?!$)", ""));
+		return newMap;
 	}
 	
 	
@@ -355,6 +367,15 @@ public class QuestionParser {
 	 */
 	public List<QuestionSection> getAllSections() {
 		return getSections("");
+	}
+	
+	
+	/**
+	 * Get a map of question IRIs to a map of answer IRIs to answer options 
+	 * @return Map of question IRIs to their respective answer options and IRIs
+	 */
+	public Map<String,Map<String,String>> getQuestionOptions() {
+		return questionOptions;
 	}
 
 	

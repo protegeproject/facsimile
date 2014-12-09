@@ -42,7 +42,7 @@
                 </fileset>
             </path>
         </pathconvert>
-        <jar jarfile="dbq-form-generator.jar" basedir="${build}">
+        <jar jarfile="form-generator.jar" basedir="${build}">
             <manifest>
                 <attribute name="Class-Path" value="${Class-Path}"/>
                 <attribute name="Main-Class" value="${runner}"/>

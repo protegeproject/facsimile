@@ -2,7 +2,7 @@
 <!DOCTYPE configuration [
 	<!ELEMENT configuration (input,output,bindings,form)>
 	<!ELEMENT input (ontology+,imports*)>
-	<!ELEMENT form (patientInfo*,section+,physicianInfo*)>
+	<!ELEMENT form (info*,section+,info*)>
 	<!ELEMENT section (iri?,questionList+)>
 	<!ELEMENT questionList (question+)>
 	<!ELEMENT question (iri,question*)>
@@ -29,8 +29,8 @@
 		<classBindings>
 			<binding id="question">http://purl.org/facsimile/dbq#DBQQuestion</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
-<!--		<binding id="outclass">http://purl.org/facsimile/dbq#DBQQuestion</binding>
-			<binding id="hasNameText"></binding> -->
+			<binding id="hasNameText"></binding>
+			<binding id="hasIDText"></binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- question property bindings -->
@@ -41,7 +41,6 @@
 			<!-- section property bindings -->
 			<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 			<binding id="sectiontext">http://purl.org/facsimile/cfa#hasText</binding>
-<!--		<binding id="sectionsortinglabel">http://purl.org/facsimile/cfa#hasSortingLabel</binding> -->
 			<binding id="sectionquestion">http://purl.org/facsimile/dbq#hasQuestion</binding>
 		</propertyBindings>
 		<questionTypeBindings>
@@ -53,20 +52,11 @@
 		</questionTypeBindings>	
 	</bindings>
 	<form>
-		<!--
-		<section id="init">
-			<questionList>
-				<question>NAME OF PATIENT/VETERAN</question>
-				<question>PATIENT/VETERAN'S SOCIAL SECURITY NUMBER</question>
-			</questionList>
-		</section>
-		-->
-		<patientInfo>
+		<info>
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
-			<info name="hasNameText"/>
-			<info name="hasIDText"/>
-		</patientInfo>
-		
+			<component name="hasNameText"/>
+			<component name="hasIDText"/>
+		</info>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
 			<questionList>
@@ -236,5 +226,10 @@
 				</question>
 			</questionList>
 		</section>
+		<info>
+			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
+			<component name="hasNameText"/>
+			<component name="hasIDText"/>
+		</info>
 	</form>
 </configuration>
