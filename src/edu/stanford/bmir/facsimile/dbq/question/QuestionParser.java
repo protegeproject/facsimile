@@ -202,7 +202,7 @@ public class QuestionParser {
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(QuestionType.TEXTAREA);
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
-					+ "Defaulting to text field !!");
+					+ "Defaulting to text area !!");
 		}
 		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
 	}
@@ -236,8 +236,8 @@ public class QuestionParser {
 			}
 		}
 		if(qType != null && qType.equals(QuestionType.RADIO)) { 
-			opts.put("yes", "YES");
-			opts.put("no", "NO");
+			opts.put("YES", "YES");
+			opts.put("NO", "NO");
 		}
 		questionOptions.put(questionIri.toString(), opts);
 		return new QuestionOptions(questionIri, qType, new ArrayList<String>(opts.values()));

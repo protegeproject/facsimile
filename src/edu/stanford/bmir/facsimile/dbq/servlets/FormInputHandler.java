@@ -70,9 +70,7 @@ public class FormInputHandler extends HttpServlet {
 		try {
 			request.getSession().setAttribute("uuid", uuid);
 			PrintWriter pw = response.getWriter();
-			System.out.println("\nParsing form input...");
-			System.out.println("  UUID: " + uuid);
-			System.out.println("  Date: " + date + "\n");
+			System.out.print("\nParsing form input... ");
 			createQuestionMaps(request);
 			
 			// CSV file
@@ -84,6 +82,10 @@ public class FormInputHandler extends HttpServlet {
 			
 			printOutputPage(pw);
 			pw.close();
+			System.out.println("done");
+			System.out.println("  UUID: " + uuid);
+			System.out.println("  Date: " + date);
+			System.out.println("finished");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -133,15 +135,7 @@ public class FormInputHandler extends HttpServlet {
 			}
 			if(aIri.equalsIgnoreCase(""))
 				aIri = params[i];
-			
-			System.out.println("  Question IRI: " + qIri);
-			System.out.println("  Answer IRI: " + aIri);
-			System.out.println("  Question text: " + qText);
-			System.out.println("  Answer text: " + params[i]);
-			System.out.println("  Question focus: " + qFocus);
-			
 			csv += qIri + "," + aIri + "," + qText + "," + params[i] + "," + qFocus + "\n"; 
-			System.out.println();
 		}
 		return csv;
 	}
