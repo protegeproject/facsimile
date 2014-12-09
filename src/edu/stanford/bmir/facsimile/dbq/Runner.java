@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -18,6 +19,7 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
 import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
+import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -28,6 +30,7 @@ public class Runner {
 	private File config;
 	private boolean verbose;
 	private Configuration conf;
+	private List<QuestionSection> questions;
 	
 	
 	/**
@@ -71,10 +74,26 @@ public class Runner {
 			System.out.println("Output file: " + outputPath);
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		FormGenerator form = new FormGenerator(gen.getAllSections());
+		questions = gen.getAllSections();
+		FormGenerator form = new FormGenerator(questions);
 		String output = form.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+		
 		System.out.println("finished");
 		return output;
+	}
+	
+	
+	/**
+	 * Get the ordered list of question/sections 
+	 * @return List of question sections
+	 */
+	public List<QuestionSection> getQuestionSections() {
+		if(questions == null) {
+			try { run(); } 
+			catch (IOException e) { e.printStackTrace(); }
+			return questions;
+		} else
+			return questions;
 	}
 	
 	

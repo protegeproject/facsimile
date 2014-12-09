@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.stanford.bmir.facsimile.dbq.question.Question;
+import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -26,6 +31,7 @@ public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> outputOptions;
 	private final String uuid, date;
+	private Map<String,String> qTextMap, qFocusMap;
 
 	
     /**
@@ -66,6 +72,7 @@ public class FormInputHandler extends HttpServlet {
 			System.out.println("\nParsing form input...");
 			System.out.println("  UUID: " + uuid);
 			System.out.println("  Date: " + date + "\n");
+			createQuestionMaps(request);
 			
 			// CSV file
 			if(request.getSession().getAttribute(uuid + "-csv") == null) {
@@ -73,6 +80,7 @@ public class FormInputHandler extends HttpServlet {
 				request.getSession().setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
 			}
+			
 			printOutputPage(pw);
 			pw.close();
 		} catch (IOException e) {
@@ -90,21 +98,45 @@ public class FormInputHandler extends HttpServlet {
 	private String getCSVFile(Enumeration<String> paramNames, HttpServletRequest request) {
 		String csv = "date," + date + "\n";
 		csv += "uuid," + uuid + "\n";
+		csv += "question IRI,answer IRI,question text,answer text,question focus"; 
 		while(paramNames.hasMoreElements()) {
-			String paramName = (String)paramNames.nextElement();
-			csv += paramName + ",";
-			System.out.print("  Question: " + paramName + "\n");
-			String[] params = request.getParameterValues(paramName);
-			System.out.print("  Answer(s): ");
-			for(int i = 0; i < params.length; i++) {
-				csv += params[i];
-				System.out.print(params[i] + " ");
-				if(i<(params.length-1)) csv += ",";
-				else System.out.println();
+			String qIri = (String)paramNames.nextElement(); // question iri
+			if(!qIri.equalsIgnoreCase("map")) {
+				String[] params = request.getParameterValues(qIri);
+				String qFocus = qFocusMap.get(qIri);	// question focus
+				String qText = qTextMap.get(qIri);	// question text
+				qText = qText.replaceAll(",", ";");
+				qText = qText.replaceAll("\n", "");
+				csv += addAnswer(params, qIri, qText, qFocus);
 			}
+		}
+		return csv;
+	}
+	
+	
+	/**
+	 * Add question and answer details to a csv
+	 * @param params	Answers
+	 * @param qIri	Question IRI
+	 * @param qText	Question text
+	 * @param qFocus	Question focus class IRI
+	 * @return String CSV entry / entries
+	 */
+	private String addAnswer(String[] params, String qIri, String qText, String qFocus) {
+		String csv = "";
+		for(int i = 0; i < params.length; i++) {
+			System.out.println("  Question IRI: " + qIri);
+			System.out.println("  Question text: " + qText);
+			System.out.println("  Answer text: " + params[i]);
+			System.out.println("  Question focus: " + qFocus);
+			
+			csv += qIri + "," + qText + "," + params[i] + ","; 
+			
+			if(i<(params.length-1)) csv += ",";
 			System.out.println();
 			csv += "\n";
 		}
+		
 		return csv;
 	}
 	
@@ -147,5 +179,24 @@ public class FormInputHandler extends HttpServlet {
 		for(String type : outputOptions)
 			pw.append("<input type=\"submit\" value=\"" + type.toUpperCase() + "\" name=\"filetype\">");
 		pw.append("</div>\n</form>\n</div>\n</body>\n</html>");
+	}
+	
+	
+	/**
+	 * Gather back the text and focus of each question
+	 * @param request	Http request
+	 */
+	@SuppressWarnings("unchecked")
+	private void createQuestionMaps(HttpServletRequest request) {
+		qTextMap = new HashMap<String,String>();
+		qFocusMap = new HashMap<String,String>();
+		List<QuestionSection> questions = (List<QuestionSection>) request.getSession().getAttribute("questionList");
+		for(QuestionSection s : questions) {
+			for(Question q : s.getSectionQuestions()) {
+				String qIri = q.getQuestionIndividual().getIRI().toString();
+				qTextMap.put(qIri, q.getQuestionText());
+				qFocusMap.put(qIri, q.getQuestionFocus());
+			}
+		}
 	}
 }

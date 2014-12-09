@@ -312,7 +312,7 @@ public class QuestionParser {
 		if(((OWLObjectPropertyAssertionAxiom)ax).getProperty().equals(focus)) {
 			OWLIndividual ind = ((OWLObjectPropertyAssertionAxiom)ax).getObject();
 			if(ind.isNamed())
-				qFocus = ((OWLNamedIndividual)ind).getIRI().getShortForm();
+				qFocus = ((OWLNamedIndividual)ind).getIRI().toString();
 			else
 				qFocus = ind.toString();
 		}

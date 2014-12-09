@@ -1,5 +1,6 @@
 package edu.stanford.bmir.facsimile.dbq.question;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -9,7 +10,8 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class Question {
+public class Question implements Serializable {
+	private static final long serialVersionUID = 6525002902613268136L;
 	private OWLNamedIndividual ind;
 	private int sectionNumber;
 	private String questionText, questionFocus, questionNumber;
