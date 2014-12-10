@@ -277,14 +277,18 @@ public class QuestionParser {
 						OWLLiteral lit = ((OWLDataPropertyAssertionAxiom)ax).getObject();
 						opts.put(ind.getIRI().toString(), StringUtils.leftPad(lit.getLiteral(), 6, '0')); // add leading zeroes for proper sorting
 					}
+					else if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(textDataProperty))
+						opts.put(ind.getIRI().toString(), ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral());
 				}
 				else if(ax.isOfType(AxiomType.CLASS_ASSERTION)) {
 					OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 					if(ce instanceof OWLDataSomeValuesFrom) {
-						OWLDataRange r = ((OWLDataSomeValuesFrom)ce).getFiller();
-						OWLDatatypeRestriction res = (OWLDatatypeRestriction)r;
-						for(OWLFacetRestriction fr : res.getFacetRestrictions())
-							opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
+						if(((OWLDataSomeValuesFrom)ce).getProperty().equals(dataValueProperty)) {
+							OWLDataRange r = ((OWLDataSomeValuesFrom)ce).getFiller();
+							OWLDatatypeRestriction res = (OWLDatatypeRestriction)r;
+							for(OWLFacetRestriction fr : res.getFacetRestrictions())
+								opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
+						}
 					}
 				}
 			}
@@ -308,7 +312,7 @@ public class QuestionParser {
         } );
         Map<String,String> newMap = new LinkedHashMap<String,String>();
         for(Entry<String,String> entry : list)
-        	newMap.put(entry.getKey(), entry.getValue().replaceFirst("^0+(?!$)", ""));
+        	newMap.put(entry.getKey(), entry.getValue().replaceFirst("^0+(?!$)", "")); // remove leading zeroes
 		return newMap;
 	}
 	

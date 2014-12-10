@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -148,6 +149,8 @@ public class Configuration {
 				}
 				if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions = getQuestions(child);
+				else if(child.getNodeName().equalsIgnoreCase("infolist"))
+					questions = getInfoRequests(child);
 			}
 			if(section != null && questions != null && !questions.isEmpty())
 				sections.put(section, questions);
@@ -165,7 +168,7 @@ public class Configuration {
 		List<List<IRI>> questions = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) {
-			NodeList children = nl.item(i).getChildNodes(); // <iri>, <subquestions>'s
+			NodeList children = nl.item(i).getChildNodes(); // <iri>, sub-<question>'s
 			List<IRI> subquestions = new ArrayList<IRI>();
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
@@ -182,6 +185,23 @@ public class Configuration {
 				questions.add(subquestions);
 		}
 		return questions;
+	}
+	
+	
+	private List<List<IRI>> getInfoRequests(Node n) {
+		List<List<IRI>> inforeqs = new ArrayList<List<IRI>>();
+		NodeList nl = n.getChildNodes(); // <info>'s
+		for(int i = 0; i < nl.getLength(); i++) {
+			Node child = nl.item(i);
+			if(child.hasAttributes()) {
+				NamedNodeMap nodemap = child.getAttributes();
+				for(int j = 0; j < nodemap.getLength(); j++) {
+					Node att = nodemap.item(0);
+					// TODO
+				}
+			}
+		}
+		return inforeqs;
 	}
 	
 	

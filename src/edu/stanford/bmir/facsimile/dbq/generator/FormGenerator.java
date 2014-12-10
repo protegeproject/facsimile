@@ -40,12 +40,17 @@ public class FormGenerator {
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
 		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
+		int skip = 0;
 		for(int i = 0; i < questionSections.size(); i++) {
 			QuestionSection s = questionSections.get(i);
-			output += "<div class=\"section\"><span>" + (i+1) + "</span>" + s.getSectionHeader() + "</div>";
+			if(!s.getSectionHeader().isEmpty())
+				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
+			else skip++;
+			
 			String sectText = s.getSectionText();
 			if(!sectText.equalsIgnoreCase(""))
 				output += "<p>" + sectText + "</p>";
+			
 			output += "<br>\n";
 			List<Question> questions = s.getSectionQuestions();
 			for(int j = 0; j < questions.size(); j++)
