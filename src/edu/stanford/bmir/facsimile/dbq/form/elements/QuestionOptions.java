@@ -1,10 +1,10 @@
-package edu.stanford.bmir.facsimile.dbq.question;
+package edu.stanford.bmir.facsimile.dbq.form.elements;
 
 import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
 
-import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br>

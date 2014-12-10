@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.stanford.bmir.facsimile.dbq.question.Question;
-import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -191,12 +191,12 @@ public class FormInputHandler extends HttpServlet {
 		qTextMap = new HashMap<String,String>();
 		qFocusMap = new HashMap<String,String>();
 		qOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionMap");
-		List<QuestionSection> questions = (List<QuestionSection>) request.getSession().getAttribute("questionList");
-		for(QuestionSection s : questions) {
+		List<Section> questions = (List<Section>) request.getSession().getAttribute("questionList");
+		for(Section s : questions) {
 			for(Question q : s.getSectionQuestions()) {
 				String qIri = q.getQuestionIndividual().getIRI().toString();
-				qTextMap.put(qIri, q.getQuestionText());
-				qFocusMap.put(qIri, q.getQuestionFocus());
+				qTextMap.put(qIri, q.getText());
+				qFocusMap.put(qIri, q.getFocus());
 			}
 		}
 	}

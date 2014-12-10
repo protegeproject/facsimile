@@ -3,8 +3,8 @@ package edu.stanford.bmir.facsimile.dbq.generator;
 import java.io.IOException;
 import java.util.List;
 
-import edu.stanford.bmir.facsimile.dbq.question.Question;
-import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -12,14 +12,14 @@ import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
  * School of Medicine, Stanford University <br>
  */
 public class FormGenerator {
-	private List<QuestionSection> questionSections;
+	private List<Section> questionSections;
 	
 	
 	/**
 	 * Constructor
 	 * @param questionSections	List of questions to populate the form
 	 */
-	public FormGenerator(List<QuestionSection> questionSections) {
+	public FormGenerator(List<Section> questionSections) {
 		this.questionSections = questionSections;
 	}
 	
@@ -42,10 +42,13 @@ public class FormGenerator {
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		int skip = 0;
 		for(int i = 0; i < questionSections.size(); i++) {
-			QuestionSection s = questionSections.get(i);
+			boolean numbered = true;
+			Section s = questionSections.get(i);
 			if(!s.getSectionHeader().isEmpty())
 				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
-			else skip++;
+			else {
+				skip++; numbered = false;
+			}
 			
 			String sectText = s.getSectionText();
 			if(!sectText.equalsIgnoreCase(""))
@@ -54,7 +57,7 @@ public class FormGenerator {
 			output += "<br>\n";
 			List<Question> questions = s.getSectionQuestions();
 			for(int j = 0; j < questions.size(); j++)
-				output += writeOutQuestion(questions.get(j));
+				output += writeOutQuestion(questions.get(j), numbered);
 			if(i<questionSections.size()-1) output += "<br><hr><br>\n";
 		}
 		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\" onclick=\"this.form.submit();\"/></div>\n";
@@ -67,16 +70,18 @@ public class FormGenerator {
 	/**
 	 * Get the details of the question
 	 * @param q	Question instance
+	 * @param numbered	true if questions should be numbered, false otherwise
 	 * @return String with the HTML code for the given question
 	 * @throws IOException	IO error
 	 */
-	private String writeOutQuestion(Question q) throws IOException {
+	private String writeOutQuestion(Question q, boolean numbered) throws IOException {
 		String output = "";
 		String qName = "\"" + q.getQuestionIndividual().getIRI().toString() + "\"";
-		String qNumber = q.getQuestionNumber();
-		String qText = q.getQuestionText();
+		String qNumber = "";
+		if(numbered) qNumber = q.getElementNumber() + ")";
+		String qText = q.getText();
 		
-		String labelInit = "<p>" + qNumber.toUpperCase() + ") " + qText + "\n";
+		String labelInit = "<p>" + qNumber.toUpperCase() + " " + qText + "\n";
 		if(!qText.isEmpty() || (qText.isEmpty() && q.isSubquestion())) {
 			if(q.isSubquestion())
 				output += "<div class=\"inner-wrap-alt\">\n";
@@ -131,6 +136,6 @@ public class FormGenerator {
 	 */
 	@SuppressWarnings("unused")
 	private String getQuestionName(Question q) {
-		return "\"s" + q.getSectionNumber() + "q" + q.getQuestionNumber() + "\"";
+		return "\"s" + q.getSectionNumber() + "q" + q.getElementNumber() + "\"";
 	}
 }

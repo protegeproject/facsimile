@@ -3,7 +3,7 @@
 	<!ELEMENT configuration (input,output,bindings,form)>
 	<!ELEMENT input (ontology+,imports*)>
 	<!ELEMENT form (info*,section+,info*)>
-	<!ELEMENT section (iri?,questionList+)>
+	<!ELEMENT section (iri?,(questionList|infoList)+)>
 	<!ELEMENT questionList (question+)>
 	<!ELEMENT question (iri,question*)>
 	<!ATTLIST class id ID #IMPLIED>
@@ -27,7 +27,7 @@
 	<bindings>
 		<!-- question and section classes bindings -->
 		<classBindings>
-			<binding id="question">http://purl.org/facsimile/dbq#DBQQuestion</binding>
+			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
 			<binding id="hasNameText">http://purl.org/facsimile/cfa#hasName</binding>
 			<binding id="hasIDText">http://purl.org/facsimile/cfa#hasID</binding>
@@ -42,6 +42,9 @@
 			<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 			<binding id="sectiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<binding id="sectionquestion">http://purl.org/facsimile/dbq#hasQuestion</binding>
+			<!-- output bindings -->
+			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
+			<binding id="inputtype">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
@@ -54,10 +57,10 @@
 	<form>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
-			<infolist>
+			<infoList>
 				<info name="hasNameText"/>
 				<info name="hasIDText"/>
-			</infolist>
+			</infoList>
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
@@ -228,10 +231,12 @@
 				</question>
 			</questionList>
 		</section>
-		<info>
+		<section>
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
-			<component name="hasNameText"/>
-			<component name="hasIDText"/>
-		</info>
+			<infoList>
+				<info name="hasNameText"/>
+				<info name="hasIDText"/>
+			</infoList>
+		</section>
 	</form>
 </configuration>

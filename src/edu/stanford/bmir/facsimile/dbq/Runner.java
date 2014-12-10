@@ -17,9 +17,9 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.form.QuestionParser;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
-import edu.stanford.bmir.facsimile.dbq.question.QuestionParser;
-import edu.stanford.bmir.facsimile.dbq.question.QuestionSection;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -30,7 +30,7 @@ public class Runner {
 	private File config;
 	private boolean verbose;
 	private Configuration conf;
-	private List<QuestionSection> questions;
+	private List<Section> questions;
 	private Map<String,Map<String,String>> questionOptions;
 	
 	
@@ -90,7 +90,7 @@ public class Runner {
 	 * Get the ordered list of question/sections 
 	 * @return List of question sections
 	 */
-	public List<QuestionSection> getQuestionSections() {
+	public List<Section> getQuestionSections() {
 		if(questions == null) {
 			try { run(); } 
 			catch (IOException e) { e.printStackTrace(); }

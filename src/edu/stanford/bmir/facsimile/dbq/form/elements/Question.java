@@ -1,4 +1,4 @@
-package edu.stanford.bmir.facsimile.dbq.question;
+package edu.stanford.bmir.facsimile.dbq.form.elements;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,11 +10,9 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class Question implements Serializable {
+public class Question extends FormDataElement implements Serializable {
 	private static final long serialVersionUID = 6525002902613268136L;
 	private OWLNamedIndividual ind;
-	private int sectionNumber;
-	private String questionText, questionFocus, questionNumber;
 	private QuestionType questionType;
 	private List<String> options;
 	private boolean subquestion;
@@ -33,11 +31,8 @@ public class Question implements Serializable {
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
 			QuestionType questionType, List<String> options, boolean subquestion) {
+		super(questionNumber, sectionNumber, questionText, questionFocus);
 		this.ind = ind;
-		this.questionNumber = questionNumber;
-		this.sectionNumber = sectionNumber; 
-		this.questionText = questionText;
-		this.questionFocus = questionFocus;
 		this.questionType = questionType;
 		this.options = options;
 		this.subquestion = subquestion;
@@ -52,43 +47,7 @@ public class Question implements Serializable {
 		return ind;
 	}
 	
-	
-	/**
-	 * Get the question number as established by the configuration file, or by its parse order
-	 * @return String representing the question number
-	 */
-	public String getQuestionNumber() {
-		return questionNumber;
-	}
-	
-	
-	/**
-	 * Get the section number this question appears in
-	 * @return Integer representing the section number
-	 */
-	public int getSectionNumber() {
-		return sectionNumber;
-	}
-	
-	
-	/**
-	 * Get the title of the question
-	 * @return String representing the question title
-	 */
-	public String getQuestionText() {
-		return questionText;
-	}
-	
-	
-	/**
-	 * Get the focus of the question (output type class)
-	 * @return String representing the focus of the question
-	 */
-	public String getQuestionFocus() {
-		return questionFocus;
-	}
-	
-	
+
 	/**
 	 * Get the HTML form question type given by an element of the QuestionType enumeration 
 	 * @return QuestionType representing the type of HTML form element

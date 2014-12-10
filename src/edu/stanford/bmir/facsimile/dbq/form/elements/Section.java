@@ -1,4 +1,4 @@
-package edu.stanford.bmir.facsimile.dbq.question;
+package edu.stanford.bmir.facsimile.dbq.form.elements;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class QuestionSection implements Serializable {
+public class Section implements Serializable {
 	private static final long serialVersionUID = 480733418001876880L;
 	private String header, text;
 	private List<Question> questions;
@@ -20,7 +20,7 @@ public class QuestionSection implements Serializable {
 	 * @param text	Section text
 	 * @param questions	List of questions (IRIs)
 	 */
-	public QuestionSection(String header, String text, List<Question> questions) {
+	public Section(String header, String text, List<Question> questions) {
 		this.header = header;
 		this.text = text;
 		this.questions = questions;

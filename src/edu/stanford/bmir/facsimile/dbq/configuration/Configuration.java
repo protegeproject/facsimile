@@ -14,12 +14,13 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -193,13 +194,22 @@ public class Configuration {
 		NodeList nl = n.getChildNodes(); // <info>'s
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node child = nl.item(i);
+			List<IRI> info = new ArrayList<IRI>();
 			if(child.hasAttributes()) {
 				NamedNodeMap nodemap = child.getAttributes();
 				for(int j = 0; j < nodemap.getLength(); j++) {
 					Node att = nodemap.item(0);
-					// TODO
+					if(att.getNodeName().equals("name")) {
+						String prop = att.getNodeValue();
+						IRI iri = getQuestionIRI(doc.getElementById(prop), false);
+//						System.out.println("IRI: " + iri.toString());
+						//TODO
+						info.add(iri);
+					}
 				}
 			}
+			if(!info.isEmpty())
+				inforeqs.add(info);
 		}
 		return inforeqs;
 	}

@@ -1,4 +1,4 @@
-package edu.stanford.bmir.facsimile.dbq.question;
+package edu.stanford.bmir.facsimile.dbq.form;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +42,10 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
-import edu.stanford.bmir.facsimile.dbq.question.Question.QuestionType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -113,36 +116,67 @@ public class QuestionParser {
 	 * @param map	Map of questions (individuals) to the set of axioms that they occur in
 	 * @return List of questions
 	 */
-	private List<QuestionSection> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+	private List<Section> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		List<QuestionSection> qSections = new ArrayList<QuestionSection>();
+		List<Section> qSections = new ArrayList<Section>();
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
 		int counter = 1;
 		for(IRI section : sections.keySet()) { // foreach section
-			OWLNamedIndividual sectionInd = df.getOWLNamedIndividual(section);
+			OWLNamedIndividual sectionInd = df.getOWLNamedIndividual(section); // section (or form data element) individual
 			List<List<IRI>> qList = sections.get(section);
 			List<Question> questions = new ArrayList<Question>();
 			for(int i = 0; i < qList.size(); i++) {
 				List<IRI> subquestions = qList.get(i);
 				for(int j = 0; j < subquestions.size(); j++) {
-					OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
-					if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
-					String qNumber = "" + alphabet[i];
+					IRI iri = subquestions.get(j);
 					Question q = null;
-					if(subquestions.size()>1 && j>0) {
-						qNumber += "" + j;
-						q = getQuestionDetails(qNumber, counter, ind, map.get(ind), true);
+					if(ont.containsIndividualInSignature(iri))
+						q = getQuestion(subquestions, j, "" + alphabet[i], counter, map);
+					else
+						q = getInformationRequest(sectionInd, map);
+					if(q != null) {
+						if(verbose) printQuestionInfo(q);
+						questions.add(q);
 					}
-					else 
-						q = getQuestionDetails(qNumber, counter, ind, map.get(ind), false);
-					if(verbose) printQuestionInfo(q);
-					questions.add(q);
 				}
 			}
-			qSections.add(new QuestionSection(getSectionHeader(sectionInd), getSectionText(sectionInd), questions));
+			qSections.add(new Section(getSectionHeader(sectionInd), getSectionText(sectionInd), questions));
 			counter++;
 		}
 		return qSections;
+	}
+	
+	
+	/**
+	 * Get the question instance
+	 * @param subquestions	List of (sub)questions
+	 * @param j	loop index
+	 * @param qNumber	Question number
+	 * @param counter	Section counter
+	 * @param map	Map of individuals to their usage axioms
+	 * @return Question instance
+	 */
+	private Question getQuestion(List<IRI> subquestions, int j, String qNumber, int counter, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
+		if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+		Question q = null;
+		if(subquestions.size() > 1 && j > 0) {
+			qNumber += "" + j;
+			q = getQuestionDetails(qNumber, counter, ind, map.get(ind), true);
+		}
+		else 
+			q = getQuestionDetails(qNumber, counter, ind, map.get(ind), false);
+		return q;
+	}
+	
+	
+	
+	private Question getInformationRequest(OWLNamedIndividual ind, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		Question q = null;
+		if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+		// TODO
+//		q = new Question()
+		return q;
 	}
 	
 	
@@ -189,16 +223,20 @@ public class QuestionParser {
 	 */
 	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms, boolean subquestion) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
-		for(OWLAxiom ax : axioms) {
-			if(ax.isLogicalAxiom()) {
-				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
-					qText = getQuestionText(ax, textDataProperty);
-				if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
-					qFocus = getQuestionFocus(ax, focusObjectProperty);
-				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
-					qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
+//		if(axioms != null && !axioms.isEmpty()) { // TODO
+			for(OWLAxiom ax : axioms) {
+				if(ax.isLogicalAxiom()) {
+					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
+						qText = getQuestionText(ax, textDataProperty);
+					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
+						qFocus = getQuestionFocus(ax, focusObjectProperty);
+					if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
+						qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
+				}
 			}
-		}
+//		}
+		if(qOpts == null) 
+			qOpts = new QuestionOptions(ind.getIRI(), QuestionType.TEXTAREA, new ArrayList<String>());
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(QuestionType.TEXTAREA);
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
@@ -356,10 +394,10 @@ public class QuestionParser {
 	 * @param type	Type of question (i.e., IRI name fragment)
 	 * @return List of question
 	 */
-	public List<QuestionSection> getSections(String type) {
+	public List<Section> getSections(String type) {
 		System.out.println("Parsing questions and sections... ");
 		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type);
-		List<QuestionSection> list = parseSections(map);
+		List<Section> list = parseSections(map);
 		System.out.println("done");
 		return list;
 	}
@@ -369,7 +407,7 @@ public class QuestionParser {
 	 * Get the list of all sections and questions instantiated in the given ontology
 	 * @return List of question sections
 	 */
-	public List<QuestionSection> getAllSections() {
+	public List<Section> getAllSections() {
 		return getSections("");
 	}
 	
@@ -411,8 +449,8 @@ public class QuestionParser {
 	 * @param q	Question
 	 */
 	private void printQuestionInfo(Question q) {
-		System.out.println("\tQuestion text: " + q.getQuestionText());
-		System.out.println("\tQuestion focus: " + q.getQuestionFocus());
+		System.out.println("\tQuestion text: " + q.getText());
+		System.out.println("\tQuestion focus: " + q.getFocus());
 		System.out.println("\tQuestion type: " + q.getQuestionType());
 		System.out.print("\tQuestion options: ");
 		if(q.getQuestionType().equals(QuestionType.NONE))
