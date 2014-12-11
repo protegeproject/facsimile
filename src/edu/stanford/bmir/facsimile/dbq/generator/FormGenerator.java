@@ -3,6 +3,7 @@ package edu.stanford.bmir.facsimile.dbq.generator;
 import java.io.IOException;
 import java.util.List;
 
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -12,15 +13,15 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
  * School of Medicine, Stanford University <br>
  */
 public class FormGenerator {
-	private List<Section> questionSections;
+	private List<Section> sections;
 	
 	
 	/**
 	 * Constructor
-	 * @param questionSections	List of questions to populate the form
+	 * @param sections	List of sections to populate the form
 	 */
-	public FormGenerator(List<Section> questionSections) {
-		this.questionSections = questionSections;
+	public FormGenerator(List<Section> sections) {
+		this.sections = sections;
 	}
 	
 	
@@ -41,9 +42,9 @@ public class FormGenerator {
 		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		int skip = 0;
-		for(int i = 0; i < questionSections.size(); i++) {
+		for(int i = 0; i < sections.size(); i++) {
 			boolean numbered = true;
-			Section s = questionSections.get(i);
+			Section s = sections.get(i);
 			if(!s.getSectionHeader().isEmpty())
 				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
 			else {
@@ -55,10 +56,10 @@ public class FormGenerator {
 				output += "<p>" + sectText + "</p>";
 			
 			output += "<br>\n";
-			List<Question> questions = s.getSectionQuestions();
+			List<FormElement> questions = s.getSectionElements();
 			for(int j = 0; j < questions.size(); j++)
-				output += writeOutQuestion(questions.get(j), numbered);
-			if(i<questionSections.size()-1) output += "<br><hr><br>\n";
+				output += writeElement(questions.get(j), numbered);
+			if(i<sections.size()-1) output += "<br><hr><br>\n";
 		}
 		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\" onclick=\"this.form.submit();\"/></div>\n";
 		output += "</form>\n</div>\n</body>\n</html>\n";
@@ -68,43 +69,46 @@ public class FormGenerator {
 	
 	
 	/**
-	 * Get the details of the question
-	 * @param q	Question instance
-	 * @param numbered	true if questions should be numbered, false otherwise
-	 * @return String with the HTML code for the given question
+	 * Get the details of the element
+	 * @param e	Element instance
+	 * @param numbered	true if elements should be numbered, false otherwise
+	 * @return String with the HTML code for the given element
 	 * @throws IOException	IO error
 	 */
-	private String writeOutQuestion(Question q, boolean numbered) throws IOException {
+	private String writeElement(FormElement e, boolean numbered) throws IOException {
 		String output = "";
-		String qName = "\"" + q.getQuestionIndividual().getIRI().toString() + "\"";
+		String qName = "\"" + (e instanceof Question ? ((Question)e).getQuestionIndividual().getIRI().toString() : "element-s" + e.getSectionNumber() + "q" + e.getElementNumber()) + "\"";
 		String qNumber = "";
-		if(numbered) qNumber = q.getElementNumber() + ")";
-		String qText = q.getText();
+		if(numbered) qNumber = e.getElementNumber() + ")";
+		String qText = e.getText();
 		
 		String labelInit = "<p>" + qNumber.toUpperCase() + " " + qText + "\n";
-		if(!qText.isEmpty() || (qText.isEmpty() && q.isSubquestion())) {
-			if(q.isSubquestion())
+		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
+			if(e instanceof Question && ((Question)e).isSubquestion())
 				output += "<div class=\"inner-wrap-alt\">\n";
 			else
 				output += "<div class=\"inner-wrap\">\n";
-			switch(q.getQuestionType()) {
+			switch(e.getType()) {
 			case CHECKBOX:
 				output += labelInit + "<br><br>\n";
-				for(String opt : q.getQuestionOptions())
-					output += "<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
-							+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n";
+				if(e instanceof Question)
+					for(String opt : ((Question)e).getQuestionOptions())
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
+						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n";
 				break;
 			case DROPDOWN:
 				output += labelInit + "<br><br>\n" + "<select name=" + qName + ">\n";
-				for(String opt : q.getQuestionOptions())
-					output += "<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n";
+				if(e instanceof Question)
+					for(String opt : ((Question)e).getQuestionOptions())
+						output += "<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n";
 				output += "</select>\n";
 				break;
 			case RADIO:
 				output += labelInit + "<br><br>\n";
-				for(String opt : q.getQuestionOptions())
-					output += "<label><input type=\"" + q.getQuestionType().toString().toLowerCase() + "\" name=" + qName 
-							+ " value=\"" + opt + "\">" + opt + "</label>\n";
+				if(e instanceof Question)
+					for(String opt : ((Question)e).getQuestionOptions())
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
+						+ " value=\"" + opt + "\">" + opt + "</label>\n";
 				break;
 			case TEXTAREA:
 				output += labelInit + "<br><br>\n" + "<textarea name=" + qName + "></textarea>\n";
@@ -130,12 +134,12 @@ public class FormGenerator {
 	
 	
 	/**
-	 * Get the name identifier of a given question. The identifier will be of the form: s1q2 for question 2 of section 1
-	 * @param q	Question instance
-	 * @return String representation of the question identifier
+	 * Get the name identifier of a given element. The identifier will be of the form: s1q2 for element 2 of section 1
+	 * @param e	Form element instance
+	 * @return String representation of the element identifier
 	 */
 	@SuppressWarnings("unused")
-	private String getQuestionName(Question q) {
-		return "\"s" + q.getSectionNumber() + "q" + q.getElementNumber() + "\"";
+	private String getElementName(FormElement e) {
+		return "\"s" + e.getSectionNumber() + "q" + e.getElementNumber() + "\"";
 	}
 }

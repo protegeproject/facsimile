@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
 
-import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -13,7 +13,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
  */
 public class QuestionOptions {
 	private IRI question;
-	private QuestionType type; 
+	private ElementType type; 
 	private List<String> options;
 	
 	
@@ -23,7 +23,7 @@ public class QuestionOptions {
 	 * @param type	Type of question from the QuestionType enumeration
 	 * @param options	List of answer options
 	 */
-	public QuestionOptions(IRI question, QuestionType type, List<String> options) {
+	public QuestionOptions(IRI question, ElementType type, List<String> options) {
 		this.question = question;
 		this.type = type;
 		this.options = options;
@@ -34,7 +34,7 @@ public class QuestionOptions {
 	 * Set the question type for this question
 	 * @param type	Type of question
 	 */
-	public void setQuestionType(QuestionType type) {
+	public void setQuestionType(ElementType type) {
 		this.type = type;
 	}
 	
@@ -52,7 +52,7 @@ public class QuestionOptions {
 	 * Get the type of question
 	 * @return QuestionType
 	 */
-	public QuestionType getQuestionType() {
+	public ElementType getQuestionType() {
 		return type;
 	}
 	

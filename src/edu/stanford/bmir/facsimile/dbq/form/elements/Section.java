@@ -11,19 +11,19 @@ import java.util.List;
 public class Section implements Serializable {
 	private static final long serialVersionUID = 480733418001876880L;
 	private String header, text;
-	private List<Question> questions;
+	private List<FormElement> elements;
 	
 	
 	/**
 	 * Constructor
 	 * @param header	Section header/title
 	 * @param text	Section text
-	 * @param questions	List of questions (IRIs)
+	 * @param elements	List of elements (IRIs)
 	 */
-	public Section(String header, String text, List<Question> questions) {
+	public Section(String header, String text, List<FormElement> elements) {
 		this.header = header;
 		this.text = text;
-		this.questions = questions;
+		this.elements = elements;
 	}
 	
 	
@@ -46,21 +46,21 @@ public class Section implements Serializable {
 	
 	
 	/**
-	 * Get the list of questions this section contains
-	 * @return List of questions' IRIs contained in this section
+	 * Get the list of elements this section contains
+	 * @return List of elements' IRIs contained in this section
 	 */
-	public List<Question> getSectionQuestions() {
-		return questions;
+	public List<FormElement> getSectionElements() {
+		return elements;
 	}
 	
 	
 	/**
-	 * Check if this section contains a specified question
-	 * @param i	Question instance
-	 * @return true if this section contains the given question, false otherwise
+	 * Check if this section contains a specified element
+	 * @param i	Element instance
+	 * @return true if this section contains the given element, false otherwise
 	 */
-	public boolean containsQuestion(Question i) {
-		if(questions.contains(i))
+	public boolean containsElement(FormElement i) {
+		if(elements.contains(i))
 			return true;
 		else 
 			return false;

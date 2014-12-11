@@ -10,10 +10,9 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class Question extends FormDataElement implements Serializable {
+public class Question extends FormElement implements Serializable {
 	private static final long serialVersionUID = 6525002902613268136L;
 	private OWLNamedIndividual ind;
-	private QuestionType questionType;
 	private List<String> options;
 	private boolean subquestion;
 	
@@ -30,10 +29,9 @@ public class Question extends FormDataElement implements Serializable {
 	 * @param subquestion	true if question has a parent question, false otherwise
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
-			QuestionType questionType, List<String> options, boolean subquestion) {
-		super(questionNumber, sectionNumber, questionText, questionFocus);
+			ElementType questionType, List<String> options, boolean subquestion) {
+		super(questionNumber, sectionNumber, questionText, questionFocus, questionType);
 		this.ind = ind;
-		this.questionType = questionType;
 		this.options = options;
 		this.subquestion = subquestion;
 	}
@@ -45,15 +43,6 @@ public class Question extends FormDataElement implements Serializable {
 	 */
 	public OWLNamedIndividual getQuestionIndividual() {
 		return ind;
-	}
-	
-
-	/**
-	 * Get the HTML form question type given by an element of the QuestionType enumeration 
-	 * @return QuestionType representing the type of HTML form element
-	 */
-	public QuestionType getQuestionType() {
-		return questionType;
 	}
 	
 	
@@ -72,22 +61,5 @@ public class Question extends FormDataElement implements Serializable {
 	 */
 	public boolean isSubquestion() {
 		return subquestion;
-	}
-	
-	
-	/**
-	 * 
-	 * @author Rafael S. Goncalves <br>
-	 * Stanford Center for Biomedical Informatics Research (BMIR) <br>
-	 * School of Medicine, Stanford University <br>
-	 * <br>
-	 * HTML form element types
-	 */
-	public enum QuestionType {
-		TEXT, TEXTAREA, CHECKBOX, DROPDOWN, RADIO, COMBO, NONE;
-		
-		public String toString() {
-	        return name().charAt(0) + name().substring(1).toLowerCase();
-	    }
 	}
 }

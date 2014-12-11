@@ -30,7 +30,7 @@ public class Runner {
 	private File config;
 	private boolean verbose;
 	private Configuration conf;
-	private List<Section> questions;
+	private List<Section> sections;
 	private Map<String,Map<String,String>> questionOptions;
 	
 	
@@ -75,10 +75,10 @@ public class Runner {
 			System.out.println("Output file: " + outputPath);
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		questions = gen.getAllSections();
+		sections = gen.getAllSections();
 		questionOptions = gen.getQuestionOptions();
 		
-		FormGenerator form = new FormGenerator(questions);
+		FormGenerator form = new FormGenerator(sections);
 		String output = form.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
 		
 		System.out.println("finished");
@@ -87,16 +87,16 @@ public class Runner {
 	
 	
 	/**
-	 * Get the ordered list of question/sections 
-	 * @return List of question sections
+	 * Get the ordered list of sections 
+	 * @return List of sections
 	 */
-	public List<Section> getQuestionSections() {
-		if(questions == null) {
+	public List<Section> getSections() {
+		if(sections == null) {
 			try { run(); } 
 			catch (IOException e) { e.printStackTrace(); }
-			return questions;
+			return sections;
 		} else
-			return questions;
+			return sections;
 	}
 	
 	

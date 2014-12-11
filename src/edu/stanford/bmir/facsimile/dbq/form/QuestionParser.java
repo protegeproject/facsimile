@@ -42,10 +42,12 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.InformationElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
-import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -54,7 +56,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
  */
 public class QuestionParser {
 	private OWLObjectProperty valueObjectProperty, focusObjectProperty;
-	private Map<OWLClassExpression,QuestionType> questionTypes;
+	private Map<OWLClassExpression,ElementType> questionTypes;
 	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
 	private OWLOntologyManager man;
@@ -124,18 +126,18 @@ public class QuestionParser {
 		for(IRI section : sections.keySet()) { // foreach section
 			OWLNamedIndividual sectionInd = df.getOWLNamedIndividual(section); // section (or form data element) individual
 			List<List<IRI>> qList = sections.get(section);
-			List<Question> questions = new ArrayList<Question>();
+			List<FormElement> questions = new ArrayList<FormElement>();
 			for(int i = 0; i < qList.size(); i++) {
 				List<IRI> subquestions = qList.get(i);
 				for(int j = 0; j < subquestions.size(); j++) {
 					IRI iri = subquestions.get(j);
-					Question q = null;
+					FormElement q = null;
 					if(ont.containsIndividualInSignature(iri))
 						q = getQuestion(subquestions, j, "" + alphabet[i], counter, map);
 					else
 						q = getInformationRequest(sectionInd, map);
 					if(q != null) {
-						if(verbose) printQuestionInfo(q);
+						if(verbose) printInfo(q);
 						questions.add(q);
 					}
 				}
@@ -171,9 +173,9 @@ public class QuestionParser {
 	
 	
 	
-	private Question getInformationRequest(OWLNamedIndividual ind, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
-		Question q = null;
-		if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+	private FormElement getInformationRequest(OWLNamedIndividual ind, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+		InformationElement q = null;
+		if(verbose) System.out.println("   Processing information request: " + ind.getIRI().getShortForm());
 		// TODO
 //		q = new Question()
 		return q;
@@ -236,9 +238,9 @@ public class QuestionParser {
 			}
 //		}
 		if(qOpts == null) 
-			qOpts = new QuestionOptions(ind.getIRI(), QuestionType.TEXTAREA, new ArrayList<String>());
+			qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new ArrayList<String>());
 		if(qOpts.getQuestionType() == null) {
-			qOpts.setQuestionType(QuestionType.TEXTAREA);
+			qOpts.setQuestionType(ElementType.TEXTAREA);
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text area !!");
 		}
@@ -257,7 +259,7 @@ public class QuestionParser {
 		OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 		Map<String,String> opts = new LinkedHashMap<String,String>();
 		
-		QuestionType qType = null;
+		ElementType qType = null;
 		if(conf.hasDefinedType(questionIri)) {
 			qType = conf.getQuestionType(questionIri);
 			opts = getOptions(ce);
@@ -268,12 +270,12 @@ public class QuestionParser {
 				if(questionTypes.containsKey(filler)) // string or boolean values
 					qType = questionTypes.get(filler);
 				else if(filler instanceof OWLObjectOneOf) { /* || ce subclassof (ce' | ce' is instanceof owlobjectoneof) */ 
-					qType = QuestionType.DROPDOWN;
+					qType = ElementType.DROPDOWN;
 					opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
 				}
 			}
 		}
-		if(qType != null && qType.equals(QuestionType.RADIO)) { 
+		if(qType != null && qType.equals(ElementType.RADIO)) { 
 			opts.put("YES", "YES");
 			opts.put("NO", "NO");
 		}
@@ -425,11 +427,11 @@ public class QuestionParser {
 	 * Initialize question type bindings from the configuration file   
 	 */
 	private void initQuestionTypes() {
-		questionTypes = new HashMap<OWLClassExpression,QuestionType>();
+		questionTypes = new HashMap<OWLClassExpression,ElementType>();
 		OWLClassExpression text = df.getOWLClass(conf.getTextInputBinding());
 		OWLClassExpression radio = df.getOWLClass(conf.getRadioInputBinding());
-		questionTypes.put(text, QuestionType.TEXTAREA);
-		questionTypes.put(radio, QuestionType.RADIO);
+		questionTypes.put(text, ElementType.TEXTAREA);
+		questionTypes.put(radio, ElementType.RADIO);
 	}
 	
 	
@@ -445,22 +447,25 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Print details about the given question
-	 * @param q	Question
+	 * Print details about the given form element
+	 * @param e	Form element
 	 */
-	private void printQuestionInfo(Question q) {
-		System.out.println("\tQuestion text: " + q.getText());
-		System.out.println("\tQuestion focus: " + q.getFocus());
-		System.out.println("\tQuestion type: " + q.getQuestionType());
-		System.out.print("\tQuestion options: ");
-		if(q.getQuestionType().equals(QuestionType.NONE))
-			System.out.print("none");
-		else if(!q.getQuestionType().equals(QuestionType.TEXTAREA)) {
-			for(String opt : q.getQuestionOptions())
-				System.out.print(opt + " ");
+	private void printInfo(FormElement e) {
+		System.out.println("\tText: " + e.getText());
+		System.out.println("\tFocus: " + e.getFocus());
+		System.out.println("\tType: " + e.getType());
+		if(e instanceof Question) {
+			Question question = (Question)e;
+			System.out.print("\tOptions: ");
+			if(question.getType().equals(ElementType.NONE))
+				System.out.print("none");
+			else if(!question.getType().equals(ElementType.TEXTAREA)) {
+				for(String opt : question.getQuestionOptions())
+					System.out.print(opt + " ");
+			}
+			else 
+				System.out.print("none (text input)");
 		}
-		else 
-			System.out.print("none (text input)");
 		if(verbose) System.out.println();
 	}
 }

@@ -14,13 +14,12 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import edu.stanford.bmir.facsimile.dbq.form.elements.Question.QuestionType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -31,7 +30,7 @@ public class Configuration {
 	private Document doc;
 	private String ontPath, outPath, title, cssStyle;
 	private Map<IRI,String> imports;
-	private Map<IRI,QuestionType> questionTypes;
+	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,List<List<IRI>>> sections;
 	private File file;
 	private boolean verbose;
@@ -62,7 +61,7 @@ public class Configuration {
 	 */
 	public void loadConfiguration() {
 		doc = loadConfigurationFile(file);
-		questionTypes = new HashMap<IRI,QuestionType>();
+		elementTypes = new HashMap<IRI,ElementType>();
 		imports = new HashMap<IRI,String>();
 		sections = getSections();
 		gatherOntologyFiles();
@@ -250,14 +249,14 @@ public class Configuration {
 	private void checkQuestionType(IRI iri, Node curNode) {
 		Node n = curNode.getAttributes().getNamedItem("type");
 		if(n != null) {
-			QuestionType qType = null;
+			ElementType qType = null;
 			String type = n.getNodeValue();
-			for(int i = 0; i < QuestionType.values().length; i++) {
-				if(type.equalsIgnoreCase(QuestionType.values()[i].toString()))
-					qType = QuestionType.values()[i];
+			for(int i = 0; i < ElementType.values().length; i++) {
+				if(type.equalsIgnoreCase(ElementType.values()[i].toString()))
+					qType = ElementType.values()[i];
 			}
 			if(verbose) System.out.print(" (type: " + qType + ")");
-			questionTypes.put(iri, qType);
+			elementTypes.put(iri, qType);
 		}
 	}
 	
@@ -271,7 +270,7 @@ public class Configuration {
 	 * @return true if question type is defined in the configuration file, false otherwise
 	 */
 	public boolean hasDefinedType(IRI i) {
-		if(questionTypes.containsKey(i))
+		if(elementTypes.containsKey(i))
 			return true;
 		else
 			return false;
@@ -283,8 +282,8 @@ public class Configuration {
 	 * @param i	IRI of individual representing a question
 	 * @return Question type
 	 */
-	public QuestionType getQuestionType(IRI i) {
-		return questionTypes.get(i);
+	public ElementType getQuestionType(IRI i) {
+		return elementTypes.get(i);
 	}
 	
 	
@@ -292,8 +291,8 @@ public class Configuration {
 	 * Get the map of question IRIs to their respective type as defined in the configuration file
 	 * @return Map of IRIs to question types
 	 */
-	public Map<IRI,QuestionType> getQuestionTypes() {
-		return questionTypes;
+	public Map<IRI,ElementType> getQuestionTypes() {
+		return elementTypes;
 	}
 	
 	

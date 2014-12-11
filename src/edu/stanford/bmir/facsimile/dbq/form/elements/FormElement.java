@@ -5,9 +5,10 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class FormDataElement {
+public class FormElement {
 	private String number, text, focus;
 	private int sectionNumber;
+	private ElementType type;
 	
 	
 	/**
@@ -17,11 +18,12 @@ public class FormDataElement {
 	 * @param text	Text to be shown on this form element 
 	 * @param focus	Focus of the element
 	 */
-	public FormDataElement(String number, int sectionNumber, String text, String focus) {
+	public FormElement(String number, int sectionNumber, String text, String focus, ElementType type) {
 		this.number = number;
 		this.sectionNumber = sectionNumber;
 		this.text = text;
 		this.focus = focus;
+		this.type = type;
 	}
 	
 	
@@ -58,5 +60,31 @@ public class FormDataElement {
 	 */
 	public String getFocus() {
 		return focus;
+	}
+	
+	
+	/**
+	 * Get the HTML form element type given by an element of the ElementType enumeration 
+	 * @return ElementType representing the type of HTML form element
+	 */
+	public ElementType getType() {
+		return type;
+	}
+	
+	
+	/**
+	 * 
+	 * @author Rafael S. Goncalves <br>
+	 * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+	 * School of Medicine, Stanford University <br>
+	 * <br>
+	 * HTML form element types
+	 */
+	public enum ElementType {
+		TEXT, TEXTAREA, CHECKBOX, DROPDOWN, RADIO, COMBO, NONE;
+		
+		public String toString() {
+	        return name().charAt(0) + name().substring(1).toLowerCase();
+	    }
 	}
 }

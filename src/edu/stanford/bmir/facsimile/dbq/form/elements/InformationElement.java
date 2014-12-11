@@ -5,10 +5,10 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class InformationRequests extends FormDataElement {
+public class InformationElement extends FormElement {
 
-	public InformationRequests(String number, int sectionNumber, String text, String focus) {
-		super(number, sectionNumber, text, focus);
+	public InformationElement(String number, int sectionNumber, String text, String focus, ElementType type) {
+		super(number, sectionNumber, text, focus, type);
 	}
 	
 	

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -31,8 +32,8 @@ public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> outputOptions;
 	private final String uuid, date;
-	private Map<String,String> qTextMap, qFocusMap;
-	private Map<String,Map<String,String>> qOptions;
+	private Map<String,String> eTextMap, eFocusMap;
+	private Map<String,Map<String,String>> eOptions;
 	
 	
     /**
@@ -71,7 +72,7 @@ public class FormInputHandler extends HttpServlet {
 			request.getSession().setAttribute("uuid", uuid);
 			PrintWriter pw = response.getWriter();
 			System.out.print("\nParsing form input... ");
-			createQuestionMaps(request);
+			createElementMaps(request);
 			
 			// CSV file
 			if(request.getSession().getAttribute(uuid + "-csv") == null) {
@@ -105,8 +106,8 @@ public class FormInputHandler extends HttpServlet {
 		while(paramNames.hasMoreElements()) {
 			String qIri = (String)paramNames.nextElement(); // question iri
 			String[] params = request.getParameterValues(qIri);
-			String qFocus = qFocusMap.get(qIri);	// question focus
-			String qText = qTextMap.get(qIri);	// question text
+			String qFocus = eFocusMap.get(qIri);	// question focus
+			String qText = eTextMap.get(qIri);	// question text
 			qText = qText.replaceAll(",", ";");
 			qText = qText.replaceAll("\n", "");
 			csv += addAnswer(params, qIri, qText, qFocus);
@@ -126,7 +127,7 @@ public class FormInputHandler extends HttpServlet {
 	private String addAnswer(String[] params, String qIri, String qText, String qFocus) {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
-			Map<String,String> aMap = qOptions.get(qIri);
+			Map<String,String> aMap = eOptions.get(qIri);
 			String aIri = "";
 			if(aMap.values().contains(params[i])) {
 				for(String s : aMap.keySet())
@@ -183,20 +184,24 @@ public class FormInputHandler extends HttpServlet {
 	
 	
 	/**
-	 * Gather back the text and focus of each question
+	 * Gather back the text and focus of each form element
 	 * @param request	Http request
 	 */
 	@SuppressWarnings("unchecked")
-	private void createQuestionMaps(HttpServletRequest request) {
-		qTextMap = new HashMap<String,String>();
-		qFocusMap = new HashMap<String,String>();
-		qOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionMap");
-		List<Section> questions = (List<Section>) request.getSession().getAttribute("questionList");
-		for(Section s : questions) {
-			for(Question q : s.getSectionQuestions()) {
-				String qIri = q.getQuestionIndividual().getIRI().toString();
-				qTextMap.put(qIri, q.getText());
-				qFocusMap.put(qIri, q.getFocus());
+	private void createElementMaps(HttpServletRequest request) {
+		eTextMap = new HashMap<String,String>();
+		eFocusMap = new HashMap<String,String>();
+		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionMap");
+		List<Section> sections = (List<Section>) request.getSession().getAttribute("questionList");
+		for(Section s : sections) {
+			for(FormElement q : s.getSectionElements()) {
+				String qIri = "";
+				if(q instanceof Question)
+					qIri = ((Question)q).getQuestionIndividual().getIRI().toString();
+				else
+					qIri = "element-s" + q.getSectionNumber() + ".e" + q.getElementNumber();
+				eTextMap.put(qIri, q.getText());
+				eFocusMap.put(qIri, q.getFocus());
 			}
 		}
 	}
