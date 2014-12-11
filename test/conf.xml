@@ -29,8 +29,6 @@
 		<classBindings>
 			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
-			<binding id="hasNameText">http://purl.org/facsimile/cfa#hasName</binding>
-			<binding id="hasIDText">http://purl.org/facsimile/cfa#hasID</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- question property bindings -->
@@ -45,6 +43,13 @@
 			<!-- output bindings -->
 			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="inputtype">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<!-- data property bindings -->
+			<binding id="hasName">http://purl.org/facsimile/cfa#hasName</binding>
+			<binding id="hasID">http://purl.org/facsimile/cfa#hasID</binding>
+			<binding id="hasPhoneNumber">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
+			<binding id="hasAddress">http://purl.org/facsimile/cfa#hasAddress</binding>
+			<binding id="hasFaxNumber">http://purl.org/facsimile/cfa#hasFaxNumber</binding>
+			<binding id="hasMedicalLicenseNumber">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
@@ -58,8 +63,8 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#DBQPatientInformationSpec</iri>
 			<infoList>
-				<info name="hasNameText"/>
-				<info name="hasIDText"/>
+				<info name="hasName"/>
+				<info name="hasID"/>
 			</infoList>
 		</section>
 		<section>
@@ -234,8 +239,11 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#DBQPhysicianInformationSpec</iri>
 			<infoList>
-				<info name="hasNameText"/>
-				<info name="hasIDText"/>
+				<info name="hasName"/>
+				<info name="hasPhoneNumber"/>
+				<info name="hasAddress"/>
+				<info name="hasFaxNumber"/>
+				<info name="hasMedicalLicenseNumber"/>
 			</infoList>
 		</section>
 	</form>

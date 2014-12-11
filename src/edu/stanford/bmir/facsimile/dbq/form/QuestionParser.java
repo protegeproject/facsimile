@@ -108,18 +108,17 @@ public class QuestionParser {
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
 			else if(ont.containsClassInSignature(section))
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
-			
 			List<List<IRI>> qList = sections.get(section);
 			List<FormElement> questions = new ArrayList<FormElement>();
 			for(int i = 0; i < qList.size(); i++) {
 				List<IRI> subquestions = qList.get(i);
 				for(int j = 0; j < subquestions.size(); j++) {
-					IRI iri = subquestions.get(j);
+					IRI element = subquestions.get(j);
 					FormElement q = null;
-					if(ont.containsIndividualInSignature(iri))
+					if(ont.containsIndividualInSignature(element))
 						q = getQuestion(subquestions, j, "" + alphabet[i], sectionNr);
 					else
-						q = getInformationElement(section, "" + alphabet[i], sectionNr);
+						q = getInformationElement(element, section, "" + alphabet[i], sectionNr);
 					if(q != null) {
 						if(verbose) printInfo(q);
 						questions.add(q);
@@ -134,7 +133,7 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the question instance
+	 * Get a question instance
 	 * @param subquestions	List of (sub)questions
 	 * @param j	loop index
 	 * @param questionNr	Question number
@@ -155,27 +154,32 @@ public class QuestionParser {
 	}
 	
 	
-	
-	private InformationElement getInformationElement(IRI iri, String questionNr, int sectionNr) {
+	/**
+	 * Create an instance of an information element
+	 * @param eleIri	Element IRI
+	 * @param sectionIri	Section IRI
+	 * @param eleNr	Element number
+	 * @param sectionNr	Section number
+	 * @return Instance of InformationElement
+	 */
+	private InformationElement getInformationElement(IRI eleIri, IRI sectionIri, String eleNr, int sectionNr) {
 		String eleTxt = "";
-		if(verbose) System.out.println("   Processing information request: " + iri.getShortForm());
-		for(OWLAxiom ax : ont.getReferencingAxioms(iri)) {
-			if(ax.isOfType(AxiomType.SUBCLASS_OF)) {
+		OWLDataProperty eleClass = df.getOWLDataProperty(eleIri);
+		if(verbose) System.out.println("   Processing information element: " + sectionIri.getShortForm());
+		for(OWLAxiom ax : ont.getReferencingAxioms(sectionIri)) {
+			if(ax.containsEntityInSignature(eleClass) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
 				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
 				if(ce instanceof OWLDataSomeValuesFrom) {
 					OWLDataPropertyExpression prop = ((OWLDataSomeValuesFrom)ce).getProperty();
 					Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(prop.asOWLDataProperty().getIRI());
-					for(OWLAnnotationAssertionAxiom annAx : axs) {
-						if(annAx.getProperty().isComment()) {
-//							System.out.println("\t  Value: " + annAx.getValue().asLiteral().get().getLiteral());
+					for(OWLAnnotationAssertionAxiom annAx : axs)
+						if(annAx.getProperty().isComment())
 							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
-						}
-					}
-					
+
 				}
 			}
 		}
-		return new InformationElement(questionNr, sectionNr, eleTxt, null, ElementType.TEXTAREA); // TODO
+		return new InformationElement(eleNr, sectionNr, eleTxt, null, ElementType.TEXTAREA); // TODO: focus of IE
 	}
 	
 	
