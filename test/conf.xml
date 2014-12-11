@@ -56,7 +56,7 @@
 	</bindings>
 	<form>
 		<section>
-			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
+			<iri>http://purl.org/facsimile/dbq#DBQPatientInformationSpec</iri>
 			<infoList>
 				<info name="hasNameText"/>
 				<info name="hasIDText"/>
@@ -232,7 +232,7 @@
 			</questionList>
 		</section>
 		<section>
-			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
+			<iri>http://purl.org/facsimile/dbq#DBQPhysicianInformationSpec</iri>
 			<infoList>
 				<info name="hasNameText"/>
 				<info name="hasIDText"/>

@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -136,10 +136,10 @@ public class Configuration {
 	 * @return Map of sections' IRIs and their respective questions
 	 */
 	private Map<IRI,List<List<IRI>>> getSections() {
-		Map<IRI,List<List<IRI>>> sections = new TreeMap<IRI,List<List<IRI>>>();
+		Map<IRI,List<List<IRI>>> sections = new LinkedHashMap<IRI,List<List<IRI>>>();
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) {
-			NodeList children = nl.item(i).getChildNodes();
+			NodeList children = nl.item(i).getChildNodes(); // <iri>, (<questionList> | <infoList>)
 			List<List<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
@@ -147,7 +147,7 @@ public class Configuration {
 					section = IRI.create(child.getTextContent());
 					if(verbose) System.out.println("   Section: " + section);
 				}
-				if(child.getNodeName().equalsIgnoreCase("questionlist"))
+				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions = getQuestions(child);
 				else if(child.getNodeName().equalsIgnoreCase("infolist"))
 					questions = getInfoRequests(child);

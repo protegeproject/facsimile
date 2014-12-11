@@ -15,16 +15,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLDataRange;
 import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatypeRestriction;
+import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLFacetRestriction;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
@@ -35,11 +37,8 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 import org.semanticweb.owlapi.model.parameters.Imports;
-import org.semanticweb.owlapi.reasoner.BufferingMode;
-import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
-import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
@@ -60,7 +59,6 @@ public class QuestionParser {
 	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
 	private OWLOntologyManager man;
-	private OWLReasoner reasoner;
 	private OWLOntology ont;
 	private OWLDataFactory df;
 	private Configuration conf;
@@ -79,7 +77,6 @@ public class QuestionParser {
 		this.verbose = verbose;
 		man = ont.getOWLOntologyManager();
 		df = man.getOWLDataFactory();
-		reasoner = new StructuralReasoner(ont, new SimpleConfiguration(), BufferingMode.BUFFERING);
 		questionOptions = new HashMap<String,Map<String,String>>();
 		initQuestionTypes();
 		initBindings();
@@ -94,37 +91,24 @@ public class QuestionParser {
 	public QuestionParser(OWLOntology ont, Configuration conf) {
 		this(ont, conf, false);
 	}
-
-		
-	/**
-	 * Extract questions (individuals) and their corresponding axioms from the ontology
-	 * @param type	Specific type of question desired (if any). The given string is matched against the individual name 
-	 * @return Map of questions to the sets of axioms associated with each of them 
-	 */
-	private Map<OWLNamedIndividual,Set<OWLAxiom>> collectQuestionAxioms(String type) {
-		Map<OWLNamedIndividual,Set<OWLAxiom>> map = new HashMap<OWLNamedIndividual,Set<OWLAxiom>>();
-		OWLClass questionClass = df.getOWLClass(conf.getQuestionInputClass());
-		Set<OWLNamedIndividual> instances = reasoner.getInstances(questionClass, false).getFlattened();
-		for(OWLNamedIndividual i : instances) {
-			if(i.getIRI().getShortForm().contains(type))
-				map.put(i, ont.getReferencingAxioms(i, Imports.INCLUDED));
-		}
-		return map;
-	}
 	
 	
 	/**
 	 * Parse the questions in the ontology according to the order in the configuration file
-	 * @param map	Map of questions (individuals) to the set of axioms that they occur in
 	 * @return List of questions
 	 */
-	private List<Section> parseSections(Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+	private List<Section> parseSections() {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		List<Section> qSections = new ArrayList<Section>();
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
-		int counter = 1;
+		int sectionNr = 1;
 		for(IRI section : sections.keySet()) { // foreach section
-			OWLNamedIndividual sectionInd = df.getOWLNamedIndividual(section); // section (or form data element) individual
+			OWLEntity sectionEnt = null;
+			if(ont.containsIndividualInSignature(section))
+				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
+			else if(ont.containsClassInSignature(section))
+				sectionEnt = df.getOWLClass(section);	// section (or form element) class
+			
 			List<List<IRI>> qList = sections.get(section);
 			List<FormElement> questions = new ArrayList<FormElement>();
 			for(int i = 0; i < qList.size(); i++) {
@@ -133,17 +117,17 @@ public class QuestionParser {
 					IRI iri = subquestions.get(j);
 					FormElement q = null;
 					if(ont.containsIndividualInSignature(iri))
-						q = getQuestion(subquestions, j, "" + alphabet[i], counter, map);
+						q = getQuestion(subquestions, j, "" + alphabet[i], sectionNr);
 					else
-						q = getInformationRequest(sectionInd, map);
+						q = getInformationElement(section, "" + alphabet[i], sectionNr);
 					if(q != null) {
 						if(verbose) printInfo(q);
 						questions.add(q);
 					}
 				}
 			}
-			qSections.add(new Section(getSectionHeader(sectionInd), getSectionText(sectionInd), questions));
-			counter++;
+			qSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), questions));
+			sectionNr++;
 		}
 		return qSections;
 	}
@@ -153,44 +137,57 @@ public class QuestionParser {
 	 * Get the question instance
 	 * @param subquestions	List of (sub)questions
 	 * @param j	loop index
-	 * @param qNumber	Question number
-	 * @param counter	Section counter
-	 * @param map	Map of individuals to their usage axioms
+	 * @param questionNr	Question number
+	 * @param sectionNr	Section number
 	 * @return Question instance
 	 */
-	private Question getQuestion(List<IRI> subquestions, int j, String qNumber, int counter, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
+	private Question getQuestion(List<IRI> subquestions, int j, String questionNr, int sectionNr) {
 		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
 		if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
 		Question q = null;
 		if(subquestions.size() > 1 && j > 0) {
-			qNumber += "" + j;
-			q = getQuestionDetails(qNumber, counter, ind, map.get(ind), true);
+			questionNr += "" + j;
+			q = getQuestionDetails(questionNr, sectionNr, ind, true);
 		}
 		else 
-			q = getQuestionDetails(qNumber, counter, ind, map.get(ind), false);
+			q = getQuestionDetails(questionNr, sectionNr, ind, false);
 		return q;
 	}
 	
 	
 	
-	private FormElement getInformationRequest(OWLNamedIndividual ind, Map<OWLNamedIndividual,Set<OWLAxiom>> map) {
-		InformationElement q = null;
-		if(verbose) System.out.println("   Processing information request: " + ind.getIRI().getShortForm());
-		// TODO
-//		q = new Question()
-		return q;
+	private InformationElement getInformationElement(IRI iri, String questionNr, int sectionNr) {
+		String eleTxt = "";
+		if(verbose) System.out.println("   Processing information request: " + iri.getShortForm());
+		for(OWLAxiom ax : ont.getReferencingAxioms(iri)) {
+			if(ax.isOfType(AxiomType.SUBCLASS_OF)) {
+				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
+				if(ce instanceof OWLDataSomeValuesFrom) {
+					OWLDataPropertyExpression prop = ((OWLDataSomeValuesFrom)ce).getProperty();
+					Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(prop.asOWLDataProperty().getIRI());
+					for(OWLAnnotationAssertionAxiom annAx : axs) {
+						if(annAx.getProperty().isComment()) {
+//							System.out.println("\t  Value: " + annAx.getValue().asLiteral().get().getLiteral());
+							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
+						}
+					}
+					
+				}
+			}
+		}
+		return new InformationElement(questionNr, sectionNr, eleTxt, null, ElementType.TEXTAREA); // TODO
 	}
 	
 	
 	/**
 	 * Get the section header for a given section IRI
-	 * @param ind	Section individual
+	 * @param ent	Section entity
 	 * @return Header of the section
 	 */
-	private String getSectionHeader(OWLNamedIndividual ind) {
+	private String getSectionHeader(OWLEntity ent) {
 		String header = "";
 		OWLDataProperty dp = df.getOWLDataProperty(conf.getSectionHeaderPropertyBinding());		
-		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
+		for(OWLAxiom ax : ont.getReferencingAxioms(ent)) {
 			if(ax instanceof OWLDataPropertyAssertionAxiom && ax.containsEntityInSignature(dp))
 				header = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
 		}
@@ -200,13 +197,13 @@ public class QuestionParser {
 	
 	/**
 	 * Get the text that appears at the beginning of a given section 
-	 * @param ind	Section individual
+	 * @param ent	Section entity
 	 * @return Text of a section
 	 */
-	private String getSectionText(OWLNamedIndividual ind) {
+	private String getSectionText(OWLEntity ent) {
 		String text = "";
 		OWLDataProperty dp = df.getOWLDataProperty(conf.getSectionTextPropertyBinding());
-		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
+		for(OWLAxiom ax : ont.getReferencingAxioms(ent)) {
 			if(ax instanceof OWLDataPropertyAssertionAxiom && ax.containsEntityInSignature(dp))
 				text = ((OWLDataPropertyAssertionAxiom)ax).getObject().getLiteral();
 		}
@@ -219,24 +216,21 @@ public class QuestionParser {
 	 * @param qNr	Question number
 	 * @param sectionNr	Section number
 	 * @param ind	Individual representing a question
-	 * @param axioms	 Set of axioms where the individual is mentioned
 	 * @param subquestion	true if question has a parent question, false otherwise 
 	 * @return Question instance
 	 */
-	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, Set<OWLAxiom> axioms, boolean subquestion) {
+	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, boolean subquestion) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
-//		if(axioms != null && !axioms.isEmpty()) { // TODO
-			for(OWLAxiom ax : axioms) {
-				if(ax.isLogicalAxiom()) {
-					if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
-						qText = getQuestionText(ax, textDataProperty);
-					if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
-						qFocus = getQuestionFocus(ax, focusObjectProperty);
-					if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
-						qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
-				}
+		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
+			if(ax.isLogicalAxiom()) {
+				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION) && qText.isEmpty())
+					qText = getQuestionText(ax, textDataProperty);
+				if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
+					qFocus = getQuestionFocus(ax, focusObjectProperty);
+				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
+					qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
 			}
-//		}
+		}
 		if(qOpts == null) 
 			qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new ArrayList<String>());
 		if(qOpts.getQuestionType() == null) {
@@ -398,8 +392,7 @@ public class QuestionParser {
 	 */
 	public List<Section> getSections(String type) {
 		System.out.println("Parsing questions and sections... ");
-		Map<OWLNamedIndividual,Set<OWLAxiom>> map = collectQuestionAxioms(type);
-		List<Section> list = parseSections(map);
+		List<Section> list = parseSections();
 		System.out.println("done");
 		return list;
 	}
@@ -451,8 +444,8 @@ public class QuestionParser {
 	 * @param e	Form element
 	 */
 	private void printInfo(FormElement e) {
-		System.out.println("\tText: " + e.getText());
-		System.out.println("\tFocus: " + e.getFocus());
+		if(!e.getText().isEmpty()) System.out.println("\tText: " + e.getText());
+		if(e.getFocus() != null && !e.getFocus().isEmpty()) System.out.println("\tFocus: " + e.getFocus());
 		System.out.println("\tType: " + e.getType());
 		if(e instanceof Question) {
 			Question question = (Question)e;
@@ -465,7 +458,7 @@ public class QuestionParser {
 			}
 			else 
 				System.out.print("none (text input)");
+			System.out.println();
 		}
-		if(verbose) System.out.println();
 	}
 }

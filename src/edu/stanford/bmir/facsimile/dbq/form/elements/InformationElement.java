@@ -7,11 +7,8 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
  */
 public class InformationElement extends FormElement {
 
-	public InformationElement(String number, int sectionNumber, String text, String focus, ElementType type) {
-		super(number, sectionNumber, text, focus, type);
+	public InformationElement(String eleNr, int sectionNr, String text, String focus, ElementType type) {
+		super(eleNr, sectionNr, text, focus, type);
 	}
-	
-	
-	
 
 }

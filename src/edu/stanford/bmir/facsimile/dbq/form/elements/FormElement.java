@@ -6,21 +6,22 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
  * School of Medicine, Stanford University <br>
  */
 public class FormElement {
-	private String number, text, focus;
-	private int sectionNumber;
+	private String eleNr, text, focus;
+	private int sectionNr;
 	private ElementType type;
 	
 	
 	/**
 	 * Constructor
-	 * @param number	Form element number
-	 * @param sectionNumber	Section number
+	 * @param eleNr	Form element number
+	 * @param sectionNr	Section number
 	 * @param text	Text to be shown on this form element 
 	 * @param focus	Focus of the element
+	 * @param type	Element type
 	 */
-	public FormElement(String number, int sectionNumber, String text, String focus, ElementType type) {
-		this.number = number;
-		this.sectionNumber = sectionNumber;
+	public FormElement(String eleNr, int sectionNr, String text, String focus, ElementType type) {
+		this.eleNr = eleNr;
+		this.sectionNr = sectionNr;
 		this.text = text;
 		this.focus = focus;
 		this.type = type;
@@ -32,7 +33,7 @@ public class FormElement {
 	 * @return String representing the element number
 	 */
 	public String getElementNumber() {
-		return number;
+		return eleNr;
 	}
 	
 	
@@ -41,7 +42,7 @@ public class FormElement {
 	 * @return Integer representing the section number
 	 */
 	public int getSectionNumber() {
-		return sectionNumber;
+		return sectionNr;
 	}
 	
 	
