@@ -1,11 +1,14 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
+import org.semanticweb.owlapi.model.OWLEntity;
+
 /**
  * @author Rafael S. Goncalves <br>
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
 public class FormElement {
+	private OWLEntity entity;
 	private String eleNr, text, focus;
 	private int sectionNr;
 	private ElementType type;
@@ -13,18 +16,29 @@ public class FormElement {
 	
 	/**
 	 * Constructor
+	 * @param entity	OWL entity
 	 * @param eleNr	Form element number
 	 * @param sectionNr	Section number
 	 * @param text	Text to be shown on this form element 
 	 * @param focus	Focus of the element
 	 * @param type	Element type
 	 */
-	public FormElement(String eleNr, int sectionNr, String text, String focus, ElementType type) {
+	public FormElement(OWLEntity entity, String eleNr, int sectionNr, String text, String focus, ElementType type) {
+		this.entity = entity;
 		this.eleNr = eleNr;
 		this.sectionNr = sectionNr;
 		this.text = text;
 		this.focus = focus;
 		this.type = type;
+	}
+	
+	
+	/**
+	 * Get the OWL entity that represents this element 
+	 * @return OWL entity
+	 */
+	public OWLEntity getEntity() {
+		return entity;
 	}
 	
 	

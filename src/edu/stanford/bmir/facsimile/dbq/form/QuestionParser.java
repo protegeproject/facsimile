@@ -17,6 +17,7 @@ import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
@@ -99,7 +100,7 @@ public class QuestionParser {
 	 */
 	private List<Section> parseSections() {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		List<Section> qSections = new ArrayList<Section>();
+		List<Section> outputSections = new ArrayList<Section>();
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
 		int sectionNr = 1;
 		for(IRI section : sections.keySet()) { // foreach section
@@ -108,27 +109,27 @@ public class QuestionParser {
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
 			else if(ont.containsClassInSignature(section))
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
-			List<List<IRI>> qList = sections.get(section);
-			List<FormElement> questions = new ArrayList<FormElement>();
-			for(int i = 0; i < qList.size(); i++) {
-				List<IRI> subquestions = qList.get(i);
-				for(int j = 0; j < subquestions.size(); j++) {
-					IRI element = subquestions.get(j);
+			List<List<IRI>> eleList = sections.get(section);
+			List<FormElement> formElements = new ArrayList<FormElement>();
+			for(int i = 0; i < eleList.size(); i++) {
+				List<IRI> subElements = eleList.get(i);
+				for(int j = 0; j < subElements.size(); j++) {
+					IRI element = subElements.get(j);
 					FormElement q = null;
 					if(ont.containsIndividualInSignature(element))
-						q = getQuestion(subquestions, j, "" + alphabet[i], sectionNr);
+						q = getQuestion(subElements, j, "" + alphabet[i], sectionNr);
 					else
 						q = getInformationElement(element, section, "" + alphabet[i], sectionNr);
 					if(q != null) {
 						if(verbose) printInfo(q);
-						questions.add(q);
+						formElements.add(q);
 					}
 				}
 			}
-			qSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), questions));
+			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), formElements));
 			sectionNr++;
 		}
-		return qSections;
+		return outputSections;
 	}
 	
 	
@@ -164,10 +165,11 @@ public class QuestionParser {
 	 */
 	private InformationElement getInformationElement(IRI eleIri, IRI sectionIri, String eleNr, int sectionNr) {
 		String eleTxt = "";
-		OWLDataProperty eleClass = df.getOWLDataProperty(eleIri);
+		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
+		OWLClass sectionClass = df.getOWLClass(sectionIri);
 		if(verbose) System.out.println("   Processing information element: " + sectionIri.getShortForm());
 		for(OWLAxiom ax : ont.getReferencingAxioms(sectionIri)) {
-			if(ax.containsEntityInSignature(eleClass) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
+			if(ax.containsEntityInSignature(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
 				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
 				if(ce instanceof OWLDataSomeValuesFrom) {
 					OWLDataPropertyExpression prop = ((OWLDataSomeValuesFrom)ce).getProperty();
@@ -179,7 +181,7 @@ public class QuestionParser {
 				}
 			}
 		}
-		return new InformationElement(eleNr, sectionNr, eleTxt, null, ElementType.TEXTAREA); // TODO: focus of IE
+		return new InformationElement(sectionClass, eleNr, sectionNr, eleTxt, sectionIri.getShortForm(), ElementType.TEXTAREA); // TODO: focus of IE
 	}
 	
 	

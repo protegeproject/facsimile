@@ -53,12 +53,11 @@ public class FormGenerator {
 			
 			String sectText = s.getSectionText();
 			if(!sectText.equalsIgnoreCase(""))
-				output += "<p>" + sectText + "</p>";
+				output += "<p>" + sectText + "</p><br>\n";
 			
-			output += "<br>\n";
-			List<FormElement> questions = s.getSectionElements();
-			for(int j = 0; j < questions.size(); j++)
-				output += writeElement(questions.get(j), numbered);
+			List<FormElement> elements = s.getSectionElements();
+			for(int j = 0; j < elements.size(); j++)
+				output += writeElement(elements.get(j), numbered);
 			if(i<sections.size()-1) output += "<br><hr><br>\n";
 		}
 		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\" onclick=\"this.form.submit();\"/></div>\n";
@@ -77,7 +76,7 @@ public class FormGenerator {
 	 */
 	private String writeElement(FormElement e, boolean numbered) throws IOException {
 		String output = "";
-		String qName = "\"" + (e instanceof Question ? ((Question)e).getQuestionIndividual().getIRI().toString() : "element-s" + e.getSectionNumber() + "q" + e.getElementNumber()) + "\"";
+		String qName = "\"" + e.getEntity().getIRI().toString() + "\"";
 		String qNumber = "";
 		if(numbered) qNumber = e.getElementNumber() + ")";
 		String qText = e.getText();

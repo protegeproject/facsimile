@@ -63,8 +63,12 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#DBQPatientInformationSpec</iri>
 			<infoList>
-				<info name="hasName"/>
-				<info name="hasID"/>
+				<info>
+					<iri>http://purl.org/facsimile/dbq#name</iri>
+				</info>
+				<info>
+					<iri>http://purl.org/facsimile/dbq#id</iri>
+				</info>
 			</infoList>
 		</section>
 		<section>

@@ -12,7 +12,6 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  */
 public class Question extends FormElement implements Serializable {
 	private static final long serialVersionUID = 6525002902613268136L;
-	private OWLNamedIndividual ind;
 	private List<String> options;
 	private boolean subquestion;
 	
@@ -30,19 +29,9 @@ public class Question extends FormElement implements Serializable {
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
 			ElementType questionType, List<String> options, boolean subquestion) {
-		super(questionNumber, sectionNumber, questionText, questionFocus, questionType);
-		this.ind = ind;
+		super(ind, questionNumber, sectionNumber, questionText, questionFocus, questionType);
 		this.options = options;
 		this.subquestion = subquestion;
-	}
-	
-	
-	/**
-	 * Get the OWL individual that represents this question
-	 * @return OWL individual
-	 */
-	public OWLNamedIndividual getQuestionIndividual() {
-		return ind;
 	}
 	
 	

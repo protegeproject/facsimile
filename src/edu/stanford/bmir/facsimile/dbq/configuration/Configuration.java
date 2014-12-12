@@ -147,10 +147,10 @@ public class Configuration {
 					section = IRI.create(child.getTextContent());
 					if(verbose) System.out.println("   Section: " + section);
 				}
-				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
+				else if(child.getNodeName().equalsIgnoreCase("questionlist") || child.getNodeName().equalsIgnoreCase("infolist"))
 					questions = getQuestions(child);
-				else if(child.getNodeName().equalsIgnoreCase("infolist"))
-					questions = getInfoRequests(child);
+//				else if(child.getNodeName().equalsIgnoreCase("infolist"))
+//					questions = getInfoRequests(child);
 			}
 			if(section != null && questions != null && !questions.isEmpty())
 				sections.put(section, questions);

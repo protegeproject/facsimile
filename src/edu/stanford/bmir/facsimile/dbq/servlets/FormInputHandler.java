@@ -104,10 +104,13 @@ public class FormInputHandler extends HttpServlet {
 		csv += "uuid," + uuid + "\n";
 		csv += "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
 		while(paramNames.hasMoreElements()) {
-			String qIri = (String)paramNames.nextElement(); // question iri
+			String qIri = (String)paramNames.nextElement(); // element iri
+			System.out.println("Question iri: " + qIri);
 			String[] params = request.getParameterValues(qIri);
-			String qFocus = eFocusMap.get(qIri);	// question focus
-			String qText = eTextMap.get(qIri);	// question text
+			String qFocus = eFocusMap.get(qIri);	// element focus
+			System.out.println("Question focus: " + qFocus);
+			String qText = eTextMap.get(qIri);	// element text
+			System.out.println("Question text: " + qText);
 			qText = qText.replaceAll(",", ";");
 			qText = qText.replaceAll("\n", "");
 			csv += addAnswer(params, qIri, qText, qFocus);
@@ -129,7 +132,7 @@ public class FormInputHandler extends HttpServlet {
 		for(int i = 0; i < params.length; i++) {
 			Map<String,String> aMap = eOptions.get(qIri);
 			String aIri = "";
-			if(aMap.values().contains(params[i])) {
+			if(aMap != null && aMap.values().contains(params[i])) {
 				for(String s : aMap.keySet())
 					if(aMap.get(s).equals(params[i]))
 						aIri = s;
@@ -194,14 +197,17 @@ public class FormInputHandler extends HttpServlet {
 		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionMap");
 		List<Section> sections = (List<Section>) request.getSession().getAttribute("questionList");
 		for(Section s : sections) {
-			for(FormElement q : s.getSectionElements()) {
+			for(FormElement ele : s.getSectionElements()) {
 				String qIri = "";
-				if(q instanceof Question)
-					qIri = ((Question)q).getQuestionIndividual().getIRI().toString();
-				else
-					qIri = "element-s" + q.getSectionNumber() + ".e" + q.getElementNumber();
-				eTextMap.put(qIri, q.getText());
-				eFocusMap.put(qIri, q.getFocus());
+				if(ele instanceof Question)
+					qIri = ((Question)ele).getEntity().getIRI().toString();
+				else {
+//					qIri = "element-" + ele.getSectionNumber() + ele.getElementNumber();
+					qIri = ele.getEntity().getIRI().toString();
+					System.out.println("ELE IRI: " + qIri + "\nELE TEXT: " + ele.getText());
+				}
+				eTextMap.put(qIri, ele.getText());
+				eFocusMap.put(qIri, ele.getFocus());
 			}
 		}
 	}
