@@ -32,6 +32,7 @@ public class Configuration {
 	private Map<IRI,String> imports;
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,List<List<IRI>>> sections;
+	private Map<IRI,Boolean> sectionNumbering;
 	private File file;
 	private boolean verbose;
 	
@@ -63,6 +64,7 @@ public class Configuration {
 		doc = loadConfigurationFile(file);
 		elementTypes = new HashMap<IRI,ElementType>();
 		imports = new HashMap<IRI,String>();
+		sectionNumbering = new HashMap<IRI,Boolean>();
 		sections = getSections();
 		gatherOntologyFiles();
 		gatherOutputInformation();
@@ -139,7 +141,8 @@ public class Configuration {
 		Map<IRI,List<List<IRI>>> sections = new LinkedHashMap<IRI,List<List<IRI>>>();
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) { // foreach section
-			NodeList children = nl.item(i).getChildNodes(); // <iri>, (<questionList> | <infoList>)
+			Node sectionNode = nl.item(i);
+			NodeList children = sectionNode.getChildNodes(); // <iri>, (<questionList> | <infoList>)
 			List<List<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
@@ -153,10 +156,28 @@ public class Configuration {
 //					questions = getInfoRequests(child);
 				// TODO
 			}
-			if(section != null && questions != null && !questions.isEmpty())
+			if(section != null && questions != null && !questions.isEmpty()) {
 				sections.put(section, questions);
+				sectionNumbering.put(section, isSectionNumbered(sectionNode));
+			}
 		}
 		return sections;
+	}
+	
+	
+	/**
+	 * Check whether a given section is declared to be un-numbered
+	 * @param n	Section node
+	 * @return true if section is numbered, false otherwise
+	 */
+	private boolean isSectionNumbered(Node n) {
+		boolean isNumbered = true;
+		if(n.hasAttributes()) {
+			Node a = n.getAttributes().getNamedItem("numbered");
+			if(a != null)
+				isNumbered = Boolean.parseBoolean(a.getTextContent());
+		}
+		return isNumbered;
 	}
 	
 	
@@ -189,6 +210,11 @@ public class Configuration {
 	}
 	
 	
+	/**
+	 * Get information requests (e.g., information such as name, id, etc) 
+	 * @param n	Infolist node
+	 * @return List of IRIs
+	 */
 	@SuppressWarnings("unused")
 	private List<List<IRI>> getInfoRequests(Node n) {
 		List<List<IRI>> inforeqs = new ArrayList<List<IRI>>();
@@ -203,8 +229,6 @@ public class Configuration {
 					if(att.getNodeName().equals("name")) {
 						String prop = att.getNodeValue();
 						IRI iri = getQuestionIRI(doc.getElementById(prop), false);
-//						System.out.println("IRI: " + iri.toString());
-						//TODO
 						info.add(iri);
 					}
 				}
@@ -298,7 +322,7 @@ public class Configuration {
 	}
 	
 	
-	/*	SECTION - QUESTION MAP	*/
+	/*	SECTION - QUESTION - NUMBERING MAP	*/
 	
 	
 	/**
@@ -307,6 +331,15 @@ public class Configuration {
 	 */
 	public Map<IRI,List<List<IRI>>> getSectionMap() {
 		return sections;
+	}
+	
+	
+	/**
+	 * Get the map of sections and whether they (and their components) should or should not be numbered
+	 * @return Map of sections' IRIs to whether they are numbered or not
+	 */
+	public Map<IRI,Boolean> getNumberingMap() {
+		return sectionNumbering;
 	}
 	
 	

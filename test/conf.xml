@@ -14,6 +14,7 @@
 	<!ATTLIST binding id ID #IMPLIED>
 	<!ATTLIST info type CDATA #IMPLIED>
 	<!ATTLIST question type CDATA #IMPLIED>
+	<!ATTLIST section numbered CDATA #IMPLIED>
 ]>
 <configuration>
 	<input>
@@ -47,14 +48,6 @@
 			<!-- output bindings -->
 			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="inputtype">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
-			<!-- data property bindings 
-			<binding id="hasName">http://purl.org/facsimile/cfa#hasName</binding>
-			<binding id="hasID">http://purl.org/facsimile/cfa#hasID</binding>
-			<binding id="hasPhoneNumber">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
-			<binding id="hasAddress">http://purl.org/facsimile/cfa#hasAddress</binding>
-			<binding id="hasFaxNumber">http://purl.org/facsimile/cfa#hasFaxNumber</binding>
-			<binding id="hasMedicalLicenseNumber">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
-			-->
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
@@ -65,7 +58,7 @@
 		</questionTypeBindings>	
 	</bindings>
 	<form>
-		<section>
+		<section numbered="false">
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_0_patient_info</iri>
 			<infoList>
 				<info type="text">
@@ -245,8 +238,8 @@
 				</question>
 			</questionList>
 		</section>
-		<section>
-			<iri>http://purl.org/facsimile/dbq#DBQPhysicianInformationSpec</iri>
+		<section numbered="false">
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_0_physician_info</iri>
 			<infoList>
 				<info type="text">
 					<iri>http://purl.org/facsimile/dbq#physicianName</iri>
@@ -263,13 +256,6 @@
 				<info type="text">
 					<iri>http://purl.org/facsimile/dbq#medicalLicenseNumber</iri>
 				</info>
-				<!--
-				<info name="hasName"/>
-				<info name="hasPhoneNumber"/>
-				<info name="hasAddress"/>
-				<info name="hasFaxNumber"/>
-				<info name="hasMedicalLicenseNumber"/>
-				-->
 			</infoList>
 		</section>
 	</form>

@@ -43,12 +43,13 @@ public class FormGenerator {
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		int skip = 0;
 		for(int i = 0; i < sections.size(); i++) {
-			boolean numbered = true;
 			Section s = sections.get(i);
-			if(!s.getSectionHeader().isEmpty())
+			boolean numbered = s.isSectionNumbered();
+			if(numbered)
 				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
 			else {
-				skip++; numbered = false;
+				output += "<div class=\"section\">" + s.getSectionHeader() + "</div>";
+				skip++;
 			}
 			
 			String sectText = s.getSectionText();

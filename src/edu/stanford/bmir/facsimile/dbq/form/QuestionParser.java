@@ -59,6 +59,7 @@ public class QuestionParser {
 	private Map<OWLClassExpression,ElementType> questionTypes;
 	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
+	private Map<IRI,Boolean> sectioNumbering;
 	private OWLOntologyManager man;
 	private OWLOntology ont;
 	private OWLDataFactory df;
@@ -78,6 +79,7 @@ public class QuestionParser {
 		this.verbose = verbose;
 		man = ont.getOWLOntologyManager();
 		df = man.getOWLDataFactory();
+		sectioNumbering = conf.getNumberingMap();
 		questionOptions = new HashMap<String,Map<String,String>>();
 		initQuestionTypes();
 		initBindings();
@@ -126,7 +128,7 @@ public class QuestionParser {
 					}
 				}
 			}
-			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), formElements));
+			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), formElements, sectioNumbering.get(section)));
 			sectionNr++;
 		}
 		return outputSections;
