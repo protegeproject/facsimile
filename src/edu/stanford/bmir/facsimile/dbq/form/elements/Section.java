@@ -9,7 +9,7 @@ import java.util.List;
  * School of Medicine, Stanford University <br>
  */
 public class Section implements Serializable {
-	private static final long serialVersionUID = 480733418001876880L;
+	private static final long serialVersionUID = 1L;
 	private String header, text;
 	private List<FormElement> elements;
 	

@@ -1,6 +1,5 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -10,8 +9,8 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class Question extends FormElement implements Serializable {
-	private static final long serialVersionUID = 6525002902613268136L;
+public class Question extends FormElement {
+	private static final long serialVersionUID = 1L;
 	private List<String> options;
 	private boolean subquestion;
 	

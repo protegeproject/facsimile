@@ -138,12 +138,12 @@ public class Configuration {
 	private Map<IRI,List<List<IRI>>> getSections() {
 		Map<IRI,List<List<IRI>>> sections = new LinkedHashMap<IRI,List<List<IRI>>>();
 		NodeList nl = doc.getElementsByTagName("section");
-		for(int i = 0; i < nl.getLength(); i++) {
+		for(int i = 0; i < nl.getLength(); i++) { // foreach section
 			NodeList children = nl.item(i).getChildNodes(); // <iri>, (<questionList> | <infoList>)
 			List<List<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
-				if(child.getNodeName().equalsIgnoreCase("iri")) {
+				if(child.getNodeName().equalsIgnoreCase("iri")) { // section iri
 					section = IRI.create(child.getTextContent());
 					if(verbose) System.out.println("   Section: " + section);
 				}
@@ -151,6 +151,7 @@ public class Configuration {
 					questions = getQuestions(child);
 //				else if(child.getNodeName().equalsIgnoreCase("infolist"))
 //					questions = getInfoRequests(child);
+				// TODO
 			}
 			if(section != null && questions != null && !questions.isEmpty())
 				sections.put(section, questions);
@@ -167,7 +168,7 @@ public class Configuration {
 	private List<List<IRI>> getQuestions(Node n) {
 		List<List<IRI>> questions = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <question>'s
-		for(int i = 0; i < nl.getLength(); i++) {
+		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
 			NodeList children = nl.item(i).getChildNodes(); // <iri>, sub-<question>'s
 			List<IRI> subquestions = new ArrayList<IRI>();
 			for(int j = 0; j < children.getLength(); j++) {
@@ -176,7 +177,7 @@ public class Configuration {
 					IRI iri = getQuestionIRI(curNode, false);
 					if(iri != null) subquestions.add(0,iri);
 				}
-				if(children.item(j).getNodeName().equalsIgnoreCase("question")) {
+				if(children.item(j).getNodeName().equalsIgnoreCase("question")) { // sub-<question>
 					IRI iri = getQuestionIRI(curNode, true);
 					if(iri != null) subquestions.add(iri);
 				}
@@ -188,6 +189,7 @@ public class Configuration {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private List<List<IRI>> getInfoRequests(Node n) {
 		List<List<IRI>> inforeqs = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <info>'s

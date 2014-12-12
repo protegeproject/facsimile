@@ -1,5 +1,7 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
+import java.io.Serializable;
+
 import org.semanticweb.owlapi.model.OWLEntity;
 
 /**
@@ -7,7 +9,8 @@ import org.semanticweb.owlapi.model.OWLEntity;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class FormElement {
+public class FormElement implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private OWLEntity entity;
 	private String eleNr, text, focus;
 	private int sectionNr;

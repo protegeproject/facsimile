@@ -10,7 +10,7 @@ import org.semanticweb.owlapi.model.OWLEntity;
  * School of Medicine, Stanford University <br>
  */
 public class InformationElement extends FormElement implements Serializable {
-	private static final long serialVersionUID = -1511148682869641277L;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor

@@ -458,7 +458,7 @@ public class QuestionParser {
 			System.out.print("\tOptions: ");
 			if(question.getType().equals(ElementType.NONE))
 				System.out.print("none");
-			else if(!question.getType().equals(ElementType.TEXTAREA)) {
+			else if(!question.getType().equals(ElementType.TEXTAREA) && !question.getType().equals(ElementType.TEXT)) {
 				for(String opt : question.getQuestionOptions())
 					System.out.print(opt + " ");
 			}
