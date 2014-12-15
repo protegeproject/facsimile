@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
-import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
 /**
@@ -105,12 +104,9 @@ public class FormInputHandler extends HttpServlet {
 		csv += "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
 		while(paramNames.hasMoreElements()) {
 			String qIri = (String)paramNames.nextElement(); // element iri
-			System.out.println("Question iri: " + qIri);
 			String[] params = request.getParameterValues(qIri);
 			String qFocus = eFocusMap.get(qIri);	// element focus
-			System.out.println("Question focus: " + qFocus);
 			String qText = eTextMap.get(qIri);	// element text
-			System.out.println("Question text: " + qText);
 			qText = qText.replaceAll(",", ";");
 			qText = qText.replaceAll("\n", "");
 			csv += addAnswer(params, qIri, qText, qFocus);
@@ -198,14 +194,7 @@ public class FormInputHandler extends HttpServlet {
 		List<Section> sections = (List<Section>) request.getSession().getAttribute("questionList");
 		for(Section s : sections) {
 			for(FormElement ele : s.getSectionElements()) {
-				String qIri = "";
-				if(ele instanceof Question)
-					qIri = ((Question)ele).getEntity().getIRI().toString();
-				else {
-//					qIri = "element-" + ele.getSectionNumber() + ele.getElementNumber();
-					qIri = ele.getEntity().getIRI().toString();
-					System.out.println("ELE IRI: " + qIri + "\nELE TEXT: " + ele.getText());
-				}
+				String qIri = ele.getEntity().getIRI().toString();
 				eTextMap.put(qIri, ele.getText());
 				eFocusMap.put(qIri, ele.getFocus());
 			}

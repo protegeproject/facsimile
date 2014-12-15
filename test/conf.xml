@@ -10,9 +10,11 @@
 	<!ELEMENT form (info*,section+,info*)>
 	<!ELEMENT section (iri?,(questionList|infoList)+)>
 	<!ELEMENT questionList (question+)>
+	<!ELEMENT infoList (info+)>
 	<!ELEMENT question (iri,question*)>
 	<!ATTLIST binding id ID #IMPLIED>
 	<!ATTLIST info type CDATA #IMPLIED>
+	<!ATTLIST info property CDATA #IMPLIED>
 	<!ATTLIST question type CDATA #IMPLIED>
 	<!ATTLIST section numbered CDATA #IMPLIED>
 ]>
@@ -48,6 +50,14 @@
 			<!-- output bindings -->
 			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="inputtype">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<!-- patient info bindings -->
+			<binding id="pat_name">http://purl.org/facsimile/cfa#hasName</binding>
+			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
+			<!-- physician info bindings -->
+			<binding id="phy_name">http://purl.org/facsimile/cfa#hasName</binding>
+			<binding id="phy_address">http://purl.org/facsimile/cfa#hasAddress</binding>
+			<binding id="phy_phone">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
+			<binding id="phy_license">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
@@ -59,14 +69,10 @@
 	</bindings>
 	<form>
 		<section numbered="false">
-			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_0_patient_info</iri>
+			<iri>http://purl.org/facsimile/datamodel#PatientInformation</iri>
 			<infoList>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#name</iri>
-				</info>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#id</iri>
-				</info>
+				<info type="text" property="pat_name"/>
+				<info type="text" property="pat_id"/>
 			</infoList>
 		</section>
 		<section>
@@ -239,23 +245,12 @@
 			</questionList>
 		</section>
 		<section numbered="false">
-			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_0_physician_info</iri>
+			<iri>http://purl.org/facsimile/datamodel#PhysicianInformation</iri>
 			<infoList>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#physicianName</iri>
-				</info>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#address</iri>
-				</info>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#phoneNumber</iri>
-				</info>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#faxNumber</iri>
-				</info>
-				<info type="text">
-					<iri>http://purl.org/facsimile/dbq#medicalLicenseNumber</iri>
-				</info>
+				<info type="text" property="phy_name"/>
+				<info type="text" property="phy_address"/>
+				<info type="text" property="phy_phone"/>
+				<info type="text" property="phy_license"/>
 			</infoList>
 		</section>
 	</form>

@@ -150,11 +150,10 @@ public class Configuration {
 					section = IRI.create(child.getTextContent());
 					if(verbose) System.out.println("   Section: " + section);
 				}
-				else if(child.getNodeName().equalsIgnoreCase("questionlist") || child.getNodeName().equalsIgnoreCase("infolist"))
+				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions = getQuestions(child);
-//				else if(child.getNodeName().equalsIgnoreCase("infolist"))
-//					questions = getInfoRequests(child);
-				// TODO
+				else if(child.getNodeName().equalsIgnoreCase("infolist"))
+					questions = getInfoRequests(child);
 			}
 			if(section != null && questions != null && !questions.isEmpty()) {
 				sections.put(section, questions);
@@ -195,11 +194,11 @@ public class Configuration {
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
 				if(children.item(j).getNodeName().equalsIgnoreCase("iri")) {
-					IRI iri = getQuestionIRI(curNode, false);
+					IRI iri = getQuestionIRI(curNode, false, null);
 					if(iri != null) subquestions.add(0,iri);
 				}
 				if(children.item(j).getNodeName().equalsIgnoreCase("question")) { // sub-<question>
-					IRI iri = getQuestionIRI(curNode, true);
+					IRI iri = getQuestionIRI(curNode, true, null);
 					if(iri != null) subquestions.add(iri);
 				}
 			}
@@ -215,7 +214,6 @@ public class Configuration {
 	 * @param n	Infolist node
 	 * @return List of IRIs
 	 */
-	@SuppressWarnings("unused")
 	private List<List<IRI>> getInfoRequests(Node n) {
 		List<List<IRI>> inforeqs = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <info>'s
@@ -225,10 +223,10 @@ public class Configuration {
 			if(child.hasAttributes()) {
 				NamedNodeMap nodemap = child.getAttributes();
 				for(int j = 0; j < nodemap.getLength(); j++) {
-					Node att = nodemap.item(0);
-					if(att.getNodeName().equals("name")) {
+					Node att = nodemap.item(j);
+					if(att.getNodeName().equals("property")) {
 						String prop = att.getNodeValue();
-						IRI iri = getQuestionIRI(doc.getElementById(prop), false);
+						IRI iri = getQuestionIRI(doc.getElementById(prop), false, child);
 						info.add(iri);
 					}
 				}
@@ -244,9 +242,10 @@ public class Configuration {
 	 * Get IRI of question at the given node
 	 * @param node	Current node
 	 * @param subquestion	true if question has a parent question, false otherwise
+	 * @param eleNode	Information element node, if applicable
 	 * @return IRI of question in given node
 	 */
-	private IRI getQuestionIRI(Node node, boolean subquestion) {
+	private IRI getQuestionIRI(Node node, boolean subquestion, Node eleNode) {
 		String iriTxt = node.getTextContent();
 		IRI iri = null;
 		if(!iriTxt.equals("")) {
@@ -261,6 +260,8 @@ public class Configuration {
 				checkQuestionType(iri, node);
 			if(!subquestion && node.getParentNode().hasAttributes())
 				checkQuestionType(iri, node.getParentNode());
+			if(eleNode != null)
+				checkQuestionType(iri, eleNode);
 			if(iri != null && verbose) System.out.println();
 		}
 		return iri;

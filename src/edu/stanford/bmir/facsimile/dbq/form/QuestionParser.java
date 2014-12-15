@@ -106,11 +106,13 @@ public class QuestionParser {
 		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
 		int sectionNr = 1;
 		for(IRI section : sections.keySet()) { // foreach section
+			if(verbose) System.out.println(" Section: " + section.getShortForm());
 			OWLEntity sectionEnt = null;
-			if(ont.containsIndividualInSignature(section))
+			if(ont.containsIndividualInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
-			else if(ont.containsClassInSignature(section))
+			else if(ont.containsClassInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
+			
 			List<List<IRI>> eleList = sections.get(section);
 			List<FormElement> formElements = new ArrayList<FormElement>();
 			for(int i = 0; i < eleList.size(); i++) {
@@ -145,7 +147,7 @@ public class QuestionParser {
 	 */
 	private Question getQuestion(List<IRI> subquestions, int j, String questionNr, int sectionNr) {
 		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
-		if(verbose) System.out.println("   Processing question: " + ind.getIRI().getShortForm());
+		if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
 		Question q = null;
 		if(subquestions.size() > 1 && j > 0) {
 			questionNr += "" + j;
@@ -169,9 +171,9 @@ public class QuestionParser {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
 		OWLClass sectionClass = df.getOWLClass(sectionIri);
-		if(verbose) System.out.println("   Processing information element: " + sectionIri.getShortForm());
-		for(OWLAxiom ax : ont.getReferencingAxioms(sectionIri)) {
-			if(ax.containsEntityInSignature(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
+		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
+		for(OWLAxiom ax : ont.getReferencingAxioms(sectionClass, Imports.INCLUDED)) {
+			if(ax.getSignature().contains(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
 				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
 				if(ce instanceof OWLDataSomeValuesFrom) {
 					OWLDataPropertyExpression prop = ((OWLDataSomeValuesFrom)ce).getProperty();
@@ -179,11 +181,15 @@ public class QuestionParser {
 					for(OWLAnnotationAssertionAxiom annAx : axs)
 						if(annAx.getProperty().isComment())
 							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
-
 				}
 			}
 		}
-		return new InformationElement(sectionClass, eleNr, sectionNr, eleTxt, sectionIri.getShortForm(), ElementType.TEXTAREA); // TODO: focus of IE
+		ElementType type = null;
+		if(conf.hasDefinedType(eleIri))
+			type = conf.getQuestionType(eleIri);
+		else
+			type = ElementType.TEXTAREA;
+		return new InformationElement(eleDP, eleNr, sectionNr, eleTxt, sectionIri.getShortForm(), type);
 	}
 	
 	
