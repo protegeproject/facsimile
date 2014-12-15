@@ -18,6 +18,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.AddAxiom;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
+import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+
+import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -33,6 +44,7 @@ public class FormInputHandler extends HttpServlet {
 	private final String uuid, date;
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,Map<String,String>> eOptions;
+	private Configuration conf;
 	
 	
     /**
@@ -80,15 +92,56 @@ public class FormInputHandler extends HttpServlet {
 				outputOptions.add("csv");
 			}
 			
+			if(request.getSession().getAttribute(uuid + "-owl") == null) {
+				OWLOntology ont = getOntology(request.getParameterNames(), request);
+				request.getSession().setAttribute(uuid + "-owl", ont);
+				outputOptions.add("owl");
+			}
+			
 			printOutputPage(pw);
 			pw.close();
 			System.out.println("done");
-			System.out.println("  UUID: " + uuid);
-			System.out.println("  Date: " + date);
+			System.out.println("  Submission UUID: " + uuid);
+			System.out.println("  Submission date: " + date);
 			System.out.println("finished");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
+		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
+		OWLDataFactory df = man.getOWLDataFactory();
+		OWLOntology ont = null;
+		try { ont = man.createOntology(); } 
+		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
+		
+		while(paramNames.hasMoreElements()) {
+			String qIri = (String)paramNames.nextElement(); // element iri: Question individual IRI, or InformationElement property IRI
+			String[] params = request.getParameterValues(qIri);
+			String qFocus = eFocusMap.get(qIri);	// element focus
+			
+			for(int i = 0; i < params.length; i++) {
+				Map<String,String> aMap = eOptions.get(qIri);
+				String aIri = "";
+				if(aMap != null && aMap.values().contains(params[i])) {
+					for(String s : aMap.keySet())
+						if(aMap.get(s).equals(params[i]))
+							aIri = s;
+				}
+				if(aIri.equalsIgnoreCase(""))
+					aIri = params[i];
+				
+				String csv = qIri + "," + aIri + "," + params[i] + "," + qFocus + "\n"; 
+			}
+			
+			String indName = qIri+"-ans";
+			OWLNamedIndividual ind = df.getOWLNamedIndividual(IRI.create(indName));
+			AddAxiom add = new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), ind));
+			man.applyChange(add);
+		}
+		return ont;
 	}
 	
 	
@@ -177,7 +230,7 @@ public class FormInputHandler extends HttpServlet {
 		pw.append("<form action=\"file\" method=\"post\">\n");
 		pw.append("<div class=\"button-section\">\n");
 		for(String type : outputOptions)
-			pw.append("<input type=\"submit\" value=\"" + type.toUpperCase() + "\" name=\"filetype\">");
+			pw.append("<input type=\"submit\" value=\"" + type.toUpperCase() + "\" name=\"filetype\">&nbsp;");
 		pw.append("</div>\n</form>\n</div>\n</body>\n</html>");
 	}
 	
@@ -199,5 +252,6 @@ public class FormInputHandler extends HttpServlet {
 				eFocusMap.put(qIri, ele.getFocus());
 			}
 		}
+		conf = (Configuration)request.getSession().getAttribute("configuration");
 	}
 }

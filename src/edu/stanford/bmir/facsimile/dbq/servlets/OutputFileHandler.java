@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
+import org.semanticweb.owlapi.io.StringDocumentTarget;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+
 /**
  * @author Rafael S. Goncalves <br>
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
@@ -63,7 +68,13 @@ public class OutputFileHandler extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment; filename=\"form.rdf\"");
 			break;
 		case "OWL":
-			file = (String) request.getSession().getAttribute(uuid + "-owl");
+			OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
+			ont.getOWLOntologyManager().setOntologyFormat(ont, new RDFXMLDocumentFormat());
+			StringDocumentTarget target = new StringDocumentTarget();
+			try { ont.saveOntology(target); } 
+			catch (OWLOntologyStorageException e) { e.printStackTrace(); }
+			target.getWriter().flush();
+			file = target.getWriter().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"form.owl\"");
 			break;
 		}

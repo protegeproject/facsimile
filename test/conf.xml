@@ -36,6 +36,7 @@
 		<classBindings>
 			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
+			<binding id="outputclass">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- question property bindings -->
@@ -49,7 +50,7 @@
 			<binding id="sectionquestion">http://purl.org/facsimile/dbq#hasQuestion</binding>
 			<!-- output bindings -->
 			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
-			<binding id="inputtype">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<binding id="hasanswer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
 			<!-- patient info bindings -->
 			<binding id="pat_name">http://purl.org/facsimile/cfa#hasName</binding>
 			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>

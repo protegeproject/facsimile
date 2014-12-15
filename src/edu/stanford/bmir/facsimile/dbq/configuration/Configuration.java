@@ -413,6 +413,15 @@ public class Configuration {
 	}
 	
 	
+	/**
+	 * Get the OWL class IRI which represents the output type, i.e., all answers will be instances of this class 
+	 * @return OWL class IRI
+	 */
+	public IRI getOutputClass() {
+		return IRI.create(doc.getElementById("outputclass").getTextContent());
+	}
+	
+	
 	/*	PROPERTY BINDINGS	*/
 	
 	
@@ -476,6 +485,24 @@ public class Configuration {
 	 */
 	public IRI getSectionHasQuestionPropertyBinding() {
 		return IRI.create(doc.getElementById("sectionquestion").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'isAnswerTo'
+	 * @return OWL object property IRI
+	 */
+	public IRI getIsAnswerToPropertyBinding() {
+		return IRI.create(doc.getElementById("isanswerto").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'hasAnswer'
+	 * @return OWL object property IRI
+	 */
+	public IRI getHasAnswerPropertyBinding() {
+		return IRI.create(doc.getElementById("hasanswer").getTextContent());
 	}
 	
 	

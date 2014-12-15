@@ -115,6 +115,15 @@ public class Runner {
 	
 	
 	/**
+	 * Get the configuration instance
+	 * @return Configuration
+	 */
+	public Configuration getConfiguration() {
+		return conf;
+	}
+	
+	
+	/**
 	 * Load ontology specified in a configuration
 	 * @param conf	Configuration
 	 * @return OWL ontology
