@@ -170,9 +170,8 @@ public class QuestionParser {
 	private InformationElement getInformationElement(IRI eleIri, IRI sectionIri, String eleNr, int sectionNr) {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
-		OWLClass sectionClass = df.getOWLClass(sectionIri);
 		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
-		for(OWLAxiom ax : ont.getReferencingAxioms(sectionClass, Imports.INCLUDED)) {
+		for(OWLAxiom ax : ont.getReferencingAxioms(sectionIri, Imports.INCLUDED)) {
 			if(ax.getSignature().contains(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
 				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
 				if(ce instanceof OWLDataSomeValuesFrom) {
@@ -180,7 +179,7 @@ public class QuestionParser {
 					Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(prop.asOWLDataProperty().getIRI());
 					for(OWLAnnotationAssertionAxiom annAx : axs)
 						if(annAx.getProperty().isComment())
-							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
+							eleTxt = annAx.getValue().asLiteral().get().getLiteral(); // TODO not getting text for patient/physician info nodes
 				}
 			}
 		}
@@ -189,7 +188,7 @@ public class QuestionParser {
 			type = conf.getQuestionType(eleIri);
 		else
 			type = ElementType.TEXTAREA;
-		return new InformationElement(eleDP, eleNr, sectionNr, eleTxt, sectionIri.getShortForm(), type);
+		return new InformationElement(eleDP, eleNr, sectionNr, eleTxt, sectionIri.toString(), type);
 	}
 	
 	

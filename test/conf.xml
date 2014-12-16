@@ -17,6 +17,7 @@
 	<!ATTLIST info property CDATA #IMPLIED>
 	<!ATTLIST question type CDATA #IMPLIED>
 	<!ATTLIST section numbered CDATA #IMPLIED>
+	<!ATTLIST section type CDATA #IMPLIED>
 ]>
 <configuration>
 	<input>
@@ -36,7 +37,10 @@
 		<classBindings>
 			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
-			<binding id="outputclass">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<binding id="annotateddata">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<binding id="observation">http://purl.org/facsimile/datamodel#Observation</binding>
+			<binding id="pat_info">http://purl.org/facsimile/datamodel#PatientInformation</binding>
+			<binding id="phy_info">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- question property bindings -->
@@ -63,14 +67,11 @@
 		<questionTypeBindings>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
 			<binding id="textarea">http://purl.org/facsimile/cfa#StringValue</binding>
-			<binding id="checkbox"></binding>
-			<binding id="dropdown"></binding>
-			<binding id="combo"></binding>
 		</questionTypeBindings>	
 	</bindings>
 	<form>
-		<section numbered="false">
-			<iri>http://purl.org/facsimile/datamodel#PatientInformation</iri>
+		<section numbered="false" type="pat_info">
+			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList>
 				<info type="text" property="pat_name"/>
 				<info type="text" property="pat_id"/>
@@ -245,8 +246,8 @@
 				</question>
 			</questionList>
 		</section>
-		<section numbered="false">
-			<iri>http://purl.org/facsimile/datamodel#PhysicianInformation</iri>
+		<section numbered="false" type="phy_info">
+			<iri>http://purl.org/facsimile/dbq#PhysicianInformationDataElement</iri>
 			<infoList>
 				<info type="text" property="phy_name"/>
 				<info type="text" property="phy_address"/>

@@ -31,6 +31,7 @@ public class Runner {
 	private boolean verbose;
 	private Configuration conf;
 	private List<Section> sections;
+	private OWLOntology ont;
 	private Map<String,Map<String,String>> questionOptions;
 	
 	
@@ -69,7 +70,7 @@ public class Runner {
 		conf.loadConfiguration();
 		System.out.println("done");
 
-		OWLOntology ont = loadOntology(conf);
+		ont = loadOntology(conf);
 		String outputPath = conf.getOutputFilePath();
 		if(outputPath != null)
 			System.out.println("Output file: " + outputPath);
@@ -120,6 +121,15 @@ public class Runner {
 	 */
 	public Configuration getConfiguration() {
 		return conf;
+	}
+	
+	
+	/**
+	 * Get the input ontology
+	 * @return OWL ontology
+	 */
+	public OWLOntology getOntology() {
+		return ont;
 	}
 	
 	

@@ -21,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.parameters.Imports;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
@@ -45,6 +45,7 @@ public class FormInputHandler extends HttpServlet {
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,Map<String,String>> eOptions;
 	private Configuration conf;
+	private OWLOntology inputOnt;
 	
 	
     /**
@@ -122,6 +123,32 @@ public class FormInputHandler extends HttpServlet {
 			String[] params = request.getParameterValues(qIri);
 			String qFocus = eFocusMap.get(qIri);	// element focus
 			
+			// { data : AnnotatedData }
+			OWLNamedIndividual dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans"));
+			man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd)));
+
+			// { obs : Observation }
+			OWLNamedIndividual result = df.getOWLNamedIndividual(IRI.create(qIri + "-obs"));
+			if(inputOnt.containsIndividualInSignature(IRI.create(qIri)))
+				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getObservationClass()), result)));
+			else {
+				// Patient / Physician information
+			}
+
+			// { data hasAnswer obs }
+			man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, result)));
+
+			// { data isAnswerTo question }
+			if(inputOnt.containsIndividualInSignature(IRI.create(qIri), Imports.INCLUDED))
+				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri)))));
+			
+			// { obs hasFocus focus }
+			if(inputOnt.containsIndividualInSignature(IRI.create(qFocus), Imports.INCLUDED))
+				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), result, df.getOWLNamedIndividual(IRI.create(qFocus)))));
+			else if(inputOnt.containsClassInSignature(IRI.create(qFocus)))
+				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLObjectSomeValuesFrom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), df.getOWLClass(IRI.create(qFocus))), result)));
+			
+			// handle multiple answers to single question
 			for(int i = 0; i < params.length; i++) {
 				Map<String,String> aMap = eOptions.get(qIri);
 				String aIri = "";
@@ -133,13 +160,15 @@ public class FormInputHandler extends HttpServlet {
 				if(aIri.equalsIgnoreCase(""))
 					aIri = params[i];
 				
-				String csv = qIri + "," + aIri + "," + params[i] + "," + qFocus + "\n"; 
+				// { obs hasValue val }
+				if(inputOnt.containsIndividualInSignature(IRI.create(aIri), Imports.INCLUDED))
+					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), result, df.getOWLNamedIndividual(IRI.create(aIri)))));
+				else {
+					OWLNamedIndividual valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val")); 
+					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), result, valInd)));
+					man.applyChange(new AddAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getQuestionDataValuePropertyBinding()), valInd, aIri)));
+				}
 			}
-			
-			String indName = qIri+"-ans";
-			OWLNamedIndividual ind = df.getOWLNamedIndividual(IRI.create(indName));
-			AddAxiom add = new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), ind));
-			man.applyChange(add);
 		}
 		return ont;
 	}
@@ -253,5 +282,6 @@ public class FormInputHandler extends HttpServlet {
 			}
 		}
 		conf = (Configuration)request.getSession().getAttribute("configuration");
+		inputOnt = (OWLOntology)request.getSession().getAttribute("ontology");
 	}
 }

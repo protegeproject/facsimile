@@ -418,7 +418,16 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getOutputClass() {
-		return IRI.create(doc.getElementById("outputclass").getTextContent());
+		return IRI.create(doc.getElementById("annotateddata").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL class IRI which represents the observation type
+	 * @return OWL class IRI
+	 */
+	public IRI getObservationClass() {
+		return IRI.create(doc.getElementById("observation").getTextContent());
 	}
 	
 	
