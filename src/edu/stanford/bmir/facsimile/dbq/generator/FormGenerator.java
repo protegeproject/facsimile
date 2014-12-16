@@ -55,6 +55,8 @@ public class FormGenerator {
 			String sectText = s.getSectionText();
 			if(!sectText.equalsIgnoreCase(""))
 				output += "<p>" + sectText + "</p><br>\n";
+			else
+				output += "<br>\n";
 			
 			List<FormElement> elements = s.getSectionElements();
 			for(int j = 0; j < elements.size(); j++)
@@ -79,10 +81,10 @@ public class FormGenerator {
 		String output = "";
 		String qName = "\"" + e.getEntity().getIRI().toString() + "\"";
 		String qNumber = "";
-		if(numbered) qNumber = e.getElementNumber() + ")";
+		if(numbered) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
 		
-		String labelInit = "<p>" + qNumber.toUpperCase() + " " + qText + "\n";
+		String labelInit = "<p>" + qNumber.toUpperCase() + qText;
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			if(e instanceof Question && ((Question)e).isSubquestion())
 				output += "<div class=\"inner-wrap-alt\">\n";

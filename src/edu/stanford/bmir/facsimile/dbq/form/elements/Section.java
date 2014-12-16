@@ -22,6 +22,7 @@ public class Section implements Serializable {
 	 * @param text	Section text
 	 * @param elements	List of elements (IRIs)
 	 * @param numbered	true if section is numbered, false otherwise
+	 * @param type	Section type
 	 */
 	public Section(String header, String text, List<FormElement> elements, boolean numbered, SectionType type) {
 		this.header = header;

@@ -129,6 +129,7 @@ public class QuestionParser {
 	/**
 	 * Get the form elements in a given section
 	 * @param section	Section IRI
+	 * @param sectionType	Section type
 	 * @param eleList	Element list
 	 * @param sectionNr	Section number
 	 * @param alphabet	Alphabet
@@ -180,6 +181,7 @@ public class QuestionParser {
 	/**
 	 * Create an instance of an information element
 	 * @param eleIri	Element IRI
+	 * @param sectionType	Section type
 	 * @param sectionIri	Section IRI
 	 * @param eleNr	Element number
 	 * @param sectionNr	Section number
