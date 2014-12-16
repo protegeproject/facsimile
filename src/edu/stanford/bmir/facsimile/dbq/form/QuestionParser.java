@@ -48,6 +48,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.InformationElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -113,27 +114,44 @@ public class QuestionParser {
 			else if(ont.containsClassInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
 			
+			SectionType sectionType = conf.getSectionType(section);
 			List<List<IRI>> eleList = sections.get(section);
-			List<FormElement> formElements = new ArrayList<FormElement>();
-			for(int i = 0; i < eleList.size(); i++) {
-				List<IRI> subElements = eleList.get(i);
-				for(int j = 0; j < subElements.size(); j++) {
-					IRI element = subElements.get(j);
-					FormElement q = null;
-					if(ont.containsIndividualInSignature(element))
-						q = getQuestion(subElements, j, "" + alphabet[i], sectionNr);
-					else
-						q = getInformationElement(element, section, "" + alphabet[i], sectionNr);
-					if(q != null) {
-						if(verbose) printInfo(q);
-						formElements.add(q);
-					}
-				}
-			}
-			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), formElements, sectioNumbering.get(section)));
+			List<FormElement> formElements = getFormElements(section, sectionType, eleList, sectionNr, alphabet);
+			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), 
+					formElements, sectioNumbering.get(section), sectionType));
+			
 			sectionNr++;
 		}
 		return outputSections;
+	}
+	
+	
+	/**
+	 * Get the form elements in a given section
+	 * @param section	Section IRI
+	 * @param eleList	Element list
+	 * @param sectionNr	Section number
+	 * @param alphabet	Alphabet
+	 * @return List of form elements
+	 */
+	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<List<IRI>> eleList, int sectionNr, char[] alphabet) {
+		List<FormElement> formElements = new ArrayList<FormElement>();
+		for(int i = 0; i < eleList.size(); i++) {
+			List<IRI> subElements = eleList.get(i);
+			for(int j = 0; j < subElements.size(); j++) {
+				IRI element = subElements.get(j);
+				FormElement q = null;
+				if(ont.containsIndividualInSignature(element))
+					q = getQuestion(subElements, j, "" + alphabet[i], sectionNr);
+				else
+					q = getInformationElement(element, sectionType, section, "" + alphabet[i], sectionNr);
+				if(q != null) {
+					if(verbose) printInfo(q);
+					formElements.add(q);
+				}
+			}
+		}
+		return formElements;
 	}
 	
 	
@@ -167,11 +185,23 @@ public class QuestionParser {
 	 * @param sectionNr	Section number
 	 * @return Instance of InformationElement
 	 */
-	private InformationElement getInformationElement(IRI eleIri, IRI sectionIri, String eleNr, int sectionNr) {
+	private InformationElement getInformationElement(IRI eleIri, SectionType sectionType, IRI sectionIri, String eleNr, int sectionNr) {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
 		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
-		for(OWLAxiom ax : ont.getReferencingAxioms(sectionIri, Imports.INCLUDED)) {
+		
+		OWLClass c = null;
+		if(sectionType.equals(SectionType.INIT_SECTION))
+			c = df.getOWLClass(conf.getInitialSectionClassBinding());
+		else if(sectionType.equals(SectionType.FINAL_SECTION))
+			c = df.getOWLClass(conf.getFinalSectionClassBinding());
+		
+		/* 
+		 * accepts an OWL class as a section IRI and fetches the question text from the rdfs:comment on the data property used
+		 * e.g., PatientInformation => hasName some String, rdfs:comment(hasName, "Name")
+		 * where <PatientInformation> is used as an IRI, the text of the question (eleTxt) returned is "Name"
+		 */
+		for(OWLAxiom ax : ont.getReferencingAxioms(c.getIRI(), Imports.INCLUDED)) {
 			if(ax.getSignature().contains(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
 				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
 				if(ce instanceof OWLDataSomeValuesFrom) {
@@ -179,10 +209,11 @@ public class QuestionParser {
 					Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(prop.asOWLDataProperty().getIRI());
 					for(OWLAnnotationAssertionAxiom annAx : axs)
 						if(annAx.getProperty().isComment())
-							eleTxt = annAx.getValue().asLiteral().get().getLiteral(); // TODO not getting text for patient/physician info nodes
+							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
 				}
 			}
 		}
+		
 		ElementType type = null;
 		if(conf.hasDefinedType(eleIri))
 			type = conf.getQuestionType(eleIri);

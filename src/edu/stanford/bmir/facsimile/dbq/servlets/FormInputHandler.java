@@ -130,7 +130,7 @@ public class FormInputHandler extends HttpServlet {
 			// { obs : Observation }
 			OWLNamedIndividual result = df.getOWLNamedIndividual(IRI.create(qIri + "-obs"));
 			if(inputOnt.containsIndividualInSignature(IRI.create(qIri)))
-				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getObservationClass()), result)));
+				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), result)));
 			else {
 				// Patient / Physician information
 			}

@@ -38,9 +38,9 @@
 			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
 			<binding id="annotateddata">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
-			<binding id="observation">http://purl.org/facsimile/datamodel#Observation</binding>
-			<binding id="pat_info">http://purl.org/facsimile/datamodel#PatientInformation</binding>
-			<binding id="phy_info">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
+			<binding id="question_section">http://purl.org/facsimile/datamodel#Observation</binding>
+			<binding id="init_section">http://purl.org/facsimile/datamodel#PatientInformation</binding>
+			<binding id="final_section">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- question property bindings -->
@@ -70,7 +70,7 @@
 		</questionTypeBindings>	
 	</bindings>
 	<form>
-		<section numbered="false" type="pat_info">
+		<section numbered="false" type="init_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList>
 				<info type="text" property="pat_name"/>
@@ -246,7 +246,7 @@
 				</question>
 			</questionList>
 		</section>
-		<section numbered="false" type="phy_info">
+		<section numbered="false" type="final_section">
 			<iri>http://purl.org/facsimile/dbq#PhysicianInformationDataElement</iri>
 			<infoList>
 				<info type="text" property="phy_name"/>

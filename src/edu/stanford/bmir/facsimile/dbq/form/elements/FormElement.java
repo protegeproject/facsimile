@@ -91,7 +91,6 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * 
 	 * @author Rafael S. Goncalves <br>
 	 * Stanford Center for Biomedical Informatics Research (BMIR) <br>
 	 * School of Medicine, Stanford University <br>

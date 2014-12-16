@@ -13,6 +13,7 @@ public class Section implements Serializable {
 	private String header, text;
 	private List<FormElement> elements;
 	private boolean numbered;
+	private SectionType type;
 	
 	
 	/**
@@ -22,11 +23,12 @@ public class Section implements Serializable {
 	 * @param elements	List of elements (IRIs)
 	 * @param numbered	true if section is numbered, false otherwise
 	 */
-	public Section(String header, String text, List<FormElement> elements, boolean numbered) {
+	public Section(String header, String text, List<FormElement> elements, boolean numbered, SectionType type) {
 		this.header = header;
 		this.text = text;
 		this.elements = elements;
 		this.numbered = numbered;
+		this.type = type;
 	}
 	
 	
@@ -76,5 +78,30 @@ public class Section implements Serializable {
 	 */
 	public boolean isSectionNumbered() {
 		return numbered;
+	}
+	
+	
+	/**
+	 * Get the type of section
+	 * @return SectionType
+	 */
+	public SectionType getType() {
+		return type;
+	}
+	
+	
+	/**
+	 * @author Rafael S. Goncalves <br>
+	 * Stanford Center for Biomedical Informatics Research (BMIR) <br>
+	 * School of Medicine, Stanford University <br>
+	 * <br>
+	 * Section types
+	 */
+	public enum SectionType {
+		QUESTION_SECTION, INIT_SECTION, FINAL_SECTION;
+		
+		public String toString() {
+			return name().charAt(0) + name().substring(1).toLowerCase();
+		}
 	}
 }

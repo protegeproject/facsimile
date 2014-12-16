@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -31,6 +32,7 @@ public class Configuration {
 	private String ontPath, outPath, title, cssStyle;
 	private Map<IRI,String> imports;
 	private Map<IRI,ElementType> elementTypes;
+	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<List<IRI>>> sections;
 	private Map<IRI,Boolean> sectionNumbering;
 	private File file;
@@ -45,6 +47,10 @@ public class Configuration {
 	public Configuration(File file, boolean verbose) {
 		this.file = file;
 		this.verbose = verbose;
+		elementTypes = new LinkedHashMap<IRI,ElementType>();
+		sectionTypes = new LinkedHashMap<IRI,SectionType>();
+		imports = new HashMap<IRI,String>();
+		sectionNumbering = new HashMap<IRI,Boolean>();
 	}
 	
 	
@@ -62,9 +68,6 @@ public class Configuration {
 	 */
 	public void loadConfiguration() {
 		doc = loadConfigurationFile(file);
-		elementTypes = new HashMap<IRI,ElementType>();
-		imports = new HashMap<IRI,String>();
-		sectionNumbering = new HashMap<IRI,Boolean>();
 		sections = getSections();
 		gatherOntologyFiles();
 		gatherOutputInformation();
@@ -142,13 +145,14 @@ public class Configuration {
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) { // foreach section
 			Node sectionNode = nl.item(i);
+			SectionType type = getSectionType(sectionNode);
 			NodeList children = sectionNode.getChildNodes(); // <iri>, (<questionList> | <infoList>)
 			List<List<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
 				if(child.getNodeName().equalsIgnoreCase("iri")) { // section iri
 					section = IRI.create(child.getTextContent());
-					if(verbose) System.out.println("   Section: " + section);
+					if(verbose) System.out.println("   Section: " + section + " (type: " + type.toString() + ")");
 				}
 				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
 					questions = getQuestions(child);
@@ -158,9 +162,31 @@ public class Configuration {
 			if(section != null && questions != null && !questions.isEmpty()) {
 				sections.put(section, questions);
 				sectionNumbering.put(section, isSectionNumbered(sectionNode));
+				sectionTypes.put(section, type);
 			}
 		}
 		return sections;
+	}
+	
+	
+	/**
+	 * Get the section type of a given section node
+	 * @param n	Section node
+	 * @return Section type
+	 */
+	private SectionType getSectionType(Node n) {
+		SectionType type = null;
+		if(n.hasAttributes()) {
+			Node a = n.getAttributes().getNamedItem("type");
+			if(a != null) {
+				for(SectionType s : SectionType.values())
+					if(a.getTextContent().equalsIgnoreCase(s.toString()))
+						type = s;
+			}
+		}
+		else
+			type = SectionType.QUESTION_SECTION;
+		return type;
 	}
 	
 	
@@ -288,7 +314,7 @@ public class Configuration {
 	}
 	
 	
-	/*	QUESTION TYPE	*/
+	/*	QUESTION TYPES	*/
 	
 	
 	/**
@@ -305,7 +331,7 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the question type for the given question
+	 * Get the question type for the given question IRI
 	 * @param i	IRI of individual representing a question
 	 * @return Question type
 	 */
@@ -320,6 +346,27 @@ public class Configuration {
 	 */
 	public Map<IRI,ElementType> getQuestionTypes() {
 		return elementTypes;
+	}
+	
+	
+	/*	SECTION TYPES	*/
+	
+	/**
+	 * Get the section type for the given section IRI
+	 * @param i	Section IRI
+	 * @return Section type
+	 */
+	public SectionType getSectionType(IRI i) {
+		return sectionTypes.get(i);
+	}
+	
+	
+	/**
+	 * Get the map of section IRIs to their respective type as defined in the configuration file
+	 * @return Map of IRIs to section types
+	 */
+	public Map<IRI,SectionType> getSectionTypes() {
+		return sectionTypes;
 	}
 	
 	
@@ -423,11 +470,29 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the OWL class IRI which represents the observation type
+	 * Get the IRI of the OWL class bound to question sections. Each question data will be an instance of this class
 	 * @return OWL class IRI
 	 */
-	public IRI getObservationClass() {
-		return IRI.create(doc.getElementById("observation").getTextContent());
+	public IRI getQuestionSectionClassBinding() {
+		return IRI.create(doc.getElementById("question_section").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the IRI of the OWL class bound to the initial section(s). The data collected in an "initial section" will form an instance of this class
+	 * @return OWL class IRI
+	 */
+	public IRI getInitialSectionClassBinding() {
+		return IRI.create(doc.getElementById("init_section").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the IRI of the OWL class bound to the final section(s). The data collected in a "final section" will form an instance of this class
+	 * @return OWL class IRI
+	 */
+	public IRI getFinalSectionClassBinding() {
+		return IRI.create(doc.getElementById("final_section").getTextContent());
 	}
 	
 	
