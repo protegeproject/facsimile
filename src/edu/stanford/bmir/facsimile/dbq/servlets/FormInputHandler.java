@@ -208,16 +208,18 @@ public class FormInputHandler extends HttpServlet {
 	private String addAnswer(String[] params, String qIri, String qText, String qFocus) {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
-			Map<String,String> aMap = eOptions.get(qIri);
-			String aIri = "";
-			if(aMap != null && aMap.values().contains(params[i])) {
-				for(String s : aMap.keySet())
-					if(aMap.get(s).equals(params[i]))
-						aIri = s;
+			if(!params[i].isEmpty()) {
+				Map<String,String> aMap = eOptions.get(qIri);
+				String aIri = "";
+				if(aMap != null && aMap.values().contains(params[i]))
+					for(String s : aMap.keySet())
+						if(aMap.get(s).equalsIgnoreCase(params[i])) {
+							aIri = s; break;
+						}
+				if(aIri.equalsIgnoreCase(""))
+					aIri = params[i];
+				csv += qIri + "," + aIri + "," + qText + "," + params[i] + "," + qFocus + "\n";
 			}
-			if(aIri.equalsIgnoreCase(""))
-				aIri = params[i];
-			csv += qIri + "," + aIri + "," + qText + "," + params[i] + "," + qFocus + "\n"; 
 		}
 		return csv;
 	}
@@ -272,8 +274,8 @@ public class FormInputHandler extends HttpServlet {
 	private void createElementMaps(HttpServletRequest request) {
 		eTextMap = new HashMap<String,String>();
 		eFocusMap = new HashMap<String,String>();
-		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionMap");
-		List<Section> sections = (List<Section>) request.getSession().getAttribute("questionList");
+		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionOptions");
+		List<Section> sections = (List<Section>) request.getSession().getAttribute("sectionList");
 		for(Section s : sections) {
 			for(FormElement ele : s.getSectionElements()) {
 				String qIri = ele.getEntity().getIRI().toString();

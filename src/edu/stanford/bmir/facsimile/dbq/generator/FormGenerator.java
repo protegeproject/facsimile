@@ -100,7 +100,7 @@ public class FormGenerator {
 				output += labelInit + "<br><br>\n" + "<select name=" + qName + ">\n";
 				if(e instanceof Question)
 					for(String opt : ((Question)e).getQuestionOptions())
-						output += "<option value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</option>\n";
+						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
 				output += "</select>\n";
 				break;
 			case RADIO:
