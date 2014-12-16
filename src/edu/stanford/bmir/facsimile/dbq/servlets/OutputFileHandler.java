@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
+import org.semanticweb.owlapi.formats.OWLXMLDocumentFormat;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
@@ -65,11 +65,11 @@ public class OutputFileHandler extends HttpServlet {
 			break;
 		case "RDF":
 			file = (String) request.getSession().getAttribute(uuid + "-rdf");
-			response.setHeader("Content-Disposition", "attachment; filename=\"form.rdf\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"form.xml\"");
 			break;
 		case "OWL":
 			OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
-			ont.getOWLOntologyManager().setOntologyFormat(ont, new RDFXMLDocumentFormat());
+			ont.getOWLOntologyManager().setOntologyFormat(ont, new OWLXMLDocumentFormat());
 			StringDocumentTarget target = new StringDocumentTarget();
 			try { ont.saveOntology(target); } 
 			catch (OWLOntologyStorageException e) { e.printStackTrace(); }

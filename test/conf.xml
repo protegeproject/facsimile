@@ -37,7 +37,7 @@
 		<classBindings>
 			<binding id="question">http://purl.org/facsimile/datamodel#FormDataElement</binding>
 			<binding id="section">http://purl.org/facsimile/dbq#DBQSection</binding>
-			<binding id="annotateddata">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
+			<binding id="data">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
 			<binding id="question_section">http://purl.org/facsimile/datamodel#Observation</binding>
 			<binding id="init_section">http://purl.org/facsimile/datamodel#PatientInformation</binding>
 			<binding id="final_section">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>

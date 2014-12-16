@@ -465,7 +465,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getOutputClass() {
-		return IRI.create(doc.getElementById("annotateddata").getTextContent());
+		return IRI.create(doc.getElementById("data").getTextContent());
 	}
 	
 	

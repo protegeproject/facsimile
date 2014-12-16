@@ -130,7 +130,7 @@ public class FormGenerator {
 			output += "</p>\n</div>\n";
 		}
 		else
-			output += "<div class=\"question-holder\">" + labelInit + "</p>\n</div>";
+			output += "<div class=\"question-holder\">" + labelInit + "</p></div>\n";
 		return output;
 	}
 	

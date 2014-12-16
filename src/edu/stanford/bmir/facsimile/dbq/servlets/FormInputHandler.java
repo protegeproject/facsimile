@@ -31,6 +31,7 @@ import org.semanticweb.owlapi.model.parameters.Imports;
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -41,8 +42,10 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> outputOptions;
+	private List<Section> sections;
 	private final String uuid, date;
 	private Map<String,String> eTextMap, eFocusMap;
+	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
 	private Configuration conf;
 	private OWLOntology inputOnt;
@@ -92,25 +95,33 @@ public class FormInputHandler extends HttpServlet {
 				request.getSession().setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
 			}
-			
+			// OWL file
 			if(request.getSession().getAttribute(uuid + "-owl") == null) {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("owl");
 			}
-			
+			// RDF file
+			if(request.getSession().getAttribute(uuid + "-rdf") == null) {
+				String triples = ""; // TODO
+				request.getSession().setAttribute(uuid + "-rdf", triples);
+				outputOptions.add("rdf");
+			}
 			printOutputPage(pw);
 			pw.close();
-			System.out.println("done");
-			System.out.println("  Submission UUID: " + uuid);
-			System.out.println("  Submission date: " + date);
-			System.out.println("finished");
+			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + date + "\nfinished");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
+	/**
+	 * 
+	 * @param paramNames
+	 * @param request
+	 * @return
+	 */
 	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();
@@ -124,29 +135,31 @@ public class FormInputHandler extends HttpServlet {
 			String qFocus = eFocusMap.get(qIri);	// element focus
 			
 			// { data : AnnotatedData }
-			OWLNamedIndividual dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans"));
+			OWLNamedIndividual dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data"));
 			man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd)));
 
-			// { obs : Observation }
-			OWLNamedIndividual result = df.getOWLNamedIndividual(IRI.create(qIri + "-obs"));
-			if(inputOnt.containsIndividualInSignature(IRI.create(qIri)))
-				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), result)));
-			else {
-				// Patient / Physician information
+			OWLNamedIndividual answer = df.getOWLNamedIndividual(IRI.create(qIri + "-ans")); // answer
+			if(inputOnt.containsIndividualInSignature(IRI.create(qIri))) {
+				// { answer : Observation }
+				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answer)));
+				
+				// { data hasAnswer answer }
+				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answer)));
 			}
-
-			// { data hasAnswer obs }
-			man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, result)));
+			else { // Patient / Physician information // TODO
+				SectionType sType = eSectionType.get(qIri);
+				System.out.println("Element " + qIri + " is in a section of type: " + sType.toString());
+			}
 
 			// { data isAnswerTo question }
 			if(inputOnt.containsIndividualInSignature(IRI.create(qIri), Imports.INCLUDED))
 				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri)))));
 			
-			// { obs hasFocus focus }
+			// { answer hasFocus focus }
 			if(inputOnt.containsIndividualInSignature(IRI.create(qFocus), Imports.INCLUDED))
-				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), result, df.getOWLNamedIndividual(IRI.create(qFocus)))));
+				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), answer, df.getOWLNamedIndividual(IRI.create(qFocus)))));
 			else if(inputOnt.containsClassInSignature(IRI.create(qFocus)))
-				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLObjectSomeValuesFrom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), df.getOWLClass(IRI.create(qFocus))), result)));
+				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLObjectSomeValuesFrom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), df.getOWLClass(IRI.create(qFocus))), answer)));
 			
 			// handle multiple answers to single question
 			for(int i = 0; i < params.length; i++) {
@@ -162,10 +175,10 @@ public class FormInputHandler extends HttpServlet {
 				
 				// { obs hasValue val }
 				if(inputOnt.containsIndividualInSignature(IRI.create(aIri), Imports.INCLUDED))
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), result, df.getOWLNamedIndividual(IRI.create(aIri)))));
+					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answer, df.getOWLNamedIndividual(IRI.create(aIri)))));
 				else {
 					OWLNamedIndividual valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val")); 
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), result, valInd)));
+					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answer, valInd)));
 					man.applyChange(new AddAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getQuestionDataValuePropertyBinding()), valInd, aIri)));
 				}
 			}
@@ -274,13 +287,19 @@ public class FormInputHandler extends HttpServlet {
 	private void createElementMaps(HttpServletRequest request) {
 		eTextMap = new HashMap<String,String>();
 		eFocusMap = new HashMap<String,String>();
+		eSectionType = new HashMap<String,SectionType>();
 		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionOptions");
-		List<Section> sections = (List<Section>) request.getSession().getAttribute("sectionList");
+		sections = (List<Section>) request.getSession().getAttribute("sectionList");
 		for(Section s : sections) {
 			for(FormElement ele : s.getSectionElements()) {
 				String qIri = ele.getEntity().getIRI().toString();
 				eTextMap.put(qIri, ele.getText());
-				eFocusMap.put(qIri, ele.getFocus());
+				if(!eFocusMap.containsKey(qIri)) 
+					eFocusMap.put(qIri, ele.getFocus());
+				else {
+					// TODO duplicate key different focuses issue
+				}
+				eSectionType.put(qIri, s.getType());
 			}
 		}
 		conf = (Configuration)request.getSession().getAttribute("configuration");
