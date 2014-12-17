@@ -2,6 +2,7 @@ package edu.stanford.bmir.facsimile.dbq.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.semanticweb.owlapi.formats.OWLXMLDocumentFormat;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
+import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.rdf.model.RDFTranslator;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -57,6 +59,7 @@ public class OutputFileHandler extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		response.setContentType("application/octet-stream");
 		String filetype = request.getParameter("filetype");
+		OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
 		String file = null;
 		switch(filetype) {
 		case "CSV":
@@ -64,12 +67,15 @@ public class OutputFileHandler extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment; filename=\"form.csv\"");
 			break;
 		case "RDF":
-			file = (String) request.getSession().getAttribute(uuid + "-rdf");
+			RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
+			for(OWLAxiom ax : ont.getAxioms())
+                ax.accept(trans);
+			StringWriter writer = new StringWriter();
+			trans.getGraph().dumpTriples(writer);
+			file = writer.getBuffer().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"form.xml\"");
 			break;
 		case "OWL":
-			OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
-			ont.getOWLOntologyManager().setOntologyFormat(ont, new OWLXMLDocumentFormat());
 			StringDocumentTarget target = new StringDocumentTarget();
 			try { ont.saveOntology(target); } 
 			catch (OWLOntologyStorageException e) { e.printStackTrace(); }
@@ -79,7 +85,6 @@ public class OutputFileHandler extends HttpServlet {
 			break;
 		}
 		pw.write(file);
-		pw.flush();
 		pw.close();
 	}
 }

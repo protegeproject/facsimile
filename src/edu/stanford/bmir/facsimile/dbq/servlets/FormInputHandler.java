@@ -117,10 +117,10 @@ public class FormInputHandler extends HttpServlet {
 	
 	
 	/**
-	 * 
-	 * @param paramNames
-	 * @param request
-	 * @return
+	 * Get the output ontology
+	 * @param paramNames	Enumeration of form parameters
+	 * @param request	Http request
+	 * @return OWL ontology
 	 */
 	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
