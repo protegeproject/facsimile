@@ -146,9 +146,8 @@ public class FormInputHandler extends HttpServlet {
 				// { data hasAnswer answer }
 				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answer)));
 			}
-			else { // Patient / Physician information // TODO
-				SectionType sType = eSectionType.get(qIri);
-				System.out.println("Element " + qIri + " is in a section of type: " + sType.toString());
+			else { // Patient / Physician information
+				// TODO
 			}
 
 			// { data isAnswerTo question }
@@ -280,7 +279,7 @@ public class FormInputHandler extends HttpServlet {
 	
 	
 	/**
-	 * Gather back the text and focus of each form element
+	 * Gather the details of each form element
 	 * @param request	Http request
 	 */
 	@SuppressWarnings("unchecked")
@@ -294,11 +293,7 @@ public class FormInputHandler extends HttpServlet {
 			for(FormElement ele : s.getSectionElements()) {
 				String qIri = ele.getEntity().getIRI().toString();
 				eTextMap.put(qIri, ele.getText());
-				if(!eFocusMap.containsKey(qIri)) 
-					eFocusMap.put(qIri, ele.getFocus());
-				else {
-					// TODO duplicate key different focuses issue
-				}
+				eFocusMap.put(qIri, ele.getFocus());
 				eSectionType.put(qIri, s.getType());
 			}
 		}

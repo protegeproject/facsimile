@@ -56,10 +56,10 @@
 			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="hasanswer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
 			<!-- patient info bindings -->
-			<binding id="pat_name">http://purl.org/facsimile/cfa#hasName</binding>
+			<binding id="pat_name">http://purl.org/facsimile/dbq#hasPatientName</binding>
 			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
 			<!-- physician info bindings -->
-			<binding id="phy_name">http://purl.org/facsimile/cfa#hasName</binding>
+			<binding id="phy_name">http://purl.org/facsimile/dbq#hasPhysicianName</binding>
 			<binding id="phy_address">http://purl.org/facsimile/cfa#hasAddress</binding>
 			<binding id="phy_phone">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
 			<binding id="phy_license">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>

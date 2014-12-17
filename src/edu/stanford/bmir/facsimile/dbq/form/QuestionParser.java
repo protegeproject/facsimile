@@ -191,7 +191,6 @@ public class QuestionParser {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
 		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
-		
 		OWLClass c = null;
 		if(sectionType.equals(SectionType.INIT_SECTION))
 			c = df.getOWLClass(conf.getInitialSectionClassBinding());
@@ -215,7 +214,6 @@ public class QuestionParser {
 				}
 			}
 		}
-		
 		ElementType type = null;
 		if(conf.hasDefinedType(eleIri))
 			type = conf.getQuestionType(eleIri);
