@@ -66,7 +66,7 @@ public class FormGeneratorRunner extends HttpServlet {
 			File config = null;
 			FileItemFactory factory = new DiskFileItemFactory(); 		// Create a factory for disk-based file items
 			ServletFileUpload upload = new ServletFileUpload(factory);	// Create a new file upload handler
-			List<FileItem> items = upload.parseRequest(request); 	// Parse the request
+			List<FileItem> items = upload.parseRequest(request); 		// Parse the request
 			if(items != null) {
 				// Process uploaded items
 				Iterator<FileItem> iter = items.iterator();
@@ -87,7 +87,6 @@ public class FormGeneratorRunner extends HttpServlet {
 			Runner run = new Runner(config, false);
 			String output = run.run();
 			request.getSession().setAttribute("configuration", run.getConfiguration());
-			request.getSession().setAttribute("ontology", run.getOntology());
 			request.getSession().setAttribute("sectionList", run.getSections());
 			request.getSession().setAttribute("questionOptions", run.getQuestionOptions());
 			response.setCharacterEncoding("UTF-8");
