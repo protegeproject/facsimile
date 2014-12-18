@@ -192,9 +192,9 @@ public class QuestionParser {
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
 		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
 		OWLClass c = null;
-		if(sectionType.equals(SectionType.INIT_SECTION))
+		if(sectionType.equals(SectionType.PATIENT_SECTION))
 			c = df.getOWLClass(conf.getInitialSectionClassBinding());
-		else if(sectionType.equals(SectionType.FINAL_SECTION))
+		else if(sectionType.equals(SectionType.PHYSICIAN_SECTION))
 			c = df.getOWLClass(conf.getFinalSectionClassBinding());
 		
 		/* 

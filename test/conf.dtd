@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!ELEMENT configuration (input,output,bindings,form)>
+<!ELEMENT input (ontology,imports?)>
+<!ELEMENT ontology (#PCDATA)>
+<!ELEMENT output (file,cssstyle)>
+<!ELEMENT file (#PCDATA)>
+<!ELEMENT cssstyle (#PCDATA)>
+<!ELEMENT imports (ontology*)>
+<!ELEMENT bindings (classBindings,propertyBindings,questionTypeBindings)>
+<!ELEMENT classBindings (binding*)>
+<!ELEMENT propertyBindings (binding*)>
+<!ELEMENT questionTypeBindings (binding*)>
+<!ELEMENT binding (#PCDATA)>
+<!ELEMENT form (section+)>
+<!ELEMENT section (iri,(questionList|infoList)+)>
+<!ELEMENT iri (#PCDATA)>
+<!ELEMENT questionList (question+)>
+<!ELEMENT infoList (info+)>
+<!ELEMENT question (iri,question*)>
+<!ELEMENT info (#PCDATA)>
+<!ATTLIST binding id ID #IMPLIED>
+<!ATTLIST info type CDATA #IMPLIED>
+<!ATTLIST info property CDATA #IMPLIED>
+<!ATTLIST question type CDATA #IMPLIED>
+<!ATTLIST section numbered CDATA #IMPLIED>
+<!ATTLIST section type CDATA #IMPLIED>
+<!ATTLIST ontology iri CDATA #IMPLIED>
+<!ATTLIST file title CDATA #IMPLIED>

@@ -483,7 +483,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getInitialSectionClassBinding() {
-		return IRI.create(doc.getElementById("init_section").getTextContent());
+		return IRI.create(doc.getElementById("patient_section").getTextContent());
 	}
 	
 	
@@ -492,7 +492,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getFinalSectionClassBinding() {
-		return IRI.create(doc.getElementById("final_section").getTextContent());
+		return IRI.create(doc.getElementById("physician_section").getTextContent());
 	}
 	
 	

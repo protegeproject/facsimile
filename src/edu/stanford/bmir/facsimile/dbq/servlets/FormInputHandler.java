@@ -47,6 +47,7 @@ public class FormInputHandler extends HttpServlet {
 	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
 	private Configuration conf;
+	private OWLOntology inputOnt;
 
 	
     /**
@@ -97,7 +98,7 @@ public class FormInputHandler extends HttpServlet {
 			if(request.getSession().getAttribute(uuid + "-owl") == null) {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
 				request.getSession().setAttribute(uuid + "-owl", ont);
-				outputOptions.add("owl"); outputOptions.add("rdf");
+				outputOptions.add("rdf"); outputOptions.add("owl");
 			}
 
 			printOutputPage(pw);
@@ -131,7 +132,7 @@ public class FormInputHandler extends HttpServlet {
 			SectionType type = eSectionType.get(qIri);			// section type
 
 			OWLNamedIndividual dataInd = null, answerInd = null;
-			if((type.equals(SectionType.INIT_SECTION) && initInfo == null) || (type.equals(SectionType.FINAL_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
+			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
 				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data"));
 				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd)));	// instance of AnnotatedData
 				
@@ -147,11 +148,11 @@ public class FormInputHandler extends HttpServlet {
 							df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri)))));		// { data isResponseTo question }
 				}
 				else { 
-					if(type.equals(SectionType.INIT_SECTION)) {
+					if(type.equals(SectionType.PATIENT_SECTION)) {
 						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd)));	// { answer : PatientInformation }
 						initInfo = answerInd;
 					}
-					else if(type.equals(SectionType.FINAL_SECTION)) {
+					else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
 						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd)));	// { answer : PhysicianInformation }
 						finalInfo = answerInd;
 					}
@@ -174,17 +175,24 @@ public class FormInputHandler extends HttpServlet {
 					aIri = params[i];
 				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
-					OWLNamedIndividual valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val"));
-					man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd)));	// { val : DataElementValue }
+					OWLNamedIndividual valInd = null;
+					if(inputOnt.containsEntityInSignature(IRI.create(aIri)))
+						valInd = df.getOWLNamedIndividual(IRI.create(aIri));
+					else {
+						valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val"));
+						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd)));	// { val : DataElementValue }
+					}
 					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
 							df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd)));										// { answer hasValue val }
-					man.applyChange(new AddAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri))));	// { rdfs:label(val) }
+					
+					if(!inputOnt.containsEntityInSignature(IRI.create(aIri)) && !aIri.isEmpty())
+						man.applyChange(new AddAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri))));	// { rdfs:label(val) }
 				}
 				else {
 					if(answerInd == null) {
-						if(type.equals(SectionType.INIT_SECTION))
+						if(type.equals(SectionType.PATIENT_SECTION))
 							answerInd = initInfo;
-						else if(type.equals(SectionType.FINAL_SECTION))
+						else if(type.equals(SectionType.PHYSICIAN_SECTION))
 							answerInd = finalInfo;
 					}
 					man.applyChange(new AddAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri)));	// { answer hasX val } where X is given by the question IRI
@@ -308,5 +316,6 @@ public class FormInputHandler extends HttpServlet {
 			}
 		}
 		conf = (Configuration)request.getSession().getAttribute("configuration");
+		inputOnt = (OWLOntology)request.getSession().getAttribute("ontology");
 	}
 }
