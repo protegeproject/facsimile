@@ -37,6 +37,7 @@ public class FormGenerator {
 		String output = "";
 		output += "<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n";
 		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">\n";
+		output += "<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>";
 		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n";
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
 		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";

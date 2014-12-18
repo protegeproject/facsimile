@@ -275,6 +275,7 @@ public class FormInputHandler extends HttpServlet {
 	private void printOutputPage(PrintWriter pw) {
 		pw.append("<!DOCTYPE html>\n<html>\n<head>\n<title>Form Generator</title>\n<meta charset=\"utf-8\"/>\n");
 		pw.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">\n");
+		pw.append("<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>");
 		pw.append("<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n");
 		pw.append("</head>\n<body>\n<div class=\"bmir-style\">\n");
 		pw.append("<h1>Thank you</h1>\n");
