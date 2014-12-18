@@ -496,6 +496,15 @@ public class Configuration {
 	}
 	
 	
+	/**
+	 * Get the IRI of the OWL class for data element values 
+	 * @return OWL class IRI
+	 */
+	public IRI getDataElementValueClassBinding() {
+		return IRI.create(doc.getElementById("dataelement").getTextContent());
+	}
+	
+	
 	/*	PROPERTY BINDINGS	*/
 	
 	
