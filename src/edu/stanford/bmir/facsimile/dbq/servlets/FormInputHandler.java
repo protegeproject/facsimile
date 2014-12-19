@@ -84,6 +84,7 @@ public class FormInputHandler extends HttpServlet {
 	private void processInput(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.getSession().setAttribute("uuid", uuid);
+			request.getSession().setAttribute("date", date);
 			PrintWriter pw = response.getWriter();
 			System.out.print("\nParsing form input... ");
 			createElementMaps(request);
@@ -133,10 +134,10 @@ public class FormInputHandler extends HttpServlet {
 
 			OWLNamedIndividual dataInd = null, answerInd = null;
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
-				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data"));
+				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data-" + uuid));
 				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd)));	// instance of AnnotatedData
 				
-				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans")); // answer: instance of one of (Observation | PatientInformation | PhysicianInformation)
+				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer: instance of one of (Observation | PatientInformation | PhysicianInformation)
 				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
 						df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd)));												// { data hasAnswer answer }
 				
@@ -179,7 +180,7 @@ public class FormInputHandler extends HttpServlet {
 					if(inputOnt.containsEntityInSignature(IRI.create(aIri)))
 						valInd = df.getOWLNamedIndividual(IRI.create(aIri));
 					else {
-						valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val"));
+						valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val-" + uuid));
 						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd)));	// { val : DataElementValue }
 					}
 					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
@@ -210,9 +211,7 @@ public class FormInputHandler extends HttpServlet {
 	 * @return String containing the output CSV file
 	 */
 	private String getCSVFile(Enumeration<String> paramNames, HttpServletRequest request) {
-		String csv = "date," + date + "\n";
-		csv += "uuid," + uuid + "\n";
-		csv += "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
+		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
 		while(paramNames.hasMoreElements()) {
 			String qIri = (String)paramNames.nextElement(); // element iri
 			String[] params = request.getParameterValues(qIri);
