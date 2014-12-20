@@ -84,6 +84,7 @@ public class FormGenerator {
 		String qNumber = "";
 		if(numbered) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
+		qText = qText.replaceAll("\n", "<br>");
 		
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText;
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {

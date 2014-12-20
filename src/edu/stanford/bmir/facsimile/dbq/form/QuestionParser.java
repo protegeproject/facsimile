@@ -271,7 +271,8 @@ public class QuestionParser {
 					qText = getQuestionText(ax, textDataProperty);
 				if(ax.isOfType(AxiomType.OBJECT_PROPERTY_ASSERTION) && qFocus.isEmpty())
 					qFocus = getQuestionFocus(ax, focusObjectProperty);
-				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null))
+				if(ax.isOfType(AxiomType.CLASS_ASSERTION) && (qOpts == null || qOpts.getQuestionType() == null) && 
+						((OWLClassAssertionAxiom)ax).getClassExpression().getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM))
 					qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
 			}
 		}
@@ -296,7 +297,6 @@ public class QuestionParser {
 	private QuestionOptions getQuestionOptions(IRI questionIri, OWLAxiom ax, OWLObjectProperty valueObjectProperty) {
 		OWLClassExpression ce = ((OWLClassAssertionAxiom)ax).getClassExpression();
 		Map<String,String> opts = new LinkedHashMap<String,String>();
-		
 		ElementType qType = null;
 		if(conf.hasDefinedType(questionIri)) {
 			qType = conf.getQuestionType(questionIri);
@@ -329,12 +329,10 @@ public class QuestionParser {
 	 */
 	private Map<String,String> getOptions(OWLClassExpression ce) {
 		Map<String,String> opts = new HashMap<String,String>();
-		if(ce.getClassExpressionType().equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM)) {
-			if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
-				OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
-				if(filler instanceof OWLObjectOneOf)
-					opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
-			}
+		if(((OWLObjectSomeValuesFrom)ce).getProperty().equals(valueObjectProperty)) {
+			OWLClassExpression filler = ((OWLObjectSomeValuesFrom)ce).getFiller();
+			if(filler instanceof OWLObjectOneOf)
+				opts = getOptionsFromEnumeration((OWLObjectOneOf)filler);
 		}
 		return opts;
 	}
@@ -349,6 +347,7 @@ public class QuestionParser {
 		Map<String,String> opts = new HashMap<String,String>();
 		for(OWLNamedIndividual ind : optsEnum.getIndividualsInSignature()) {
 			Set<OWLAxiom> usg = ont.getReferencingAxioms(ind, Imports.INCLUDED);
+			usg.addAll(ont.getAnnotationAssertionAxioms(ind.getIRI()));
 			for(OWLAxiom ax : usg) {
 				if(ax.isOfType(AxiomType.DATA_PROPERTY_ASSERTION)) {
 					if(((OWLDataPropertyAssertionAxiom)ax).getProperty().equals(dataValueProperty)) {
@@ -368,6 +367,11 @@ public class QuestionParser {
 								opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
 						}
 					}
+				}
+				else if(ax.isOfType(AxiomType.ANNOTATION_ASSERTION)) { 
+					OWLAnnotationAssertionAxiom ann_ax = (OWLAnnotationAssertionAxiom)ax;
+					if(ann_ax.getProperty().equals(df.getRDFSLabel()))
+						opts.put(ind.getIRI().toString(), ann_ax.getValue().asLiteral().get().getLiteral().toString());
 				}
 			}
 		}

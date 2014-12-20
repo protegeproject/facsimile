@@ -65,7 +65,7 @@ public class OutputFileHandler extends HttpServlet {
 		switch(filetype) {
 		case "CSV":
 			file = (String) request.getSession().getAttribute(uuid + "-csv");
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "form-" + uuid + ".csv\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".csv\"");
 			break;
 		case "RDF":
 			RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
@@ -74,7 +74,7 @@ public class OutputFileHandler extends HttpServlet {
 			StringWriter writer = new StringWriter();
 			trans.getGraph().dumpTriples(writer);
 			file = writer.getBuffer().toString();
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "form-" + uuid + ".xml\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".xml\"");
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
@@ -82,7 +82,7 @@ public class OutputFileHandler extends HttpServlet {
 			catch (OWLOntologyStorageException e) { e.printStackTrace(); }
 			target.getWriter().flush();
 			file = target.getWriter().toString();
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "form-" + uuid + ".owl\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".owl\"");
 			break;
 		}
 		pw.write(file);
