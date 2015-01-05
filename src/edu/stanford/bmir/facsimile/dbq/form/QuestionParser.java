@@ -60,7 +60,7 @@ public class QuestionParser {
 	private Map<OWLClassExpression,ElementType> questionTypes;
 	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
-	private Map<IRI,Boolean> sectioNumbering;
+	private Map<IRI,Boolean> sectioNumbering, questionNumbering;
 	private OWLOntologyManager man;
 	private OWLOntology ont;
 	private OWLDataFactory df;
@@ -80,7 +80,8 @@ public class QuestionParser {
 		this.verbose = verbose;
 		man = ont.getOWLOntologyManager();
 		df = man.getOWLDataFactory();
-		sectioNumbering = conf.getNumberingMap();
+		sectioNumbering = conf.getSectionNumberingMap();
+		questionNumbering = conf.getQuestionNumberingMap();
 		questionOptions = new HashMap<String,Map<String,String>>();
 		initQuestionTypes();
 		initBindings();
@@ -137,15 +138,22 @@ public class QuestionParser {
 	 */
 	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<List<IRI>> eleList, int sectionNr, char[] alphabet) {
 		List<FormElement> formElements = new ArrayList<FormElement>();
+		int skip = 0;
 		for(int i = 0; i < eleList.size(); i++) {
 			List<IRI> subElements = eleList.get(i);
 			for(int j = 0; j < subElements.size(); j++) {
+				String qNr = "";
 				IRI element = subElements.get(j);
 				FormElement q = null;
-				if(ont.containsIndividualInSignature(element))
-					q = getQuestion(subElements, j, "" + alphabet[i], sectionNr);
+				if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
+					skip++;
 				else
-					q = getInformationElement(element, sectionType, section, "" + alphabet[i], sectionNr);
+					qNr += alphabet[i-skip];
+				
+				if(ont.containsIndividualInSignature(element))
+					q = getQuestion(subElements, j, qNr, sectionNr);
+				else
+					q = getInformationElement(element, sectionType, section, qNr, sectionNr);
 				if(q != null) {
 					if(verbose) printInfo(q);
 					formElements.add(q);
@@ -276,8 +284,12 @@ public class QuestionParser {
 					qOpts = getQuestionOptions(ind.getIRI(), ax, valueObjectProperty);
 			}
 		}
-		if(qOpts == null) 
-			qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new ArrayList<String>());
+		if(qOpts == null) {
+			if(conf.hasDefinedType(ind.getIRI()))
+				qOpts = new QuestionOptions(ind.getIRI(), conf.getQuestionType(ind.getIRI()), new ArrayList<String>());
+			else
+				qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new ArrayList<String>());
+		}
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(ElementType.TEXTAREA);
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "

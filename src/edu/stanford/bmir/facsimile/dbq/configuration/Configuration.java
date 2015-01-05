@@ -34,7 +34,7 @@ public class Configuration {
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<List<IRI>>> sections;
-	private Map<IRI,Boolean> sectionNumbering;
+	private Map<IRI,Boolean> sectionNumbering, questionNumbering;
 	private File file;
 	private boolean verbose;
 	
@@ -51,6 +51,7 @@ public class Configuration {
 		sectionTypes = new LinkedHashMap<IRI,SectionType>();
 		imports = new HashMap<IRI,String>();
 		sectionNumbering = new HashMap<IRI,Boolean>();
+		questionNumbering = new HashMap<IRI,Boolean>();
 	}
 	
 	
@@ -215,6 +216,9 @@ public class Configuration {
 		List<List<IRI>> questions = new ArrayList<List<IRI>>();
 		NodeList nl = n.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
+			boolean numbered = true;
+			if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("numbered") != null)
+				numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
 			NodeList children = nl.item(i).getChildNodes(); // <iri>, sub-<question>'s
 			List<IRI> subquestions = new ArrayList<IRI>();
 			for(int j = 0; j < children.getLength(); j++) {
@@ -222,6 +226,7 @@ public class Configuration {
 				if(children.item(j).getNodeName().equalsIgnoreCase("iri")) {
 					IRI iri = getQuestionIRI(curNode, false, null);
 					if(iri != null) subquestions.add(0,iri);
+					questionNumbering.put(iri, numbered);
 				}
 				if(children.item(j).getNodeName().equalsIgnoreCase("question")) { // sub-<question>
 					IRI iri = getQuestionIRI(curNode, true, null);
@@ -386,8 +391,17 @@ public class Configuration {
 	 * Get the map of sections and whether they (and their components) should or should not be numbered
 	 * @return Map of sections' IRIs to whether they are numbered or not
 	 */
-	public Map<IRI,Boolean> getNumberingMap() {
+	public Map<IRI,Boolean> getSectionNumberingMap() {
 		return sectionNumbering;
+	}
+	
+	
+	/**
+	 * Get the map of questions and whether they should or should not be numbered
+	 * @return Map of questions' IRIs to whether they are numbered or not
+	 */
+	public Map<IRI,Boolean> getQuestionNumberingMap() {
+		return questionNumbering;
 	}
 	
 	

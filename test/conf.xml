@@ -222,6 +222,91 @@
 			</questionList>
 		</section>
 		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_12</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12A</iri>
+				</question>
+				<question type="none" numbered="false">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B</iri>
+				</question>
+				<question type="none" numbered="false">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_2</iri>
+					</question>
+				</question>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_2</iri>
+					</question>
+				</question>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_2</iri>
+					</question>
+				</question>
+				<question type="none">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4</iri>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_1</iri>
+					</question>
+					<question>
+						<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_2</iri>
+					</question>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12C</iri>
+					<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1</iri></question>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_13</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q13</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q13_1</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_14</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B</iri>
+					<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B_1</iri></question>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_15</iri>
+			<questionList>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q15A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q15B</iri>
+				</question>
+			</questionList>
+		</section>
+		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_16</iri>
 			<questionList>
 				<question>

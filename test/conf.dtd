@@ -22,6 +22,7 @@
 <!ATTLIST info type CDATA #IMPLIED>
 <!ATTLIST info property CDATA #IMPLIED>
 <!ATTLIST question type CDATA #IMPLIED>
+<!ATTLIST question numbered CDATA #IMPLIED>
 <!ATTLIST section numbered CDATA #IMPLIED>
 <!ATTLIST section type CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
