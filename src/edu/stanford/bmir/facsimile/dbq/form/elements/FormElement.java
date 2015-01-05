@@ -37,6 +37,18 @@ public class FormElement implements Serializable {
 	
 	
 	/**
+	 * Check whether an element is numbered or not
+	 * @return true if element is numbered, false otherwise
+	 */
+	public boolean isElementNumbered() {
+		if(eleNr.equals(""))
+			return false;
+		else
+			return true;
+	}
+	
+	
+	/**
 	 * Get the OWL entity that represents this element 
 	 * @return OWL entity
 	 */

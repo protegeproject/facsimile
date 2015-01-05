@@ -177,13 +177,11 @@ public class Configuration {
 	 */
 	private SectionType getSectionType(Node n) {
 		SectionType type = null;
-		if(n.hasAttributes()) {
+		if(n.hasAttributes() && n.getAttributes().getNamedItem("type") != null) {
 			Node a = n.getAttributes().getNamedItem("type");
-			if(a != null) {
-				for(SectionType s : SectionType.values())
-					if(a.getTextContent().equalsIgnoreCase(s.toString()))
-						type = s;
-			}
+			for(SectionType s : SectionType.values())
+				if(a.getTextContent().equalsIgnoreCase(s.toString()))
+					type = s;
 		}
 		else
 			type = SectionType.QUESTION_SECTION;
@@ -219,6 +217,7 @@ public class Configuration {
 			boolean numbered = true;
 			if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("numbered") != null)
 				numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
+			
 			NodeList children = nl.item(i).getChildNodes(); // <iri>, sub-<question>'s
 			List<IRI> subquestions = new ArrayList<IRI>();
 			for(int j = 0; j < children.getLength(); j++) {

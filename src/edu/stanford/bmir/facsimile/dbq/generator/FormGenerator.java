@@ -54,6 +54,7 @@ public class FormGenerator {
 			}
 			
 			String sectText = s.getSectionText();
+			sectText = sectText.replaceAll("\n", "<br>");
 			if(!sectText.equalsIgnoreCase(""))
 				output += "<p>" + sectText + "</p><br>\n";
 			else
@@ -74,15 +75,15 @@ public class FormGenerator {
 	/**
 	 * Get the details of the element
 	 * @param e	Element instance
-	 * @param numbered	true if elements should be numbered, false otherwise
+	 * @param sectionNumbered	true if all elements should be numbered, false otherwise
 	 * @return String with the HTML code for the given element
 	 * @throws IOException	IO error
 	 */
-	private String writeElement(FormElement e, boolean numbered) throws IOException {
+	private String writeElement(FormElement e, boolean sectionNumbered) throws IOException {
 		String output = "";
 		String qName = "\"" + e.getEntity().getIRI().toString() + "\"";
 		String qNumber = "";
-		if(numbered) qNumber = e.getElementNumber() + ") ";
+		if(sectionNumbered && e.isElementNumbered()) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
 		qText = qText.replaceAll("\n", "<br>");
 		
@@ -98,7 +99,7 @@ public class FormGenerator {
 				if(e instanceof Question)
 					for(String opt : ((Question)e).getQuestionOptions())
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
-						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label>\n";
+						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label><br>\n";
 				break;
 			case DROPDOWN:
 				output += labelInit + "<br><br>\n" + "<select name=" + qName + ">\n";
