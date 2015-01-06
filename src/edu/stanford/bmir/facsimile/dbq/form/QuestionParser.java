@@ -405,8 +405,10 @@ public class QuestionParser {
             } 
         } );
         Map<String,String> newMap = new LinkedHashMap<String,String>();
-        for(Entry<String,String> entry : list)
-        	newMap.put(entry.getKey(), entry.getValue().replaceFirst("^0+(?!$)", "")); // remove leading zeroes
+        for(Entry<String,String> entry : list) {
+        	String value = entry.getValue().replaceFirst("^0+(?!$)", "");
+        	newMap.put(entry.getKey(), (value.startsWith("/") ? value = "0" + value : value)); // remove leading zeroes
+        }
 		return newMap;
 	}
 	
