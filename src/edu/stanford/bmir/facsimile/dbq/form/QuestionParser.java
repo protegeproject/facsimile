@@ -138,8 +138,8 @@ public class QuestionParser {
 	 */
 	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<List<IRI>> eleList, int sectionNr, char[] alphabet) {
 		List<FormElement> formElements = new ArrayList<FormElement>();
-		int skip = 0;
 		for(int i = 0; i < eleList.size(); i++) {
+			int skip = 0;
 			List<IRI> subElements = eleList.get(i);
 			for(int j = 0; j < subElements.size(); j++) {
 				String qNr = "";
@@ -148,7 +148,7 @@ public class QuestionParser {
 				if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
 					skip++;
 				else
-					qNr += alphabet[i-skip];
+					qNr += (skip>=0? alphabet[i-skip] : alphabet[i]);
 				
 				if(ont.containsIndividualInSignature(element))
 					q = getQuestion(subElements, j, qNr, sectionNr);
