@@ -211,7 +211,14 @@
 			<questionList>
 				<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6A</iri></question>
 				<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri></question>
-				<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri></question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1</iri>
+						</question>
+					</subquestionList>
+				</question>
 			</questionList>
 		</section>
 		<section>
@@ -220,7 +227,7 @@
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7A</iri>
 					<subquestionList>
-						<question>
+						<question numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1</iri>
 						</question>
 					</subquestionList>
@@ -244,10 +251,10 @@
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1</iri>
 					<subquestionList>
-						<question>
+						<question numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1_1</iri>
 							<subquestionList>
-								<question>
+								<question numbered="false">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1_2</iri>
 								</question>
 							</subquestionList>
@@ -257,38 +264,64 @@
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2</iri>
 					<subquestionList>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_1</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_2</iri></question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_1</iri>
+						</question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_2</iri>
+						</question>
 					</subquestionList>
 				</question>
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3</iri>
 					<subquestionList>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_1</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_2</iri></question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_1</iri>
+						</question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_2</iri>
+						</question>
 					</subquestionList>
 				</question>
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4</iri>
 					<subquestionList>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_1</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_2</iri></question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_1</iri>
+						</question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_2</iri>
+						</question>
 					</subquestionList>
 				</question>
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5</iri>
 					<subquestionList>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_1</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_2</iri></question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_1</iri>
+						</question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_2</iri>
+						</question>
 					</subquestionList>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B</iri>
 					<subquestionList>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1</iri></question>
-						<question type="none"><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1</iri></question>
-						<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2</iri></question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1</iri>
+						</question>
+						<question numbered="false" type="none">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2</iri>
+							<subquestionList>
+								<question numbered="false">
+									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1</iri>
+								</question>
+								<question numbered="false">
+									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2</iri>
+								</question>
+							</subquestionList>
+						</question>
 					</subquestionList>
 				</question>
 			</questionList>

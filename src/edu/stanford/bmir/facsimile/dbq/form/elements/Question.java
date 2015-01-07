@@ -12,7 +12,7 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 public class Question extends FormElement {
 	private static final long serialVersionUID = 1L;
 	private List<String> options;
-	private boolean subquestion;
+	private int indentLevel;
 	
 	
 	/**
@@ -24,13 +24,13 @@ public class Question extends FormElement {
 	 * @param questionFocus	Focus of the question
 	 * @param questionType	Type of question, i.e., HTML form element type
 	 * @param options	List of options, i.e., possible answers to the question
-	 * @param subquestion	true if question has a parent question, false otherwise
+	 * @param indentLevel	Indentation level of question
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
-			ElementType questionType, List<String> options, boolean subquestion) {
+			ElementType questionType, List<String> options, int indentLevel) {
 		super(ind, questionNumber, sectionNumber, questionText, questionFocus, questionType);
 		this.options = options;
-		this.subquestion = subquestion;
+		this.indentLevel = indentLevel;
 	}
 		
 	
@@ -48,6 +48,18 @@ public class Question extends FormElement {
 	 * @return true if question is a subquestion, false otherwise
 	 */
 	public boolean isSubquestion() {
-		return subquestion;
+		if(indentLevel > 0)
+			return true;
+		else
+			return false;
+	}
+	
+	
+	/**
+	 * Get the indentation level of this question
+	 * @return Level of indentation
+	 */
+	public int getLevel() {
+		return indentLevel;
 	}
 }

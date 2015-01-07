@@ -108,10 +108,11 @@ public class QuestionParser {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		List<Section> outputSections = new ArrayList<Section>();
 		Map<IRI,List<TreeNode<IRI>>> sections = conf.getSectionMap(); 
-		int sectionNr = 1;
+		
 		for(IRI section : sections.keySet()) { // foreach section
 			if(verbose) System.out.println(" Section: " + section.getShortForm());
 			OWLEntity sectionEnt = null;
+			
 			if(ont.containsIndividualInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
 			else if(ont.containsClassInSignature(section, Imports.INCLUDED))
@@ -119,11 +120,9 @@ public class QuestionParser {
 			
 			SectionType sectionType = conf.getSectionType(section);
 			List<TreeNode<IRI>> eleList = sections.get(section);
-			List<FormElement> formElements = getFormElements(section, sectionType, eleList, sectionNr, alphabet);
+			List<FormElement> formElements = getFormElements(section, sectionType, eleList, alphabet);
 			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), 
 					formElements, sectioNumbering.get(section), sectionType));
-			
-			sectionNr++;
 		}
 		return outputSections;
 	}
@@ -134,97 +133,46 @@ public class QuestionParser {
 	 * @param section	Section IRI
 	 * @param sectionType	Section type
 	 * @param eleList	Element list
-	 * @param sectionNr	Section number
 	 * @param alphabet	Alphabet
 	 * @return List of form elements
 	 */
-	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<TreeNode<IRI>> eleList, int sectionNr, char[] alphabet) {
+	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<TreeNode<IRI>> eleList, char[] alphabet) {
 		List<FormElement> formElements = new ArrayList<FormElement>();
+		int skip_main = 0;
 		for(int i = 0; i < eleList.size(); i++) {
-//			int skip = 0;
-			
-			TreeNode<IRI> questionNode = eleList.get(i);
-			formElements.addAll(getElements(section, sectionType, questionNode, i, alphabet));
-			
-//			for(int j = 0; j < questionNode.size(); j++) {
-//				String qNr = "";
-//				IRI element = questionNode.get(j);
-//				FormElement q = null;
-//				if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
-//					skip++;
-//				else
-//					qNr += (skip>=0? alphabet[i-skip] : alphabet[i]);
-//				
-//				if(ont.containsIndividualInSignature(element))
-//					q = getQuestion(questionNode, j, qNr, sectionNr);
-//				else
-//					q = getInformationElement(element, sectionType, section, qNr, sectionNr);
-//				if(q != null) {
-//					if(verbose) printInfo(q);
-//					formElements.add(q);
-//				}
-//			}
-		}
-		return formElements;
-	}
-	
-	
-	private List<FormElement> getElements(IRI section, SectionType sectionType, TreeNode<IRI> questionNode, int sectionNr, char[] alphabet) {
-		List<FormElement> formElements = new ArrayList<FormElement>();
-		Iterator<TreeNode<IRI>> iter = questionNode.iterator();
-		int skip = 0, counter = 0;
-		while(iter.hasNext()) {
-			TreeNode<IRI> node = iter.next();
-			String qNr = "";
-			IRI element = node.data;
-			FormElement q = null;
-			
-			if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
-				skip++;
-			else
-				qNr += (skip>=0? alphabet[sectionNr-skip] : alphabet[sectionNr]);
-			
-			OWLNamedIndividual ind = df.getOWLNamedIndividual(element);
-			if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
-			
-			if(ont.containsIndividualInSignature(element))
-				q = getQuestionDetails(qNr, sectionNr, ind, false);
-			else
-				q = getInformationElement(element, sectionType, section, qNr, sectionNr);
-			if(q != null) {
-				if(verbose) printInfo(q);
-				formElements.add(q);
-			}
-			
-			if(!node.children.isEmpty()) { // process subquestions
+			Iterator<TreeNode<IRI>> iter = eleList.get(i).iterator();
+			int skip_sub = 0, counter = 0;
+			while(iter.hasNext()) {
+				TreeNode<IRI> node = iter.next();
+				boolean isNumbered = true;
+				String questionNr = "";
+				FormElement q = null;
+				if(questionNumbering.containsKey(node.data) && !questionNumbering.get(node.data)) {
+					if(node.getLevel()>0) skip_sub++; 
+					else skip_main++;
+					isNumbered = false; 
+				}
+				else
+					questionNr += (skip_main > 0 ? (i-skip_main >= 0 ? alphabet[i-skip_main] : 0) : alphabet[i]);
 				
+				OWLNamedIndividual ind = df.getOWLNamedIndividual(node.data);
+				if(ont.containsIndividualInSignature(node.data)) {
+					if(node.getLevel() > 0 && isNumbered)
+						questionNr += "" + (skip_sub > 0 ? counter-skip_sub : counter);
+					q = getQuestionDetails(questionNr, i, ind, node.getLevel());
+					if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
+				}
+				else
+					q = getInformationElement(node.data, sectionType, section, questionNr, i);
+				if(q != null) {
+					if(verbose) printInfo(q);
+					formElements.add(q);
+				}
+				counter++;
 			}
-			counter++;
 		}
 		return formElements;
 	}
-	
-	
-	/**
-	 * Get a question instance
-	 * @param subquestions	List of (sub)questions
-	 * @param j	loop index
-	 * @param questionNr	Question number
-	 * @param sectionNr	Section number
-	 * @return Question instance
-	 */
-//	private Question getQuestion(TreeNode<IRI> subquestions, int j, String questionNr, int sectionNr) {
-//		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
-//		if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
-//		Question q = null;
-//		if(subquestions.size() > 1 && j > 0) {
-//			questionNr += "" + j;
-//			q = getQuestionDetails(questionNr, sectionNr, ind, true);
-//		}
-//		else 
-//			q = getQuestionDetails(questionNr, sectionNr, ind, false);
-//		return q;
-//	}
 	
 	
 	/**
@@ -309,10 +257,10 @@ public class QuestionParser {
 	 * @param qNr	Question number
 	 * @param sectionNr	Section number
 	 * @param ind	Individual representing a question
-	 * @param subquestion	true if question has a parent question, false otherwise 
+	 * @param indentLevel	Indentation level for sub-questions 
 	 * @return Question instance
 	 */
-	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, boolean subquestion) {
+	private Question getQuestionDetails(String qNr, int sectionNr, OWLNamedIndividual ind, int indentLevel) {
 		String qText = "", qFocus = ""; QuestionOptions qOpts = null;
 		for(OWLAxiom ax : ont.getReferencingAxioms(ind)) {
 			if(ax.isLogicalAxiom()) {
@@ -336,7 +284,7 @@ public class QuestionParser {
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text area !!");
 		}
-		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), subquestion);
+		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), indentLevel);
 	}
 	
 	

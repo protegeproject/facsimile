@@ -89,10 +89,13 @@ public class FormGenerator {
 		
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText;
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
-			if(e instanceof Question && ((Question)e).isSubquestion())
-				output += "<div class=\"inner-wrap-alt\">\n";
+			if(e instanceof Question && ((Question)e).getLevel()>0) {
+				int indent = ((Question)e).getLevel()*50;
+				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px\">\n";
+			}
 			else
 				output += "<div class=\"inner-wrap\">\n";
+			
 			switch(e.getType()) {
 			case CHECKBOX:
 				output += labelInit + "<br><br>\n";

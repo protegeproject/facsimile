@@ -168,7 +168,6 @@ public class Configuration {
 				sectionTypes.put(section, type);
 			}
 		}
-		print(sections);
 		return sections;
 	}
 	
@@ -656,6 +655,7 @@ public class Configuration {
 	 * Print a given map of sections
 	 * @param sections	Map of sections
 	 */
+	@SuppressWarnings("unused")
 	private void print(Map<IRI,List<TreeNode<IRI>>> sections) {
 		int counter = 0;
 		for(IRI iri : sections.keySet()) {
