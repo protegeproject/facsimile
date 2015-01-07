@@ -52,7 +52,12 @@ public class Runner {
 	 */
 	public void generateFormToLocalFile() throws IOException {		
 		String output = run();
-		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(conf.getOutputFilePath())));
+		File f = new File(conf.getOutputFilePath());
+		if(!f.exists()) {
+			new File(f.getParent()).mkdirs();
+			f.createNewFile();
+		}
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 		bw.write(output);
 		bw.close();
 	}

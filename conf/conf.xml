@@ -10,7 +10,7 @@
 		</imports>
 	</input>
 	<output>
-		<file title="VA Form 21-0960M-14">/Users/rgoncalves/Documents/workspace/facsimile/test/test.html</file>
+		<file title="VA Form 21-0960M-14">/Users/rgoncalves/Documents/workspace/facsimile/conf/test.html</file>
 		<cssstyle>bmir-style</cssstyle>
 	</output>
 	<bindings>
