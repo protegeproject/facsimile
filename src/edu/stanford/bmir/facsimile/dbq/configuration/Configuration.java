@@ -574,15 +574,6 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the OWL object property IRI for 'hasQuestion'
-	 * @return OWL object property IRI
-	 */
-	public IRI getSectionHasQuestionPropertyBinding() {
-		return IRI.create(doc.getElementById("sectionquestion").getTextContent());
-	}
-	
-	
-	/**
 	 * Get the OWL object property IRI for 'isAnswerTo'
 	 * @return OWL object property IRI
 	 */
@@ -622,29 +613,20 @@ public class Configuration {
 	
 	
 	/**
-	 * Get the OWL class expression IRI which represents an HTML checkbox input element
-	 * @return OWL class expression IRI
+	 * Get the OWL individual IRI which represents the boolean value for true
+	 * @return OWL individual IRI
 	 */
-	public IRI getCheckboxInputBinding() {
-		return IRI.create(doc.getElementById("checkbox").getTextContent());
+	public IRI getBooleanTrueValueBinding() {
+		return IRI.create(doc.getElementById("bool_true").getTextContent());
 	}
 	
 	
 	/**
-	 * Get the OWL class expression IRI which represents an HTML dropdown input element
-	 * @return OWL class expression IRI
+	 * Get the OWL individual IRI which represents the boolean value for false
+	 * @return OWL individual IRI
 	 */
-	public IRI getDropdownInputBinding() {
-		return IRI.create(doc.getElementById("dropdown").getTextContent());
-	}
-	
-	
-	/**
-	 * Get the OWL class expression IRI which represents an HTML combo box input element
-	 * @return OWL class expression IRI
-	 */
-	public IRI getComboInputBinding() {
-		return IRI.create(doc.getElementById("combo").getTextContent());
+	public IRI getBooleanFalseValueBinding() {
+		return IRI.create(doc.getElementById("bool_false").getTextContent());
 	}
 	
 	

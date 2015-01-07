@@ -110,7 +110,7 @@ public class FormElement implements Serializable {
 	 * HTML form element types
 	 */
 	public enum ElementType {
-		TEXT, TEXTAREA, CHECKBOX, DROPDOWN, RADIO, COMBO, NONE;
+		TEXT, TEXTAREA, CHECKBOX, CHECKBOXHORIZONTAL, DROPDOWN, RADIO, NONE;
 		
 		public String toString() {
 	        return name().charAt(0) + name().substring(1).toLowerCase();

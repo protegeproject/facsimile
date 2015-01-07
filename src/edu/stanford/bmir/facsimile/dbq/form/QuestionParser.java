@@ -314,9 +314,9 @@ public class QuestionParser {
 				}
 			}
 		}
-		if(qType != null && qType.equals(ElementType.RADIO)) { 
-			opts.put("YES", "YES");
-			opts.put("NO", "NO");
+		if(qType != null && qType.equals(ElementType.RADIO)) {
+			opts.put(conf.getBooleanTrueValueBinding().toString(), "YES");
+			opts.put(conf.getBooleanFalseValueBinding().toString(), "NO");
 		}
 		questionOptions.put(questionIri.toString(), opts);
 		return new QuestionOptions(questionIri, qType, new ArrayList<String>(opts.values()));

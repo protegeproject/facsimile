@@ -6,6 +6,7 @@ import java.util.List;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -86,54 +87,66 @@ public class FormGenerator {
 		if(sectionNumbered && e.isElementNumbered()) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
 		qText = qText.replaceAll("\n", "<br>");
-		
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText;
+		
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
-				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px\">\n";
+				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + 
+				((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + "\">\n";
 			}
 			else
 				output += "<div class=\"inner-wrap\">\n";
 			
+			if(!qNumber.equals("") || !qText.equals("")) {
+				output += labelInit;
+				if(!e.getType().equals(ElementType.NONE))
+					output += "<br><br>\n";
+			}
+			
 			switch(e.getType()) {
 			case CHECKBOX:
-				output += labelInit + "<br><br>\n";
+				if(e instanceof Question) {
+					List<String> list = ((Question)e).getQuestionOptions();
+					for(int i = 0; i < list.size(); i++) {
+						String opt = list.get(i);
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
+						+ " value=\"" + opt.toLowerCase() + "\">" + opt + "</label>" + (i<(list.size()-1) ? "<br>\n" : "\n");
+					}
+				}
+				break;
+			case CHECKBOXHORIZONTAL:
 				if(e instanceof Question)
 					for(String opt : ((Question)e).getQuestionOptions())
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
-						+ " value=\"" + opt.toLowerCase() + "\">" + opt.toLowerCase() + "</label><br>\n";
+						output += "<label><input type=\"checkbox\" name=" + qName + " value=\"" + opt.toLowerCase() + "\">" + opt + "</label>\n";
 				break;
 			case DROPDOWN:
-				output += labelInit + "<br><br>\n" + "<select name=" + qName + ">\n";
+				output += "<select name=" + qName + ">\n";
 				if(e instanceof Question)
 					for(String opt : ((Question)e).getQuestionOptions())
 						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
 				output += "</select>\n";
 				break;
 			case RADIO:
-				output += labelInit + "<br><br>\n";
 				if(e instanceof Question)
 					for(String opt : ((Question)e).getQuestionOptions())
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=" + qName 
 						+ " value=\"" + opt + "\">" + opt + "</label>\n";
 				break;
 			case TEXTAREA:
-				output += labelInit + "<br><br>\n" + "<textarea name=" + qName + "></textarea>\n";
+				output += "<textarea name=" + qName + "></textarea>\n";
 				break;
 			case TEXT:
-				output += labelInit + "<br><br>\n" + "<input type=\"text\" name=" + qName + "/>\n";
+				output += "<input type=\"text\" name=" + qName + "/>\n";
 				break;
 			case NONE:
-				output += labelInit;
-				break;
-			case COMBO:
-				output += labelInit + "<br><br>\n";
 				break;
 			default:
 				break;
 			}
-			output += "</p>\n</div>\n";
+			if(!qNumber.equals("") || !qText.equals(""))
+				output += "</p>\n";
+			output += "</div>\n";
 		}
 		else
 			output += "<div class=\"question-holder\">" + labelInit + "</p></div>\n";
