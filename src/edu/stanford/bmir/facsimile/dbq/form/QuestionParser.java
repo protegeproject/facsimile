@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,6 +50,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
+import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -105,7 +107,7 @@ public class QuestionParser {
 	private List<Section> parseSections() {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		List<Section> outputSections = new ArrayList<Section>();
-		Map<IRI,List<List<IRI>>> sections = conf.getSectionMap(); 
+		Map<IRI,List<TreeNode<IRI>>> sections = conf.getSectionMap(); 
 		int sectionNr = 1;
 		for(IRI section : sections.keySet()) { // foreach section
 			if(verbose) System.out.println(" Section: " + section.getShortForm());
@@ -116,7 +118,7 @@ public class QuestionParser {
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
 			
 			SectionType sectionType = conf.getSectionType(section);
-			List<List<IRI>> eleList = sections.get(section);
+			List<TreeNode<IRI>> eleList = sections.get(section);
 			List<FormElement> formElements = getFormElements(section, sectionType, eleList, sectionNr, alphabet);
 			outputSections.add(new Section(getSectionHeader(sectionEnt), getSectionText(sectionEnt), 
 					formElements, sectioNumbering.get(section), sectionType));
@@ -136,29 +138,68 @@ public class QuestionParser {
 	 * @param alphabet	Alphabet
 	 * @return List of form elements
 	 */
-	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<List<IRI>> eleList, int sectionNr, char[] alphabet) {
+	private List<FormElement> getFormElements(IRI section, SectionType sectionType, List<TreeNode<IRI>> eleList, int sectionNr, char[] alphabet) {
 		List<FormElement> formElements = new ArrayList<FormElement>();
 		for(int i = 0; i < eleList.size(); i++) {
-			int skip = 0;
-			List<IRI> subElements = eleList.get(i);
-			for(int j = 0; j < subElements.size(); j++) {
-				String qNr = "";
-				IRI element = subElements.get(j);
-				FormElement q = null;
-				if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
-					skip++;
-				else
-					qNr += (skip>=0? alphabet[i-skip] : alphabet[i]);
-				
-				if(ont.containsIndividualInSignature(element))
-					q = getQuestion(subElements, j, qNr, sectionNr);
-				else
-					q = getInformationElement(element, sectionType, section, qNr, sectionNr);
-				if(q != null) {
-					if(verbose) printInfo(q);
-					formElements.add(q);
-				}
+//			int skip = 0;
+			
+			TreeNode<IRI> questionNode = eleList.get(i);
+			formElements.addAll(getElements(section, sectionType, questionNode, i, alphabet));
+			
+//			for(int j = 0; j < questionNode.size(); j++) {
+//				String qNr = "";
+//				IRI element = questionNode.get(j);
+//				FormElement q = null;
+//				if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
+//					skip++;
+//				else
+//					qNr += (skip>=0? alphabet[i-skip] : alphabet[i]);
+//				
+//				if(ont.containsIndividualInSignature(element))
+//					q = getQuestion(questionNode, j, qNr, sectionNr);
+//				else
+//					q = getInformationElement(element, sectionType, section, qNr, sectionNr);
+//				if(q != null) {
+//					if(verbose) printInfo(q);
+//					formElements.add(q);
+//				}
+//			}
+		}
+		return formElements;
+	}
+	
+	
+	private List<FormElement> getElements(IRI section, SectionType sectionType, TreeNode<IRI> questionNode, int sectionNr, char[] alphabet) {
+		List<FormElement> formElements = new ArrayList<FormElement>();
+		Iterator<TreeNode<IRI>> iter = questionNode.iterator();
+		int skip = 0, counter = 0;
+		while(iter.hasNext()) {
+			TreeNode<IRI> node = iter.next();
+			String qNr = "";
+			IRI element = node.data;
+			FormElement q = null;
+			
+			if(questionNumbering.containsKey(element) && !questionNumbering.get(element))
+				skip++;
+			else
+				qNr += (skip>=0? alphabet[sectionNr-skip] : alphabet[sectionNr]);
+			
+			OWLNamedIndividual ind = df.getOWLNamedIndividual(element);
+			if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
+			
+			if(ont.containsIndividualInSignature(element))
+				q = getQuestionDetails(qNr, sectionNr, ind, false);
+			else
+				q = getInformationElement(element, sectionType, section, qNr, sectionNr);
+			if(q != null) {
+				if(verbose) printInfo(q);
+				formElements.add(q);
 			}
+			
+			if(!node.children.isEmpty()) { // process subquestions
+				
+			}
+			counter++;
 		}
 		return formElements;
 	}
@@ -172,18 +213,18 @@ public class QuestionParser {
 	 * @param sectionNr	Section number
 	 * @return Question instance
 	 */
-	private Question getQuestion(List<IRI> subquestions, int j, String questionNr, int sectionNr) {
-		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
-		if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
-		Question q = null;
-		if(subquestions.size() > 1 && j > 0) {
-			questionNr += "" + j;
-			q = getQuestionDetails(questionNr, sectionNr, ind, true);
-		}
-		else 
-			q = getQuestionDetails(questionNr, sectionNr, ind, false);
-		return q;
-	}
+//	private Question getQuestion(TreeNode<IRI> subquestions, int j, String questionNr, int sectionNr) {
+//		OWLNamedIndividual ind = df.getOWLNamedIndividual(subquestions.get(j));
+//		if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
+//		Question q = null;
+//		if(subquestions.size() > 1 && j > 0) {
+//			questionNr += "" + j;
+//			q = getQuestionDetails(questionNr, sectionNr, ind, true);
+//		}
+//		else 
+//			q = getQuestionDetails(questionNr, sectionNr, ind, false);
+//		return q;
+//	}
 	
 	
 	/**

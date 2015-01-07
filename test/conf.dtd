@@ -15,8 +15,9 @@
 <!ELEMENT section (iri,(questionList|infoList)+)>
 <!ELEMENT iri (#PCDATA)>
 <!ELEMENT questionList (question+)>
+<!ELEMENT subquestionList (question+)>
 <!ELEMENT infoList (info+)>
-<!ELEMENT question (iri,question*)>
+<!ELEMENT question (iri,subquestionList?)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
 <!ATTLIST info type CDATA #IMPLIED>

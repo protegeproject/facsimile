@@ -58,6 +58,13 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
 		this.registerChildForSearch(childNode);
 		return childNode;
 	}
+	
+	
+	public void addChild(TreeNode<T> node) {
+		node.parent = this;
+		this.children.add(node);
+		this.registerChildForSearch(node);
+	}
 
 	
 	/**

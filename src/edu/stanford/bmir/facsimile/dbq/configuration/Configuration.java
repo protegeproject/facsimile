@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.xml.sax.SAXException;
 
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
+import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -33,7 +35,7 @@ public class Configuration {
 	private Map<IRI,String> imports;
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
-	private Map<IRI,List<List<IRI>>> sections;
+	private Map<IRI,List<TreeNode<IRI>>> sections;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering;
 	private File file;
 	private boolean verbose;
@@ -141,14 +143,14 @@ public class Configuration {
 	 * Gather a map of sections specified in the configuration file and their questions
 	 * @return Map of sections' IRIs and their respective questions
 	 */
-	private Map<IRI,List<List<IRI>>> getSections() {
-		Map<IRI,List<List<IRI>>> sections = new LinkedHashMap<IRI,List<List<IRI>>>();
+	private Map<IRI,List<TreeNode<IRI>>> getSections() {
+		Map<IRI,List<TreeNode<IRI>>> sections = new LinkedHashMap<IRI,List<TreeNode<IRI>>>();
 		NodeList nl = doc.getElementsByTagName("section");
 		for(int i = 0; i < nl.getLength(); i++) { // foreach section
 			Node sectionNode = nl.item(i);
 			SectionType type = getSectionType(sectionNode);
 			NodeList children = sectionNode.getChildNodes(); // <iri>, (<questionList> | <infoList>)
-			List<List<IRI>> questions = null; IRI section = null;
+			List<TreeNode<IRI>> questions = null; IRI section = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
 				if(child.getNodeName().equalsIgnoreCase("iri")) { // section iri
@@ -156,7 +158,7 @@ public class Configuration {
 					if(verbose) System.out.println("   Section: " + section + " (type: " + type.toString() + ")");
 				}
 				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
-					questions = getQuestions(child);
+					questions = getQuestions(child, null);
 				else if(child.getNodeName().equalsIgnoreCase("infolist"))
 					questions = getInfoRequests(child);
 			}
@@ -166,6 +168,7 @@ public class Configuration {
 				sectionTypes.put(section, type);
 			}
 		}
+		print(sections);
 		return sections;
 	}
 	
@@ -206,33 +209,34 @@ public class Configuration {
 	
 	
 	/**
-	 * Gather the list of questions in a given (questionlist) node
-	 * @param n	Questionlist node
-	 * @return List of question IRIs
+	 * Gather the questions in a given (questionlist or subquestionlist) node
+	 * @param questionListNode	Questionlist node
+	 * @param questionTree	Question treenode, if applicable
+	 * @return List of question trees
 	 */
-	private List<List<IRI>> getQuestions(Node n) {
-		List<List<IRI>> questions = new ArrayList<List<IRI>>();
-		NodeList nl = n.getChildNodes(); // <question>'s
+	private List<TreeNode<IRI>> getQuestions(Node questionListNode, TreeNode<IRI> questionTree) {
+		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
+		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
 			boolean numbered = true;
 			if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("numbered") != null)
 				numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
 			
-			NodeList children = nl.item(i).getChildNodes(); // <iri>, sub-<question>'s
-			List<IRI> subquestions = new ArrayList<IRI>();
+			NodeList children = nl.item(i).getChildNodes(); // (<iri> | <subquestionList>)
+			TreeNode<IRI> subquestions = questionTree;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
-				if(children.item(j).getNodeName().equalsIgnoreCase("iri")) {
-					IRI iri = getQuestionIRI(curNode, false, null);
-					if(iri != null) subquestions.add(0,iri);
+				if(curNode.getNodeName().equalsIgnoreCase("iri")) {
+					IRI iri = getQuestionIRI(curNode, null);
+					if(iri != null)
+						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
+						else subquestions = subquestions.addChild(iri);
 					questionNumbering.put(iri, numbered);
 				}
-				if(children.item(j).getNodeName().equalsIgnoreCase("question")) { // sub-<question>
-					IRI iri = getQuestionIRI(curNode, true, null);
-					if(iri != null) subquestions.add(iri);
-				}
+				if(curNode.getNodeName().equalsIgnoreCase("subquestionlist")) // <subquestionList>
+					getQuestions(curNode, subquestions);
 			}
-			if(!subquestions.isEmpty())
+			if(subquestions != null)
 				questions.add(subquestions);
 		}
 		return questions;
@@ -244,24 +248,24 @@ public class Configuration {
 	 * @param n	Infolist node
 	 * @return List of IRIs
 	 */
-	private List<List<IRI>> getInfoRequests(Node n) {
-		List<List<IRI>> inforeqs = new ArrayList<List<IRI>>();
+	private List<TreeNode<IRI>> getInfoRequests(Node n) {
+		List<TreeNode<IRI>> inforeqs = new ArrayList<TreeNode<IRI>>();
 		NodeList nl = n.getChildNodes(); // <info>'s
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node child = nl.item(i);
-			List<IRI> info = new ArrayList<IRI>();
+			TreeNode<IRI> info = null;
 			if(child.hasAttributes()) {
 				NamedNodeMap nodemap = child.getAttributes();
 				for(int j = 0; j < nodemap.getLength(); j++) {
 					Node att = nodemap.item(j);
 					if(att.getNodeName().equals("property")) {
 						String prop = att.getNodeValue();
-						IRI iri = getQuestionIRI(doc.getElementById(prop), false, child);
-						info.add(iri);
+						IRI iri = getQuestionIRI(doc.getElementById(prop), child);
+						info = new TreeNode<IRI>(iri);
 					}
 				}
 			}
-			if(!info.isEmpty())
+			if(info != null)
 				inforeqs.add(info);
 		}
 		return inforeqs;
@@ -271,24 +275,19 @@ public class Configuration {
 	/**
 	 * Get IRI of question at the given node
 	 * @param node	Current node
-	 * @param subquestion	true if question has a parent question, false otherwise
 	 * @param eleNode	Information element node, if applicable
 	 * @return IRI of question in given node
 	 */
-	private IRI getQuestionIRI(Node node, boolean subquestion, Node eleNode) {
+	private IRI getQuestionIRI(Node node, Node eleNode) {
 		String iriTxt = node.getTextContent();
 		IRI iri = null;
 		if(!iriTxt.equals("")) {
 			iri = IRI.create(iriTxt);
-			if(iri != null && verbose) {
-				if(!subquestion)
-					System.out.print("\tQuestion: " + iriTxt);
-				else
-					System.out.print("\t   Subquestion: " + iriTxt);
-			}
-			if(subquestion && node.hasAttributes())
+			if(iri != null && verbose)
+				System.out.print("\tQuestion: " + iriTxt);
+			if(node.hasAttributes())
 				checkQuestionType(iri, node);
-			if(!subquestion && node.getParentNode().hasAttributes())
+			if(node.getParentNode().hasAttributes())
 				checkQuestionType(iri, node.getParentNode());
 			if(eleNode != null)
 				checkQuestionType(iri, eleNode);
@@ -381,7 +380,7 @@ public class Configuration {
 	 * Get the map of sections and their corresponding questions specified in the configuration file
 	 * @return Map of sections' IRIs to the questions they contain 
 	 */
-	public Map<IRI,List<List<IRI>>> getSectionMap() {
+	public Map<IRI,List<TreeNode<IRI>>> getSectionMap() {
 		return sections;
 	}
 	
@@ -647,5 +646,51 @@ public class Configuration {
 	 */
 	public IRI getComboInputBinding() {
 		return IRI.create(doc.getElementById("combo").getTextContent());
+	}
+	
+	
+	/*	PRINT SECTION / QUESTION MAP	*/
+
+	
+	/**
+	 * Print a given map of sections
+	 * @param sections	Map of sections
+	 */
+	private void print(Map<IRI,List<TreeNode<IRI>>> sections) {
+		int counter = 0;
+		for(IRI iri : sections.keySet()) {
+			System.out.println("Section " + counter + ": " + iri.getShortForm());
+			List<TreeNode<IRI>> questions = sections.get(iri);
+			print(questions);
+			counter++;
+		}
+	}
+	
+	
+	/**
+	 * Print a list of questions
+	 * @param questions	List of question treenodes
+	 */
+	private void print(List<TreeNode<IRI>> questions) {
+		for(int i = 0; i < questions.size(); i++) {
+			TreeNode<IRI> question = questions.get(i);
+			print(question);
+		}
+	}
+	
+	
+	/**
+	 * Print the information in a question treenode
+	 * @param treenode	Treenode
+	 */
+	private void print(TreeNode<IRI> treenode) {
+		Iterator<TreeNode<IRI>> iter = treenode.iterator();
+		TreeNode<IRI> t = null;
+		while(iter.hasNext()) {
+			t = iter.next();
+			for(int j = 0; j <= t.getLevel(); j++) 
+				System.out.print("    ");
+			System.out.println("(" + t.getLevel() + ") Question: " + t.data.getShortForm());
+		}
 	}
 }
