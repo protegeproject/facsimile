@@ -21,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.parameters.Imports;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
@@ -135,40 +137,37 @@ public class FormInputHandler extends HttpServlet {
 			OWLNamedIndividual dataInd = null, answerInd = null;
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
 				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data-" + uuid));
-				man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd)));	// instance of AnnotatedData
+				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// instance of AnnotatedData
 				
 				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer: instance of one of (Observation | PatientInformation | PhysicianInformation)
-				man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-						df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd)));												// { data hasAnswer answer }
+				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
 				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
-					man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd)));	// { answer : Observation }
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-							df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), answerInd, df.getOWLNamedIndividual(IRI.create(qFocus)))));	// { answer hasFocus focus }
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-							df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri)))));		// { data isResponseTo question }
+					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));	// { answer : Observation }
+					if(!qFocus.equals(""))
+						addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), answerInd, df.getOWLNamedIndividual(IRI.create(qFocus))));	// { answer hasFocus focus }
+					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri))));		// { data isResponseTo question }
 				}
 				else { 
 					if(type.equals(SectionType.PATIENT_SECTION)) {
-						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd)));	// { answer : PatientInformation }
+						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd));	// { answer : PatientInformation }
 						initInfo = answerInd;
 					}
 					else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
-						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd)));	// { answer : PhysicianInformation }
+						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));	// { answer : PhysicianInformation }
 						finalInfo = answerInd;
 					}
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-							df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus)))));		// { data isResponseTo P*InformationDataElement }
+					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus))));	// { data isResponseTo P*InformationDataElement }
 				}
 			}
 
 			// handle multiple answers to single question
 			for(int i = 0; i < params.length; i++) {
 				Map<String,String> aMap = eOptions.get(qIri);
-				String aIri = "";
-				if(aMap != null && aMap.values().contains(params[i]))
+				String aIri = "";  
+				if(aMap != null)
 					for(String s : aMap.keySet())
-						if(aMap.get(s).equals(params[i])) {
+						if(aMap.get(s).equalsIgnoreCase(params[i])) {
 							aIri = s; break;
 						}
 				
@@ -177,17 +176,16 @@ public class FormInputHandler extends HttpServlet {
 				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
 					OWLNamedIndividual valInd = null;
-					if(inputOnt.containsEntityInSignature(IRI.create(aIri)))
+					if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED))
 						valInd = df.getOWLNamedIndividual(IRI.create(aIri));
 					else {
 						valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val-" + uuid));
-						man.applyChange(new AddAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd)));	// { val : DataElementValue }
+						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
 					}
-					man.applyChange(new AddAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-							df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd)));										// { answer hasValue val }
+					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd));	// { answer hasValue val }
 					
-					if(!inputOnt.containsEntityInSignature(IRI.create(aIri)) && !aIri.isEmpty())
-						man.applyChange(new AddAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri))));	// { rdfs:label(val) }
+					if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
+						addAxiom(man, ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
 				}
 				else {
 					if(answerInd == null) {
@@ -196,11 +194,22 @@ public class FormInputHandler extends HttpServlet {
 						else if(type.equals(SectionType.PHYSICIAN_SECTION))
 							answerInd = finalInfo;
 					}
-					man.applyChange(new AddAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri)));	// { answer hasX val } where X is given by the question IRI
+					addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri));	// { answer hasX val } where X is given by the question IRI
 				}
 			}
 		}
 		return ont;
+	}
+	
+	
+	/**
+	 * Add given axiom to specified ontology
+	 * @param man	OWL ontology manager
+	 * @param ont	OWL ontology
+	 * @param axiom	OWL axiom
+	 */
+	private void addAxiom(OWLOntologyManager man, OWLOntology ont, OWLAxiom axiom) {
+		man.applyChange(new AddAxiom(ont, axiom));
 	}
 	
 	
@@ -236,17 +245,21 @@ public class FormInputHandler extends HttpServlet {
 	private String addAnswer(String[] params, String qIri, String qText, String qFocus) {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
-			if(!params[i].isEmpty()) {
+			String answer = params[i];
+			if(!answer.isEmpty()) {
 				Map<String,String> aMap = eOptions.get(qIri);
 				String aIri = "";
-				if(aMap != null && aMap.values().contains(params[i]))
+				if(aMap != null) {
 					for(String s : aMap.keySet())
-						if(aMap.get(s).equalsIgnoreCase(params[i])) {
+						if(aMap.get(s).equalsIgnoreCase(answer)) {
 							aIri = s; break;
 						}
+				}
+				if(answer.contains(","))
+					answer = answer.replaceAll(",", "");
 				if(aIri.equalsIgnoreCase(""))
-					aIri = params[i];
-				csv += qIri + "," + aIri + "," + qText + "," + params[i] + "," + qFocus + "\n";
+					aIri = answer;
+				csv += qIri + "," + aIri + "," + qText + "," + answer + "," + qFocus + "\n";
 			}
 		}
 		return csv;
