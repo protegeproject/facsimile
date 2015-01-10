@@ -83,7 +83,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_3</iri>
 			<questionList>
-				<question numbered="false">
+				<question numbered="false" showSubquestionsForAnswers="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_1</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -303,7 +303,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswers="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B</iri>
 					<subquestionList>
 						<question numbered="false">

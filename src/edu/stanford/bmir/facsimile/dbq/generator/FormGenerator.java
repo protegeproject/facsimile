@@ -37,9 +37,10 @@ public class FormGenerator {
 		System.out.print("Generating HTML form... ");
 		String output = "";
 		output += "<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n";
-		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">\n";
-		output += "<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>";
-		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\">\n";
+		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\"/>\n";
+		output += "<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>\n";
+		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\"/>\n";
+		output += "<script type=\"text/javascript\" src=\"js/script.js\"></script>\n";
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
 		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
@@ -93,10 +94,10 @@ public class FormGenerator {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
 				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + 
-				((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + "\">\n";
+				((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\">\n";
 			}
 			else
-				output += "<div class=\"inner-wrap\">\n";
+				output += "<div class=\"inner-wrap\" id=\"" + e.getEntity().getIRI().getShortForm() + "\">\n";
 			
 			if(!qNumber.equals("") || !qText.equals("")) {
 				output += labelInit;
