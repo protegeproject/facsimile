@@ -19,12 +19,10 @@ function hideSubquestions() {
 
 
 function show(eleId) {
-	console.log("! Showing: " + eleId);
 	document.getElementById(eleId).style.display='block';
 }
 
 
 function hide(eleId) {
-	console.log("! Hiding: " + eleId);
 	document.getElementById(eleId).style.display='none';
 }

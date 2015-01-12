@@ -24,8 +24,8 @@
 <!ATTLIST info property CDATA #IMPLIED>
 <!ATTLIST question type CDATA #IMPLIED>
 <!ATTLIST question numbered CDATA #IMPLIED>
-<!ATTLIST question showSubquestionsForAnswers CDATA #IMPLIED>
-<!ATTLIST question hideSubquestionsForAnswers CDATA #IMPLIED>
+<!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>
+<!ATTLIST question hideSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST section numbered CDATA #IMPLIED>
 <!ATTLIST section type CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>

@@ -34,7 +34,7 @@ public class Configuration {
 	private Document doc;
 	private String ontPath, outPath, title, cssStyle;
 	private Map<IRI,String> imports;
-	private Map<IRI,List<IRI>> subquestionPosTriggers, subquestionNegTriggers;
+	private Map<IRI,IRI> subquestionPosTriggers, subquestionNegTriggers;
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<TreeNode<IRI>>> sections;
@@ -55,8 +55,8 @@ public class Configuration {
 		elementTypes = new LinkedHashMap<IRI,ElementType>();
 		sectionTypes = new LinkedHashMap<IRI,SectionType>();
 		imports = new HashMap<IRI,String>();
-		subquestionPosTriggers = new HashMap<IRI,List<IRI>>();
-		subquestionNegTriggers = new HashMap<IRI,List<IRI>>();
+		subquestionPosTriggers = new HashMap<IRI,IRI>();
+		subquestionNegTriggers = new HashMap<IRI,IRI>();
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 	}
@@ -237,11 +237,11 @@ public class Configuration {
 						else subquestions = subquestions.addChild(iri);
 					questionNumbering.put(iri, numbered);
 					
-					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswers") != null)
-						addSubquestionTriggers(subquestionPosTriggers, iri, nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswers"));
+					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer") != null)
+						subquestionPosTriggers.put(iri, IRI.create(nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer").getNodeValue()));
 					
-					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswers") != null)
-						addSubquestionTriggers(subquestionNegTriggers, iri, nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswers"));
+					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswer") != null)
+						subquestionNegTriggers.put(iri, IRI.create(nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswer").getNodeValue()));
 				}
 				if(curNode.getNodeName().equalsIgnoreCase("subquestionlist")) // <subquestionList>
 					getQuestions(curNode, subquestions);
@@ -259,6 +259,7 @@ public class Configuration {
 	 * @param iri	Question IRI
 	 * @param n	Attribute node
 	 */
+	@SuppressWarnings("unused")
 	private void addSubquestionTriggers(Map<IRI,List<IRI>> map, IRI iri, Node n) {
 		String value = n.getNodeValue();
 		List<IRI> list = new ArrayList<IRI>();
@@ -719,7 +720,7 @@ public class Configuration {
 	 * Get the map of question IRI's to the answer(s) that, when chosen, will cause subquestions to appear
 	 * @return Map of question IRI's to answer(s)' IRI's whose choice causes subquestions to appear
 	 */
-	public Map<IRI,List<IRI>> getSubquestionPositiveTriggers() {
+	public Map<IRI,IRI> getSubquestionPositiveTriggers() {
 		return subquestionPosTriggers;
 	}
 	
@@ -728,7 +729,7 @@ public class Configuration {
 	 * Get the map of question IRI's to the answer(s) that, when chosen, will cause subquestions to disappear
 	 * @return Map of question IRI's to answer(s)' IRI's whose choice causes subquestions to disappear
 	 */
-	public Map<IRI,List<IRI>> getSubquestionNegativeTriggers() {
+	public Map<IRI,IRI> getSubquestionNegativeTriggers() {
 		return subquestionNegTriggers;
 	}
 }

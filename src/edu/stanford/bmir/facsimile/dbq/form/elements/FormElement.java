@@ -1,6 +1,8 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -16,6 +18,7 @@ public class FormElement implements Serializable {
 	private String eleNr, text, focus;
 	private int sectionNr;
 	private ElementType type;
+	private List<IRI> children;
 	
 	
 	/**
@@ -109,6 +112,27 @@ public class FormElement implements Serializable {
 	 */
 	public ElementType getType() {
 		return type;
+	}
+	
+	
+	/**
+	 * Get the list of subquestions' IRIs
+	 * @return List of IRIs
+	 */
+	public List<IRI> getChildren() {
+		if(children == null) children = new ArrayList<IRI>();
+		return children;
+	}
+	
+	
+	/**
+	 * Add subquestion to subquestions list
+	 * @param iri	Subquestion IRI
+	 */
+	public void addSubquestion(IRI iri) {
+		if(children == null)
+			children = new ArrayList<IRI>();
+		children.add(iri);
 	}
 	
 	

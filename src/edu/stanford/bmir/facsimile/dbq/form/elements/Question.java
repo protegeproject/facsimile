@@ -1,9 +1,5 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 /**
@@ -13,8 +9,7 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
  */
 public class Question extends FormElement {
 	private static final long serialVersionUID = 1L;
-	private List<String> options;
-	private List<IRI> children;
+	private QuestionOptions options;
 	private int indentLevel;
 	
 	
@@ -30,7 +25,7 @@ public class Question extends FormElement {
 	 * @param indentLevel	Indentation level of question
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
-			ElementType questionType, List<String> options, int indentLevel) {
+			ElementType questionType, QuestionOptions options, int indentLevel) {
 		super(ind, questionNumber, sectionNumber, questionText, questionFocus, questionType);
 		this.options = options;
 		this.indentLevel = indentLevel;
@@ -38,10 +33,10 @@ public class Question extends FormElement {
 		
 	
 	/**
-	 * Get the list of possible answers to this question
-	 * @return List of options
+	 * Get the question options
+	 * @return QuestionOptions instance
 	 */
-	public List<String> getQuestionOptions() {
+	public QuestionOptions getQuestionOptions() {
 		return options;
 	}
 	
@@ -64,26 +59,5 @@ public class Question extends FormElement {
 	 */
 	public int getLevel() {
 		return indentLevel;
-	}
-	
-	
-	/**
-	 * Get the list of subquestions' IRIs
-	 * @return List of IRIs
-	 */
-	public List<IRI> getChildren() {
-		if(children == null) children = new ArrayList<IRI>();
-		return children;
-	}
-	
-	
-	/**
-	 * Add subquestion to subquestions list
-	 * @param iri	Subquestion IRI
-	 */
-	public void addSubquestion(IRI iri) {
-		if(children == null)
-			children = new ArrayList<IRI>();
-		children.add(iri);
 	}
 }

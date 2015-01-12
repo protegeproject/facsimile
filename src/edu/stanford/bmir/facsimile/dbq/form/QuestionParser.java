@@ -163,7 +163,6 @@ public class QuestionParser {
 					
 					if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
 					addSubquestionList((Question)q, node);
-					printList(((Question)q).getChildren());
 				}
 				else
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
@@ -178,20 +177,19 @@ public class QuestionParser {
 	}
 	
 	
-	private void printList(List<IRI> list) {
-		for(IRI i : list) {
-			System.out.println("\tSubquestion IRI: " + i.getShortForm());
-		}
-	}
-	
-	// TODO
+	/**
+	 * Add subquestion list
+	 * @param q	Question instance
+	 * @param node	Treenode
+	 */
 	private void addSubquestionList(Question q, TreeNode<IRI> node) {
 		Iterator<TreeNode<IRI>> iter = node.iterator();
 		String entIri = q.getEntity().getIRI().toString();
 		while(iter.hasNext()) {
 			TreeNode<IRI> child = iter.next();
 			if(!child.data.toString().equalsIgnoreCase(entIri))
-				q.addSubquestion(child.data);
+				if(!q.getChildren().contains(child.data))
+					q.addSubquestion(child.data);
 		}
 	}
 	
@@ -296,16 +294,16 @@ public class QuestionParser {
 		}
 		if(qOpts == null) {
 			if(conf.hasDefinedType(ind.getIRI()))
-				qOpts = new QuestionOptions(ind.getIRI(), conf.getQuestionType(ind.getIRI()), new ArrayList<String>());
+				qOpts = new QuestionOptions(ind.getIRI(), conf.getQuestionType(ind.getIRI()), new HashMap<String,String>());
 			else
-				qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new ArrayList<String>());
+				qOpts = new QuestionOptions(ind.getIRI(), ElementType.TEXTAREA, new HashMap<String,String>());
 		}
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(ElementType.TEXTAREA);
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text area !!");
 		}
-		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts.getOptions(), indentLevel);
+		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts, indentLevel);
 	}
 	
 	
@@ -340,7 +338,7 @@ public class QuestionParser {
 			opts.put(conf.getBooleanFalseValueBinding().toString(), "NO");
 		}
 		questionOptions.put(questionIri.toString(), opts);
-		return new QuestionOptions(questionIri, qType, new ArrayList<String>(opts.values()));
+		return new QuestionOptions(questionIri, qType, opts);
 	}
 	
 	
@@ -525,7 +523,7 @@ public class QuestionParser {
 			if(question.getType().equals(ElementType.NONE))
 				System.out.print("none");
 			else if(!question.getType().equals(ElementType.TEXTAREA) && !question.getType().equals(ElementType.TEXT)) {
-				for(String opt : question.getQuestionOptions())
+				for(String opt : question.getQuestionOptions().getOptionsValues())
 					System.out.print(opt + " ");
 			}
 			else 

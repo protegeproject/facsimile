@@ -1,6 +1,7 @@
 package edu.stanford.bmir.facsimile.dbq.generator;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.semanticweb.owlapi.model.IRI;
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 
@@ -19,7 +21,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
  */
 public class FormGenerator {
 	private List<Section> sections;
-	private Map<IRI,List<IRI>> posTriggers, negTriggers;
+	private Map<IRI,IRI> posTriggers, negTriggers;
 	
 	
 	/**
@@ -70,13 +72,22 @@ public class FormGenerator {
 				output += "<br>\n";
 			
 			List<FormElement> elements = s.getSectionElements();
+			List<IRI> invisibleElements = new ArrayList<IRI>();
 			for(int j = 0; j < elements.size(); j++) {
-				boolean hidden = false;
 				FormElement element = elements.get(j);
-				String onchange = getOnChangeEvent(element);
-				// if positive trigger: add style="display: none;" to subquestions
-				
-				output += writeElement(element, onchange, numbered, hidden); // need to pass list of triggers
+				String onchange = "";
+
+				IRI trigger = null;
+				if(posTriggers.containsKey(element.getEntityIRI())) {
+					trigger = posTriggers.get(element.getEntityIRI());
+					invisibleElements = element.getChildren();
+					onchange = getOnChangeEvent(posTriggers, element, true);
+				}
+				else if(negTriggers.containsKey(element.getEntityIRI())) {
+					trigger = negTriggers.get(element.getEntityIRI());
+					onchange = getOnChangeEvent(negTriggers, element, false);
+				}
+				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
 			}
 			if(i<sections.size()-1) output += "<br><hr><br>\n";
 		}
@@ -85,7 +96,7 @@ public class FormGenerator {
 		System.out.println("done");
 		return output;
 	}
-	
+
 	
 	/**
 	 * Get the details of the element
@@ -95,7 +106,7 @@ public class FormGenerator {
 	 * @return String with the HTML code for the given element
 	 * @throws IOException	IO error
 	 */
-	private String writeElement(FormElement e, String onchange, boolean sectionNumbered, boolean hidden) throws IOException {
+	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) throws IOException {
 		String output = "";
 		String qName = e.getEntity().getIRI().toString();
 		String qNameShort = e.getEntity().getIRI().getShortForm();
@@ -109,10 +120,11 @@ public class FormGenerator {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
 				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + 
-				((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + (hidden? " display=\"none;\"" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\">\n";
+						((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" 
+						+ (!onchange.isEmpty() ? onchange : "") + ">\n";
 			}
 			else
-				output += "<div class=\"inner-wrap\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden? " style=\"display=\"none;\"" : "") + ">\n";
+				output += "<div class=\"inner-wrap\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n";
 			
 			if(!qNumber.equals("") || !qText.equals("")) {
 				output += labelInit;
@@ -123,27 +135,33 @@ public class FormGenerator {
 			switch(e.getType()) {
 			case CHECKBOX:
 				if(e instanceof Question) {
-					List<String> list = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < list.size(); i++) {
-						String opt = list.get(i);
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qNameShort + "-" + i
-						+ "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>" + (i<(list.size()-1) ? "<br>\n" : "\n");
+					QuestionOptions opts = ((Question)e).getQuestionOptions();
+					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
+						String opt = opts.getOptionsValues().get(i);
+						String qId = qNameShort + "-" + i;
+						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
+							output = output.replace("trigger", qId);
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
+								+ "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>" + (i<(opts.getOptionsValues().size()-1) ? "<br>\n" : "\n");
 					}
 				}
 				break;
 			case CHECKBOXHORIZONTAL:
 				if(e instanceof Question) {
-					List<String> list = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < list.size(); i++) {
-						String opt = list.get(i);
-						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qNameShort + "-" + i + "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>\n";
+					QuestionOptions opts = ((Question)e).getQuestionOptions();
+					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
+						String opt = opts.getOptionsValues().get(i);
+						String qId = qNameShort + "-" + i;
+						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
+							output = output.replace("trigger", qId);
+						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>\n";
 					}
 				}
 				break;
 			case DROPDOWN:
 				output += "<select name=\"" + qName + "\">\n";
 				if(e instanceof Question) {
-					List<String> list = ((Question)e).getQuestionOptions();
+					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
 					for(int i = 0; i < list.size(); i++) {
 						String opt = list.get(i);
 						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
@@ -153,20 +171,21 @@ public class FormGenerator {
 				break;
 			case RADIO:
 				if(e instanceof Question) {
-					List<String> list = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < list.size(); i++) {
-					String opt = list.get(i);
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qNameShort + "-" + i
-						+ "\" value=\"" + opt + "\">" + opt + "</label>\n";
+					QuestionOptions opts = ((Question)e).getQuestionOptions();
+					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
+						String opt = opts.getOptionsValues().get(i);
+						String qId = qNameShort + "-" + i;
+						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
+							output = output.replace("trigger", qId);
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
+								+ "\" value=\"" + opt + "\">" + opt + "</label>\n";
 					}
 				}
 				break;
 			case TEXTAREA:
-				output += "<textarea name=\"" + qName + "\"></textarea>\n";
-				break;
+				output += "<textarea name=\"" + qName + "\"></textarea>\n"; break;
 			case TEXT:
-				output += "<input type=\"text\" name=\"" + qName + "\"/>\n";
-				break;
+				output += "<input type=\"text\" name=\"" + qName + "\"/>\n"; break;
 			case NONE:
 				break;
 			default:
@@ -182,10 +201,27 @@ public class FormGenerator {
 	}
 	
 	
-	private String getOnChangeEvent(FormElement e) {
+	/**
+	 * Get the JavaScript onChange event for the given form element
+	 * @param map	Map of questions to trigger IRIs
+	 * @param e	Form element
+	 * @param pos	true if given triggers are positive triggers (i.e., showSubquestionsForAnswer="...")
+	 * @return String containing the onChange event 
+	 */
+	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos) {
 		String onchange = "";
-		if(posTriggers.containsKey(e.getEntityIRI())) {
-			
+		List<IRI> children = e.getChildren();
+		if(map.containsKey(e.getEntityIRI())) {
+			if(pos)
+				onchange += " onchange=\"showSubquestions('trigger',";
+			else
+				onchange += " onchange=\"hideSubquestions('trigger',";
+			for(int i = 0; i < children.size(); i++) { 
+				onchange += "'" + children.get(i).getShortForm() + "'";
+				if(i<children.size()-1)
+					onchange += ",";
+			}
+			onchange += ");\"";
 		}
 		return onchange;
 	}

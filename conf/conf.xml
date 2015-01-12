@@ -46,8 +46,8 @@
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/cfa#StringValue</binding>
 			<binding id="radio">http://purl.org/facsimile/cfa#BooleanValue</binding>
-			<binding id="bool_true">http://purl.org/facsimile/cfa#True</binding>
-			<binding id="bool_false">http://purl.org/facsimile/cfa#False</binding>
+			<binding id="bool_true">http://purl.org/facsimile/cfa#Yes</binding>
+			<binding id="bool_false">http://purl.org/facsimile/cfa#No</binding>
 		</questionTypeBindings>	
 	</bindings>
 	<form>
@@ -83,7 +83,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_3</iri>
 			<questionList>
-				<question numbered="false" showSubquestionsForAnswers="http://purl.org/facsimile/cfa#Yes">
+				<question numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_1</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -170,7 +170,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_5</iri>
 			<questionList>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#No">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5A</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -219,7 +219,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_7</iri>
 			<questionList>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7A</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -227,7 +227,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q7B</iri>
 					<subquestionList>
 						<question type="checkbox" numbered="false">
@@ -240,7 +240,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8</iri>
 			<questionList>
-				<question type="checkbox" hideSubquestionsForAnswers="http://purl.org/facsimile/dbq#all_normal">
+				<question type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A</iri>
 					<subquestionList>
 						<question type="none" numbered="false">
@@ -300,7 +300,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question showSubquestionsForAnswers="http://purl.org/facsimile/cfa#Yes">
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8B</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -324,12 +324,9 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_9</iri>
 			<questionList>
-				<question type="none" numbered="false">
+				<question type="checkbox" numbered="false" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q9</iri>
 					<subquestionList>
-						<question type="checkbox" numbered="false">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q9_0</iri>
-						</question>
 						<question type="none" numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q9_1</iri>
 							<subquestionList>
@@ -359,12 +356,9 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_10</iri>
 			<questionList>
-				<question numbered="false" type="none">
+				<question numbered="false" type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q10</iri>
 					<subquestionList>
-						<question numbered="false" type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q10_0</iri>
-						</question>
 						<question numbered="false" type="none">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q10_1</iri>
 							<subquestionList>
@@ -487,7 +481,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12C</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -498,7 +492,7 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D</iri>
 					<subquestionList>
-						<question numbered="false" type="checkbox">
+						<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#l2_l3_l4_nerve_roots">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_1</iri>
 							<subquestionList>
 								<question numbered="false" type="checkboxhorizontal">
@@ -506,7 +500,7 @@
 								</question>
 							</subquestionList>
 						</question>
-						<question numbered="false" type="checkbox">
+						<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#l4_l5_s1_s2_s3_nerve_roots">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_2</iri>
 							<subquestionList>
 								<question numbered="false" type="checkboxhorizontal">
@@ -514,7 +508,7 @@
 								</question>
 							</subquestionList>
 						</question>
-						<question numbered="false" type="checkbox">
+						<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#other_nerves">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3</iri>
 							<subquestionList>
 								<question numbered="false">
@@ -540,7 +534,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_13</iri>
 			<questionList>
-				<question numbered="false">
+				<question numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q13</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -556,7 +550,7 @@
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14A</iri>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B</iri>
 					<subquestionList>
 						<question numbered="false" type="checkbox">
@@ -569,7 +563,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_15</iri>
 			<questionList>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q15A</iri>
 					<subquestionList>
 						<question numbered="false" type="none">
@@ -638,7 +632,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_16</iri>
 			<questionList>
-				<question numbered="false">
+				<question numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q16</iri>
 					<subquestionList>
 						<question type="checkbox" numbered="false">
@@ -651,7 +645,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_17</iri>
 			<questionList>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q17A</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -659,7 +653,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q17B</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -672,7 +666,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_18</iri>
 			<questionList>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q18A</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -680,7 +674,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q18B</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -688,7 +682,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q18C</iri>
 					<subquestionList>
 						<question numbered="false">
@@ -701,7 +695,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_19</iri>
 			<questionList>
-				<question numbered="false">
+				<question numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q19</iri>
 					<subquestionList>
 						<question numbered="false">
