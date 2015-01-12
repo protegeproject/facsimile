@@ -2,6 +2,7 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
 
 import java.io.Serializable;
 
+import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
 
 /**
@@ -49,11 +50,20 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Get the OWL entity that represents this element 
+	 * Get the OWL entity that represents this form element 
 	 * @return OWL entity
 	 */
 	public OWLEntity getEntity() {
 		return entity;
+	}
+	
+	
+	/**
+	 * Get IRI of OWL entity representing this form element 
+	 * @return IRI
+	 */
+	public IRI getEntityIRI() {
+		return entity.getIRI();
 	}
 	
 	

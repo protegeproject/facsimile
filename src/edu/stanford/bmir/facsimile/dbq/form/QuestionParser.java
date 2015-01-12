@@ -160,7 +160,10 @@ public class QuestionParser {
 					if(node.getLevel() > 0 && isNumbered)
 						questionNr += "" + (skip_sub > 0 ? counter-skip_sub : counter);
 					q = getQuestionDetails(questionNr, i, ind, node.getLevel());
+					
 					if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
+					addSubquestionList((Question)q, node);
+					printList(((Question)q).getChildren());
 				}
 				else
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
@@ -172,6 +175,24 @@ public class QuestionParser {
 			}
 		}
 		return formElements;
+	}
+	
+	
+	private void printList(List<IRI> list) {
+		for(IRI i : list) {
+			System.out.println("\tSubquestion IRI: " + i.getShortForm());
+		}
+	}
+	
+	// TODO
+	private void addSubquestionList(Question q, TreeNode<IRI> node) {
+		Iterator<TreeNode<IRI>> iter = node.iterator();
+		String entIri = q.getEntity().getIRI().toString();
+		while(iter.hasNext()) {
+			TreeNode<IRI> child = iter.next();
+			if(!child.data.toString().equalsIgnoreCase(entIri))
+				q.addSubquestion(child.data);
+		}
 	}
 	
 	

@@ -255,6 +255,7 @@ public class Configuration {
 	
 	/**
 	 * Add subquestion (tree) trigger(s) given by the attribute node
+	 * @param map	Map of question IRIs to lists of question IRIs which trigger subquestions
 	 * @param iri	Question IRI
 	 * @param n	Attribute node
 	 */
@@ -711,7 +712,7 @@ public class Configuration {
 	}
 	
 	
-	/*	MISC	*/
+	/*	SUBQUESTION TRIGGERS	*/
 	
 	
 	/**

@@ -240,16 +240,13 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8</iri>
 			<questionList>
-				<question type="none">
+				<question type="checkbox" hideSubquestionsForAnswers="http://purl.org/facsimile/dbq#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A</iri>
 					<subquestionList>
-						<question type="checkbox" numbered="false">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_0</iri>
-						</question>
 						<question type="none" numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1</iri>
 							<subquestionList>
-								<question numbered="false" type="checkboxhorizontal">
+								<question numbered="false" type="checkboxhorizontal" >
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1_1</iri>
 								</question>
 								<question numbered="false" type="checkboxhorizontal">

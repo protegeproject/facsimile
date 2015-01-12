@@ -1,7 +1,9 @@
 package edu.stanford.bmir.facsimile.dbq.form.elements;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 /**
@@ -12,6 +14,7 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 public class Question extends FormElement {
 	private static final long serialVersionUID = 1L;
 	private List<String> options;
+	private List<IRI> children;
 	private int indentLevel;
 	
 	
@@ -61,5 +64,26 @@ public class Question extends FormElement {
 	 */
 	public int getLevel() {
 		return indentLevel;
+	}
+	
+	
+	/**
+	 * Get the list of subquestions' IRIs
+	 * @return List of IRIs
+	 */
+	public List<IRI> getChildren() {
+		if(children == null) children = new ArrayList<IRI>();
+		return children;
+	}
+	
+	
+	/**
+	 * Add subquestion to subquestions list
+	 * @param iri	Subquestion IRI
+	 */
+	public void addSubquestion(IRI iri) {
+		if(children == null)
+			children = new ArrayList<IRI>();
+		children.add(iri);
 	}
 }

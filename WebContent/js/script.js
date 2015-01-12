@@ -13,18 +13,40 @@ function hideSubquestions() {
 		for (var i = 1; i < arguments.length; i++)
 			show(arguments[i]);
 	if(document.getElementById(arguments[0]).checked)
-		for (var i = 1; i < arguments.length; i++)
+		for (var i = 1; i < arguments.length; i++) {
 			hide(arguments[i]);
+			log("Hiding: " + arguments[i]);
+			hideChildren(document.getElementById(arguments[i].childNodes))
+		}
+}
+
+
+function hideChildren() {
+	for (var i = 0; i < arguments.length; i++) {
+		hide(arguments[i]);
+		log("Hiding: " + arguments[i]);
+	}
+}
+
+
+function showChildren() {
+	for (var i = 0; i < arguments.length; i++)
+		show(arguments[i]);
 }
 
 
 function show(eleId) {
-	console.log("! Showing: " + eleId);
 	document.getElementById(eleId).style.display='block';
 }
 
 
 function hide(eleId) {
-	console.log("! Hiding: " + eleId);
 	document.getElementById(eleId).style.display='none';
+}
+
+
+function log(msg) {
+    setTimeout(function() {
+        throw new Error(msg);
+    }, 0);
 }
