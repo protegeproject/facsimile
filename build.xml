@@ -1,0 +1,39 @@
+<project default="war">
+    <property name="web" location="WebContent/WEB-INF"/>
+    <property name="lib" location="${web}/lib"/>
+    <property name="build" value="build"/>
+    <property name="src" location="src"/>
+    
+    <path id="project.class.path">
+        <fileset dir="${lib}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    
+    <!-- Clean -->
+    <target name="clean" description="Clean up build files">
+        <delete dir="${build}"/>
+    </target>
+    
+    <!-- Compile -->
+    <target name="compile" description="Compile source files" depends="clean">
+        <mkdir dir="${build}"/>
+        <javac srcdir="${src}" destdir="${build}" debug="yes" deprecation="yes" includeantruntime="false">
+            <classpath refid="project.class.path"/>
+        </javac>
+        <copy todir="${build}">
+            <fileset dir="${src}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <!-- Create WAR -->
+    <target name="war" depends="compile">
+        <war destfile="form-generator.war" webxml="${web}/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="${lib}"/>
+            <classes dir="${build}/"/>
+        </war>
+    </target>
+</project>
