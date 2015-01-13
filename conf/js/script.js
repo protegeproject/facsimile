@@ -1,3 +1,8 @@
+/*
+ * showSubquestions() and hideSubquestions() take as input:
+ * [0]		the answer which triggers subquestions
+ * [1..n]	the subquestions which should show/hide when [0] is selected 
+ */
 function showSubquestions() {
 	if(document.getElementById(arguments[0]).checked)
 		for (var i = 1; i < arguments.length; i++)

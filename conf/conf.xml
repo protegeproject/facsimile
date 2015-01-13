@@ -204,9 +204,13 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_6</iri>
 			<questionList>
-				<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6A</iri></question>
-				<question><iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri></question>
-				<question type="checkbox">
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6A</iri>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri>
+				</question>
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#Other">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri>
 					<subquestionList>
 						<question numbered="false">

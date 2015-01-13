@@ -1,3 +1,8 @@
+/*
+ * showSubquestions() and hideSubquestions() take as input:
+ * [0]		the answer which triggers subquestions
+ * [1..n]	the subquestions which should show/hide when [0] is selected 
+ */
 function showSubquestions() {
 	if(document.getElementById(arguments[0]).checked)
 		for (var i = 1; i < arguments.length; i++)
@@ -13,25 +18,8 @@ function hideSubquestions() {
 		for (var i = 1; i < arguments.length; i++)
 			show(arguments[i]);
 	if(document.getElementById(arguments[0]).checked)
-		for (var i = 1; i < arguments.length; i++) {
+		for (var i = 1; i < arguments.length; i++)
 			hide(arguments[i]);
-			log("Hiding: " + arguments[i]);
-			hideChildren(document.getElementById(arguments[i].childNodes))
-		}
-}
-
-
-function hideChildren() {
-	for (var i = 0; i < arguments.length; i++) {
-		hide(arguments[i]);
-		log("Hiding: " + arguments[i]);
-	}
-}
-
-
-function showChildren() {
-	for (var i = 0; i < arguments.length; i++)
-		show(arguments[i]);
 }
 
 
@@ -42,11 +30,4 @@ function show(eleId) {
 
 function hide(eleId) {
 	document.getElementById(eleId).style.display='none';
-}
-
-
-function log(msg) {
-    setTimeout(function() {
-        throw new Error(msg);
-    }, 0);
 }
