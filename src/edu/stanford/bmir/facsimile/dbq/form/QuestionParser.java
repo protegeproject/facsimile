@@ -185,11 +185,30 @@ public class QuestionParser {
 	private void addSubquestionList(Question q, TreeNode<IRI> node) {
 		Iterator<TreeNode<IRI>> iter = node.iterator();
 		String entIri = q.getEntity().getIRI().toString();
+//		System.out.println("! Checking: " + entIri);
+//		Set<IRI> ignored = new HashSet<IRI>();
 		while(iter.hasNext()) {
 			TreeNode<IRI> child = iter.next();
-			if(!child.data.toString().equalsIgnoreCase(entIri))
+//			System.out.println("!        now at " + child.data.getShortForm());
+			if(!child.data.toString().equalsIgnoreCase(entIri)) // && !ignored.contains(child.data)) {
+//				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data)) { // TODO
+//					addNode(ignored, child.children);
+//				}
 				if(!q.getChildren().contains(child.data))
 					q.addSubquestion(child.data);
+		}
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private void addNode(Set<IRI> set, List<TreeNode<IRI>> nodeList) {
+		for(TreeNode<IRI> treeNode : nodeList) {
+			Iterator<TreeNode<IRI>> iter = treeNode.iterator();
+			while(iter.hasNext()) {
+				TreeNode<IRI> node = iter.next();
+				set.add(node.data);
+//				System.out.println("!   Ignoring: " + node.data.getShortForm());
+			}
 		}
 	}
 	

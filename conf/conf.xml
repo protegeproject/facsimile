@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE configuration SYSTEM "/Users/rgoncalves/Documents/workspace/facsimile/conf/conf.dtd">
+<!DOCTYPE configuration SYSTEM "https://raw.github.com/protegeproject/facsimile/master/conf/conf.dtd">
 <configuration>
 	<input>
 		<ontology>/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_dbq.owl</ontology>
@@ -573,7 +573,7 @@
 						<question numbered="false" type="none">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1</iri>
 							<subquestionList>
-								<question numbered="false" type="checkbox">
+								<question numbered="false" type="checkbox"> <!-- showSubquestionsForAnswer="http://purl.org/facsimile/cfa#wheelchair" -->
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1</iri>
 									<subquestionList>
 										<question numbered="false">

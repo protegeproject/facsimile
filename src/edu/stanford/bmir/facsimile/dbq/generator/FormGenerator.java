@@ -27,6 +27,7 @@ public class FormGenerator {
 	/**
 	 * Constructor
 	 * @param sections	List of sections to populate the form
+	 * @param config	Configuration
 	 */
 	public FormGenerator(List<Section> sections, Configuration config) {
 		this.sections = sections;
@@ -101,6 +102,8 @@ public class FormGenerator {
 	/**
 	 * Get the details of the element
 	 * @param e	Element instance
+	 * @param onchange	JavaScript onChange event
+	 * @param trigger	IRI of the subquestion show/hide trigger
 	 * @param sectionNumbered	true if all elements should be numbered, false otherwise
 	 * @param hidden	true if question should be hidden by default, false otherwise
 	 * @return String with the HTML code for the given element
