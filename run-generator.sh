@@ -1,8 +1,7 @@
 #!/bin/bash
 # 
-# This script builds (if necessary) and runs the form generator on a local Jetty Web server instance. After
-# running this script, the form generator should be accessible (via a Web browser) at http://localhost:8080
-# The project requires Java and ant installed.
+# This script builds (if necessary) and runs the form generator on a local Jetty Web server instance. After running this script,
+# the form generator should be accessible (via a Web browser) at http://localhost:8080. Java and Ant are required.
 #
 # Compile sources and produce the war and javadocs (if form-generator.war does not exist)
 [ -f form-generator.war ] || (echo "Building from sources..." && ant)
