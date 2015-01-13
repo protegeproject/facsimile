@@ -5,7 +5,7 @@
 # The project requires Java and ant installed.
 #
 # Compile sources and produce the war and javadocs (if form-generator.war does not exist)
-[ -f form-generator.war ] || (echo "Building from sources..." && ant -buildfile build-servlet.xml)
+[ -f form-generator.war ] || (echo "Building from sources..." && ant)
 #
 # Deploy form-generator.jar on a local Jetty instance 
 java -jar lib/jetty-runner.jar form-generator.war
