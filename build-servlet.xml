@@ -18,7 +18,7 @@
     <!-- Compile -->
     <target name="compile" description="Compile source files" depends="clean">
         <mkdir dir="${build}"/>
-        <javac srcdir="${src}" destdir="${build}" debug="yes" deprecation="yes" includeantruntime="false">
+        <javac srcdir="${src}" destdir="${build}" debug="yes" deprecation="yes" includeantruntime="false" target="1.7" source="1.7">
             <classpath refid="project.class.path"/>
         </javac>
         <copy todir="${build}">
