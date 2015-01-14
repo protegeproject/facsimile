@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:dc="http://purl.org/dc/elements/1.1"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:icf="http://who.int/icf#"
+    xmlns:mos="http://purl.org/facsimile/mos#"
+    xmlns:datamodel="http://purl.org/facsimile/datamodel#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:cfa="http://purl.org/facsimile/cfa#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:criteria="http://purl.org/facsimile/criteria#"
+    xmlns:data="http://purl.org/facsimile/cfa_data#"
+    xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+  xml:base="http://purl.org/facsimile/cfa_data">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl"/>
+    <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/3.3/swrla.owl"/>
+    <owl:imports rdf:resource="http://purl.org/facsimile/ssa_rfca"/>
+    <owl:imports rdf:resource="http://purl.org/facsimile/dbq"/>
+    <owl:imports rdf:resource="http://purl.org/facsimile/criteria"/>
+  </owl:Ontology>
+  <rdf:Property rdf:about="http://www.w3.org/2002/07/owl#topDataProperty"/>
+  <owl:FunctionalProperty rdf:about="http://purl.org/facsimile/datamodel#isResponseTo"/>
+  <owl:NamedIndividual rdf:ID="RightKneeInitialFlexion100">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >433-68-1234</cfa:hasID>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+    <cfa:hasFocus>
+      <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_flexion_initial"/>
+    </cfa:hasFocus>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_100"/>
+  </owl:NamedIndividual>
+  <owl:AllDisjointClasses/>
+  <rdf:Description rdf:about="http://purl.org/facsimile/dbq#degree_45plus">
+    <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >45plus</cfa:hasDataValue>
+  </rdf:Description>
+  <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#MOSCriteria3Expression"/>
+  <owl:NamedIndividual rdf:ID="FormData_1">
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_3">
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_1">
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <cfa:hasValue>
+              <owl:NamedIndividual rdf:ID="ExternallyCodedValue_1">
+                <cfa:descriptionOfExternalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Lumbar Strain</cfa:descriptionOfExternalCode>
+                <cfa:hasExternalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >847.2</cfa:hasExternalCode>
+                <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
+                <cfa:terminology rdf:resource="http://purl.org/facsimile/cfa#ICD9"/>
+              </owl:NamedIndividual>
+            </cfa:hasValue>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine"/>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B"/>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_20">
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_22">
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial"/>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_4">
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q2"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_2">
+            <cfa:hasValue>
+              <owl:NamedIndividual rdf:ID="ThoracolumbarSpineMedicalHistory">
+                <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Veteran describes wear and tear-type injuries to lower back from frequent hikes/runs, carrying equipment, heavy gear, etc. Pain persists. Was referred for physical therapy. X-rays normal. No back surgery.</cfa:hasDataValue>
+                <rdf:type rdf:resource="http://purl.org/facsimile/cfa#StringValue"/>
+              </owl:NamedIndividual>
+            </cfa:hasValue>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_15">
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_16">
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasValue>
+              <rdf:Description rdf:about="http://purl.org/facsimile/dbq#degree_30plus">
+                <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >30plus</cfa:hasDataValue>
+              </rdf:Description>
+            </cfa:hasValue>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_initial"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_6">
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_7">
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#True"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q3_1"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_17">
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_18">
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_30plus"/>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_painful_initial"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2"/>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_11">
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_12">
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_80"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_flexion_initial"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <datamodel:hasForm rdf:resource="http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ"/>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#FormData"/>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_8">
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_9">
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
+            <cfa:hasValue>
+              <owl:NamedIndividual rdf:ID="StringValue_10">
+                <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                ></cfa:hasDataValue>
+                <rdf:type rdf:resource="http://purl.org/facsimile/cfa#StringValue"/>
+              </owl:NamedIndividual>
+            </cfa:hasValue>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_19">
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_21">
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-000</cfa:hasID>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_30"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_2">
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1A"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:about="#000-00-0000Q1AThoracolumbarConditionYes">
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-000</cfa:hasID>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+    <cfa:hasMember>
+      <owl:NamedIndividual rdf:ID="AnnotatedData_13">
+        <datamodel:hasAnswer>
+          <owl:NamedIndividual rdf:ID="Observation_14">
+            <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_80"/>
+            <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >000-00-0000</cfa:hasID>
+            <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_painful_initial"/>
+            <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+          </owl:NamedIndividual>
+        </datamodel:hasAnswer>
+        <datamodel:isResponseTo rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+      </owl:NamedIndividual>
+    </cfa:hasMember>
+  </owl:NamedIndividual>
+  <owl:AllDisjointClasses/>
+  <owl:NamedIndividual rdf:ID="Lifts100lbAnytime">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >566-22-1122</cfa:hasID>
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#lift_constantly"/>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/mos#lb_100"/>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+  </owl:NamedIndividual>
+  <rdf:Description rdf:about="http://purl.org/facsimile/dbq#degree_140plus">
+    <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >140plus</cfa:hasDataValue>
+  </rdf:Description>
+  <owl:NamedIndividual rdf:ID="CaseTEST">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TEST</cfa:hasID>
+    <rdf:type rdf:resource="http://purl.org/facsimile/criteria#Case"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="Case566-22-1122">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >566-22-1122</cfa:hasID>
+    <rdf:type rdf:resource="http://purl.org/facsimile/criteria#Case"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="RightKneeInitialFlexion40">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >433-68-1234</cfa:hasID>
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#right_knee_flexion_initial"/>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#degree_40"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="TEST2">
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#lift_lower"/>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/mos#lb_75"/>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/mos#inches_16"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="SamplePatient">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >000-00-0000</cfa:hasID>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#PatientInformation"/>
+    <cfa:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sample Patient</cfa:hasName>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="ThoracolumbarConditionYes">
+    <rdfs:label xml:lang="en">Q1AYes</rdfs:label>
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >433-68-1234</cfa:hasID>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+  </owl:NamedIndividual>
+  <rdf:Description rdf:about="http://purl.org/facsimile/dbq#degree_90plus">
+    <cfa:hasDataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >90plus</cfa:hasDataValue>
+  </rdf:Description>
+  <owl:NamedIndividual rdf:ID="Case433-68-1234">
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >433-68-1234</cfa:hasID>
+    <rdf:type rdf:resource="http://purl.org/facsimile/criteria#Case"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:ID="TEST">
+    <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#lower"/>
+    <cfa:hasFocus rdf:resource="http://purl.org/facsimile/cfa#lift"/>
+    <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >TEST</cfa:hasID>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/mos#lb_75"/>
+    <cfa:hasValue rdf:resource="http://purl.org/facsimile/mos#inches_6"/>
+  </owl:NamedIndividual>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.5, Build 663)  http://protege.stanford.edu -->
