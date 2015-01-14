@@ -30,6 +30,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
 import org.semanticweb.owlapi.model.parameters.OntologyCopy;
+import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
@@ -152,7 +153,7 @@ public class FormInputHandler extends HttpServlet {
 				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
 				
-				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-ans-") + uuid));				
+				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-obs-") + uuid));				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
 					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));	// { answer : Observation }
 					if(!qFocus.equals(""))
@@ -161,18 +162,16 @@ public class FormInputHandler extends HttpServlet {
 				}
 				else { 
 					if(type.equals(SectionType.PATIENT_SECTION)) {
-						answerInd = df.getOWLNamedIndividual(IRI.create("patient-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd));	// { answer : PatientInformation }
 						initInfo = answerInd;
 					}
 					else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
-						answerInd = df.getOWLNamedIndividual(IRI.create("physician-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));	// { answer : PhysicianInformation }
 						
 						OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create("certification-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));	// { physicianCert : PhysicianCertification }
 						addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), physicianCertInd, answerInd));	// { physicianCert hasComponent answer }
-						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, date));	// { physicianCert hasDate date }
+						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, df.getOWLLiteral(date, OWL2Datatype.XSD_DATE_TIME)));	// { physicianCert hasDate date }
 						
 						finalInfo = answerInd;
 					}
@@ -317,11 +316,12 @@ public class FormInputHandler extends HttpServlet {
 	
 	
 	/**
-	 * Get current date and time in the format "yyyy/MM/dd-HH:mm:ss"
+	 * Get current date and time in the format specified for xsd:dateTime: "yyyy-MM-ddTHH:mm:ssXXX", where "T" denotes the start of the time, 
+	 * and 3 "X" gives the timezone in ISO 8601 3-letter format (e.g., +08:00)
 	 * @return String containing current date and time
 	 */
 	private String getDate() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 		String dateString = dateFormat.format(new Date());
 		return dateString;
 	}
