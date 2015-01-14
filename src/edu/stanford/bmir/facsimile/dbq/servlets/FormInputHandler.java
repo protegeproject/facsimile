@@ -105,14 +105,12 @@ public class FormInputHandler extends HttpServlet {
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
 				
+				OWLOntology ont2 = OWLManager.createOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
 				String ont_import = conf.getInputOntologyPath();
-				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
-				ont.getOWLOntologyManager().applyChange(imp);
-				request.getSession().setAttribute(uuid + "-owl-incl-imports", ont);
+				AddImport imp = new AddImport(ont2, ont2.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
+				ont2.getOWLOntologyManager().applyChange(imp);
+				request.getSession().setAttribute(uuid + "-owl-incl-imports", ont2);
 				outputOptions.add("owl-incl-imports");
-				
-				OWLOntology ont2 = ont.getOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
-				// TODO: OWL output with imports
 			}
 
 			printOutputPage(pw);
@@ -140,7 +138,7 @@ public class FormInputHandler extends HttpServlet {
 		OWLNamedIndividual initInfo = null, finalInfo = null; 
 		OWLNamedIndividual formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
 		addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
-		// TODO add: formDataInd hasForm formInd
+		addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasFormPropertyBinding()), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI()))); // { formDataInd hasForm form }
 		
 		while(paramNames.hasMoreElements()) {
 			String qIri = (String)paramNames.nextElement(); 	// element iri: Question individual IRI, or InformationElement property IRI

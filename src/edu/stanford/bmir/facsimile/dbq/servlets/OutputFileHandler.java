@@ -36,7 +36,11 @@ public class OutputFileHandler extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+		try {
+			processRequest(request, response);
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -44,7 +48,11 @@ public class OutputFileHandler extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+		try {
+			processRequest(request, response);
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -53,8 +61,9 @@ public class OutputFileHandler extends HttpServlet {
 	 * @param request	Html request
 	 * @param response	Html response
 	 * @throws IOException	IO exception
+	 * @throws OWLOntologyStorageException 
 	 */
-	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, OWLOntologyStorageException {
 		String uuid = (String) request.getSession().getAttribute("uuid");
 		String date = (String) request.getSession().getAttribute("date");
 		PrintWriter pw = response.getWriter();
@@ -78,11 +87,18 @@ public class OutputFileHandler extends HttpServlet {
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
-			try { ont.saveOntology(target); } 
-			catch (OWLOntologyStorageException e) { e.printStackTrace(); }
+			ont.saveOntology(target); 
 			target.getWriter().flush();
 			file = target.getWriter().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".owl\"");
+			break;
+		case "OWL-INCL-IMPORTS":
+			StringDocumentTarget target2 = new StringDocumentTarget();
+			OWLOntology ont2 = (OWLOntology) request.getSession().getAttribute(uuid + "-owl-incl-imports");
+			ont2.saveOntology(target2);
+			target2.getWriter().flush();
+			file = target2.getWriter().toString();
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + "-incl-imports.owl\"");
 			break;
 		}
 		pw.write(file);

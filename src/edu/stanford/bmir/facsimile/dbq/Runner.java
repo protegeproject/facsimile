@@ -72,7 +72,7 @@ public class Runner {
 		System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
 		if(verbose) System.out.println();
 		conf = new Configuration(config, verbose);
-		conf.loadConfiguration();
+		conf.parseConfigurationFile();
 		System.out.println("done");
 
 		ont = loadOntology(conf);

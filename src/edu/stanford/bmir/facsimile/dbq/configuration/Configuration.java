@@ -32,7 +32,7 @@ import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
  */
 public class Configuration {
 	private Document doc;
-	private String ontPath, outPath, title, cssStyle;
+	private String ontPath, outPath, title, cssStyle, formIri;
 	private Map<IRI,String> imports;
 	private Map<IRI,IRI> subquestionPosTriggers, subquestionNegTriggers;
 	private Map<IRI,ElementType> elementTypes;
@@ -74,8 +74,9 @@ public class Configuration {
 	/**
 	 * Load configuration file and initialize data structures
 	 */
-	public void loadConfiguration() {
+	public void parseConfigurationFile() {
 		doc = loadConfigurationFile(file);
+		formIri = getFormIRI();
 		sections = getSections();
 		gatherOntologyFiles();
 		gatherOutputInformation();
@@ -141,6 +142,28 @@ public class Configuration {
 			else if(n.getParentNode().getNodeName().equalsIgnoreCase("input"))
 				ontPath = n.getTextContent();
 		}
+	}
+	
+	
+	/**
+	 * Get the IRI of the individual representing the form
+	 * @return String representation of the form individual IRI
+	 */
+	private String getFormIRI() {
+		String formIri = "";
+		NodeList nl = doc.getElementsByTagName("form");
+		loop:
+			for(int i = 0; i < nl.getLength(); i++) {
+				NodeList nodeList = nl.item(i).getChildNodes();
+				for(int j = 0; j < nodeList.getLength(); j++) {
+					if(nodeList.item(j).getNodeName().equalsIgnoreCase("iri")) {
+						formIri = nodeList.item(j).getTextContent();
+						if(verbose) System.out.println(" Form IRI: " + formIri);
+						break loop;
+					}
+				}
+			}
+		return formIri;
 	}
 	
 	
@@ -637,6 +660,15 @@ public class Configuration {
 	
 	
 	/**
+	 * Get the OWL object property IRI for 'hasForm'
+	 * @return OWL object property IRI
+	 */
+	public IRI getHasFormPropertyBinding() {
+		return IRI.create(doc.getElementById("has_form").getTextContent());
+	}
+	
+	
+	/**
 	 * Get the OWL object property IRI for 'hasMember'
 	 * @return OWL object property IRI
 	 */
@@ -681,6 +713,15 @@ public class Configuration {
 	 */
 	public IRI getBooleanFalseValueBinding() {
 		return IRI.create(doc.getElementById("bool_false").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL individual IRI which represents the form
+	 * @return OWL individual IRI
+	 */
+	public IRI getFormIndividualIRI() {
+		return IRI.create(formIri);
 	}
 	
 	

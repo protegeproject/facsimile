@@ -26,6 +26,7 @@
 		<propertyBindings>
 			<!-- global property bindings -->
 			<binding id="has_component">http://purl.org/facsimile/cfa#hasComponent</binding>
+			<binding id="has_form">http://purl.org/facsimile/datamodel#hasForm</binding>
 			<!-- question property bindings -->
 			<binding id="questiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<binding id="questionfocus">http://purl.org/facsimile/cfa#hasFocus</binding>
