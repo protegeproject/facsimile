@@ -584,6 +584,15 @@ public class Configuration {
 	}
 	
 	
+	/**
+	 * Get the IRI of the OWL class that represents the physician certification
+	 * @return OWL class IRI
+	 */
+	public IRI getPhysicianCertificationClassBinding() {
+		return IRI.create(doc.getElementById("physician_cert").getTextContent());
+	}
+	
+	
 	/*	PROPERTY BINDINGS	*/
 	
 	
@@ -674,6 +683,15 @@ public class Configuration {
 	 */
 	public IRI getHasComponentPropertyBinding() {
 		return IRI.create(doc.getElementById("has_component").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'hasDate'
+	 * @return OWL object property IRI
+	 */
+	public IRI getHasDatePropertyBinding() {
+		return IRI.create(doc.getElementById("has_date").getTextContent());
 	}
 	
 	

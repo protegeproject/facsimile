@@ -146,15 +146,13 @@ public class FormInputHandler extends HttpServlet {
 			String qFocus = eFocusMap.get(qIri);				// element focus
 			SectionType type = eSectionType.get(qIri);			// section type
 
-			OWLNamedIndividual dataInd = null, answerInd = null;
+			OWLNamedIndividual dataInd = null, answerInd = null; // answerInd is instance of one of (Observation | PatientInformation | PhysicianInformation)
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
-				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data-" + uuid));
+				dataInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-data-") + uuid));
 				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
 				
-				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer instance of one of (Observation | PatientInformation | PhysicianInformation)
-				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
-				
+				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-ans-") + uuid));				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
 					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));	// { answer : Observation }
 					if(!qFocus.equals(""))
@@ -163,15 +161,24 @@ public class FormInputHandler extends HttpServlet {
 				}
 				else { 
 					if(type.equals(SectionType.PATIENT_SECTION)) {
+						answerInd = df.getOWLNamedIndividual(IRI.create("patient-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd));	// { answer : PatientInformation }
 						initInfo = answerInd;
 					}
 					else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
+						answerInd = df.getOWLNamedIndividual(IRI.create("physician-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));	// { answer : PhysicianInformation }
+						
+						OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create("certification-" + uuid));
+						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));	// { physicianCert : PhysicianCertification }
+						addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), physicianCertInd, answerInd));	// { physicianCert hasComponent answer }
+						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, date));	// { physicianCert hasDate date }
+						
 						finalInfo = answerInd;
 					}
 					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus))));	// { data isResponseTo P*InformationDataElement }
 				}
+				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
 			}
 
 			// handle multiple answers to single question
@@ -212,6 +219,25 @@ public class FormInputHandler extends HttpServlet {
 			}
 		}
 		return ont;
+	}
+	
+	
+	/**
+	 * Get an instance name based on the type of section
+	 * @param type	Section type
+	 * @param qIri	Question IRI
+	 * @param mid	Middle identifier
+	 * @return String with the instance name
+	 */
+	private String getName(SectionType type, String qIri, String mid) {
+		String output = qIri;
+		if(type.equals(SectionType.QUESTION_SECTION))
+			output = qIri + mid;
+		else if(type.equals(SectionType.PATIENT_SECTION))
+			output = "patient" + mid;
+		else if(type.equals(SectionType.PHYSICIAN_SECTION))
+			output = "physician" + mid;
+		return output;
 	}
 	
 	

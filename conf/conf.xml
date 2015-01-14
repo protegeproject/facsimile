@@ -22,11 +22,13 @@
 			<binding id="question_section">http://purl.org/facsimile/datamodel#Observation</binding>
 			<binding id="patient_section">http://purl.org/facsimile/datamodel#PatientInformation</binding>
 			<binding id="physician_section">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
+			<binding id="physician_cert">http://purl.org/facsimile/datamodel#PhysicianCertification</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- global property bindings -->
 			<binding id="has_component">http://purl.org/facsimile/cfa#hasComponent</binding>
 			<binding id="has_form">http://purl.org/facsimile/datamodel#hasForm</binding>
+			<binding id="has_date">http://purl.org/facsimile/datamodel#dateSigned</binding>
 			<!-- question property bindings -->
 			<binding id="questiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<binding id="questionfocus">http://purl.org/facsimile/cfa#hasFocus</binding>
