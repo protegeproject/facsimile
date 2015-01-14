@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AddAxiom;
+import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
@@ -28,6 +29,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
+import org.semanticweb.owlapi.model.parameters.OntologyCopy;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
@@ -102,12 +104,21 @@ public class FormInputHandler extends HttpServlet {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
+				
+				String ont_import = conf.getInputOntologyPath();
+				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
+				ont.getOWLOntologyManager().applyChange(imp);
+				request.getSession().setAttribute(uuid + "-owl-incl-imports", ont);
+				outputOptions.add("owl-incl-imports");
+				
+				OWLOntology ont2 = ont.getOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
+				// TODO: OWL output with imports
 			}
 
 			printOutputPage(pw);
 			pw.close();
 			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + date + "\nfinished");
-		} catch (IOException e) {
+		} catch (IOException | OWLOntologyCreationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -127,6 +138,9 @@ public class FormInputHandler extends HttpServlet {
 		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
 
 		OWLNamedIndividual initInfo = null, finalInfo = null; 
+		OWLNamedIndividual formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
+		addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
+		// TODO add: formDataInd hasForm formInd
 		
 		while(paramNames.hasMoreElements()) {
 			String qIri = (String)paramNames.nextElement(); 	// element iri: Question individual IRI, or InformationElement property IRI
@@ -137,9 +151,10 @@ public class FormInputHandler extends HttpServlet {
 			OWLNamedIndividual dataInd = null, answerInd = null;
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
 				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data-" + uuid));
-				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// instance of AnnotatedData
+				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
+				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasMemberPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasMember data }
 				
-				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer: instance of one of (Observation | PatientInformation | PhysicianInformation)
+				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer instance of one of (Observation | PatientInformation | PhysicianInformation)
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
 				
 				if(type.equals(SectionType.QUESTION_SECTION)) {

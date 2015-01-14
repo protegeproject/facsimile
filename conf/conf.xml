@@ -17,12 +17,15 @@
 		<!-- question and section classes bindings -->
 		<classBindings>
 			<binding id="data">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
-			<binding id="dataelement">http://purl.org/facsimile/cfa#DataElementValue</binding>
+			<binding id="data_element">http://purl.org/facsimile/cfa#DataElementValue</binding>
+			<binding id="form_data">http://purl.org/facsimile/datamodel#FormData</binding>
 			<binding id="question_section">http://purl.org/facsimile/datamodel#Observation</binding>
 			<binding id="patient_section">http://purl.org/facsimile/datamodel#PatientInformation</binding>
 			<binding id="physician_section">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
 		</classBindings>		
 		<propertyBindings>
+			<!-- global property bindings -->
+			<binding id="has_member">http://purl.org/facsimile/cfa#hasMember</binding>
 			<!-- question property bindings -->
 			<binding id="questiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<binding id="questionfocus">http://purl.org/facsimile/cfa#hasFocus</binding>
@@ -32,8 +35,8 @@
 			<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 			<binding id="sectiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<!-- output bindings -->
-			<binding id="isanswerto">http://purl.org/facsimile/datamodel#isResponseTo</binding>
-			<binding id="hasanswer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
+			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
+			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
 			<!-- patient info bindings -->
 			<binding id="pat_name">http://purl.org/facsimile/dbq#hasPatientName</binding>
 			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
@@ -51,6 +54,7 @@
 		</questionTypeBindings>	
 	</bindings>
 	<form>
+		<iri>http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ</iri>
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList>

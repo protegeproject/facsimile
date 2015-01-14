@@ -11,7 +11,7 @@
 <!ELEMENT propertyBindings (binding*)>
 <!ELEMENT questionTypeBindings (binding*)>
 <!ELEMENT binding (#PCDATA)>
-<!ELEMENT form (section+)>
+<!ELEMENT form (iri,section+)>
 <!ELEMENT section (iri,(questionList|infoList)+)>
 <!ELEMENT iri (#PCDATA)>
 <!ELEMENT questionList (question+)>

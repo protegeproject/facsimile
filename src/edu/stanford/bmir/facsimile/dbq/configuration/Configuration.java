@@ -513,6 +513,24 @@ public class Configuration {
 	 */
 	public IRI getOutputClass() {
 		return IRI.create(doc.getElementById("data").getTextContent());
+	}	
+	
+	
+	/**
+	 * Get the IRI of the OWL class for data element values 
+	 * @return OWL class IRI
+	 */
+	public IRI getDataElementValueClassBinding() {
+		return IRI.create(doc.getElementById("data_element").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the IRI of the OWL class for form data
+	 * @return OWL class IRI
+	 */
+	public IRI getFormDataClassBinding() {
+		return IRI.create(doc.getElementById("form_data").getTextContent());
 	}
 	
 	
@@ -540,15 +558,6 @@ public class Configuration {
 	 */
 	public IRI getFinalSectionClassBinding() {
 		return IRI.create(doc.getElementById("physician_section").getTextContent());
-	}
-	
-	
-	/**
-	 * Get the IRI of the OWL class for data element values 
-	 * @return OWL class IRI
-	 */
-	public IRI getDataElementValueClassBinding() {
-		return IRI.create(doc.getElementById("dataelement").getTextContent());
 	}
 	
 	
@@ -614,7 +623,7 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getIsAnswerToPropertyBinding() {
-		return IRI.create(doc.getElementById("isanswerto").getTextContent());
+		return IRI.create(doc.getElementById("is_answer_to").getTextContent());
 	}
 	
 	
@@ -623,7 +632,16 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getHasAnswerPropertyBinding() {
-		return IRI.create(doc.getElementById("hasanswer").getTextContent());
+		return IRI.create(doc.getElementById("has_answer").getTextContent());
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'hasMember'
+	 * @return OWL object property IRI
+	 */
+	public IRI getHasMemberPropertyBinding() {
+		return IRI.create(doc.getElementById("has_member").getTextContent());
 	}
 	
 	
