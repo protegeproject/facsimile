@@ -165,6 +165,7 @@ public class FormGenerator {
 				output += "<select name=\"" + qName + "\">\n";
 				if(e instanceof Question) {
 					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
+					output += "<option value=\"\" selected></option>\n";
 					for(int i = 0; i < list.size(); i++) {
 						String opt = list.get(i);
 						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
