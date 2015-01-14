@@ -13,6 +13,6 @@ The form generator can be used in two ways:
  
 In order to run it locally all you need to do is run the script `run-generator.sh` from the command line, or, alternatively, build `form-generator.war` using ant, and then execute:
 
-`java -jar lib/jetty-runner.jar form-generator.war`
+`java -jar jetty/jetty-runner.jar form-generator.war`
 
-The form generator should then be available at: http://localhost:8080 on any Web browser.
+The form generator should then be available at: http://localhost:8085 on any Web browser.
