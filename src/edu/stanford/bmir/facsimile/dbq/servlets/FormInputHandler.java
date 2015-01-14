@@ -152,7 +152,7 @@ public class FormInputHandler extends HttpServlet {
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
 				dataInd = df.getOWLNamedIndividual(IRI.create(qIri + "-data-" + uuid));
 				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
-				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasMemberPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasMember data }
+				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
 				
 				answerInd = df.getOWLNamedIndividual(IRI.create(qIri + "-ans-" + uuid)); // answer instance of one of (Observation | PatientInformation | PhysicianInformation)
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }

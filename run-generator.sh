@@ -10,4 +10,4 @@
 echo ""
 echo "Once the service is running, point your Web browser to http://localhost:8085 to generate and submit forms"
 echo ""
-java -jar lib/jetty-runner.jar --port 8085 form-generator.war
+java -jar jetty/jetty-runner.jar --port 8085 form-generator.war

@@ -640,8 +640,8 @@ public class Configuration {
 	 * Get the OWL object property IRI for 'hasMember'
 	 * @return OWL object property IRI
 	 */
-	public IRI getHasMemberPropertyBinding() {
-		return IRI.create(doc.getElementById("has_member").getTextContent());
+	public IRI getHasComponentPropertyBinding() {
+		return IRI.create(doc.getElementById("has_component").getTextContent());
 	}
 	
 	

@@ -25,7 +25,7 @@
 		</classBindings>		
 		<propertyBindings>
 			<!-- global property bindings -->
-			<binding id="has_member">http://purl.org/facsimile/cfa#hasMember</binding>
+			<binding id="has_component">http://purl.org/facsimile/cfa#hasComponent</binding>
 			<!-- question property bindings -->
 			<binding id="questiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<binding id="questionfocus">http://purl.org/facsimile/cfa#hasFocus</binding>
