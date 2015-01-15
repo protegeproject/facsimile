@@ -29,7 +29,6 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
-import org.semanticweb.owlapi.model.parameters.OntologyCopy;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
@@ -103,21 +102,17 @@ public class FormInputHandler extends HttpServlet {
 			// OWL & RDF file
 			if(request.getSession().getAttribute(uuid + "-owl") == null) {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
+				String ont_import = conf.getInputOntologyPath();
+				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
+				ont.getOWLOntologyManager().applyChange(imp);
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
-				
-				OWLOntology ont2 = OWLManager.createOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
-				String ont_import = conf.getInputOntologyPath();
-				AddImport imp = new AddImport(ont2, ont2.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
-				ont2.getOWLOntologyManager().applyChange(imp);
-				request.getSession().setAttribute(uuid + "-owl-incl-imports", ont2);
-				outputOptions.add("owl-incl-imports");
 			}
-
+			
 			printOutputPage(pw);
 			pw.close();
 			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + date + "\nfinished");
-		} catch (IOException | OWLOntologyCreationException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -133,7 +128,7 @@ public class FormInputHandler extends HttpServlet {
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();
 		OWLOntology ont = null;
-		try { ont = man.createOntology(); } 
+		try { ont = man.createOntology(IRI.create(conf.getOutputFileTitle() + "-" + date + "-" + uuid)); } 
 		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
 
 		OWLNamedIndividual initInfo = null, finalInfo = null; 

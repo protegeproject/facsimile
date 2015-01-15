@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 
@@ -64,34 +65,51 @@ public class FormGeneratorRunner extends HttpServlet {
 		try {
 			PrintWriter pw = response.getWriter();
 			File config = null;
-			FileItemFactory factory = new DiskFileItemFactory(); 		// Create a factory for disk-based file items
-			ServletFileUpload upload = new ServletFileUpload(factory);	// Create a new file upload handler
-			List<FileItem> items = upload.parseRequest(request); 		// Parse the request
-			if(items != null) {
-				// Process uploaded items
-				Iterator<FileItem> iter = items.iterator();
-				while (iter.hasNext()) {
-					FileItem item = (FileItem) iter.next();
-					String name = item.getFieldName();
-					if(name.equals("conf")) {
-						InputStream input = item.getInputStream();
-						if(input != null && input.available() != 0) {
-							config = File.createTempFile("stream2file", ".xml");
-							config.deleteOnExit();
-							FileOutputStream out = new FileOutputStream(config);
-							IOUtils.copy(input, out);
+			if(request.getContentType() != null) {
+				FileItemFactory factory = new DiskFileItemFactory(); 		// Create a factory for disk-based file items
+				ServletFileUpload upload = new ServletFileUpload(factory);	// Create a new file upload handler
+				List<FileItem> items = upload.parseRequest(request); 		// Parse the request
+				if(items != null) {
+					// Process uploaded items
+					Iterator<FileItem> iter = items.iterator();
+					while (iter.hasNext()) {
+						FileItem item = (FileItem) iter.next();
+						String name = item.getFieldName();
+						if(name.equals("conf")) {
+							InputStream input = item.getInputStream();
+							if(input != null && input.available() != 0) {
+								config = File.createTempFile("stream2file", ".xml");
+								config.deleteOnExit();
+								FileOutputStream out = new FileOutputStream(config);
+								IOUtils.copy(input, out);
+							}
 						}
 					}
 				}
 			}
+			else {
+				String path = request.getParameter("conf");
+				if(!path.contains(":")) path = "file:conf/" + path;
+				System.out.println("Path: " + path);
+				URL url = new URL(path);				
+				InputStream input = url.openStream();
+				config = File.createTempFile("stream2file", ".xml");
+				config.deleteOnExit();
+				FileOutputStream out = new FileOutputStream(config);
+				IOUtils.copy(input, out);
+			}
+			
 			Runner run = new Runner(config, false);
 			String output = run.run();
+			
 			request.getSession().setAttribute("configuration", run.getConfiguration());
 			request.getSession().setAttribute("sectionList", run.getSections());
 			request.getSession().setAttribute("questionOptions", run.getQuestionOptions());
 			request.getSession().setAttribute("ontology", run.getOntology());
+			
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
+			
 			pw.append(output);
 			pw.close();
 		} catch (IOException | FileUploadException e) {

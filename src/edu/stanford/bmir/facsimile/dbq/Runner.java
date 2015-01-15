@@ -69,26 +69,30 @@ public class Runner {
 	 * @throws IOException	IO exception
 	 */
 	public String run() throws IOException {
-		System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
-		if(verbose) System.out.println();
-		conf = new Configuration(config, verbose);
-		conf.parseConfigurationFile();
-		System.out.println("done");
+		if(config != null) {
+			System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
+			if(verbose) System.out.println();
+			conf = new Configuration(config, verbose);
+			conf.parseConfigurationFile();
+			System.out.println("done");
 
-		ont = loadOntology(conf);
-		String outputPath = conf.getOutputFilePath();
-		if(outputPath != null)
-			System.out.println("Output file: " + outputPath);
-		
-		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		sections = gen.getAllSections();
-		questionOptions = gen.getQuestionOptions();
-		
-		FormGenerator formGen = new FormGenerator(sections, conf);
-		String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
-		
-		System.out.println("finished");
-		return output;
+			ont = loadOntology(conf);
+			String outputPath = conf.getOutputFilePath();
+			if(outputPath != null)
+				System.out.println("Output file: " + outputPath);
+
+			QuestionParser gen = new QuestionParser(ont, conf, verbose);
+			sections = gen.getAllSections();
+			questionOptions = gen.getQuestionOptions();
+
+			FormGenerator formGen = new FormGenerator(sections, conf);
+			String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+
+			System.out.println("finished");
+			return output;
+		}
+		else
+			throw new RuntimeException("No configuration file was given. Please select a pre-generated form or upload a configuration file to continue.");
 	}
 	
 	

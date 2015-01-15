@@ -92,14 +92,6 @@ public class OutputFileHandler extends HttpServlet {
 			file = target.getWriter().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".owl\"");
 			break;
-		case "OWL-INCL-IMPORTS":
-			StringDocumentTarget target2 = new StringDocumentTarget();
-			OWLOntology ont2 = (OWLOntology) request.getSession().getAttribute(uuid + "-owl-incl-imports");
-			ont2.saveOntology(target2);
-			target2.getWriter().flush();
-			file = target2.getWriter().toString();
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + "-incl-imports.owl\"");
-			break;
 		}
 		pw.write(file);
 		pw.close();
