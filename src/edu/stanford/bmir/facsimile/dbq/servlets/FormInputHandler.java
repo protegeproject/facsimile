@@ -1,5 +1,7 @@
 package edu.stanford.bmir.facsimile.dbq.servlets;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -18,7 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.FileDocumentTarget;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
@@ -28,7 +32,9 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.parameters.Imports;
+import org.semanticweb.owlapi.rdf.model.RDFTranslator;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
@@ -46,7 +52,7 @@ public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> outputOptions;
 	private List<Section> sections;
-	private final String uuid, date;
+	private final String uuid, date, dateShort;
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
@@ -61,6 +67,7 @@ public class FormInputHandler extends HttpServlet {
     	outputOptions = new ArrayList<String>();
     	uuid = getID();
     	date = getDate();
+    	dateShort = getDateShort();
     }
 
     
@@ -93,11 +100,17 @@ public class FormInputHandler extends HttpServlet {
 			System.out.print("\nParsing form input... ");
 			createElementMaps(request);
 			
+			File outDir = new File("output"); outDir.mkdirs();
+			String outName = "output/" + dateShort + "-form-" + uuid;
+			
 			// CSV file
 			if(request.getSession().getAttribute(uuid + "-csv") == null) {
 				String csv = getCSVFile(request.getParameterNames(), request);
 				request.getSession().setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
+
+				// Serialize CSV
+				FileUtils.writeStringToFile(new File(outName + ".csv"), csv);
 			}
 			// OWL & RDF file
 			if(request.getSession().getAttribute(uuid + "-owl") == null) {
@@ -107,12 +120,22 @@ public class FormInputHandler extends HttpServlet {
 				ont.getOWLOntologyManager().applyChange(imp);
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
+				
+				// RDF triple dump
+				RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
+				for(OWLAxiom ax : ont.getAxioms())
+	                ax.accept(trans);
+				request.getSession().setAttribute(uuid + "-rdf", trans.getGraph());
+				
+				// Serialize files
+				trans.getGraph().dumpTriples(new FileWriter(new File(outName + ".xml")));
+				ont.getOWLOntologyManager().saveOntology(ont, new FileDocumentTarget(new File(outName + ".owl")));
 			}
 			
 			printOutputPage(pw);
 			pw.close();
 			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + date + "\nfinished");
-		} catch (IOException e) {
+		} catch (IOException | OWLOntologyStorageException e) {
 			e.printStackTrace();
 		}
 	}
@@ -320,7 +343,18 @@ public class FormInputHandler extends HttpServlet {
 		String dateString = dateFormat.format(new Date());
 		return dateString;
 	}
+
 	
+	/**
+	 * Get current date: short format
+	 * @return String containing current date
+	 */
+	private String getDateShort() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = dateFormat.format(new Date());
+		return dateString;
+	}
+
 	
 	/**
 	 * Print a final page acknowledging receipt of input data 
@@ -375,9 +409,6 @@ public class FormInputHandler extends HttpServlet {
 		if(formName.contains(" "))
 			formName = formName.replaceAll(" ", "_");
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String dateString = dateFormat.format(new Date());
-		
-		return IRI.create("http://purl.org/facsimile/" + formName + "/" + dateString + "/" + uuid);
+		return IRI.create("http://purl.org/facsimile/" + formName + "/" + dateShort + "/" + uuid);
 	}
 }

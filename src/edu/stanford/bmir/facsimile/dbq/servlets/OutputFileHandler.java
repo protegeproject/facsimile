@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.semanticweb.owlapi.io.StringDocumentTarget;
-import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
-import org.semanticweb.owlapi.rdf.model.RDFTranslator;
+import org.semanticweb.owlapi.rdf.model.RDFGraph;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -69,7 +68,6 @@ public class OutputFileHandler extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		response.setContentType("application/octet-stream");
 		String filetype = request.getParameter("filetype");
-		OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
 		String file = null;
 		switch(filetype) {
 		case "CSV":
@@ -77,16 +75,15 @@ public class OutputFileHandler extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".csv\"");
 			break;
 		case "RDF":
-			RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
-			for(OWLAxiom ax : ont.getAxioms())
-                ax.accept(trans);
 			StringWriter writer = new StringWriter();
-			trans.getGraph().dumpTriples(writer);
+			RDFGraph graph = (RDFGraph) request.getSession().getAttribute(uuid + "-rdf");
+			graph.dumpTriples(writer);
 			file = writer.getBuffer().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".xml\"");
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
+			OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
 			ont.saveOntology(target); 
 			target.getWriter().flush();
 			file = target.getWriter().toString();
