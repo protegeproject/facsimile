@@ -2,15 +2,15 @@
 <!DOCTYPE configuration SYSTEM "https://raw.github.com/protegeproject/facsimile/master/conf/conf.dtd">
 <configuration>
 	<input>
-		<ontology>/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_dbq.owl</ontology>
+		<ontology>ontology/ides_dbq.owl</ontology>
 		<imports>
-			<ontology iri="http://purl.org/facsimile/datamodel">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/datamodel.owl</ontology>
-			<ontology iri="http://purl.org/facsimile/cfa">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/ides_cfa.owl</ontology>
-			<ontology iri="http://who.int/icf">/Users/rgoncalves/Dropbox/DoD_CFA/results/ontology/icf_simplified_2013.11.22.owl</ontology>		
+			<ontology iri="http://purl.org/facsimile/datamodel">ontology/datamodel.owl</ontology>
+			<ontology iri="http://purl.org/facsimile/cfa">ontology/ides_cfa.owl</ontology>
+			<ontology iri="http://who.int/icf">ontology/icf_simplified_2013.11.22.owl</ontology>		
 		</imports>
 	</input>
 	<output>
-		<file title="VA Form 21-0960M-14">/Users/rgoncalves/Documents/workspace/facsimile/conf/test.html</file>
+		<file title="VA Form 21-0960M-14">conf/test.html</file>
 		<cssstyle>bmir-style</cssstyle>
 	</output>
 	<bindings>
