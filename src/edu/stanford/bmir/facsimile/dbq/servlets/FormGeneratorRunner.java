@@ -106,7 +106,7 @@ public class FormGeneratorRunner extends HttpServlet {
 			request.getSession().setAttribute("sectionList", run.getSections());
 			request.getSession().setAttribute("questionOptions", run.getQuestionOptions());
 			request.getSession().setAttribute("ontology", run.getOntology());
-			
+			request.getSession().setAttribute("iri", run.getOntology().getOntologyID().getOntologyIRI().get());
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
 			

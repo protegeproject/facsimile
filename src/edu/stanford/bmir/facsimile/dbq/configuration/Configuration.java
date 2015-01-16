@@ -76,10 +76,13 @@ public class Configuration {
 	 */
 	public void parseConfigurationFile() {
 		doc = loadConfigurationFile(file);
-		formIri = getFormIRI();
-		sections = getSections();
-		gatherOntologyFiles();
-		gatherOutputInformation();
+		if(doc != null) {
+			formIri = getFormIRI();
+			sections = getSections();
+			gatherOntologyFiles();
+			gatherOutputInformation();
+		}
+		else throw new Error("Error parsing configuration file");
 	}
 	
 	
@@ -90,10 +93,9 @@ public class Configuration {
 	 */
 	private Document loadConfigurationFile(File f) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = null;
 		Document doc = null;
 		try {
-			db = dbf.newDocumentBuilder();
+			DocumentBuilder db = dbf.newDocumentBuilder();
 			doc = db.parse(f);
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();

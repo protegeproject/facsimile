@@ -102,8 +102,8 @@ public class FormInputHandler extends HttpServlet {
 			// OWL & RDF file
 			if(request.getSession().getAttribute(uuid + "-owl") == null) {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
-				String ont_import = conf.getInputOntologyPath();
-				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(IRI.create(ont_import)));
+				IRI ont_import = (IRI) request.getSession().getAttribute("iri");
+				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import));
 				ont.getOWLOntologyManager().applyChange(imp);
 				request.getSession().setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
@@ -128,7 +128,7 @@ public class FormInputHandler extends HttpServlet {
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();
 		OWLOntology ont = null;
-		try { ont = man.createOntology(IRI.create(conf.getOutputFileTitle() + "-" + date + "-" + uuid)); } 
+		try { ont = man.createOntology(getOntologyIRI()); } 
 		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
 
 		OWLNamedIndividual initInfo = null, finalInfo = null; 
@@ -363,5 +363,21 @@ public class FormInputHandler extends HttpServlet {
 		}
 		conf = (Configuration)request.getSession().getAttribute("configuration");
 		inputOnt = (OWLOntology)request.getSession().getAttribute("ontology");
+	}
+	
+	
+	/**
+	 * Generate an IRI for the output ontology
+	 * @return IRI of output ontology
+	 */
+	private IRI getOntologyIRI() {
+		String formName = conf.getOutputFileTitle();
+		if(formName.contains(" "))
+			formName = formName.replaceAll(" ", "_");
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = dateFormat.format(new Date());
+		
+		return IRI.create("http://purl.org/facsimile/" + formName + "/" + dateString + "/" + uuid);
 	}
 }
