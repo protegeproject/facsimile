@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE configuration SYSTEM "conf.dtd">
+<!DOCTYPE configuration SYSTEM "https://raw.githubusercontent.com/protegeproject/facsimile/master/conf/conf.dtd">
 <configuration>
 	<input>
 		<ontology>ontology/ides_dbq.owl</ontology>
