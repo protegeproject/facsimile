@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE configuration SYSTEM "https://raw.github.com/protegeproject/facsimile/master/conf/conf.dtd">
+<!DOCTYPE configuration SYSTEM "conf.dtd">
 <configuration>
 	<input>
 		<ontology>ontology/ides_dbq.owl</ontology>
@@ -10,7 +10,7 @@
 		</imports>
 	</input>
 	<output>
-		<file title="VA Form 21-0960M-14">conf/test.html</file>
+		<file title="VA Form 21-0960M-14"/>
 		<cssstyle>bmir-style</cssstyle>
 	</output>
 	<bindings>

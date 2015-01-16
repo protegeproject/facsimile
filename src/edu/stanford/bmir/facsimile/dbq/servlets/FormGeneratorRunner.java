@@ -89,14 +89,19 @@ public class FormGeneratorRunner extends HttpServlet {
 			}
 			else {
 				String path = request.getParameter("conf");
-				if(!path.contains(":")) path = "file:conf/" + path;
-				System.out.println("Path: " + path);
-				URL url = new URL(path);				
-				InputStream input = url.openStream();
-				config = File.createTempFile("stream2file", ".xml");
-				config.deleteOnExit();
-				FileOutputStream out = new FileOutputStream(config);
-				IOUtils.copy(input, out);
+				if(!path.contains(":")) { 
+					path = "conf/" + path;
+					config = new File(path);
+				}
+				else {
+					URL url = new URL(path);				
+					InputStream input = url.openStream();
+					config = File.createTempFile("stream2file", ".xml");
+					config.deleteOnExit();
+					FileOutputStream out = new FileOutputStream(config);
+					IOUtils.copy(input, out);
+				}
+//				System.out.println("Path: " + path);
 			}
 			
 			Runner run = new Runner(config, false);
