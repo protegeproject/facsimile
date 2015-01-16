@@ -20,8 +20,9 @@ public class InformationElement extends FormElement implements Serializable {
 	 * @param text	Element text
 	 * @param focus	Element focus
 	 * @param type	Type of element
+	 * @param required	Whether the form element is requires input
 	 */
-	public InformationElement(OWLEntity entity, String eleNr, int sectionNr, String text, String focus, ElementType type) {
-		super(entity, eleNr, sectionNr, text, focus, type);
+	public InformationElement(OWLEntity entity, String eleNr, int sectionNr, String text, String focus, ElementType type, boolean required) {
+		super(entity, eleNr, sectionNr, text, focus, type, required);
 	}
 }

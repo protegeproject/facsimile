@@ -22,8 +22,10 @@
 <!ATTLIST binding id ID #IMPLIED>
 <!ATTLIST info type CDATA #IMPLIED>
 <!ATTLIST info property CDATA #IMPLIED>
+<!ATTLIST info required CDATA #IMPLIED>
 <!ATTLIST question type CDATA #IMPLIED>
 <!ATTLIST question numbered CDATA #IMPLIED>
+<!ATTLIST question required CDATA #IMPLIED>
 <!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST question hideSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST section numbered CDATA #IMPLIED>

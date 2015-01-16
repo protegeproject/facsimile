@@ -19,6 +19,7 @@ public class FormElement implements Serializable {
 	private int sectionNr;
 	private ElementType type;
 	private List<IRI> children;
+	private boolean required;
 	
 	
 	/**
@@ -29,14 +30,16 @@ public class FormElement implements Serializable {
 	 * @param text	Text to be shown on this form element 
 	 * @param focus	Focus of the element
 	 * @param type	Element type
+	 * @param required	Whether the form element is requires input
 	 */
-	public FormElement(OWLEntity entity, String eleNr, int sectionNr, String text, String focus, ElementType type) {
+	public FormElement(OWLEntity entity, String eleNr, int sectionNr, String text, String focus, ElementType type, boolean required) {
 		this.entity = entity;
 		this.eleNr = eleNr;
 		this.sectionNr = sectionNr;
 		this.text = text;
 		this.focus = focus;
 		this.type = type;
+		this.required = required;
 	}
 	
 	
@@ -49,6 +52,15 @@ public class FormElement implements Serializable {
 			return false;
 		else
 			return true;
+	}
+	
+	
+	/**
+	 * Check if this form element is required
+	 * @return true if element is required, false otherwise
+	 */
+	public boolean isRequired() {
+		return required;
 	}
 	
 	

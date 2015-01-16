@@ -23,10 +23,11 @@ public class Question extends FormElement {
 	 * @param questionType	Type of question, i.e., HTML form element type
 	 * @param options	List of options, i.e., possible answers to the question
 	 * @param indentLevel	Indentation level of question
+	 * @param required	Whether the form element is requires input
 	 */
 	public Question(OWLNamedIndividual ind, String questionNumber, int sectionNumber, String questionText, String questionFocus, 
-			ElementType questionType, QuestionOptions options, int indentLevel) {
-		super(ind, questionNumber, sectionNumber, questionText, questionFocus, questionType);
+			ElementType questionType, QuestionOptions options, int indentLevel, boolean required) {
+		super(ind, questionNumber, sectionNumber, questionText, questionFocus, questionType, required);
 		this.options = options;
 		this.indentLevel = indentLevel;
 	}

@@ -61,20 +61,20 @@
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList>
-				<info type="text" property="pat_name"/>
+				<info type="text" property="pat_name" required="true"/>
 				<info type="text" property="pat_id"/>
 			</infoList>
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
 			<questionList>
-				<question>
+				<question required="true">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</iri>
 				</question>
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</iri>
 				</question>
-				<question>
+				<question required="true">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1C</iri>
 				</question>
 			</questionList>

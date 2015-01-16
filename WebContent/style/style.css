@@ -146,3 +146,7 @@
     margin-top: 10px;
     text-align: right;
 }
+
+.bmir-style sup {
+	color: red;
+}

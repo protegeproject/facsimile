@@ -9,10 +9,10 @@ import org.semanticweb.owlapi.model.IRI;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
-import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -77,7 +77,6 @@ public class FormGenerator {
 			for(int j = 0; j < elements.size(); j++) {
 				FormElement element = elements.get(j);
 				String onchange = "";
-
 				IRI trigger = null;
 				if(posTriggers.containsKey(element.getEntityIRI())) {
 					trigger = posTriggers.get(element.getEntityIRI());
@@ -92,7 +91,7 @@ public class FormGenerator {
 			}
 			if(i<sections.size()-1) output += "<br><hr><br>\n";
 		}
-		output += "<br><br>\n<div class=\"button-section\"><input type=\"submit\" value=\"Submit\" onclick=\"this.form.submit();\"/></div>\n";
+		output += "<br><br>\n<div class=\"button-section\">\n<input type=\"submit\" value=\"Submit\"/>\n</div>\n";
 		output += "</form>\n</div>\n</body>\n</html>\n";
 		System.out.println("done");
 		return output;
@@ -117,7 +116,7 @@ public class FormGenerator {
 		if(sectionNumbered && e.isElementNumbered()) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
 		qText = qText.replaceAll("\n", "<br>");
-		String labelInit = "<p>" + qNumber.toUpperCase() + qText;
+		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "");
 		
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
@@ -144,8 +143,8 @@ public class FormGenerator {
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace("trigger", qId);
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
-								+ "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>" + (i<(opts.getOptionsValues().size()-1) ? "<br>\n" : "\n");
+						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
+							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label>" + (i<(opts.getOptionsValues().size()-1) ? "<br>\n" : "\n");
 					}
 				}
 				break;
@@ -157,7 +156,7 @@ public class FormGenerator {
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace("trigger", qId);
-						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\">" + opt + "</label>\n";
+						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
 					}
 				}
 				break;
@@ -182,14 +181,14 @@ public class FormGenerator {
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace("trigger", qId);
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
-								+ "\" value=\"" + opt + "\">" + opt + "</label>\n";
+								+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
 					}
 				}
 				break;
 			case TEXTAREA:
-				output += "<textarea name=\"" + qName + "\"></textarea>\n"; break;
+				output += "<textarea name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "></textarea>\n"; break;
 			case TEXT:
-				output += "<input type=\"text\" name=\"" + qName + "\"/>\n"; break;
+				output += "<input type=\"text\" name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "/>\n"; break;
 			case NONE:
 				break;
 			default:

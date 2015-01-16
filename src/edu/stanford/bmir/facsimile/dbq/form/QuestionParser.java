@@ -62,7 +62,7 @@ public class QuestionParser {
 	private Map<OWLClassExpression,ElementType> questionTypes;
 	private Map<String,Map<String,String>> questionOptions;
 	private OWLDataProperty textDataProperty, dataValueProperty;
-	private Map<IRI,Boolean> sectioNumbering, questionNumbering;
+	private Map<IRI,Boolean> sectioNumbering, questionNumbering, questionRequired;
 	private OWLOntologyManager man;
 	private OWLOntology ont;
 	private OWLDataFactory df;
@@ -84,6 +84,7 @@ public class QuestionParser {
 		df = man.getOWLDataFactory();
 		sectioNumbering = conf.getSectionNumberingMap();
 		questionNumbering = conf.getQuestionNumberingMap();
+		questionRequired = conf.getQuestionRequiredMap();
 		questionOptions = new HashMap<String,Map<String,String>>();
 		initQuestionTypes();
 		initBindings();
@@ -191,7 +192,7 @@ public class QuestionParser {
 			TreeNode<IRI> child = iter.next();
 //			System.out.println("!        now at " + child.data.getShortForm());
 			if(!child.data.toString().equalsIgnoreCase(entIri)) // && !ignored.contains(child.data)) {
-//				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data)) { // TODO
+//				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data)) { // TODO: multi-level subquestion triggering
 //					addNode(ignored, child.children);
 //				}
 				if(!q.getChildren().contains(child.data))
@@ -225,7 +226,7 @@ public class QuestionParser {
 	private InformationElement getInformationElement(IRI eleIri, SectionType sectionType, IRI sectionIri, String eleNr, int sectionNr) {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
-		if(verbose) System.out.println("    Information element: " + eleDP.getIRI().getShortForm());
+		if(verbose) System.out.println("    Information element: " + eleIri.getShortForm());
 		OWLClass c = null;
 		if(sectionType.equals(SectionType.PATIENT_SECTION))
 			c = df.getOWLClass(conf.getInitialSectionClassBinding());
@@ -254,7 +255,7 @@ public class QuestionParser {
 			type = conf.getQuestionType(eleIri);
 		else
 			type = ElementType.TEXTAREA;
-		return new InformationElement(eleDP, eleNr, sectionNr, eleTxt, sectionIri.toString(), type);
+		return new InformationElement(eleDP, eleNr, sectionNr, eleTxt, sectionIri.toString(), type, questionRequired.get(eleIri));
 	}
 	
 	
@@ -322,7 +323,7 @@ public class QuestionParser {
 			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
 					+ "Defaulting to text area !!");
 		}
-		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts, indentLevel);
+		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts, indentLevel, questionRequired.get(ind.getIRI()));
 	}
 	
 	

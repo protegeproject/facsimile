@@ -38,7 +38,7 @@ public class Configuration {
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<TreeNode<IRI>>> sections;
-	private Map<IRI,Boolean> sectionNumbering, questionNumbering;
+	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
 	private final String delim = "|";
 	private File file;
 	private boolean verbose;
@@ -59,6 +59,7 @@ public class Configuration {
 		subquestionNegTriggers = new HashMap<IRI,IRI>();
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
+		questionRequired = new HashMap<IRI,Boolean>();
 	}
 	
 	
@@ -247,10 +248,13 @@ public class Configuration {
 		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
 		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
-			boolean numbered = true;
-			if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("numbered") != null)
-				numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
-			
+			boolean numbered = true, required = false;
+			if(nl.item(i).hasAttributes()) { 
+				if(nl.item(i).getAttributes().getNamedItem("numbered") != null)
+					numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
+				if(nl.item(i).getAttributes().getNamedItem("required") != null)
+					required = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("required").getTextContent());
+			}
 			NodeList children = nl.item(i).getChildNodes(); // (<iri> | <subquestionList>)
 			TreeNode<IRI> subquestions = questionTree;
 			for(int j = 0; j < children.getLength(); j++) {
@@ -261,7 +265,7 @@ public class Configuration {
 						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
 						else subquestions = subquestions.addChild(iri);
 					questionNumbering.put(iri, numbered);
-					
+					questionRequired.put(iri, required);
 					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer") != null)
 						subquestionPosTriggers.put(iri, IRI.create(nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer").getNodeValue()));
 					
@@ -313,6 +317,8 @@ public class Configuration {
 		NodeList nl = n.getChildNodes(); // <info>'s
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node child = nl.item(i);
+			boolean required = false;
+			IRI iri = null;
 			TreeNode<IRI> info = null;
 			if(child.hasAttributes()) {
 				NamedNodeMap nodemap = child.getAttributes();
@@ -320,13 +326,18 @@ public class Configuration {
 					Node att = nodemap.item(j);
 					if(att.getNodeName().equals("property")) {
 						String prop = att.getNodeValue();
-						IRI iri = getQuestionIRI(doc.getElementById(prop), child);
+						iri = getQuestionIRI(doc.getElementById(prop), child);
+						questionNumbering.put(iri, required);
 						info = new TreeNode<IRI>(iri);
 					}
+					else if(att.getNodeName().equals("required"))
+						required = Boolean.parseBoolean(att.getNodeValue());
 				}
 			}
-			if(info != null)
+			if(info != null) {
 				inforeqs.add(info);
+				questionRequired.put(iri, required);
+			}
 		}
 		return inforeqs;
 	}
@@ -351,7 +362,8 @@ public class Configuration {
 				checkQuestionType(iri, node.getParentNode());
 			if(eleNode != null)
 				checkQuestionType(iri, eleNode);
-			if(iri != null && verbose) System.out.println();
+			if(iri != null && verbose) 
+				System.out.println();
 		}
 		return iri;
 	}
@@ -460,6 +472,15 @@ public class Configuration {
 	 */
 	public Map<IRI,Boolean> getQuestionNumberingMap() {
 		return questionNumbering;
+	}
+	
+	
+	/**
+	 * Get the map of question IRIs to whether they are required input
+	 * @return Map of questions' IRIs to whether they are required or not
+	 */
+	public Map<IRI,Boolean> getQuestionRequiredMap() {
+		return questionRequired;
 	}
 	
 	

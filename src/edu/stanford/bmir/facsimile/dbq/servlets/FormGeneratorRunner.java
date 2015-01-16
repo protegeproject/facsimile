@@ -66,6 +66,7 @@ public class FormGeneratorRunner extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			File config = null;
 			if(request.getContentType() != null) {
+				System.out.println("Content type is not null");
 				FileItemFactory factory = new DiskFileItemFactory(); 		// Create a factory for disk-based file items
 				ServletFileUpload upload = new ServletFileUpload(factory);	// Create a new file upload handler
 				List<FileItem> items = upload.parseRequest(request); 		// Parse the request
@@ -88,20 +89,22 @@ public class FormGeneratorRunner extends HttpServlet {
 				}
 			}
 			else {
+				System.out.println("Content type is null");
 				String path = request.getParameter("conf");
+				System.out.println("Path: " + path);
+				
 				if(!path.contains(":")) { 
 					path = "conf/" + path;
 					config = new File(path);
 				}
 				else {
-					URL url = new URL(path);				
+					URL url = new URL(path);
 					InputStream input = url.openStream();
 					config = File.createTempFile("stream2file", ".xml");
 					config.deleteOnExit();
 					FileOutputStream out = new FileOutputStream(config);
 					IOUtils.copy(input, out);
 				}
-//				System.out.println("Path: " + path);
 			}
 			
 			Runner run = new Runner(config, false);
@@ -121,5 +124,5 @@ public class FormGeneratorRunner extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }
+
