@@ -469,12 +469,6 @@
         <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -493,6 +487,12 @@
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4091,7 +4091,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom rdf:resource="&cfa;BooleanValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) or any residuals of a TBI? (This is the condition the Veteran is claiming or for which an exam has been requested)</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Diagnosis&lt;/b&gt;
+
+Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) or any residuals of a TBI? (This is the condition the Veteran is claiming or for which an exam has been requested)</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4100,7 +4102,20 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.1_2">
         <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <cfa:hasText rdf:datatype="&xsd;string">If yes, select the Veteran’s condition (check all that apply):</cfa:hasText>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&dbq;OtherDiagnosedResidualsAttributableToTBI"/>
+                            <rdf:Description rdf:about="&dbq;TraumaticBrainInjury"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">If yes, select the Veteran&apos;s condition (check all that apply):</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4147,7 +4162,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Indicate medical records reviewed in preparation of this report:</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Medical record review&lt;/b&gt;
+
+Indicate medical records reviewed in preparation of this report:</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4177,7 +4194,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Describe the history (including onset and course) of the Veteran’s TBI and residuals attributable to TBI (brief summary):</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Medical history&lt;/b&gt;
+
+Describe the history (including onset and course) of the Veteran&apos;s TBI and residuals attributable to TBI (brief summary):</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4221,6 +4240,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Consciousness&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4260,6 +4280,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Memory, attention, concentration, executive functions&lt;/b&gt;</cfa:hasText>
         <cfa:hasFocus rdf:resource="&cfa;Memory_attention_concentration_executive_functions"/>
     </owl:NamedIndividual>
     
@@ -4312,7 +4333,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Severity of impairment in Judgment</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Judgment&lt;/b&gt;</cfa:hasText>
         <cfa:hasFocus rdf:resource="&cfa;judgment"/>
     </owl:NamedIndividual>
     
@@ -4364,7 +4385,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText>Social interaction</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Social interaction&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4379,7 +4400,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText>If the Veteran’s social interaction is not routinely appropriate, describe (brief summary):</cfa:hasText>
+        <cfa:hasText>If the Veteran&apos;s social interaction is not routinely appropriate, describe (brief summary):</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4415,6 +4436,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Orientation&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4465,6 +4487,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Motor activity (with intact motor and sensory system)&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4515,6 +4538,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Visual spatial orientation&lt;b/&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4564,6 +4588,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Subjective symptoms&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4616,6 +4641,9 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Neurobehavioral effects&lt;/b&gt;
+
+NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsivity, unpredictability, lack of motivation, verbal aggression, physical aggression, belligerence, apathy, lack of empathy, moodiness, lack of cooperation, inflexibility, and impaired awareness of disability. Any of these effects may range from slight to severe, although verbal and physical aggression are likely to have a more serious impact on workplace interaction and social interaction than some of the other effects.</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4666,6 +4694,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Communication&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -4695,9 +4724,9 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                 <owl:someValuesFrom rdf:resource="&cfa;BooleanValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Residuals
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Residuals&lt;/b&gt;
 
-Does the Veteran have any subjective symptoms or any mental, physical or neurological conditions or residuals attributable to a TBI (such as migraine headaches or Meniere’s disease)?</cfa:hasText>
+Does the Veteran have any subjective symptoms or any mental, physical or neurological conditions or residuals attributable to a TBI (such as migraine headaches or Meniere&apos;s disease)?</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_10"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_11"/>
@@ -4724,6 +4753,34 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_0">
         <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&dbq;skin_disorders"/>
+                            <rdf:Description rdf:about="&dbq;neurogenic_bladder"/>
+                            <rdf:Description rdf:about="&dbq;motor_dysfunction"/>
+                            <rdf:Description rdf:about="&dbq;headaches_including_migraine_headaches"/>
+                            <rdf:Description rdf:about="&dbq;speech"/>
+                            <rdf:Description rdf:about="&dbq;alteration_of_sense_of_smell_or_taste"/>
+                            <rdf:Description rdf:about="&dbq;dizziness_vertigo"/>
+                            <rdf:Description rdf:about="&dbq;hearing_loss"/>
+                            <rdf:Description rdf:about="&dbq;seizures"/>
+                            <rdf:Description rdf:about="&dbq;erectile_dysfunction"/>
+                            <rdf:Description rdf:about="&dbq;cranial_nerve_dysfunction"/>
+                            <rdf:Description rdf:about="&dbq;endocrine_dysfunction"/>
+                            <rdf:Description rdf:about="&dbq;sensory_dysfunction"/>
+                            <rdf:Description rdf:about="&dbq;visual_impairment"/>
+                            <rdf:Description rdf:about="&dbq;gait_coordination_and_balance"/>
+                            <rdf:Description rdf:about="&dbq;mental_disorder"/>
+                            <rdf:Description rdf:about="&dbq;other_disorder"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">If yes, check all that apply:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -4939,7 +4996,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
                 <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Describe:</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">If &apos;other&apos;, describe:</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5108,7 +5165,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2">
         <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <cfa:hasText rdf:datatype="&xsd;string">Other pertinent physical findings, scars, complications, conditions, signs and/or symptoms</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Other pertinent physical findings, scars, complications, conditions, signs and/or symptoms&lt;/b&gt;</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2a"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2a_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2b"/>
@@ -5127,7 +5184,9 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
                 <owl:someValuesFrom rdf:resource="&cfa;BooleanValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Does the Veteran have any scars (surgical or otherwise) related to any conditions or to the treatment of any conditions listed in the Diagnosis section above?</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Other pertinent physical findings, scars, complications, conditions, signs and/or symptoms&lt;/b&gt;
+
+Does the Veteran have any scars (surgical or otherwise) related to any conditions or to the treatment of any conditions listed in the Diagnosis section above?</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5202,7 +5261,11 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
                 <owl:someValuesFrom rdf:resource="&cfa;BooleanValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Has neuropsychological testing been performed?</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Diagnostic testing&lt;/b&gt;
+
+NOTE:  If diagnostic test results are in the medical record and reflect the Veteran&apos;s current TBI residuals, repeat testing is not required. No specific imaging studies or are indicated for evaluation of TBI.
+
+Has neuropsychological testing been performed?</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5273,7 +5336,9 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
                 <owl:someValuesFrom rdf:resource="&cfa;BooleanValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Do any of the Veteran’s residual conditions attributable to a traumatic brain injury impact his or her ability to work?</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Functional impact&lt;/b&gt;
+
+Do any of the Veteran&apos;s residual conditions attributable to a traumatic brain injury impact his or her ability to work?</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5288,7 +5353,7 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
                 <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">If yes, describe impact of each of the Veteran’s residual conditions attributable to a traumatic brain injury, providing one or more examples:</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">If yes, describe impact of each of the Veteran&apos;s residual conditions attributable to a traumatic brain injury, providing one or more examples:</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5303,7 +5368,7 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
                 <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
             </owl:Restriction>
         </rdf:type>
-        <cfa:hasText rdf:datatype="&xsd;string">Remarks, if any:</cfa:hasText>
+        <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Remarks, if any:&lt;/b&gt;</cfa:hasText>
     </owl:NamedIndividual>
     
 
@@ -5465,6 +5530,14 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
     
 
 
+    <!-- http://purl.org/facsimile/dbq#OtherDiagnosedResidualsAttributableToTBI -->
+
+    <owl:NamedIndividual rdf:about="&dbq;OtherDiagnosedResidualsAttributableToTBI">
+        <rdfs:label rdf:datatype="&xsd;string">Other diagnosed residuals attributable to TBI</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/dbq#PatientInformationDataElement -->
 
     <owl:NamedIndividual rdf:about="&dbq;PatientInformationDataElement">
@@ -5511,6 +5584,15 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
 
     <owl:NamedIndividual rdf:about="&dbq;SocialInteractionOccasionallyInappropriate">
         <rdf:type rdf:resource="&cfa;OneIn4ValueSeverityScaleValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/dbq#TraumaticBrainInjury -->
+
+    <owl:NamedIndividual rdf:about="&dbq;TraumaticBrainInjury">
+        <rdf:type rdf:resource="&cfa;Finding"/>
+        <rdfs:label rdf:datatype="&xsd;string">Traumatic brain injury (TBI)</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5890,12 +5972,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&dbq;DBQSection"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -5914,6 +5990,12 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
@@ -6224,10 +6306,9 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <owl:NamedIndividual rdf:about="&dbq;dbq_9-15-11_section_2">
         <rdf:type rdf:resource="&dbq;DBQSection"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Assessment of facets of TBI-related cognitive impairment and subjective symptoms of TBI</cfa:hasHeading>
-        <cfa:hasText rdf:datatype="&xsd;string">NOTE: For each of the following 10 facets of TBI-related cognitive impairment and subjective symptoms (facets 1-10 below), select the ONE answer that best represents the Veteran’s current functional status. 
+        <cfa:hasText rdf:datatype="&xsd;string">NOTE: For each of the following 10 facets of TBI-related cognitive impairment and subjective symptoms (facets 1-10 below), select the ONE answer that best represents the Veteran&apos;s current functional status. 
 
-Neuropsychological testing may need to be performed in order to be able to accurately complete this section. If neuropsychological testing has been performed and accurately reflects the Veteran’s current functional status, repeat testing is not required.
-</cfa:hasText>
+Neuropsychological testing may need to be performed in order to be able to accurately complete this section. If neuropsychological testing has been performed and accurately reflects the Veteran&apos;s current functional status, repeat testing is not required.</cfa:hasText>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION II</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.10"/>

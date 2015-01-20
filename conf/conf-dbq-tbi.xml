@@ -68,37 +68,228 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_9-15-11_section_1</iri>
 			<questionList>
-				<question required="true">
+				<question required="true" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_1</iri>
 					<subquestionList>
-						<question>
+						<question type="checkbox" numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_2</iri>
 						</question>
-						<question>
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_3</iri>
-						 </question>
 					</subquestionList>
+				</question>
+				<question numbered="false">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_3</iri>
+				</question>
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#other">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.2_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.2_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.3</iri>
 				</question>
 			</questionList>
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_9-15-11_section_2</iri>
 			<questionList>
-				<question numbered="false">
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q2</iri>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.1_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.1_2</iri>
+						</question>
+					</subquestionList>	
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.2_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.2_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.3_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.3_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.4_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.4_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.5_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.5_2</iri>
+						</question>
+					</subquestionList>	
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.6_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.6_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.7_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.7_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.8_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.8_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.9_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.9_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#altered_consciousness">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.10_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.10_2</iri>
+						</question>
+					</subquestionList>
 				</question>
 			</questionList>
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_9-15-11_section_3</iri>
 			<questionList>
-				<question numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_1</iri>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1</iri>
 					<subquestionList>
-						<question numbered="false">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q3_2</iri>
+					<!--
+						<question numbered="false" type="none">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_1</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_2</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_3</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_4</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_5</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_6</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_7</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_8</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_9</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_10</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_11</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_12</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_13</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_14</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_15</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_16</iri>
+						</question>
+						<question type="checkbox">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_17</iri>
+						</question>-->
+						<question type="checkbox" numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0</iri>
+							<subquestionList>
+								<question numbered="false">
+									<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_18_1</iri>
+								</question>
+							</subquestionList>
 						</question>
 					</subquestionList>
+				</question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2a</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2a_1</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes" numbered="false">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2b</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2b_1</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3a</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3a_1</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes" numbered="false">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3b</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3b_1</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.4_1</iri>
+					<subquestionList>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.4_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question>
+					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.5</iri>
 				</question>
 			</questionList>
 		</section>
