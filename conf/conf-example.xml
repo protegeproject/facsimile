@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE configuration SYSTEM "conf.dtd">
+<configuration>
+	<input>
+		<ontology>ontology/example.owl</ontology>
+	</input>
+	<output>
+		<file title="Example Form"/>
+		<cssstyle>bmir-style</cssstyle>
+	</output>
+	<bindings>
+		<!-- question and section classes bindings -->
+		<classBindings>
+			<binding id="data">http://purl.org/facsimile/example#AnnotatedData</binding>
+			<binding id="data_element">http://purl.org/facsimile/example#DataValue</binding>
+			<binding id="form_data">http://purl.org/facsimile/example#FormData</binding>
+			<binding id="question_section">http://purl.org/facsimile/example#Observation</binding>
+			<binding id="patient_section">http://purl.org/facsimile/example#UserInformation</binding>
+		</classBindings>		
+		<propertyBindings>
+			<!-- global property bindings -->
+			<binding id="has_component">http://purl.org/facsimile/example#hasComponent</binding>
+			<binding id="has_form">http://purl.org/facsimile/example#hasForm</binding>
+			<binding id="has_date">http://purl.org/facsimile/example#hasDate</binding>
+			<!-- question property bindings -->
+			<binding id="questiontext">http://purl.org/facsimile/example#hasText</binding>
+			<binding id="questionfocus">http://purl.org/facsimile/example#hasFocus</binding>
+			<binding id="questionvalue">http://purl.org/facsimile/example#hasValue</binding>
+			<binding id="questiondatavalue">http://purl.org/facsimile/example#hasDataValue</binding>
+			<!-- section property bindings -->
+			<binding id="sectionheading">http://purl.org/facsimile/example#hasHeading</binding>
+			<binding id="sectiontext">http://purl.org/facsimile/example#hasText</binding>
+			<!-- output bindings -->
+			<binding id="is_answer_to">http://purl.org/facsimile/example#isResponseTo</binding>
+			<binding id="has_answer">http://purl.org/facsimile/example#hasAnswer</binding>
+			<!-- user info bindings -->
+			<binding id="user_name">http://purl.org/facsimile/example#hasUserName</binding>
+			<binding id="user_id">http://purl.org/facsimile/example#hasID</binding>
+		</propertyBindings>
+		<questionTypeBindings>
+			<binding id="textarea">http://purl.org/facsimile/example#StringValue</binding>
+			<binding id="radio">http://purl.org/facsimile/example#BooleanValue</binding>
+			<binding id="bool_true">http://purl.org/facsimile/example#Yes</binding>
+			<binding id="bool_false">http://purl.org/facsimile/example#No</binding>
+		</questionTypeBindings>	
+	</bindings>
+	<form>
+		<iri>http://purl.org/facsimile/example#user_info_form</iri>
+		<section numbered="false" type="patient_section">
+			<iri>http://purl.org/facsimile/example#user_details</iri>
+			<infoList>
+				<info type="text" property="user_name" required="true"/>
+				<info type="text" property="user_id"/>
+			</infoList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/example#section_1</iri>
+			<questionList>
+				<question required="true" showSubquestionsForAnswer="http://purl.org/facsimile/example#Yes">
+					<iri>http://purl.org/facsimile/example#question_s1_q1</iri>
+					<subquestionList>
+						<question type="text" numbered="false">
+							<iri>http://purl.org/facsimile/example#question_s1_q1_1</iri>
+						</question>
+						<question numbered="false">
+							<iri>http://purl.org/facsimile/example#question_s1_q1_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question hideSubquestionsForAnswer="http://purl.org/facsimile/example#No">
+					<iri>http://purl.org/facsimile/example#question_s1_q2</iri>
+					<subquestionList>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s1_q2_1</iri>
+						</question>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s1_q2_2</iri>
+						</question>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s1_q2_3</iri>
+						</question>
+					</subquestionList>
+				</question>
+			</questionList>
+		</section>
+		<section>
+			<iri>http://purl.org/facsimile/example#section_2</iri>
+			<questionList>
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/example#very_hard">
+					<iri>http://purl.org/facsimile/example#question_s2_q1</iri>
+					<subquestionList>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s2_q1_1</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="checkboxhorizontal" showSubquestionsForAnswer="http://purl.org/facsimile/example#not_satisfied">
+					<iri>http://purl.org/facsimile/example#question_s2_q2</iri>
+					<subquestionList>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s2_q2_1</iri>
+						</question>
+						<question>
+							<iri>http://purl.org/facsimile/example#question_s2_q2_2</iri>
+						</question>
+					</subquestionList>
+				</question>
+				<question type="dropdown">
+					<iri>http://purl.org/facsimile/example#question_s2_q3</iri>
+				</question>
+			</questionList>
+		</section>
+	</form>
+</configuration>

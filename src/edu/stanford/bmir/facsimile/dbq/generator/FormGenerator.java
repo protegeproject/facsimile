@@ -22,6 +22,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 public class FormGenerator {
 	private List<Section> sections;
 	private Map<IRI,IRI> posTriggers, negTriggers;
+	private final String triggerString;
 	
 	
 	/**
@@ -31,6 +32,7 @@ public class FormGenerator {
 	 */
 	public FormGenerator(List<Section> sections, Configuration config) {
 		this.sections = sections;
+		triggerString = "xtriggerx";
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
 	}
@@ -142,7 +144,7 @@ public class FormGenerator {
 						String opt = opts.getOptionsValues().get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace("trigger", qId);
+							output = output.replace(triggerString, qId);
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
 							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label>" + (i<(opts.getOptionsValues().size()-1) ? "<br>\n" : "\n");
 					}
@@ -155,7 +157,7 @@ public class FormGenerator {
 						String opt = opts.getOptionsValues().get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace("trigger", qId);
+							output = output.replace(triggerString, qId);
 						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
 					}
 				}
@@ -179,7 +181,7 @@ public class FormGenerator {
 						String opt = opts.getOptionsValues().get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace("trigger", qId);
+							output = output.replace(triggerString, qId);
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
 								+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
 					}
@@ -216,9 +218,9 @@ public class FormGenerator {
 		List<IRI> children = e.getChildren();
 		if(map.containsKey(e.getEntityIRI())) {
 			if(pos)
-				onchange += " onchange=\"showSubquestions('trigger',";
+				onchange += " onchange=\"showSubquestions('" + triggerString + "',";
 			else
-				onchange += " onchange=\"hideSubquestions('trigger',";
+				onchange += " onchange=\"hideSubquestions('" + triggerString + "',";
 			for(int i = 0; i < children.size(); i++) { 
 				onchange += "'" + children.get(i).getShortForm() + "'";
 				if(i<children.size()-1)

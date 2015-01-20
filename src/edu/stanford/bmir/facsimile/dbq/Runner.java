@@ -52,7 +52,10 @@ public class Runner {
 	 */
 	public void generateFormToLocalFile() throws IOException {		
 		String output = run();
-		File f = new File(conf.getOutputFilePath());
+		String outputDir = conf.getOutputFilePath();
+		if(outputDir.isEmpty())
+			outputDir = "output/form.html" + File.separator;
+		File f = new File(outputDir);
 		if(!f.exists()) {
 			new File(f.getParent()).mkdirs();
 			f.createNewFile();
@@ -78,8 +81,8 @@ public class Runner {
 
 			ont = loadOntology(conf);
 			String outputPath = conf.getOutputFilePath();
-			if(outputPath != null)
-				System.out.println("Output file: " + outputPath);
+			if(outputPath != null && !outputPath.isEmpty())
+				System.out.println("Output: " + outputPath);
 
 			QuestionParser gen = new QuestionParser(ont, conf, verbose);
 			sections = gen.getAllSections();

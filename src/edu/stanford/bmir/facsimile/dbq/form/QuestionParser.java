@@ -18,13 +18,11 @@ import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
-import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLDataRange;
 import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatypeRestriction;
@@ -39,7 +37,6 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 import org.semanticweb.owlapi.model.parameters.Imports;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
@@ -227,29 +224,12 @@ public class QuestionParser {
 		String eleTxt = "";
 		OWLDataProperty eleDP = df.getOWLDataProperty(eleIri);
 		if(verbose) System.out.println("    Information element: " + eleIri.getShortForm());
-		OWLClass c = null;
-		if(sectionType.equals(SectionType.PATIENT_SECTION))
-			c = df.getOWLClass(conf.getInitialSectionClassBinding());
-		else if(sectionType.equals(SectionType.PHYSICIAN_SECTION))
-			c = df.getOWLClass(conf.getFinalSectionClassBinding());
+
+		Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(eleDP.getIRI());
+		for(OWLAnnotationAssertionAxiom annAx : axs)
+			if(annAx.getProperty().isComment())
+				eleTxt = annAx.getValue().asLiteral().get().getLiteral();
 		
-		/* 
-		 * accepts an OWL class as a section IRI and fetches the question text from the rdfs:comment on the data property used
-		 * e.g., PatientInformation => hasName some String, rdfs:comment(hasName, "Name")
-		 * where <PatientInformation> is used as an IRI, the text of the question (eleTxt) returned is "Name"
-		 */
-		for(OWLAxiom ax : ont.getReferencingAxioms(c.getIRI(), Imports.INCLUDED)) {
-			if(ax.getSignature().contains(eleDP) && ax.isOfType(AxiomType.SUBCLASS_OF)) {
-				OWLClassExpression ce = ((OWLSubClassOfAxiom)ax).getSuperClass();
-				if(ce instanceof OWLDataSomeValuesFrom) {
-					OWLDataPropertyExpression prop = ((OWLDataSomeValuesFrom)ce).getProperty();
-					Set<OWLAnnotationAssertionAxiom> axs = ont.getAnnotationAssertionAxioms(prop.asOWLDataProperty().getIRI());
-					for(OWLAnnotationAssertionAxiom annAx : axs)
-						if(annAx.getProperty().isComment())
-							eleTxt = annAx.getValue().asLiteral().get().getLiteral();
-				}
-			}
-		}
 		ElementType type = null;
 		if(conf.hasDefinedType(eleIri))
 			type = conf.getQuestionType(eleIri);
@@ -354,8 +334,8 @@ public class QuestionParser {
 			}
 		}
 		if(qType != null && qType.equals(ElementType.RADIO)) {
-			opts.put(conf.getBooleanTrueValueBinding().toString(), "YES");
-			opts.put(conf.getBooleanFalseValueBinding().toString(), "NO");
+			opts.put(conf.getBooleanTrueValueBinding().toString(), "Yes");
+			opts.put(conf.getBooleanFalseValueBinding().toString(), "No");
 		}
 		questionOptions.put(questionIri.toString(), opts);
 		return new QuestionOptions(questionIri, qType, opts);

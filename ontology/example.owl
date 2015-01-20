@@ -1,0 +1,712 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://purl.org/facsimile/example"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://purl.org/facsimile/example">
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Declaration>
+        <Class IRI="#AestheticsValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AnnotatedData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BooleanValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CheckboxValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EaseOfUseValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Form"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FormData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FormElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Observation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Question"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SatisfactionValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Section"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#StringValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UserInfo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#UserInformation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAnswer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasComponent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasForm"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasValue"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isResponseTo"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasHeading"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasID"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasText"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasUserName"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#No"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Yes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#easy"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#fairly_satisfied"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#hard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#medium"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#mildly_satisfied"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#not_satisfied"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ok"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pretty"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pretty_ugly"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q1_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q1_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q2_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q2_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s1_q2_3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q1_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q2_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#question_s2_q3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#satisfied"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#section_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#section_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#too_easy"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#too_hard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ugly"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#user_details"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#user_info_form"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#very_easy"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#very_hard"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#AestheticsValue"/>
+        <Class IRI="#CheckboxValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AnnotatedData"/>
+        <Class IRI="#DataElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BooleanValue"/>
+        <Class IRI="#DataValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CheckboxValue"/>
+        <Class IRI="#DataValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EaseOfUseValue"/>
+        <Class IRI="#CheckboxValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Form"/>
+        <Class IRI="#FormElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FormData"/>
+        <Class IRI="#DataElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Observation"/>
+        <Class IRI="#DataElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Question"/>
+        <Class IRI="#FormElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SatisfactionValue"/>
+        <Class IRI="#CheckboxValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Section"/>
+        <Class IRI="#FormElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#StringValue"/>
+        <Class IRI="#DataValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserInfo"/>
+        <Class IRI="#FormElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserInformation"/>
+        <Class IRI="#DataElement"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#BooleanValue"/>
+        <NamedIndividual IRI="#No"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BooleanValue"/>
+        <NamedIndividual IRI="#Yes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#easy"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SatisfactionValue"/>
+        <NamedIndividual IRI="#fairly_satisfied"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#hard"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#medium"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SatisfactionValue"/>
+        <NamedIndividual IRI="#mildly_satisfied"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SatisfactionValue"/>
+        <NamedIndividual IRI="#not_satisfied"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AestheticsValue"/>
+        <NamedIndividual IRI="#ok"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AestheticsValue"/>
+        <NamedIndividual IRI="#pretty"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AestheticsValue"/>
+        <NamedIndividual IRI="#pretty_ugly"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#BooleanValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q1_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q1_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#BooleanValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q2_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#BooleanValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q2_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q2_3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#BooleanValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q2_3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#very_easy"/>
+                <NamedIndividual IRI="#hard"/>
+                <NamedIndividual IRI="#easy"/>
+                <NamedIndividual IRI="#very_hard"/>
+                <NamedIndividual IRI="#medium"/>
+            </ObjectOneOf>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#mildly_satisfied"/>
+                <NamedIndividual IRI="#satisfied"/>
+                <NamedIndividual IRI="#not_satisfied"/>
+                <NamedIndividual IRI="#fairly_satisfied"/>
+            </ObjectOneOf>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#BooleanValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s2_q3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#ok"/>
+                <NamedIndividual IRI="#pretty"/>
+                <NamedIndividual IRI="#pretty_ugly"/>
+                <NamedIndividual IRI="#ugly"/>
+            </ObjectOneOf>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s2_q3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SatisfactionValue"/>
+        <NamedIndividual IRI="#satisfied"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Section"/>
+        <NamedIndividual IRI="#section_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Section"/>
+        <NamedIndividual IRI="#section_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#too_easy"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#too_hard"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AestheticsValue"/>
+        <NamedIndividual IRI="#ugly"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#UserInfo"/>
+        <NamedIndividual IRI="#user_details"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Form"/>
+        <NamedIndividual IRI="#user_info_form"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#very_easy"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EaseOfUseValue"/>
+        <NamedIndividual IRI="#very_hard"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q1"/>
+        <Literal datatypeIRI="&xsd;string">An example boolean-type question, where clicking &apos;Yes&apos; triggers subquestions</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q1_1"/>
+        <Literal datatypeIRI="&xsd;string">Un-numbered subquestion of type &apos;text&apos;</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q1_2"/>
+        <Literal datatypeIRI="&xsd;string">Un-numbered subquestion of type &apos;textarea&apos;</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q2"/>
+        <Literal datatypeIRI="&xsd;string">Do you feel like answering the subquestions below?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_1"/>
+        <Literal datatypeIRI="&xsd;string">Is the weather nice today?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_2"/>
+        <Literal datatypeIRI="&xsd;string">How&apos;s life treating you?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_3"/>
+        <Literal datatypeIRI="&xsd;string">Would you like to take a break?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q1"/>
+        <Literal datatypeIRI="&xsd;string">In your opinion, how difficult is it to put together a configuration file and ontology for this tool?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q1_1"/>
+        <Literal datatypeIRI="&xsd;string">If it was really that hard, how exactly did you get to this point? Please elaborate:</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q2"/>
+        <Literal datatypeIRI="&xsd;string">How satisfied are you with the output of this form generator?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+        <Literal datatypeIRI="&xsd;string">Are you sure about that answer?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q2_2"/>
+        <Literal datatypeIRI="&xsd;string">Please elaborate in excruciating detail, because I can&apos;t wait to hear about it:</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s2_q3"/>
+        <Literal datatypeIRI="&xsd;string">How pretty would you say the user interface is?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasHeading"/>
+        <NamedIndividual IRI="#section_1"/>
+        <Literal datatypeIRI="&xsd;string">First Section</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasHeading"/>
+        <NamedIndividual IRI="#section_2"/>
+        <Literal datatypeIRI="&xsd;string">Second Section</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasHeading"/>
+        <NamedIndividual IRI="#user_details"/>
+        <Literal datatypeIRI="&xsd;string">User Information</Literal>
+    </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#isResponseTo"/>
+        <ObjectProperty IRI="#hasAnswer"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasForm"/>
+    </FunctionalObjectProperty>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasForm"/>
+        <Class IRI="#Form"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasValue"/>
+        <Class IRI="#DataValue"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasUserName"/>
+        <DataProperty IRI="#hasName"/>
+    </SubDataPropertyOf>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasID"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasText"/>
+    </FunctionalDataProperty>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasHeading"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasText"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#easy</IRI>
+        <Literal datatypeIRI="&xsd;string">Easy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#fairly_satisfied</IRI>
+        <Literal datatypeIRI="&xsd;string">Fairly satisfied</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#hard</IRI>
+        <Literal datatypeIRI="&xsd;string">Hard</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasID</IRI>
+        <Literal datatypeIRI="&xsd;string">Passport number</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasUserName</IRI>
+        <Literal datatypeIRI="&xsd;string">User name</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#medium</IRI>
+        <Literal datatypeIRI="&xsd;string">Medium</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#mildly_satisfied</IRI>
+        <Literal datatypeIRI="&xsd;string">Mildly satisfied</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#not_satisfied</IRI>
+        <Literal datatypeIRI="&xsd;string">Not satisfied</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#ok</IRI>
+        <Literal datatypeIRI="&xsd;string">Just about Ok</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#pretty</IRI>
+        <Literal datatypeIRI="&xsd;string">Pretty</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#pretty_ugly</IRI>
+        <Literal datatypeIRI="&xsd;string">Pretty ugly</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#satisfied</IRI>
+        <Literal datatypeIRI="&xsd;string">Satisfied</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#too_easy</IRI>
+        <Literal datatypeIRI="&xsd;string">Too easy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#too_hard</IRI>
+        <Literal datatypeIRI="&xsd;string">Too hard</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#ugly</IRI>
+        <Literal datatypeIRI="&xsd;string">Plain ugly</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#very_easy</IRI>
+        <Literal datatypeIRI="&xsd;string">Very easy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#very_hard</IRI>
+        <Literal datatypeIRI="&xsd;string">Very hard</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
