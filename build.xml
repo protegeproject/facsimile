@@ -1,14 +1,17 @@
-<project default="war">
+<project default="build">
     <property name="web" location="WebContent/WEB-INF"/>
     <property name="lib" location="${web}/lib"/>
     <property name="build" value="build"/>
+    <property name="doc" location="${build}/javadoc"/>
     <property name="src" location="src"/>
     
-    <path id="project.class.path">
+    <path id="classpath">
         <fileset dir="${lib}">
             <include name="**/*.jar"/>
         </fileset>
     </path>
+    
+    <target name="build" depends="war,javadoc"/>
     
     <!-- Clean -->
     <target name="clean" description="Clean up build files">
@@ -19,7 +22,7 @@
     <target name="compile" description="Compile source files" depends="clean">
         <mkdir dir="${build}"/>
         <javac srcdir="${src}" destdir="${build}" debug="yes" deprecation="yes" includeantruntime="false">
-            <classpath refid="project.class.path"/>
+            <classpath refid="classpath"/>
         </javac>
         <copy todir="${build}">
             <fileset dir="${src}">
@@ -35,5 +38,15 @@
             <lib dir="${lib}"/>
             <classes dir="${build}/"/>
         </war>
+    </target>
+    
+    <!-- Generate Javadoc -->
+    <target name="javadoc" description="Generate documentation">
+        <javadoc packagenames="src" sourcepath="${src}" destdir="${doc}" nodeprecatedlist="yes" nodeprecated="yes">
+            <fileset dir="${src}">
+                <include name="**"/>
+            </fileset>
+            <classpath refid="classpath"/>
+        </javadoc>
     </target>
 </project>

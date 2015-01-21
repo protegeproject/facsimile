@@ -60,7 +60,7 @@ public class OutputFileHandler extends HttpServlet {
 	 * @param request	Html request
 	 * @param response	Html response
 	 * @throws IOException	IO exception
-	 * @throws OWLOntologyStorageException 
+	 * @throws OWLOntologyStorageException	Ontology storage exception
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, OWLOntologyStorageException {
 		String uuid = (String) request.getSession().getAttribute("uuid");
