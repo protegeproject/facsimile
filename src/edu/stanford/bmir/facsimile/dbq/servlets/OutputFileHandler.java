@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -63,27 +64,28 @@ public class OutputFileHandler extends HttpServlet {
 	 * @throws OWLOntologyStorageException	Ontology storage exception
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, OWLOntologyStorageException {
-		String uuid = (String) request.getSession().getAttribute("uuid");
-		String date = (String) request.getSession().getAttribute("date");
+		HttpSession session = request.getSession();
+		String uuid = (String) session.getAttribute("uuid");
+		String date = (String) session.getAttribute("date");
 		PrintWriter pw = response.getWriter();
 		response.setContentType("application/octet-stream");
 		String filetype = request.getParameter("filetype");
 		String file = null;
 		switch(filetype) {
 		case "CSV":
-			file = (String) request.getSession().getAttribute(uuid + "-csv");
+			file = (String) session.getAttribute(uuid + "-csv");
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".csv\"");
 			break;
 		case "RDF":
 			StringWriter writer = new StringWriter();
-			RDFGraph graph = (RDFGraph) request.getSession().getAttribute(uuid + "-rdf");
+			RDFGraph graph = (RDFGraph) session.getAttribute(uuid + "-rdf");
 			graph.dumpTriples(writer);
 			file = writer.getBuffer().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".xml\"");
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
-			OWLOntology ont = (OWLOntology) request.getSession().getAttribute(uuid + "-owl");
+			OWLOntology ont = (OWLOntology) session.getAttribute(uuid + "-owl");
 			ont.saveOntology(target); 
 			target.getWriter().flush();
 			file = target.getWriter().toString();

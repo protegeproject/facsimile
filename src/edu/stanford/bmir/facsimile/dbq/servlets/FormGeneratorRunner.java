@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -62,6 +63,8 @@ public class FormGeneratorRunner extends HttpServlet {
 	 * @param response	Html response
 	 */
 	private void generateForm(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+
 		try {
 			PrintWriter pw = response.getWriter();
 			File config = null;
@@ -102,11 +105,11 @@ public class FormGeneratorRunner extends HttpServlet {
 			Runner run = new Runner(config, false);
 			String output = run.run();
 			
-			request.getSession().setAttribute("configuration", run.getConfiguration());
-			request.getSession().setAttribute("sectionList", run.getSections());
-			request.getSession().setAttribute("questionOptions", run.getQuestionOptions());
-			request.getSession().setAttribute("ontology", run.getOntology());
-			request.getSession().setAttribute("iri", run.getOntology().getOntologyID().getOntologyIRI().get());
+			session.setAttribute("configuration", run.getConfiguration());
+			session.setAttribute("sectionList", run.getSections());
+			session.setAttribute("questionOptions", run.getQuestionOptions());
+			session.setAttribute("ontology", run.getOntology());
+			session.setAttribute("iri", run.getOntology().getOntologyID().getOntologyIRI().get());
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
 			

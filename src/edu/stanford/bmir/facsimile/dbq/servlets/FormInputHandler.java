@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -67,7 +68,7 @@ public class FormInputHandler extends HttpServlet {
      * Constructor
      */
     public FormInputHandler() {
-    	outputOptions = new ArrayList<String>();
+    	outputOptions = new ArrayList<String>(3);
     	uuid = getID();
     	date = getDate();
     	dateShort = getDateShort();
@@ -96,9 +97,10 @@ public class FormInputHandler extends HttpServlet {
 	 * @param response	Html response
 	 */
 	private void processInput(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		try {
-			request.getSession().setAttribute("uuid", uuid);
-			request.getSession().setAttribute("date", date);
+			session.setAttribute("uuid", uuid);
+			session.setAttribute("date", date);
 			PrintWriter pw = response.getWriter();
 			System.out.print("\nParsing form input... ");
 			createElementMaps(request);
@@ -107,28 +109,28 @@ public class FormInputHandler extends HttpServlet {
 			String outName = "output/" + dateShort + "-form-" + uuid;
 			
 			// CSV file
-			if(request.getSession().getAttribute(uuid + "-csv") == null) {
+			if(session.getAttribute(uuid + "-csv") == null) {
 				String csv = getCSVFile(request.getParameterNames(), request);
-				request.getSession().setAttribute(uuid + "-csv", csv);
+				session.setAttribute(uuid + "-csv", csv);
 				outputOptions.add("csv");
 
 				// Serialize CSV
 				FileUtils.writeStringToFile(new File(outName + ".csv"), csv);
 			}
 			// OWL & RDF file
-			if(request.getSession().getAttribute(uuid + "-owl") == null) {
+			if(session.getAttribute(uuid + "-owl") == null) {
 				OWLOntology ont = getOntology(request.getParameterNames(), request);
-				IRI ont_import = (IRI) request.getSession().getAttribute("iri");
+				IRI ont_import = (IRI) session.getAttribute("iri");
 				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import));
 				ont.getOWLOntologyManager().applyChange(imp);
-				request.getSession().setAttribute(uuid + "-owl", ont);
+				session.setAttribute(uuid + "-owl", ont);
 				outputOptions.add("rdf"); outputOptions.add("owl");
 				
 				// RDF triple dump
 				RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
 				for(OWLAxiom ax : ont.getAxioms())
 	                ax.accept(trans);
-				request.getSession().setAttribute(uuid + "-rdf", trans.getGraph());
+				session.setAttribute(uuid + "-rdf", trans.getGraph());
 				
 				// Serialize files
 				trans.getGraph().dumpTriples(new FileWriter(new File(outName + ".xml")));
@@ -211,7 +213,6 @@ public class FormInputHandler extends HttpServlet {
 						if(aMap.get(s).equalsIgnoreCase(params[i])) {
 							aIri = s; break;
 						}
-				
 				if(aIri.equalsIgnoreCase(""))
 					aIri = params[i];
 				
@@ -386,11 +387,12 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	private void createElementMaps(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		eTextMap = new HashMap<String,String>();
 		eFocusMap = new HashMap<String,String>();
 		eSectionType = new HashMap<String,SectionType>();
-		eOptions = (Map<String,Map<String,String>>) request.getSession().getAttribute("questionOptions");
-		sections = (List<Section>) request.getSession().getAttribute("sectionList");
+		eOptions = (Map<String,Map<String,String>>) session.getAttribute("questionOptions");
+		sections = (List<Section>) session.getAttribute("sectionList");
 		for(Section s : sections) {
 			for(FormElement ele : s.getSectionElements()) {
 				String qIri = ele.getEntity().getIRI().toString();
@@ -399,8 +401,8 @@ public class FormInputHandler extends HttpServlet {
 				eSectionType.put(qIri, s.getType());
 			}
 		}
-		conf = (Configuration)request.getSession().getAttribute("configuration");
-		inputOnt = (OWLOntology)request.getSession().getAttribute("ontology");
+		conf = (Configuration)session.getAttribute("configuration");
+		inputOnt = (OWLOntology)session.getAttribute("ontology");
 	}
 	
 	
@@ -418,15 +420,17 @@ public class FormInputHandler extends HttpServlet {
 	
 	
 	/**
-	 * Add a comment annotation to the ontology specifying the date and version of this tool
+	 * Add comment annotations to the ontology specifying the submission date and time, and version of the tool
 	 * @param ont	OWL ontology
 	 */
 	private void addCommentAnnotations(OWLOntology ont) {
 		OWLDataFactory df = ont.getOWLOntologyManager().getOWLDataFactory();
+		
 		OWLAnnotation ann = df.getOWLAnnotation(df.getRDFSComment(), 
 				df.getOWLLiteral("ontology created by " + Runner.name + " v" + Runner.version));
 		OWLAnnotation ann2 = df.getOWLAnnotation(df.getRDFSComment(), 
 				df.getOWLLiteral("form data submitted on: " + date));
+		
 		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann));
 		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann2));
 	}
