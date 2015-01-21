@@ -25,7 +25,9 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentTarget;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
+import org.semanticweb.owlapi.model.AddOntologyAnnotation;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -153,7 +155,8 @@ public class FormInputHandler extends HttpServlet {
 		OWLOntology ont = null;
 		try { ont = man.createOntology(getOntologyIRI()); } 
 		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
-
+		addCommentAnnotations(ont);
+		
 		OWLNamedIndividual initInfo = null, finalInfo = null; 
 		OWLNamedIndividual formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
 		addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
@@ -350,7 +353,7 @@ public class FormInputHandler extends HttpServlet {
 	 * @return String containing current date
 	 */
 	private String getDateShort() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		String dateString = dateFormat.format(new Date());
 		return dateString;
 	}
@@ -409,6 +412,18 @@ public class FormInputHandler extends HttpServlet {
 		if(formName.contains(" "))
 			formName = formName.replaceAll(" ", "_");
 		
-		return IRI.create("http://purl.org/facsimile/" + formName + "/" + dateShort + "/" + uuid);
+		return IRI.create("http://purl.org/facsimile/" + formName + "_" + dateShort + "_" + uuid);
+	}
+	
+	
+	/**
+	 * Add a comment annotation to the ontology specifying the date and version of this tool
+	 * @param ont	OWL ontology
+	 */
+	private void addCommentAnnotations(OWLOntology ont) {
+		OWLDataFactory df = ont.getOWLOntologyManager().getOWLDataFactory();
+		OWLAnnotation ann = df.getOWLAnnotation(df.getRDFSComment(), df.getOWLLiteral("ontology created by form-generator v1.0. Form data submitted on: " + date));
+		AddOntologyAnnotation add = new AddOntologyAnnotation(ont, ann);
+		ont.getOWLOntologyManager().applyChange(add);
 	}
 }
