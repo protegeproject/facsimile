@@ -39,6 +39,7 @@ import org.semanticweb.owlapi.model.parameters.Imports;
 import org.semanticweb.owlapi.rdf.model.RDFTranslator;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
+import edu.stanford.bmir.facsimile.dbq.Runner;
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
@@ -422,8 +423,11 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private void addCommentAnnotations(OWLOntology ont) {
 		OWLDataFactory df = ont.getOWLOntologyManager().getOWLDataFactory();
-		OWLAnnotation ann = df.getOWLAnnotation(df.getRDFSComment(), df.getOWLLiteral("ontology created by form-generator v1.0. Form data submitted on: " + date));
-		AddOntologyAnnotation add = new AddOntologyAnnotation(ont, ann);
-		ont.getOWLOntologyManager().applyChange(add);
+		OWLAnnotation ann = df.getOWLAnnotation(df.getRDFSComment(), 
+				df.getOWLLiteral("ontology created by " + Runner.name + " v" + Runner.version));
+		OWLAnnotation ann2 = df.getOWLAnnotation(df.getRDFSComment(), 
+				df.getOWLLiteral("form data submitted on: " + date));
+		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann));
+		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann2));
 	}
 }

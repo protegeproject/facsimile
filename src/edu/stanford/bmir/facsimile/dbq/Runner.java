@@ -27,6 +27,7 @@ import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
  * School of Medicine, Stanford University <br>
  */
 public class Runner {
+	public static String name = "bmir-form-generator", version = "1.0b";
 	private File config;
 	private boolean verbose;
 	private Configuration conf;
