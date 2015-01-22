@@ -29,7 +29,7 @@
 	<servlet-name>OutputFileHandler</servlet-name>
 	<url-pattern>/file</url-pattern>
   </servlet-mapping>
-  <listener>
+<!--   <listener>
     <listener-class>edu.stanford.bmir.facsimile.dbq.servlets.SessionListener</listener-class>
-  </listener>
+  </listener> -->
 </web-app>

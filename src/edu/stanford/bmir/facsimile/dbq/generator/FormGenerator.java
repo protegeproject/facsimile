@@ -23,6 +23,7 @@ public class FormGenerator {
 	private List<Section> sections;
 	private Map<IRI,IRI> posTriggers, negTriggers;
 	private final String triggerString;
+	private Configuration config;
 	
 	
 	/**
@@ -32,6 +33,7 @@ public class FormGenerator {
 	 */
 	public FormGenerator(List<Section> sections, Configuration config) {
 		this.sections = sections;
+		this.config = config;
 		triggerString = "xtriggerx";
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
@@ -54,7 +56,7 @@ public class FormGenerator {
 		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\"/>\n";
 		output += "<script type=\"text/javascript\" src=\"js/script.js\"></script>\n";
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
-		output += "<h1>Generated Form<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
+		output += "<h1>" + config.getOutputFileTitle() + "<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		int skip = 0;
 		for(int i = 0; i < sections.size(); i++) {
