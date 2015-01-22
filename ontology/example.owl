@@ -564,7 +564,7 @@
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
         <NamedIndividual IRI="#question_s2_q2_2"/>
-        <Literal datatypeIRI="&xsd;string">Please elaborate in excruciating detail, because I can&apos;t wait to hear about it:</Literal>
+        <Literal datatypeIRI="&xsd;string">Please elaborate:</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
