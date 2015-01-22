@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -37,6 +36,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.parameters.Imports;
+import org.semanticweb.owlapi.rdf.model.RDFGraph;
 import org.semanticweb.owlapi.rdf.model.RDFTranslator;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
@@ -54,9 +54,9 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 @WebServlet("/FormInputHandler")
 public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<String> outputOptions;
 	private List<Section> sections;
-	private final String uuid, date, dateShort;
+	private Date date;
+	private String uuid, dateStr, dateShortStr;
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
@@ -67,12 +67,7 @@ public class FormInputHandler extends HttpServlet {
     /**
      * Constructor
      */
-    public FormInputHandler() {
-    	outputOptions = new ArrayList<String>(3);
-    	uuid = getID();
-    	date = getDate();
-    	dateShort = getDateShort();
-    }
+    public FormInputHandler() { }
 
     
 	/**
@@ -92,59 +87,112 @@ public class FormInputHandler extends HttpServlet {
 
 	
 	/**
+	 * Sets the uuid according to the session-stored value, if still handling the same session. If a new session
+	 * is identified, then a new uuid value is set. The date gets updated regardless. Because the files only use
+	 * the short date (no time), a user can keep working on the same form so long as the browser is not refreshed,
+	 * and the file will be getting overwritten (to avoid multiple entries for the same form submission, e.g., going 
+	 * back and fixing an answer)
+	 * @param session	Http session
+	 */
+	private void sortIdentifiers(HttpSession session) {
+		if(session.getAttribute("uuid") != null)
+			uuid = (String)session.getAttribute("uuid");
+		else
+			uuid = getID();
+		dateStr = getDate();
+		dateShortStr = getShortDate(date);
+	}
+	
+	
+	/**
 	 * Process input from the form
 	 * @param request	Html request
 	 * @param response	Html response
 	 */
 	private void processInput(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		sortIdentifiers(session);
 		try {
 			session.setAttribute("uuid", uuid);
-			session.setAttribute("date", date);
+			session.setAttribute("date", dateStr);
 			PrintWriter pw = response.getWriter();
 			System.out.print("\nParsing form input... ");
 			createElementMaps(request);
 			
 			File outDir = new File("output"); outDir.mkdirs();
-			String outName = "output/" + dateShort + "-form-" + uuid;
+			String outName = "output/" + dateShortStr + "-form-" + uuid;
 			
 			// CSV file
-			if(session.getAttribute(uuid + "-csv") == null) {
-				String csv = getCSVFile(request.getParameterNames(), request);
-				session.setAttribute(uuid + "-csv", csv);
-				outputOptions.add("csv");
+			String csv = getCSVFile(request.getParameterNames(), request);
+			session.setAttribute(uuid + "-csv", csv);
+			serialize(csv, outName + ".csv");
 
-				// Serialize CSV
-				FileUtils.writeStringToFile(new File(outName + ".csv"), csv);
-			}
-			// OWL & RDF file
-			if(session.getAttribute(uuid + "-owl") == null) {
-				OWLOntology ont = getOntology(request.getParameterNames(), request);
-				IRI ont_import = (IRI) session.getAttribute("iri");
-				AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import));
-				ont.getOWLOntologyManager().applyChange(imp);
-				session.setAttribute(uuid + "-owl", ont);
-				outputOptions.add("rdf"); outputOptions.add("owl");
-				
-				// RDF triple dump
-				RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
-				for(OWLAxiom ax : ont.getAxioms())
-	                ax.accept(trans);
-				session.setAttribute(uuid + "-rdf", trans.getGraph());
-				
-				// Serialize files
-				trans.getGraph().dumpTriples(new FileWriter(new File(outName + ".xml")));
-				ont.getOWLOntologyManager().saveOntology(ont, new FileDocumentTarget(new File(outName + ".owl")));
-			}
+			// OWL ontology
+			OWLOntology ont = getOntology(request.getParameterNames(), request);
+			IRI ont_import = (IRI) session.getAttribute("iri");
+			AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import));
+			ont.getOWLOntologyManager().applyChange(imp);
+			session.setAttribute(uuid + "-owl", ont);
+			serialize(ont, outName + ".owl");
+
+			// RDF triple dump
+			RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
+			RDFGraph graph = trans.getGraph();
+			for(OWLAxiom ax : ont.getAxioms())
+				ax.accept(trans);
+			session.setAttribute(uuid + "-rdf", graph);
+			serialize(graph, outName + ".rdf");
 			
 			printOutputPage(pw);
 			pw.close();
-			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + date + "\nfinished");
-		} catch (IOException | OWLOntologyStorageException e) {
+			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + dateStr + "\nfinished");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	
+	/**
+	 * Serialize the given string 
+	 * @param output	String to be output
+	 * @param path	File path (incl. filename and extension)	
+	 */
+	private void serialize(String output, String path) {
+		try {
+			FileUtils.writeStringToFile(new File(path), output);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Serialize an ontology
+	 * @param ont	OWL ontology
+	 * @param path	File path (incl. filename and extension)
+	 */
+	private void serialize(OWLOntology ont, String path) {
+		try {
+			ont.getOWLOntologyManager().saveOntology(ont, new FileDocumentTarget(new File(path)));
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Serialize a dump of RDF triples in the given graph
+	 * @param graph	RDF graph
+	 * @param path	File path (incl. filename and extension)
+	 */
+	private void serialize(RDFGraph graph, String path) {
+		try {
+			graph.dumpTriples(new FileWriter(new File(path)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	/**
 	 * Get the output ontology
@@ -195,7 +243,7 @@ public class FormInputHandler extends HttpServlet {
 						OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create("certification-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));	// { physicianCert : PhysicianCertification }
 						addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), physicianCertInd, answerInd));	// { physicianCert hasComponent answer }
-						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, df.getOWLLiteral(date, OWL2Datatype.XSD_DATE_TIME)));	// { physicianCert hasDate date }
+						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, df.getOWLLiteral(dateStr, OWL2Datatype.XSD_DATE_TIME)));	// { physicianCert hasDate date }
 						
 						finalInfo = answerInd;
 					}
@@ -345,18 +393,20 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private String getDate() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-		String dateString = dateFormat.format(new Date());
+		date = new Date();
+		String dateString = dateFormat.format(date);
 		return dateString;
 	}
 
 	
 	/**
 	 * Get current date: short format
+	 * @param d	Date
 	 * @return String containing current date
 	 */
-	private String getDateShort() {
+	private String getShortDate(Date d) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String dateString = dateFormat.format(new Date());
+		String dateString = dateFormat.format(d);
 		return dateString;
 	}
 
@@ -375,8 +425,9 @@ public class FormInputHandler extends HttpServlet {
 		pw.append("<p>Your input has been successfully received. You can keep a copy of your answers in any of the formats below.</p><br>\n");
 		pw.append("<form action=\"file\" method=\"post\">\n");
 		pw.append("<div class=\"button-section\">\n");
-		for(String type : outputOptions)
-			pw.append("<input type=\"submit\" value=\"" + type.toUpperCase() + "\" name=\"filetype\">&nbsp;");
+		pw.append("<input type=\"submit\" value=\"CSV\" name=\"filetype\">&nbsp;");
+		pw.append("<input type=\"submit\" value=\"RDF\" name=\"filetype\">&nbsp;");
+		pw.append("<input type=\"submit\" value=\"OWL\" name=\"filetype\">&nbsp;\n");
 		pw.append("</div>\n</form>\n</div>\n</body>\n</html>");
 	}
 	
@@ -415,7 +466,7 @@ public class FormInputHandler extends HttpServlet {
 		if(formName.contains(" "))
 			formName = formName.replaceAll(" ", "_");
 		
-		return IRI.create("http://purl.org/facsimile/" + formName + "_" + dateShort + "_" + uuid);
+		return IRI.create("http://purl.org/facsimile/" + formName + "_" + dateShortStr + "_" + uuid);
 	}
 	
 	
@@ -429,7 +480,7 @@ public class FormInputHandler extends HttpServlet {
 		OWLAnnotation ann = df.getOWLAnnotation(df.getRDFSComment(), 
 				df.getOWLLiteral("ontology created by " + Runner.name + " v" + Runner.version));
 		OWLAnnotation ann2 = df.getOWLAnnotation(df.getRDFSComment(), 
-				df.getOWLLiteral("form data submitted on: " + date));
+				df.getOWLLiteral("form data submitted on: " + dateStr));
 		
 		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann));
 		ont.getOWLOntologyManager().applyChange(new AddOntologyAnnotation(ont, ann2));

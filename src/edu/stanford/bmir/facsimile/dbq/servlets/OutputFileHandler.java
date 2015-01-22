@@ -24,12 +24,12 @@ import org.semanticweb.owlapi.rdf.model.RDFGraph;
 @WebServlet("/OutputFileHandler")
 public class OutputFileHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private String uuid, date;
 	
     /**
      * Constructor
      */
-    public OutputFileHandler() { }
+    public OutputFileHandler() {}
 
     
 	/**
@@ -65,8 +65,8 @@ public class OutputFileHandler extends HttpServlet {
 	 */
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, OWLOntologyStorageException {
 		HttpSession session = request.getSession();
-		String uuid = (String) session.getAttribute("uuid");
-		String date = (String) session.getAttribute("date");
+		uuid = (String) session.getAttribute("uuid");
+		date = (String) session.getAttribute("date");
 		PrintWriter pw = response.getWriter();
 		response.setContentType("application/octet-stream");
 		String filetype = request.getParameter("filetype");

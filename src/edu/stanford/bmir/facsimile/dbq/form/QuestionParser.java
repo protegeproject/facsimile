@@ -384,13 +384,13 @@ public class QuestionParser {
 							OWLDataRange r = ((OWLDataSomeValuesFrom)ce).getFiller();
 							OWLDatatypeRestriction res = (OWLDatatypeRestriction)r;
 							for(OWLFacetRestriction fr : res.getFacetRestrictions())
-								opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral());
+								opts.put(ind.getIRI().toString(), fr.getFacet().getSymbolicForm() + fr.getFacetValue().getLiteral()); 
 						}
 					}
 				}
-				else if(ax.isOfType(AxiomType.ANNOTATION_ASSERTION)) { 
+				else if(ax.isOfType(AxiomType.ANNOTATION_ASSERTION)) {
 					OWLAnnotationAssertionAxiom ann_ax = (OWLAnnotationAssertionAxiom)ax;
-					if(ann_ax.getProperty().equals(df.getRDFSLabel()))
+					if(ann_ax.getProperty().equals(df.getRDFSLabel())) 
 						opts.put(ind.getIRI().toString(), ann_ax.getValue().asLiteral().get().getLiteral().toString());
 				}
 			}

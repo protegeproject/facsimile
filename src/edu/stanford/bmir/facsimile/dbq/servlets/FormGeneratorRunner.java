@@ -63,8 +63,10 @@ public class FormGeneratorRunner extends HttpServlet {
 	 * @param response	Html response
 	 */
 	private void generateForm(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-
+		HttpSession session = request.getSession(true);
+		if(!session.isNew()) session.invalidate();
+		session = request.getSession(true);
+		
 		try {
 			PrintWriter pw = response.getWriter();
 			File config = null;
@@ -112,7 +114,7 @@ public class FormGeneratorRunner extends HttpServlet {
 			session.setAttribute("iri", run.getOntology().getOntologyID().getOntologyIRI().get());
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
-			
+
 			pw.append(output);
 			pw.close();
 		} catch (IOException | FileUploadException e) {
@@ -120,4 +122,3 @@ public class FormGeneratorRunner extends HttpServlet {
 		}
 	}
 }
-
