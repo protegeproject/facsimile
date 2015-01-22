@@ -154,12 +154,6 @@
         <NamedIndividual IRI="#question_s1_q2_1"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#question_s1_q2_2"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#question_s1_q2_3"/>
-    </Declaration>
-    <Declaration>
         <NamedIndividual IRI="#question_s2_q1"/>
     </Declaration>
     <Declaration>
@@ -170,9 +164,6 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#question_s2_q2_1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#question_s2_q2_2"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#question_s2_q3"/>
@@ -364,28 +355,6 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Question"/>
-        <NamedIndividual IRI="#question_s1_q2_2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
-            <Class IRI="#StringValue"/>
-        </ObjectSomeValuesFrom>
-        <NamedIndividual IRI="#question_s1_q2_2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Question"/>
-        <NamedIndividual IRI="#question_s1_q2_3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
-            <Class IRI="#BooleanValue"/>
-        </ObjectSomeValuesFrom>
-        <NamedIndividual IRI="#question_s1_q2_3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Question"/>
         <NamedIndividual IRI="#question_s2_q1"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -438,17 +407,6 @@
             <Class IRI="#BooleanValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s2_q2_1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Question"/>
-        <NamedIndividual IRI="#question_s2_q2_2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
-            <Class IRI="#StringValue"/>
-        </ObjectSomeValuesFrom>
-        <NamedIndividual IRI="#question_s2_q2_2"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Question"/>
@@ -524,22 +482,12 @@
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
         <NamedIndividual IRI="#question_s1_q2"/>
-        <Literal datatypeIRI="&xsd;string">Do you feel like answering the subquestions below?</Literal>
+        <Literal datatypeIRI="&xsd;string">Do you feel like answering the subquestion below?</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
         <NamedIndividual IRI="#question_s1_q2_1"/>
         <Literal datatypeIRI="&xsd;string">Is the weather nice today?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q2_2"/>
-        <Literal datatypeIRI="&xsd;string">How&apos;s life treating you?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q2_3"/>
-        <Literal datatypeIRI="&xsd;string">Would you like to take a break?</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
@@ -560,11 +508,6 @@
         <DataProperty IRI="#hasText"/>
         <NamedIndividual IRI="#question_s2_q2_1"/>
         <Literal datatypeIRI="&xsd;string">Are you sure about that answer?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s2_q2_2"/>
-        <Literal datatypeIRI="&xsd;string">Please elaborate:</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>

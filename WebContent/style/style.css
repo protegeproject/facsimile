@@ -73,7 +73,6 @@
 .bmir-style input[type="search"],
 .bmir-style input[type="time"],
 .bmir-style input[type="url"],
-.bmir-style input[type="password"],
 .bmir-style textarea,
 .bmir-style select {
 	resize: vertical;
@@ -91,6 +90,10 @@
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
     -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+}
+
+.bmir-style input[type="checkbox"] {
+	margin-bottom: 12px;
 }
 
 .bmir-style .section {
