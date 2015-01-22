@@ -50,7 +50,7 @@
 			<iri>http://purl.org/facsimile/example#user_details</iri>
 			<infoList>
 				<info type="text" property="user_name" required="true"/>
-				<info type="text" property="user_id"/>
+				<info type="text" property="user_id" required="true"/>
 			</infoList>
 		</section>
 		<section>
