@@ -58,6 +58,14 @@
     padding-right: 10px;
 }
 
+.bmir-style label + br {
+	line-height: 30px;
+}
+
+.bmir-style input[type="checkbox"] {
+	margin-right: 7px;
+}
+
 .bmir-style p {
     display: block;
     font: 13px Arial, Helvetica, sans-serif;
@@ -92,9 +100,9 @@
     -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
 }
 
-.bmir-style input[type="checkbox"] {
+/* .bmir-style input[type="checkbox"] {
 	margin-bottom: 12px;
-}
+} */
 
 .bmir-style .section {
     font: normal 20px 'Bitter', serif;
