@@ -82,21 +82,21 @@ public class FormGenerator {
 			for(int j = 0; j < elements.size(); j++) {
 				FormElement element = elements.get(j);
 				List<IRI> superquestions = element.getSuperquestions();
-				
 				for(int k = 0; k < superquestions.size(); k++) 
-					if(negTriggers.containsKey(superquestions.get(k)) || posTriggers.containsKey(superquestions.get(k)))
+					if(posTriggers.containsKey(superquestions.get(k)))
 						invisibleElements.add(element.getEntityIRI());
-				
+
 				String onchange = "";
 				IRI trigger = null;
 				if(posTriggers.containsKey(element.getEntityIRI())) {
 					trigger = posTriggers.get(element.getEntityIRI());
 					invisibleElements.addAll(element.getSubquestions());
-					onchange = getOnChangeEvent(posTriggers, element, true);
+					List<FormElement> descendants = element.getDescendants(elements);
+					onchange = getOnChangeEvent(posTriggers, element, true, descendants);
 				}
 				else if(negTriggers.containsKey(element.getEntityIRI())) {
 					trigger = negTriggers.get(element.getEntityIRI());
-					onchange = getOnChangeEvent(negTriggers, element, false);
+					onchange = getOnChangeEvent(negTriggers, element, false, null);
 				}
 				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
 			}
@@ -107,7 +107,7 @@ public class FormGenerator {
 		System.out.println("done");
 		return output;
 	}
-
+	
 	
 	/**
 	 * Get the details of the element
@@ -253,7 +253,7 @@ public class FormGenerator {
 	 * @param pos	true if given triggers are positive triggers (i.e., showSubquestionsForAnswer="...")
 	 * @return String containing the onChange event 
 	 */
-	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos) {
+	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos, List<FormElement> descendants) {
 		String onchange = "";
 		List<IRI> children = e.getSubquestions();
 		if(map.containsKey(e.getEntityIRI())) {
@@ -261,8 +261,22 @@ public class FormGenerator {
 				onchange += " onchange=\"showSubquestions('" + triggerString + "',";
 			else
 				onchange += " onchange=\"hideSubquestions('" + triggerString + "',";
-			for(int i = 0; i < children.size(); i++) { 
-				onchange += "'" + children.get(i).getShortForm() + "'";
+			
+			for(int i = 0; i < children.size(); i++) {
+				IRI c = children.get(i);
+				onchange += "'" + c.getShortForm() + "'";
+				List<IRI> extraChildren = new ArrayList<IRI>();
+				if(pos && descendants != null)
+					if(negTriggers.containsKey(c))
+						for(FormElement ele : descendants)
+							if(ele.getEntityIRI().equals(c)) 
+								extraChildren.addAll(ele.getSubquestions());
+							
+				for(IRI iri : extraChildren) {
+					if(!onchange.endsWith(",")) 
+						onchange += ",";
+					onchange += "'" + iri.getShortForm() + "'";
+				}
 				if(i<children.size()-1)
 					onchange += ",";
 			}

@@ -163,6 +163,8 @@ public class QuestionParser {
 					if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
 					addSubquestionList((Question)q, node);
 					addSuperquestionList((Question)q, node);
+					if(!node.isRoot())
+						q.setParentQuestion(node.parent.data);
 				}
 				else
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);

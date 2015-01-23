@@ -154,6 +154,9 @@
         <NamedIndividual IRI="#question_s1_q2_1"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#question_s1_q2_1_1"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#question_s2_q1"/>
     </Declaration>
     <Declaration>
@@ -355,6 +358,17 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Question"/>
+        <NamedIndividual IRI="#question_s1_q2_1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasValue"/>
+            <Class IRI="#StringValue"/>
+        </ObjectSomeValuesFrom>
+        <NamedIndividual IRI="#question_s1_q2_1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Question"/>
         <NamedIndividual IRI="#question_s2_q1"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -488,6 +502,11 @@
         <DataProperty IRI="#hasText"/>
         <NamedIndividual IRI="#question_s1_q2_1"/>
         <Literal datatypeIRI="&xsd;string">Is the weather nice today?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_1_1"/>
+        <Literal datatypeIRI="&xsd;string">Precisely how nice is it, please describe:</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasText"/>
