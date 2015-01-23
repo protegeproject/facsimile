@@ -58,7 +58,7 @@
     padding-right: 10px;
 }
 
-.bmir-style label + br {
+.bmir-style label ~ br {
 	line-height: 30px;
 }
 
@@ -74,7 +74,6 @@
     display: block;
     font: 13px Arial, Helvetica, sans-serif;
     color: #888;
-    margin-bottom: 5px;
 }
 
 .bmir-style input[type="text"],
@@ -147,15 +146,6 @@
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-}
-
-.bmir-style .privacy-policy {
-    float: right;
-    width: 250px;
-    font: 12px Arial, Helvetica, sans-serif;
-    color: #4D4D4D;
-    margin-top: 10px;
-    text-align: right;
 }
 
 .bmir-style sup {
