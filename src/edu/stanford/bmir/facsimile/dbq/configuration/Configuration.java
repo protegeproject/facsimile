@@ -38,6 +38,7 @@ public class Configuration {
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<TreeNode<IRI>>> sections;
+	private Map<IRI,List<Integer>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
 	private final String delim = "|";
 	private File file;
@@ -52,11 +53,12 @@ public class Configuration {
 	public Configuration(File file, boolean verbose) {
 		this.file = file;
 		this.verbose = verbose;
-		elementTypes = new LinkedHashMap<IRI,ElementType>();
-		sectionTypes = new LinkedHashMap<IRI,SectionType>();
 		imports = new HashMap<IRI,String>();
 		subquestionPosTriggers = new HashMap<IRI,IRI>();
 		subquestionNegTriggers = new HashMap<IRI,IRI>();
+		elementTypes = new LinkedHashMap<IRI,ElementType>();
+		sectionTypes = new LinkedHashMap<IRI,SectionType>();
+		optionsOrder = new HashMap<IRI,List<Integer>>();
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
@@ -248,29 +250,18 @@ public class Configuration {
 		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
 		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
-			boolean numbered = true, required = false;
-			if(nl.item(i).hasAttributes()) { 
-				if(nl.item(i).getAttributes().getNamedItem("numbered") != null)
-					numbered = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("numbered").getTextContent());
-				if(nl.item(i).getAttributes().getNamedItem("required") != null)
-					required = Boolean.parseBoolean(nl.item(i).getAttributes().getNamedItem("required").getTextContent());
-			}
-			NodeList children = nl.item(i).getChildNodes(); // (<iri> | <subquestionList>)
+			Node qNode = nl.item(i);
+			NodeList children = qNode.getChildNodes(); // (<iri> | <subquestionList>)
 			TreeNode<IRI> subquestions = questionTree;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
 				if(curNode.getNodeName().equalsIgnoreCase("iri")) {
 					IRI iri = getQuestionIRI(curNode, null);
-					if(iri != null)
+					if(iri != null) {
 						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
 						else subquestions = subquestions.addChild(iri);
-					questionNumbering.put(iri, numbered);
-					questionRequired.put(iri, required);
-					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer") != null)
-						subquestionPosTriggers.put(iri, IRI.create(nl.item(i).getAttributes().getNamedItem("showSubquestionsForAnswer").getNodeValue()));
-					
-					if(nl.item(i).hasAttributes() && nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswer") != null)
-						subquestionNegTriggers.put(iri, IRI.create(nl.item(i).getAttributes().getNamedItem("hideSubquestionsForAnswer").getNodeValue()));
+						checkAttributes(iri, qNode);
+					}
 				}
 				if(curNode.getNodeName().equalsIgnoreCase("subquestionlist")) // <subquestionList>
 					getQuestions(curNode, subquestions);
@@ -279,6 +270,37 @@ public class Configuration {
 				questions.add(subquestions);
 		}
 		return questions;
+	}
+	
+	
+	/**
+	 * Check attributes of a given question node
+	 * @param iri	Question IRI
+	 * @param qNode	Question node
+	 */
+	private void checkAttributes(IRI iri, Node qNode) {
+		boolean numbered = true, required = false;
+		if(qNode.hasAttributes()) {
+			NamedNodeMap nodeMap = qNode.getAttributes();
+			if(nodeMap.getNamedItem("numbered") != null)
+				numbered = Boolean.parseBoolean(nodeMap.getNamedItem("numbered").getTextContent());
+			if(nodeMap.getNamedItem("required") != null)
+				required = Boolean.parseBoolean(nodeMap.getNamedItem("required").getTextContent());
+			if(nodeMap.getNamedItem("showSubquestionsForAnswer") != null)
+				subquestionPosTriggers.put(iri, IRI.create(nodeMap.getNamedItem("showSubquestionsForAnswer").getNodeValue()));
+			if(nodeMap.getNamedItem("hideSubquestionsForAnswer") != null)
+				subquestionNegTriggers.put(iri, IRI.create(nodeMap.getNamedItem("hideSubquestionsForAnswer").getNodeValue()));
+			if(nodeMap.getNamedItem("optionOrder") != null) {
+				String order = nodeMap.getNamedItem("optionOrder").getNodeValue();
+				StringTokenizer tokenizer = new StringTokenizer(order, ";");
+				List<Integer> list = new ArrayList<Integer>();
+				while(tokenizer.hasMoreTokens())
+					list.add(Integer.parseInt(tokenizer.nextToken()));
+				optionsOrder.put(iri, list);
+			}
+		}
+		questionNumbering.put(iri, numbered);
+		questionRequired.put(iri, required);
 	}
 	
 	
@@ -831,5 +853,15 @@ public class Configuration {
 	 */
 	public Map<IRI,IRI> getSubquestionNegativeTriggers() {
 		return subquestionNegTriggers;
+	}
+	
+	
+	/**
+	 * Get the map of question IRI's to the list which determines the order in which question options will 
+	 * be presented in the HTML form
+	 * @return Map of question IRI's to a list of integers
+	 */
+	public Map<IRI,List<Integer>> getOptionsOrderMap() {
+		return optionsOrder;
 	}
 }

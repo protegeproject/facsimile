@@ -433,13 +433,13 @@
         <rdfs:subClassOf rdf:resource="&datamodel;Section"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasHeading"/>
+                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
+                <owl:onProperty rdf:resource="&cfa;hasHeading"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -469,6 +469,12 @@
         <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -487,12 +493,6 @@
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5509,6 +5509,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
 
     <owl:NamedIndividual rdf:about="&dbq;No_objective_evidence_of_painful_motion">
         <rdf:type rdf:resource="&cfa;InternallyCodedValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">No objective evidence of painful motion</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5972,6 +5973,12 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&dbq;DBQSection"/>
         <rdf:type>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -5990,12 +5997,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>

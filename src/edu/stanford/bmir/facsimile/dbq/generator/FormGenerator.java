@@ -22,6 +22,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 public class FormGenerator {
 	private List<Section> sections;
 	private Map<IRI,IRI> posTriggers, negTriggers;
+	private Map<IRI,List<Integer>> optionsOrder;
 	private final String triggerString;
 	private Configuration config;
 	
@@ -37,6 +38,7 @@ public class FormGenerator {
 		triggerString = "xtriggerx";
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
+		optionsOrder = config.getOptionsOrderMap();
 	}
 	
 	
@@ -142,21 +144,27 @@ public class FormGenerator {
 			case CHECKBOX:
 				if(e instanceof Question) {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
-						String opt = opts.getOptionsValues().get(i);
+					List<String> optionList = opts.getOptionsValues();
+					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+					for(int i = 0; i < optionList.size(); i++) {
+						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace(triggerString, qId);
 						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
-							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label>" + (i<(opts.getOptionsValues().size()-1) ? "<br>\n" : "\n");
+							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label>" + (i<(optionList.size()-1) ? "<br>\n" : "\n");
 					}
 				}
 				break;
 			case CHECKBOXHORIZONTAL:
 				if(e instanceof Question) {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
-						String opt = opts.getOptionsValues().get(i);
+					List<String> optionList = opts.getOptionsValues();
+					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+					for(int i = 0; i < optionList.size(); i++) {
+						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace(triggerString, qId);
@@ -168,6 +176,8 @@ public class FormGenerator {
 				output += "<select name=\"" + qName + "\">\n";
 				if(e instanceof Question) {
 					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
+					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+						list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()));
 					output += "<option value=\"\" selected></option>\n";
 					for(int i = 0; i < list.size(); i++) {
 						String opt = list.get(i);
@@ -179,8 +189,11 @@ public class FormGenerator {
 			case RADIO:
 				if(e instanceof Question) {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					for(int i = 0; i < opts.getOptionsValues().size(); i++) {
-						String opt = opts.getOptionsValues().get(i);
+					List<String> optionList = opts.getOptionsValues();
+					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+					for(int i = 0; i < optionList.size(); i++) {
+						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace(triggerString, qId);
@@ -204,6 +217,31 @@ public class FormGenerator {
 		}
 		else
 			output += "<div class=\"question-holder\">" + labelInit + "</p></div>\n";
+		return output;
+	}
+	
+	
+	/**
+	 * Sort a given list according to the order of elements given by the second list parameter
+	 * @param list	List to be ordered
+	 * @param orderList	List that guides the order of elements of the first list
+	 * @return List sorted according to the order given by another list
+	 */
+	private List<String> sortList(List<String> list, List<Integer> orderList) {
+		List<String> output = new ArrayList<String>();
+		for(int i = 0; i < orderList.size(); i++) {
+			Integer nr = orderList.get(i);
+			if(nr <= list.size() && list.get(nr-1) != null)
+				output.add(list.get(nr-1));
+		}
+		
+		/* If not all members of the 1st list are specified in the 2nd list,
+		 * just add them to the end of the (partially-ordered) list  
+		 */
+		if(output.size() < list.size())
+			for(int i = 0; i < list.size(); i++)
+				if(!output.contains(list.get(i)))
+					output.add(list.get(i));
 		return output;
 	}
 	

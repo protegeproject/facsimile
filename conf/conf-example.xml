@@ -70,7 +70,7 @@
 				<question hideSubquestionsForAnswer="http://purl.org/facsimile/example#No">
 					<iri>http://purl.org/facsimile/example#question_s1_q2</iri>
 					<subquestionList>
-						<question>
+						<question optionOrder="2;1">
 							<iri>http://purl.org/facsimile/example#question_s1_q2_1</iri>
 						</question>
 					</subquestionList>
@@ -80,7 +80,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/example#section_2</iri>
 			<questionList>
-				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/example#very_hard">
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/example#very_hard" optionOrder="4;1;3;2;5">
 					<iri>http://purl.org/facsimile/example#question_s2_q1</iri>
 					<subquestionList>
 						<question>
@@ -88,7 +88,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question type="checkboxhorizontal" showSubquestionsForAnswer="http://purl.org/facsimile/example#not_satisfied">
+				<question type="checkboxhorizontal" showSubquestionsForAnswer="http://purl.org/facsimile/example#not_satisfied" optionOrder="3;2">
 					<iri>http://purl.org/facsimile/example#question_s2_q2</iri>
 					<subquestionList>
 						<question>
@@ -96,7 +96,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question>
+				<question optionOrder="4;2;1;3">
 					<iri>http://purl.org/facsimile/example#question_s2_q3</iri>
 				</question>
 			</questionList>
