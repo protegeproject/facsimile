@@ -70,7 +70,7 @@
 				<question hideSubquestionsForAnswer="http://purl.org/facsimile/example#No">
 					<iri>http://purl.org/facsimile/example#question_s1_q2</iri>
 					<subquestionList>
-						<question optionOrder="2;1">
+						<question optionOrder="2">
 							<iri>http://purl.org/facsimile/example#question_s1_q2_1</iri>
 						</question>
 					</subquestionList>

@@ -66,6 +66,10 @@
 	margin-right: 7px;
 }
 
+.bmir-style .option {
+	display: inline-block;
+}
+
 .bmir-style p {
     display: block;
     font: 13px Arial, Helvetica, sans-serif;

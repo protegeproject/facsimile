@@ -9,7 +9,6 @@ import org.semanticweb.owlapi.model.IRI;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
-import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
@@ -122,23 +121,19 @@ public class FormGenerator {
 		if(sectionNumbered && e.isElementNumbered()) qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText();
 		qText = qText.replaceAll("\n", "<br>");
-		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "");
+		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "") + (!qNumber.equals("") || !qText.equals("") ? "</p>\n" : "");
 		
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
-				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + 
-						((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") + (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" 
-						+ (!onchange.isEmpty() ? onchange : "") + ">\n";
+				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
+						+ (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n";
 			}
 			else
 				output += "<div class=\"inner-wrap\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n";
 			
-			if(!qNumber.equals("") || !qText.equals("")) {
+			if(!qNumber.equals("") || !qText.equals(""))
 				output += labelInit;
-				if(!e.getType().equals(ElementType.NONE))
-					output += "<br><br>\n";
-			}
 			
 			switch(e.getType()) {
 			case CHECKBOX:
@@ -152,8 +147,8 @@ public class FormGenerator {
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace(triggerString, qId);
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
-							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label>" + (i<(optionList.size()-1) ? "<br>\n" : "\n");
+						output += "<div class=\"option\"><label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
+							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>" + (i<(optionList.size()-1) ? "<br>\n" : "\n");
 					}
 				}
 				break;
@@ -168,7 +163,8 @@ public class FormGenerator {
 						String qId = qNameShort + "-" + i;
 						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 							output = output.replace(triggerString, qId);
-						output += "<label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
+						output += "<div class=\"option\"><label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
+							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>\n";
 					}
 				}
 				break;
@@ -211,8 +207,6 @@ public class FormGenerator {
 			default:
 				break;
 			}
-			if(!qNumber.equals("") || !qText.equals(""))
-				output += "</p>\n";
 			output += "</div>\n";
 		}
 		else
