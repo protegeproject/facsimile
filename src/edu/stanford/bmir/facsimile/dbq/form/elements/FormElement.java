@@ -18,7 +18,7 @@ public class FormElement implements Serializable {
 	private String eleNr, text, focus;
 	private int sectionNr;
 	private ElementType type;
-	private List<IRI> children;
+	private List<IRI> subquestions, superquestions;
 	private boolean required;
 	
 	
@@ -131,9 +131,19 @@ public class FormElement implements Serializable {
 	 * Get the list of subquestions' IRIs
 	 * @return List of IRIs
 	 */
-	public List<IRI> getChildren() {
-		if(children == null) children = new ArrayList<IRI>();
-		return children;
+	public List<IRI> getSubquestions() {
+		if(subquestions == null) subquestions = new ArrayList<IRI>();
+		return subquestions;
+	}
+	
+	
+	/**
+	 * Get the list of superquestions' IRIs
+	 * @return List of IRIs
+	 */
+	public List<IRI> getSuperquestions() {
+		if(superquestions == null) superquestions = new ArrayList<IRI>();
+		return superquestions;
 	}
 	
 	
@@ -142,9 +152,20 @@ public class FormElement implements Serializable {
 	 * @param iri	Subquestion IRI
 	 */
 	public void addSubquestion(IRI iri) {
-		if(children == null)
-			children = new ArrayList<IRI>();
-		children.add(iri);
+		if(subquestions == null)
+			subquestions = new ArrayList<IRI>();
+		subquestions.add(iri);
+	}
+	
+	
+	/**
+	 * Add superquestion to superquestion list
+	 * @param iri	Superquestion IRI
+	 */
+	public void addSuperquestions(IRI iri) {
+		if(superquestions == null)
+			superquestions = new ArrayList<IRI>();
+		superquestions.add(iri);
 	}
 	
 	

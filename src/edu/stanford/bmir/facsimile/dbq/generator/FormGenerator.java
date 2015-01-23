@@ -81,11 +81,17 @@ public class FormGenerator {
 			List<IRI> invisibleElements = new ArrayList<IRI>();
 			for(int j = 0; j < elements.size(); j++) {
 				FormElement element = elements.get(j);
+				List<IRI> superquestions = element.getSuperquestions();
+				
+				for(int k = 0; k < superquestions.size(); k++) 
+					if(negTriggers.containsKey(superquestions.get(k)) || posTriggers.containsKey(superquestions.get(k)))
+						invisibleElements.add(element.getEntityIRI());
+				
 				String onchange = "";
 				IRI trigger = null;
 				if(posTriggers.containsKey(element.getEntityIRI())) {
 					trigger = posTriggers.get(element.getEntityIRI());
-					invisibleElements = element.getChildren();
+					invisibleElements.addAll(element.getSubquestions());
 					onchange = getOnChangeEvent(posTriggers, element, true);
 				}
 				else if(negTriggers.containsKey(element.getEntityIRI())) {
@@ -174,7 +180,7 @@ public class FormGenerator {
 					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
 					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
 						list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()));
-					output += "<option value=\"\" selected></option>\n";
+					output += "<option value=\"\" selected>&nbsp;</option>\n";
 					for(int i = 0; i < list.size(); i++) {
 						String opt = list.get(i);
 						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
@@ -249,7 +255,7 @@ public class FormGenerator {
 	 */
 	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos) {
 		String onchange = "";
-		List<IRI> children = e.getChildren();
+		List<IRI> children = e.getSubquestions();
 		if(map.containsKey(e.getEntityIRI())) {
 			if(pos)
 				onchange += " onchange=\"showSubquestions('" + triggerString + "',";

@@ -29,8 +29,23 @@ function show(eleId) {
 
 
 function hide(eleId) {
-	document.getElementById(eleId).style.display='none';
+	var ele = document.getElementById(eleId);
+	ele.style.display='none';
+	if(ele.hasAttribute("onchange")) {
+		var att = ele.getAttribute("onchange");
+		att = att.substring(att.indexOf("(")+1, att.indexOf(")"));
+		att = replaceAll("'", "", att);
+		var arr = att.split(",");
+		for(var i = 1; i < arr.length; i++) {
+			hide(arr[i]);
+		}
+	}
 	clearChildren(document.getElementById(eleId));
+}
+
+
+function replaceAll(find, replace, str) {
+	return str.replace(new RegExp(find, 'g'), replace);
 }
 
 

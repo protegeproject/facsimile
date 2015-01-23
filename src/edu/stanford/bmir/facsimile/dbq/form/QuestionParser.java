@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -161,6 +162,7 @@ public class QuestionParser {
 					
 					if(verbose) System.out.println("    Question: " + ind.getIRI().getShortForm());
 					addSubquestionList((Question)q, node);
+					addSuperquestionList((Question)q, node);
 				}
 				else
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
@@ -183,29 +185,44 @@ public class QuestionParser {
 	private void addSubquestionList(Question q, TreeNode<IRI> node) {
 		Iterator<TreeNode<IRI>> iter = node.iterator();
 		String entIri = q.getEntity().getIRI().toString();
-//		System.out.println("! Checking: " + entIri);
-//		Set<IRI> ignored = new HashSet<IRI>();
+		Set<IRI> ignored = new HashSet<IRI>();
 		while(iter.hasNext()) {
 			TreeNode<IRI> child = iter.next();
-//			System.out.println("!        now at " + child.data.getShortForm());
-			if(!child.data.toString().equalsIgnoreCase(entIri)) // && !ignored.contains(child.data)) {
-//				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data)) { // TODO: multi-level subquestion triggering
-//					addNode(ignored, child.children);
-//				}
-				if(!q.getChildren().contains(child.data))
+			if(!child.data.toString().equalsIgnoreCase(entIri) && !ignored.contains(child.data)) {
+				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data))
+					addNode(ignored, child.children);
+				if(!q.getSubquestions().contains(child.data))
 					q.addSubquestion(child.data);
+			}
 		}
 	}
 	
 	
-	@SuppressWarnings("unused")
+	/**
+	 * Add superquestion list
+	 * @param q	Question instance
+	 * @param node	Treenode
+	 */
+	private void addSuperquestionList(Question q, TreeNode<IRI> node) {
+		TreeNode<IRI> parent = node.parent;
+		if(parent != null) {
+			q.addSuperquestions(parent.data);
+			addSuperquestionList(q, parent);
+		}
+	}
+	
+	
+	/**
+	 * Add all nodes in a node list to a set of (ignored question) IRIs 
+	 * @param set	Set of IRIs
+	 * @param nodeList	Node list
+	 */
 	private void addNode(Set<IRI> set, List<TreeNode<IRI>> nodeList) {
 		for(TreeNode<IRI> treeNode : nodeList) {
 			Iterator<TreeNode<IRI>> iter = treeNode.iterator();
 			while(iter.hasNext()) {
 				TreeNode<IRI> node = iter.next();
 				set.add(node.data);
-//				System.out.println("!   Ignoring: " + node.data.getShortForm());
 			}
 		}
 	}
