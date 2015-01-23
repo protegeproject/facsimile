@@ -28,6 +28,7 @@
 <!ATTLIST question required CDATA #IMPLIED>
 <!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST question hideSubquestionsForAnswer CDATA #IMPLIED>
+<!ATTLIST question optionOrder CDATA #IMPLIED>
 <!ATTLIST section numbered CDATA #IMPLIED>
 <!ATTLIST section type CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
