@@ -101,7 +101,7 @@
 						</question>
 					</subquestionList>
 				</question>
-				<question optionOrder="4;2;1;3">
+				<question optionOrder="3;*;4">
 					<iri>http://purl.org/facsimile/example#question_s2_q3</iri>
 				</question>
 			</questionList>

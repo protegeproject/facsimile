@@ -38,7 +38,7 @@ public class Configuration {
 	private Map<IRI,ElementType> elementTypes;
 	private Map<IRI,SectionType> sectionTypes;
 	private Map<IRI,List<TreeNode<IRI>>> sections;
-	private Map<IRI,List<Integer>> optionsOrder;
+	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
 	private final String delim = "|";
 	private File file;
@@ -58,7 +58,7 @@ public class Configuration {
 		subquestionNegTriggers = new HashMap<IRI,IRI>();
 		elementTypes = new LinkedHashMap<IRI,ElementType>();
 		sectionTypes = new LinkedHashMap<IRI,SectionType>();
-		optionsOrder = new HashMap<IRI,List<Integer>>();
+		optionsOrder = new HashMap<IRI,List<String>>();
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
@@ -293,9 +293,9 @@ public class Configuration {
 			if(nodeMap.getNamedItem("optionOrder") != null) {
 				String order = nodeMap.getNamedItem("optionOrder").getNodeValue();
 				StringTokenizer tokenizer = new StringTokenizer(order, ";");
-				List<Integer> list = new ArrayList<Integer>();
+				List<String> list = new ArrayList<String>();
 				while(tokenizer.hasMoreTokens())
-					list.add(Integer.parseInt(tokenizer.nextToken()));
+					list.add(tokenizer.nextToken());
 				optionsOrder.put(iri, list);
 			}
 		}
@@ -859,9 +859,9 @@ public class Configuration {
 	/**
 	 * Get the map of question IRI's to the list which determines the order in which question options will 
 	 * be presented in the HTML form
-	 * @return Map of question IRI's to a list of integers
+	 * @return Map of question IRI's to a list of strings
 	 */
-	public Map<IRI,List<Integer>> getOptionsOrderMap() {
+	public Map<IRI,List<String>> getOptionsOrderMap() {
 		return optionsOrder;
 	}
 }

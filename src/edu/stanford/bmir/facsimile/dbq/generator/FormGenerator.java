@@ -2,6 +2,7 @@ package edu.stanford.bmir.facsimile.dbq.generator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 public class FormGenerator {
 	private List<Section> sections;
 	private Map<IRI,IRI> posTriggers, negTriggers;
-	private Map<IRI,List<Integer>> optionsOrder;
+	private Map<IRI,List<String>> optionsOrder;
 	private final String triggerString;
 	private Configuration config;
 	
@@ -227,21 +228,42 @@ public class FormGenerator {
 	 * @param orderList	List that guides the order of elements of the first list
 	 * @return List sorted according to the order given by another list
 	 */
-	private List<String> sortList(List<String> list, List<Integer> orderList) {
+	private List<String> sortList(List<String> list, List<String> orderList) {
 		List<String> output = new ArrayList<String>();
+		LinkedList<Integer> freeIndexes = new LinkedList<Integer>();
+		boolean wildcharUsed = false;
 		for(int i = 0; i < orderList.size(); i++) {
-			Integer nr = orderList.get(i);
-			if(nr <= list.size() && list.get(nr-1) != null)
-				output.add(list.get(nr-1));
+			if(orderList.get(i).equals("*")) {
+				wildcharUsed = true;
+				int diff = list.size()-orderList.size()+1;
+				for(int j = 0; j < diff; j++) {
+					output.add("");
+					freeIndexes.add(output.size()-1);
+				}
+			}
+			else {
+				Integer nr = Integer.parseInt(orderList.get(i));
+				if(nr <= list.size() && list.get(nr-1) != null)
+					output.add(list.get(nr-1));
+			}
+			
 		}
-		
 		/* If not all members of the 1st list are specified in the 2nd list,
 		 * just add them to the end of the (partially-ordered) list  
 		 */
-		if(output.size() < list.size())
-			for(int i = 0; i < list.size(); i++)
-				if(!output.contains(list.get(i)))
-					output.add(list.get(i));
+		if(output.size() < list.size() || wildcharUsed) {
+			for(int i = 0; i < list.size(); i++) {
+				String str = list.get(i);
+				if(!output.contains(str)) {
+					if(wildcharUsed && !freeIndexes.isEmpty()) {
+						int index = freeIndexes.poll();
+						output.set(index, str);
+					}
+					else
+						output.add(str);
+				}
+			}
+		}
 		return output;
 	}
 	
@@ -251,6 +273,7 @@ public class FormGenerator {
 	 * @param map	Map of questions to trigger IRIs
 	 * @param e	Form element
 	 * @param pos	true if given triggers are positive triggers (i.e., showSubquestionsForAnswer="...")
+	 * @param descendants	List of descendant form elements
 	 * @return String containing the onChange event 
 	 */
 	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos, List<FormElement> descendants) {
