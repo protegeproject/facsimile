@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.io.IRIDocumentSource;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -30,7 +29,7 @@ import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
  * School of Medicine, Stanford University <br>
  */
 public class Runner {
-	public final static String name = "bmir-form-generator", version = "1.0b";
+	public final static String name = "facsimile-form-generator", version = "1.0b";
 	private File config;
 	private boolean verbose;
 	private Configuration conf;

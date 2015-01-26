@@ -41,6 +41,7 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.parameters.Imports;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.exception.MissingOntologyEntityException;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.InformationElement;
@@ -107,7 +108,6 @@ public class QuestionParser {
 		char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		List<Section> outputSections = new ArrayList<Section>();
 		Map<IRI,List<TreeNode<IRI>>> sections = conf.getSectionMap(); 
-		
 		for(IRI section : sections.keySet()) { // foreach section
 			if(verbose) System.out.println(" Section: " + section.getShortForm());
 			OWLEntity sectionEnt = null;
@@ -116,6 +116,8 @@ public class QuestionParser {
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
 			else if(ont.containsClassInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLClass(section);	// section (or form element) class
+			else
+				throw new MissingOntologyEntityException("Section form element: " + section.toString() + " does not exist in the given ontology");
 			
 			SectionType sectionType = conf.getSectionType(section);
 			List<TreeNode<IRI>> eleList = sections.get(section);
@@ -166,8 +168,11 @@ public class QuestionParser {
 					if(!node.isRoot())
 						q.setParentQuestion(node.parent.data);
 				}
-				else
+				else if(ont.containsEntityInSignature(node.data))
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
+				else
+					throw new MissingOntologyEntityException("Question or info form element: " + node.data.toString() + " does not exist in the given ontology");
+				
 				if(q != null) {
 					if(verbose) printInfo(q);
 					formElements.add(q);
@@ -479,21 +484,12 @@ public class QuestionParser {
 	 * @param type	Type of question (i.e., IRI name fragment)
 	 * @return List of question
 	 */
-	public List<Section> getSections(String type) {
+	public List<Section> getAllSections() {
 		System.out.print("Parsing questions and sections... ");
 		if(verbose) System.out.println();
 		List<Section> list = parseSections();
 		System.out.println("done");
 		return list;
-	}
-	
-	
-	/**
-	 * Get the list of all sections and questions instantiated in the given ontology
-	 * @return List of question sections
-	 */
-	public List<Section> getAllSections() {
-		return getSections("");
 	}
 	
 	
