@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentSource;
+import org.semanticweb.owlapi.io.IRIDocumentSource;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -17,6 +18,8 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
+import edu.stanford.bmir.facsimile.dbq.exception.MissingOntologyFileException;
+import edu.stanford.bmir.facsimile.dbq.exception.OntologyFileParseException;
 import edu.stanford.bmir.facsimile.dbq.form.QuestionParser;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
@@ -27,7 +30,7 @@ import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
  * School of Medicine, Stanford University <br>
  */
 public class Runner {
-	public static String name = "bmir-form-generator", version = "1.0b";
+	public final static String name = "bmir-form-generator", version = "1.0b";
 	private File config;
 	private boolean verbose;
 	private Configuration conf;
@@ -70,33 +73,27 @@ public class Runner {
 	/**
 	 * Execute form generation procedure
 	 * @return String containing HTML code for the form
-	 * @throws IOException	IO exception
 	 */
-	public String run() throws IOException {
-		if(config != null) {
-			System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
-			if(verbose) System.out.println();
-			conf = new Configuration(config, verbose);
-			conf.parseConfigurationFile();
-			System.out.println("done");
-
-			ont = loadOntology(conf);
-			String outputPath = conf.getOutputFilePath();
-			if(outputPath != null && !outputPath.isEmpty())
-				System.out.println("Output: " + outputPath);
-
-			QuestionParser gen = new QuestionParser(ont, conf, verbose);
-			sections = gen.getAllSections();
-			questionOptions = gen.getQuestionOptions();
-
-			FormGenerator formGen = new FormGenerator(sections, conf);
-			String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
-
-			System.out.println("finished");
-			return output;
-		}
-		else
-			throw new RuntimeException("No configuration file was given. Please select a pre-generated form or upload a configuration file to continue.");
+	public String run() {
+		System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
+		if(verbose) System.out.println();
+		conf = new Configuration(config, verbose);
+		conf.parseConfigurationFile();
+		System.out.println("done");
+		ont = loadOntology(conf);
+		
+		String outputPath = conf.getOutputFilePath();
+		if(outputPath != null && !outputPath.isEmpty())
+			System.out.println("Output: " + outputPath);
+		
+		QuestionParser gen = new QuestionParser(ont, conf, verbose);
+		sections = gen.getAllSections();
+		questionOptions = gen.getQuestionOptions();
+		
+		FormGenerator formGen = new FormGenerator(sections, conf);
+		String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+		System.out.println("finished");
+		return output;
 	}
 	
 	
@@ -105,12 +102,8 @@ public class Runner {
 	 * @return List of sections
 	 */
 	public List<Section> getSections() {
-		if(sections == null) {
-			try { run(); } 
-			catch (IOException e) { e.printStackTrace(); }
-			return sections;
-		} else
-			return sections;
+		if(sections == null) run();
+		return sections;
 	}
 	
 	
@@ -119,12 +112,8 @@ public class Runner {
 	 * @return Map of question IRIs to their answer options
 	 */
 	public Map<String,Map<String,String>> getQuestionOptions() {
-		if(questionOptions == null) {
-			try { run(); } 
-			catch (IOException e) { e.printStackTrace(); }
-			return questionOptions;
-		} else
-			return questionOptions;
+		if(questionOptions == null) run();  
+		return questionOptions;
 	}
 	
 	
@@ -153,24 +142,32 @@ public class Runner {
 	 */
 	private OWLOntology loadOntology(Configuration conf) {
 		String inputFile = conf.getInputOntologyPath();
-		if(inputFile == null) {
-			System.err.println("\n!! Error: Input ontology file path not specified in configuration file !!\n");
-			System.exit(1);
-		}
-		File f = new File(inputFile);
+		if(inputFile == null)
+			throw new MissingOntologyFileException("Could not find an input ontology element in the given configuration file");
+		
+		IRI iri = null;
+		if(inputFile.contains(":"))
+			iri = IRI.create(inputFile);
+		else
+			iri = IRI.create("file:" + inputFile);
+		
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
 		config.setLoadAnnotationAxioms(false);
 		
-		System.out.print("Loading ontology: " + f.getAbsolutePath() + "... ");
+		System.out.print("Loading ontology at: " + inputFile + "... ");
 		Map<IRI, String> map = conf.getInputImportsMap();
 		for(IRI i : map.keySet())
 			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create("file:" + map.get(i))));
 		
 		OWLOntology ont = null;
 		try {
-			ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(f), config);
-		} catch (OWLOntologyCreationException e) { e.printStackTrace(); }
+			ont = man.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);
+		} catch (OWLOntologyCreationException e) { 
+			e.printStackTrace(); 
+		}
+		if(ont == null)
+			throw new OntologyFileParseException("Could not load ontology specified in the configuration file. Make sure that all imports are well-specified, and can be properly resolved");
 		System.out.println("done");
 		return ont;
 	}

@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +50,6 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-@WebServlet("/FormInputHandler")
 public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Section> sections;
@@ -62,12 +60,6 @@ public class FormInputHandler extends HttpServlet {
 	private Map<String,Map<String,String>> eOptions;
 	private Configuration conf;
 	private OWLOntology inputOnt;
-
-	
-    /**
-     * Constructor
-     */
-    public FormInputHandler() { }
 
     
 	/**

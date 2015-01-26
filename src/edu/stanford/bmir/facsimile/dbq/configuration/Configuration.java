@@ -21,6 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import edu.stanford.bmir.facsimile.dbq.exception.ConfigurationFileParseException;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
@@ -79,13 +80,14 @@ public class Configuration {
 	 */
 	public void parseConfigurationFile() {
 		doc = loadConfigurationFile(file);
-		if(doc != null) {
-			formIri = getFormIRI();
-			sections = getSections();
-			gatherOntologyFiles();
-			gatherOutputInformation();
-		}
-		else throw new Error("Error parsing configuration file");
+		if(doc == null)
+			throw new ConfigurationFileParseException("An error occurred parsing the given XML configuration file. "
+					+ "Ensure that the file is well-formed and valid with respect to the given DTD");
+		if(verbose) System.out.println("Loaded configuration: " + doc.getDocumentURI());
+		formIri = getFormIRI();
+		sections = getSections();
+		gatherOntologyFiles();
+		gatherOutputInformation();
 	}
 	
 	
@@ -96,11 +98,16 @@ public class Configuration {
 	 */
 	private Document loadConfigurationFile(File f) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = null;
 		Document doc = null;
 		try {
-			DocumentBuilder db = dbf.newDocumentBuilder();
+			db = dbf.newDocumentBuilder();
+		} catch (ParserConfigurationException e1) {
+			e1.printStackTrace();
+		}
+		try {
 			doc = db.parse(f);
-		} catch (ParserConfigurationException | SAXException | IOException e) {
+		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
 		return doc;

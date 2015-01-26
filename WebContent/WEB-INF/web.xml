@@ -29,7 +29,25 @@
 	<servlet-name>OutputFileHandler</servlet-name>
 	<url-pattern>/file</url-pattern>
   </servlet-mapping>
-<!--   <listener>
-    <listener-class>edu.stanford.bmir.facsimile.dbq.servlets.SessionListener</listener-class>
-  </listener> -->
+  <servlet>
+	<servlet-name>ErrorHandler</servlet-name>
+	<servlet-class>edu.stanford.bmir.facsimile.dbq.servlets.ErrorHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>ErrorHandler</servlet-name>
+	<url-pattern>/error</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error</location>
+  </error-page>
+  <!--   
+  <listener>
+	<listener-class>edu.stanford.bmir.facsimile.dbq.servlets.SessionListener</listener-class>
+  </listener>
+  -->
 </web-app>

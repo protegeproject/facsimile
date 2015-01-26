@@ -1,6 +1,5 @@
 package edu.stanford.bmir.facsimile.dbq.generator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,9 +46,8 @@ public class FormGenerator {
 	 * @param title	Title of the HTML webpage
 	 * @param cssClass	CSS style class to be used 
 	 * @return Document representing an HTML form
-	 * @throws IOException 	IO error
 	 */
-	public String generateHTMLForm(String title, String cssClass) throws IOException {
+	public String generateHTMLForm(String title, String cssClass) {
 		System.out.print("Generating HTML form... ");
 		String output = "";
 		output += "<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n";
@@ -118,9 +116,8 @@ public class FormGenerator {
 	 * @param sectionNumbered	true if all elements should be numbered, false otherwise
 	 * @param hidden	true if question should be hidden by default, false otherwise
 	 * @return String with the HTML code for the given element
-	 * @throws IOException	IO error
 	 */
-	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) throws IOException {
+	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
 		String output = "";
 		String qName = e.getEntity().getIRI().toString();
 		String qNameShort = e.getEntity().getIRI().getShortForm();

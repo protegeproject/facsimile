@@ -480,7 +480,8 @@ public class QuestionParser {
 	 * @return List of question
 	 */
 	public List<Section> getSections(String type) {
-		System.out.println("Parsing questions and sections... ");
+		System.out.print("Parsing questions and sections... ");
+		if(verbose) System.out.println();
 		List<Section> list = parseSections();
 		System.out.println("done");
 		return list;

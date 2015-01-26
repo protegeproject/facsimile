@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,17 +20,11 @@ import org.semanticweb.owlapi.rdf.model.RDFGraph;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-@WebServlet("/OutputFileHandler")
 public class OutputFileHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String uuid, date;
 	
-    /**
-     * Constructor
-     */
-    public OutputFileHandler() {}
-
-    
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
