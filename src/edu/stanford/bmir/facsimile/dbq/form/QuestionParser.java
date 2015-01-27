@@ -478,12 +478,10 @@ public class QuestionParser {
 	
 	
 	/**
-	 * Get the list of sections, and questions of a specific type, instantiated in the given ontology, 
-	 * where type is a string that is matched against the individuals' names 
-	 * @param type	Type of question (i.e., IRI name fragment)
-	 * @return List of question
+	 * Parse and return a list of all sections (and questions contained within) 
+	 * @return List of sections
 	 */
-	public List<Section> getAllSections() {
+	public List<Section> getSections() {
 		System.out.print("Parsing questions and sections... ");
 		if(verbose) System.out.println();
 		List<Section> list = parseSections();

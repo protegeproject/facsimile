@@ -86,7 +86,7 @@ public class Runner {
 			System.out.println("Output: " + outputPath);
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
-		sections = gen.getAllSections();
+		sections = gen.getSections();
 		questionOptions = gen.getQuestionOptions();
 		
 		FormGenerator formGen = new FormGenerator(sections, conf);
