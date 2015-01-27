@@ -157,7 +157,7 @@ public class QuestionParser {
 					questionNr += (skip_main > 0 ? (i-skip_main >= 0 ? alphabet[i-skip_main] : 0) : alphabet[i]);
 				
 				OWLNamedIndividual ind = df.getOWLNamedIndividual(node.data);
-				if(ont.containsIndividualInSignature(node.data)) {
+				if(ont.containsIndividualInSignature(node.data, Imports.INCLUDED)) {
 					if(node.getLevel() > 0 && isNumbered)
 						questionNr += "" + (skip_sub > 0 ? counter-skip_sub : counter);
 					q = getQuestionDetails(questionNr, i, ind, node.getLevel());
@@ -168,7 +168,7 @@ public class QuestionParser {
 					if(!node.isRoot())
 						q.setParentQuestion(node.parent.data);
 				}
-				else if(ont.containsEntityInSignature(node.data))
+				else if(ont.containsEntityInSignature(node.data, Imports.INCLUDED))
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
 				else
 					throw new MissingOntologyEntityException("Question or info form element: " + node.data.toString() + " does not exist in the given ontology");
