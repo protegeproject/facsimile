@@ -20,16 +20,16 @@
 <!ELEMENT question (iri,subquestionList?)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
-<!ATTLIST info type CDATA #IMPLIED>
+<!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
 <!ATTLIST info property CDATA #IMPLIED>
-<!ATTLIST info required CDATA #IMPLIED>
-<!ATTLIST question type CDATA #IMPLIED>
-<!ATTLIST question numbered CDATA #IMPLIED>
-<!ATTLIST question required CDATA #IMPLIED>
+<!ATTLIST info required (true|false) #IMPLIED>
+<!ATTLIST question type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
+<!ATTLIST question numbered (true|false) #IMPLIED>
+<!ATTLIST question required (true|false) #IMPLIED>
 <!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST question hideSubquestionsForAnswer CDATA #IMPLIED>
 <!ATTLIST question optionOrder CDATA #IMPLIED>
-<!ATTLIST section numbered CDATA #IMPLIED>
-<!ATTLIST section type CDATA #IMPLIED>
+<!ATTLIST section numbered (true|false) #IMPLIED>
+<!ATTLIST section type (patient_section|question_section|physician_section) #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
 <!ATTLIST file title CDATA #IMPLIED>

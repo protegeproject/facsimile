@@ -324,8 +324,7 @@ public class QuestionParser {
 		}
 		if(qOpts.getQuestionType() == null) {
 			qOpts.setQuestionType(ElementType.TEXTAREA);
-			System.out.println("\t!! Type for question: " + qNr.toUpperCase() + " (section " + sectionNr + ") not defined in ontology or configuration file. "
-					+ "Defaulting to text area !!");
+			System.err.println("\n! Warning: Type for question " + ind.getIRI().toString() + " is not defined in the ontology or configuration file. Defaulting to text area.");
 		}
 		return new Question(ind, qNr, sectionNr, qText, qFocus, qOpts.getQuestionType(), qOpts, indentLevel, questionRequired.get(ind.getIRI()));
 	}

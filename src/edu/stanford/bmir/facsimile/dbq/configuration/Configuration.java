@@ -42,7 +42,7 @@ public class Configuration {
 	private Map<IRI,List<TreeNode<IRI>>> sections;
 	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
-	private final String delim = "|";
+	private final String delim = ";";
 	private File file;
 	private boolean verbose;
 	
@@ -301,7 +301,7 @@ public class Configuration {
 				subquestionNegTriggers.put(iri, IRI.create(nodeMap.getNamedItem("hideSubquestionsForAnswer").getNodeValue()));
 			if(nodeMap.getNamedItem("optionOrder") != null) {
 				String order = nodeMap.getNamedItem("optionOrder").getNodeValue();
-				StringTokenizer tokenizer = new StringTokenizer(order, ";");
+				StringTokenizer tokenizer = new StringTokenizer(order, delim);
 				List<String> list = new ArrayList<String>();
 				while(tokenizer.hasMoreTokens())
 					list.add(tokenizer.nextToken());

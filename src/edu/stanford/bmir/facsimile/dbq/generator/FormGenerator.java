@@ -145,7 +145,7 @@ public class FormGenerator {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
 					List<String> optionList = opts.getOptionsValues();
 					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
 					for(int i = 0; i < optionList.size(); i++) {
 						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
@@ -161,7 +161,7 @@ public class FormGenerator {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
 					List<String> optionList = opts.getOptionsValues();
 					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
 					for(int i = 0; i < optionList.size(); i++) {
 						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
@@ -177,7 +177,7 @@ public class FormGenerator {
 				if(e instanceof Question) {
 					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
 					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()));
+						list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()), qName);
 					output += "<option value=\"\" selected>&nbsp;</option>\n";
 					for(int i = 0; i < list.size(); i++) {
 						String opt = list.get(i);
@@ -191,7 +191,7 @@ public class FormGenerator {
 					QuestionOptions opts = ((Question)e).getQuestionOptions();
 					List<String> optionList = opts.getOptionsValues();
 					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()));
+						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
 					for(int i = 0; i < optionList.size(); i++) {
 						String opt = optionList.get(i);
 						String qId = qNameShort + "-" + i;
@@ -225,12 +225,13 @@ public class FormGenerator {
 	 * @param orderList	List that guides the order of elements of the first list
 	 * @return List sorted according to the order given by another list
 	 */
-	private List<String> sortList(List<String> list, List<String> orderList) {
+	private List<String> sortList(List<String> list, List<String> orderList, String qName) {
 		List<String> output = new ArrayList<String>();
 		LinkedList<Integer> freeIndexes = new LinkedList<Integer>();
 		boolean wildcharUsed = false;
 		for(int i = 0; i < orderList.size(); i++) {
 			if(orderList.get(i).equals("*")) {
+				System.err.println("\n! Warning: Not all options' order specified for question " + qName + " ('*' wildcard character used)");
 				wildcharUsed = true;
 				int diff = list.size()-orderList.size()+1;
 				for(int j = 0; j < diff; j++) {
