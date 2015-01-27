@@ -74,9 +74,11 @@ public class ErrorHandler extends HttpServlet {
 			out.println("Request URI: " + requestUri + "<br><br>");
 			
 			String message = throwable.getMessage();
-			message = message.replaceAll("<", "'");
-			message = message.replaceAll(">", "'");
-			out.println("Exception message: " + message + "<br><br>");
+			if(message != null && !message.isEmpty()) {
+				message = message.replaceAll("<", "'");
+				message = message.replaceAll(">", "'");
+				out.println("Exception message: " + message + "<br><br>");
+			}
 			out.println("Stack trace:\n</p>");
 			out.println("<div class=\"inner-wrap\">\n<p>");
 			StackTraceElement[] arr = throwable.getStackTrace();
