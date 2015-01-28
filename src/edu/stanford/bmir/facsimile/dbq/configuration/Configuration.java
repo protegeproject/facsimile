@@ -42,6 +42,7 @@ public class Configuration {
 	private Map<IRI,List<TreeNode<IRI>>> sections;
 	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
+	private Map<Node,List<IRI>> questionlistTypes;
 	private final String delim = ";";
 	private File file;
 	private boolean verbose;
@@ -64,6 +65,7 @@ public class Configuration {
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
+		questionlistTypes = new HashMap<Node,List<IRI>>();
 	}
 	
 	
@@ -81,10 +83,8 @@ public class Configuration {
 	 */
 	public void parseConfigurationFile() {
 		doc = loadConfigurationFile(file);
-		if(doc == null)
-			throw new ConfigurationFileParseException("An error occurred parsing the given XML configuration file. "
-					+ "Ensure that the file is well-formed and valid with respect to the given DTD");
-		if(verbose) System.out.println("Loaded configuration: " + doc.getDocumentURI());
+		if(doc == null) throw new ConfigurationFileParseException("An error occurred parsing the given XML configuration file. "
+				+ "Ensure that the file is well-formed and valid with respect to the given DTD");
 		formIri = getFormIRI();
 		sections = getSections();
 		gatherOntologyFiles();
@@ -257,10 +257,11 @@ public class Configuration {
 	 */
 	private List<TreeNode<IRI>> getQuestions(Node questionListNode, TreeNode<IRI> questionTree) {
 		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
+		List<IRI> questionList = new ArrayList<IRI>();
 		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
 			Node qNode = nl.item(i);
-			NodeList children = qNode.getChildNodes(); // (<iri> | <subquestionList>)
+			NodeList children = qNode.getChildNodes(); // (<iri> | <questionList>)
 			TreeNode<IRI> subquestions = questionTree;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
@@ -270,15 +271,34 @@ public class Configuration {
 						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
 						else subquestions = subquestions.addChild(iri);
 						checkAttributes(iri, qNode);
+						questionList.add(iri);
 					}
 				}
-				if(curNode.getNodeName().equalsIgnoreCase("subquestionlist")) // <subquestionList>
+				if(curNode.getNodeName().equalsIgnoreCase("questionlist")) // (sub-)<questionList>
 					getQuestions(curNode, subquestions);
 			}
 			if(subquestions != null)
 				questions.add(subquestions);
 		}
+		String type = getAttribute(questionListNode, "type");
+		if(type != null && type.equals("inline"))
+			questionlistTypes.put(questionListNode, questionList);
+		
 		return questions;
+	}
+	
+	
+	/**
+	 * Get the text content of the specified attribute within a given node, if such an attribute exists, otherwise this returns null
+	 * @param node	Node
+	 * @param attribute	Attribute name
+	 * @return Text content of the given attribute in the specified node
+	 */
+	private String getAttribute(Node node, String attribute) {
+		if(node.hasAttributes())
+			if(node.getAttributes().getNamedItem(attribute) != null)
+				return node.getAttributes().getNamedItem(attribute).getTextContent();
+		return null;
 	}
 	
 	
@@ -911,6 +931,9 @@ public class Configuration {
 	public Map<IRI,IRI> getSubquestionNegativeTriggers() {
 		return subquestionNegTriggers;
 	}
+
+	
+	/*	MISC	*/
 	
 	
 	/**
@@ -920,5 +943,14 @@ public class Configuration {
 	 */
 	public Map<IRI,List<String>> getOptionsOrderMap() {
 		return optionsOrder;
+	}
+	
+	
+	/**
+	 * Get the map of 'questionList' nodes to the list of question IRIs contained within each node 
+	 * @return Map of 'questionList' nodes to list of question IRIs
+	 */
+	public Map<Node,List<IRI>> getQuestionListTypesMap() {
+		return questionlistTypes;
 	}
 }

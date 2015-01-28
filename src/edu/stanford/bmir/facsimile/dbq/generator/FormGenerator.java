@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.semanticweb.owlapi.model.IRI;
+import org.w3c.dom.Node;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
@@ -49,15 +51,7 @@ public class FormGenerator {
 	 */
 	public String generateHTMLForm(String title, String cssClass) {
 		System.out.print("Generating HTML form... ");
-		String output = "";
-		output += "<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n";
-		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\"/>\n";
-		output += "<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>\n";
-		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\"/>\n";
-		output += "<script type=\"text/javascript\" src=\"js/script.js\"></script>\n";
-		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
-		output += "<h1>" + config.getOutputFileTitle() + "<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
-		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
+		String output = generateHTMLTopPart(title, cssClass);
 		int skip = 0;
 		for(int i = 0; i < sections.size(); i++) {
 			Section s = sections.get(i);
@@ -97,13 +91,78 @@ public class FormGenerator {
 					trigger = negTriggers.get(element.getEntityIRI());
 					onchange = getOnChangeEvent(negTriggers, element, false, null);
 				}
+				
+				if(isFirstElementInQuestionList(element.getEntityIRI())) { // check if this is the first question of an inline-questionList element
+					int indent = 0;		
+					if(element instanceof Question)
+						indent = ((Question)element).getLevel()*50;
+					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left: " + indent + "px;\"" : "") + ">\n";
+					output += "<div class=\"table\">\n<div class=\"table-row\">\n";
+				}
+				
 				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
+				
+				if(isLastElementInQuestionList(element.getEntityIRI())) // check if this is the last question of an inline-questionList element
+					output += "</div>\n</div>\n</div>\n";
 			}
-			if(i<sections.size()-1) output += "<br><hr><br>\n";
+			if(i < sections.size()-1) output += "<br><hr><br>\n";
 		}
 		output += "<br><br>\n<div class=\"button-section\">\n<input type=\"submit\" value=\"Submit\"/>\n</div>\n";
 		output += "</form>\n</div>\n</body>\n</html>\n";
 		System.out.println("done");
+		return output;
+	}
+	
+	
+	/**
+	 * Check if given IRI is the first question IRI in an inline-questionList element
+	 * @param iri	Question IRI
+	 * @return true if question is the first of an inline-questionList element, false otherwise
+	 */
+	private boolean isFirstElementInQuestionList(IRI iri) {
+		boolean isFirstElement = false;
+		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
+		for(Node n : typesMap.keySet()) {
+			List<IRI> list = typesMap.get(n);
+			if(list.get(0).equals(iri))
+				isFirstElement = true;
+		}
+		return isFirstElement;
+	}
+	
+	
+	/**
+	 * Check if given IRI is the last question IRI in an inline-questionList element
+	 * @param iri	Question IRI
+	 * @return true if question is the last of an inline-questionList element, false otherwise 
+	 */
+	private boolean isLastElementInQuestionList(IRI iri) {
+		boolean isLastElement = false;
+		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
+		for(Node n : typesMap.keySet()) {
+			List<IRI> list = typesMap.get(n);
+			if(list.get(list.size()-1).equals(iri))
+				isLastElement = true;
+		}
+		return isLastElement;
+	}
+	
+	
+	/**
+	 * Generate the top portion of the output HTML webpage, up until the beginning of the form element itself
+	 * @param title	Webpage title
+	 * @param cssClass	CSS class
+	 * @return String containing top part of the output HTML page, down to beginning of form
+	 */
+	private String generateHTMLTopPart(String title, String cssClass) {
+		String output = "<!DOCTYPE html>\n<html>\n<head>\n<title>" + title + "</title>\n<meta charset=\"utf-8\"/>\n";
+		output += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\"/>\n";
+		output += "<link rel=\"icon\" type=\"image/png\" href=\"style/favicon.ico\"/>\n";
+		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\"/>\n";
+		output += "<script type=\"text/javascript\" src=\"js/script.js\"></script>\n";
+		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
+		output += "<h1>" + config.getOutputFileTitle() + "<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
+		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		return output;
 	}
 	
@@ -127,7 +186,7 @@ public class FormGenerator {
 		qText = qText.replaceAll("\n", "<br>");
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "") + (!qNumber.equals("") || !qText.equals("") ? "</p>\n" : "");
 		
-		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
+		if(!e.getType().equals(ElementType.NONE) || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
 				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
@@ -214,7 +273,7 @@ public class FormGenerator {
 			output += "</div>\n";
 		}
 		else
-			output += "<div class=\"question-holder\">" + labelInit + "</p></div>\n";
+			output += "<div class=\"question-holder\">\n" + labelInit + "</div>\n";
 		return output;
 	}
 	
@@ -245,7 +304,6 @@ public class FormGenerator {
 				if(nr <= list.size() && list.get(nr-1) != null)
 					output.add(list.get(nr-1));
 			}
-			
 		}
 		/* If not all members of the 1st list are specified in the 2nd list,
 		 * just add them to the end of the (partially-ordered) list  
@@ -305,16 +363,5 @@ public class FormGenerator {
 			onchange += ");\"";
 		}
 		return onchange;
-	}
-	
-	
-	/**
-	 * Get the name identifier of a given element. The identifier will be of the form: s1q2 for element 2 of section 1
-	 * @param e	Form element instance
-	 * @return String representation of the element identifier
-	 */
-	@SuppressWarnings("unused")
-	private String getElementName(FormElement e) {
-		return "\"s" + e.getSectionNumber() + "q" + e.getElementNumber() + "\"";
 	}
 }

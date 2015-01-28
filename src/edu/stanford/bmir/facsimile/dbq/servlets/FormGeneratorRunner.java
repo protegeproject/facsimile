@@ -115,7 +115,10 @@ public class FormGeneratorRunner extends HttpServlet {
 		String path = request.getParameter("conf");
 		try {
 			if(!path.contains(":"))
-				config = new File("conf/" + path);
+//				File classes = new File(this.getClass().getClassLoader().getResource("").getPath());
+//				String baseDir = classes.getParentFile().getParentFile().getAbsolutePath();
+//				String finalDir = baseDir + File.separator + "conf" + File.separator + path;
+				config = new File("conf" + File.separator + path);
 			else {
 				URL url = new URL(path);
 				InputStream input = url.openStream();
@@ -129,7 +132,7 @@ public class FormGeneratorRunner extends HttpServlet {
 		}
 		return config;
 	}
-	
+
 	
 	/**
 	 * Get file object from 'upload file' option

@@ -2587,6 +2587,51 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     
 
 
+    <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1 -->
+
+    <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1B_1">
+        <rdf:type rdf:resource="&datamodel;Question"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
+            </owl:Restriction>
+        </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">Diagnosis</cfa:hasText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2 -->
+
+    <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1B_2">
+        <rdf:type rdf:resource="&datamodel;Question"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
+            </owl:Restriction>
+        </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">ICD code</cfa:hasText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3 -->
+
+    <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1B_3">
+        <rdf:type rdf:resource="&datamodel;Question"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom rdf:resource="&cfa;StringValue"/>
+            </owl:Restriction>
+        </rdf:type>
+        <cfa:hasText rdf:datatype="&xsd;string">Date of diagnosis</cfa:hasText>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1C">
@@ -5973,12 +6018,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&dbq;DBQSection"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -5997,6 +6036,12 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>

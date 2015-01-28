@@ -15,9 +15,8 @@
 <!ELEMENT section (iri,(questionList|infoList)+)>
 <!ELEMENT iri (#PCDATA)>
 <!ELEMENT questionList (question+)>
-<!ELEMENT subquestionList (question+)>
 <!ELEMENT infoList (info+)>
-<!ELEMENT question (iri,subquestionList?)>
+<!ELEMENT question (iri,questionList?)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
 <!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
@@ -31,5 +30,6 @@
 <!ATTLIST question optionOrder CDATA #IMPLIED>
 <!ATTLIST section numbered (true|false) #IMPLIED>
 <!ATTLIST section type (patient_section|question_section|physician_section) #IMPLIED>
+<!ATTLIST questionList type (normal|inline) #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
 <!ATTLIST file title CDATA #IMPLIED>

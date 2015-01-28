@@ -70,21 +70,23 @@ public class ErrorHandler extends HttpServlet {
 			if (statusCode != null)
 				out.println("Status code: " + statusCode + "<br><br>");
 			out.println("Servlet class name: " + servletName + "<br><br>");
-			out.println("Exception type: " + throwable.getClass().getName() + "<br><br>");
+			if(throwable != null) out.println("Exception type: " + throwable.getClass().getName() + "<br><br>");
 			out.println("Request URI: " + requestUri + "<br><br>");
 			
-			String message = throwable.getMessage();
-			if(message != null && !message.isEmpty()) {
-				message = message.replaceAll("<", "'");
-				message = message.replaceAll(">", "'");
-				out.println("Exception message: " + message + "<br><br>");
+			if(throwable!=null) {
+				String message = throwable.getMessage();
+				if(message != null && !message.isEmpty()) {
+					message = message.replaceAll("<", "'");
+					message = message.replaceAll(">", "'");
+					out.println("Exception message: " + message + "<br><br>");
+				}
+				out.println("Stack trace:\n</p>");
+				out.println("<div class=\"inner-wrap\">\n<p>");
+				StackTraceElement[] arr = throwable.getStackTrace();
+				for(int i = 0; i < arr.length; i++)
+					out.println("at " + arr[i] + "<br>" );
+				out.println("</p>\n</div>");
 			}
-			out.println("Stack trace:\n</p>");
-			out.println("<div class=\"inner-wrap\">\n<p>");
-			StackTraceElement[] arr = throwable.getStackTrace();
-			for(int i = 0; i < arr.length; i++)
-				out.println("at " + arr[i] + "<br>" );
-			out.println("</p>\n</div>");
 		}
 		out.println("</div>\n</body>");
 		out.println("</html>");
