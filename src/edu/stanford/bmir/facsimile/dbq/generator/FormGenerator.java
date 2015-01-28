@@ -59,16 +59,9 @@ public class FormGenerator {
 			if(numbered)
 				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
 			else {
-				output += "<div class=\"section\">" + s.getSectionHeader() + "</div>";
-				skip++;
+				output += "<div class=\"section\">" + s.getSectionHeader() + "</div>"; skip++;
 			}
-			
-			String sectText = s.getSectionText();
-			sectText = sectText.replaceAll("\n", "<br>");
-			if(!sectText.equalsIgnoreCase(""))
-				output += "<p>" + sectText + "</p><br>\n";
-			else
-				output += "<br>\n";
+			output += getSectionText(s);
 			
 			List<FormElement> elements = s.getSectionElements();
 			List<IRI> invisibleElements = new ArrayList<IRI>();
@@ -99,7 +92,6 @@ public class FormGenerator {
 					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left: " + indent + "px;\"" : "") + ">\n";
 					output += "<div class=\"table\">\n<div class=\"table-row\">\n";
 				}
-				
 				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
 				
 				if(isLastElementInQuestionList(element.getEntityIRI())) // check if this is the last question of an inline-questionList element
@@ -145,6 +137,23 @@ public class FormGenerator {
 				isLastElement = true;
 		}
 		return isLastElement;
+	}
+	
+	
+	/**
+	 * Get section text
+	 * @param s	Section object
+	 * @return String containing section text to be displayed
+	 */
+	private String getSectionText(Section s) {
+		String output = "";
+		String sectText = s.getSectionText();
+		sectText = sectText.replaceAll("\n", "<br>");
+		if(!sectText.equalsIgnoreCase(""))
+			output += "<p>" + sectText + "</p><br>\n";
+		else
+			output += "<br>\n";
+		return output;
 	}
 	
 	

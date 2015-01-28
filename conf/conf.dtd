@@ -16,7 +16,7 @@
 <!ELEMENT iri (#PCDATA)>
 <!ELEMENT questionList (question+)>
 <!ELEMENT infoList (info+)>
-<!ELEMENT question (iri,questionList?)>
+<!ELEMENT question (iri,questionList*)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
 <!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
