@@ -250,7 +250,7 @@
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri>
 				</question>
-				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#Other">
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#Other" optionOrder="*;10">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri>
 					<questionList>
 						<question numbered="false">

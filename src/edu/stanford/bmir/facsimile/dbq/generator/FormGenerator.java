@@ -186,104 +186,144 @@ public class FormGenerator {
 	 * @return String with the HTML code for the given element
 	 */
 	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
-		String output = "";
-		String qName = e.getEntity().getIRI().toString();
-		String qNameShort = e.getEntity().getIRI().getShortForm();
-		String qNumber = "";
-		if(sectionNumbered && e.isElementNumbered()) qNumber = e.getElementNumber() + ") ";
-		String qText = e.getText();
-		qText = qText.replaceAll("\n", "<br>");
+		String output = "", qNumber = "", qName = e.getEntity().getIRI().toString(), qNameShort = e.getEntity().getIRI().getShortForm();
+		StringBuilder builder = new StringBuilder(output);
+		if(sectionNumbered && e.isElementNumbered()) 
+			qNumber = e.getElementNumber() + ") ";
+		String qText = e.getText(); qText = qText.replaceAll("\n", "<br>");
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "") + (!qNumber.equals("") || !qText.equals("") ? "</p>\n" : "");
 		
-		if(!e.getType().equals(ElementType.NONE) || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
+		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
+			String cssClass = "inner-wrap";
+			if(e.getType().equals(ElementType.NONE)) cssClass = "question-holder";
+			
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
-				output += "<div class=\"inner-wrap\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
-						+ (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n";
+				builder.append("<div class=\"" + cssClass + "\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
+						+ (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			}
 			else
-				output += "<div class=\"inner-wrap\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n";
+				builder.append("<div class=\"" + cssClass + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			
-			if(!qNumber.equals("") || !qText.equals(""))
-				output += labelInit;
+			if(!qNumber.equals("") || !qText.equals("")) builder.append(labelInit);
 			
-			switch(e.getType()) {
-			case CHECKBOX:
-				if(e instanceof Question) {
-					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					List<String> optionList = opts.getOptionsValues();
-					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
-					for(int i = 0; i < optionList.size(); i++) {
-						String opt = optionList.get(i);
-						String qId = qNameShort + "-" + i;
-						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace(triggerString, qId);
-						output += "<div class=\"option\"><label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
-							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>" + (i<(optionList.size()-1) ? "<br>\n" : "\n");
-					}
-				}
-				break;
-			case CHECKBOXHORIZONTAL:
-				if(e instanceof Question) {
-					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					List<String> optionList = opts.getOptionsValues();
-					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
-					for(int i = 0; i < optionList.size(); i++) {
-						String opt = optionList.get(i);
-						String qId = qNameShort + "-" + i;
-						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace(triggerString, qId);
-						output += "<div class=\"option\"><label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
-							+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>\n";
-					}
-				}
-				break;
-			case DROPDOWN:
-				output += "<select name=\"" + qName + "\">\n";
-				if(e instanceof Question) {
-					List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
-					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()), qName);
-					output += "<option value=\"\" selected>&nbsp;</option>\n";
-					for(int i = 0; i < list.size(); i++) {
-						String opt = list.get(i);
-						output += "<option value=\"" + opt + "\">" + opt + "</option>\n";
-					}
-				}
-				output += "</select>\n";
-				break;
-			case RADIO:
-				if(e instanceof Question) {
-					QuestionOptions opts = ((Question)e).getQuestionOptions();
-					List<String> optionList = opts.getOptionsValues();
-					if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
-						optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
-					for(int i = 0; i < optionList.size(); i++) {
-						String opt = optionList.get(i);
-						String qId = qNameShort + "-" + i;
-						if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
-							output = output.replace(triggerString, qId);
-						output += "<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
-								+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n";
-					}
-				}
-				break;
-			case TEXTAREA:
-				output += "<textarea name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "></textarea>\n"; break;
-			case TEXT:
-				output += "<input type=\"text\" name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "/>\n"; break;
-			case NONE:
-				break;
-			default:
-				break;
-			}
-			output += "</div>\n";
+			appendElementHTMLCode(builder, e, qName, qNameShort, trigger);
+			builder.append("</div>\n");
 		}
 		else
-			output += "<div class=\"question-holder\">\n" + labelInit + "</div>\n";
-		return output;
+			builder.append("<div class=\"question-holder\">\n" + labelInit + "</div>\n");
+		return builder.toString();
+	}
+	
+	
+	/**
+	 * Get the HTML code for the given element
+	 * @param output	Output string builder
+	 * @param e	Element instance
+	 * @param qName	Question name (IRI string)
+	 * @param qNameShort	Question name shortened to IRI fragment without namespace
+	 * @param trigger	IRI of the question trigger
+	 */
+	private void appendElementHTMLCode(StringBuilder output, FormElement e, String qName, String qNameShort, IRI trigger) {
+		switch(e.getType()) {
+		case CHECKBOX:
+			getCheckboxHTMLCode(output, e, qName, qNameShort, trigger, true); 
+			break;
+		case CHECKBOXHORIZONTAL:
+			getCheckboxHTMLCode(output, e, qName, qNameShort, trigger, false); 
+			break;
+		case DROPDOWN:
+			getDropdownHTMLCode(output, e, qName, qNameShort, trigger);
+			break;
+		case RADIO:
+			getRadioHTMLCode(output, e, qName, qNameShort, trigger);
+			break;
+		case TEXTAREA:
+			output.append("<textarea name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "></textarea>\n"); 
+			break;
+		case TEXT:
+			output.append("<input type=\"text\" name=\"" + qName + "\"" + (e.isRequired() ? " required" : "") + "/>\n"); 
+			break;
+		case NONE: break;
+		default: break;
+		}
+	}
+	
+	
+	/**
+	 * Get the HTML code for the given radio element
+	 * @param output	Output string builder
+	 * @param e	Element instance
+	 * @param qName	Question name (IRI string)
+	 * @param qNameShort	Question name shortened to IRI fragment without namespace
+	 * @param trigger	IRI of the question trigger
+	 */
+	private void getRadioHTMLCode(StringBuilder output, FormElement e, String qName, String qNameShort, IRI trigger) {
+		if(e instanceof Question) {
+			QuestionOptions opts = ((Question)e).getQuestionOptions();
+			List<String> optionList = opts.getOptionsValues();
+			if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+				optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
+			for(int i = 0; i < optionList.size(); i++) {
+				String opt = optionList.get(i);
+				String qId = qNameShort + "-" + i;
+				if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
+					output.replace(output.indexOf(triggerString), output.indexOf(triggerString)+triggerString.length(), qId);
+				output.append("<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
+						+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n");
+			}
+		}
+	}
+	
+	
+	/**
+	 * Get the HTML code for the given dropdown element
+	 * @param output	Output string builder
+	 * @param e	Element instance
+	 * @param qName	Question name (IRI string)
+	 * @param qNameShort	Question name shortened to IRI fragment without namespace
+	 * @param trigger	IRI of the question trigger
+	 */
+	private void getDropdownHTMLCode(StringBuilder output, FormElement e, String qName, String qNameShort, IRI trigger) {
+		output.append("<select name=\"" + qName + "\">\n");
+		if(e instanceof Question) {
+			List<String> list = ((Question)e).getQuestionOptions().getOptionsValues();
+			if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+				list = sortList(list, optionsOrder.get(((Question)e).getEntityIRI()), qName);
+			output.append("<option value=\"\" selected>&nbsp;</option>\n");
+			for(int i = 0; i < list.size(); i++) {
+				String opt = list.get(i);
+				output.append("<option value=\"" + opt + "\">" + opt + "</option>\n");
+			}
+		}
+		output.append("</select>\n");
+	}
+	
+	
+	/**
+	 * Get the HTML code for the given checkbox element
+	 * @param output	Output string builder
+	 * @param e	Element instance
+	 * @param qName	Question name (IRI string)
+	 * @param qNameShort	Question name shortened to IRI fragment without namespace
+	 * @param trigger	IRI of the question trigger
+	 * @param vertical	true if checkbox should be displayed vertically, false otherwise
+	 */
+	private void getCheckboxHTMLCode(StringBuilder output, FormElement e, String qName, String qNameShort, IRI trigger, boolean vertical) {
+		if(e instanceof Question) {
+			QuestionOptions opts = ((Question)e).getQuestionOptions();
+			List<String> optionList = opts.getOptionsValues();
+			if(optionsOrder.containsKey(((Question)e).getEntityIRI()))
+				optionList = sortList(optionList, optionsOrder.get(((Question)e).getEntityIRI()), qName);
+			for(int i = 0; i < optionList.size(); i++) {
+				String opt = optionList.get(i);
+				String qId = qNameShort + "-" + i;
+				if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
+					output.replace(output.indexOf(triggerString), output.indexOf(triggerString)+triggerString.length(), qId);
+				output.append("<div class=\"option\"><label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
+					+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>" + (vertical && i<(optionList.size()-1) ? "<br>\n" : "\n"));
+			}
+		}
 	}
 	
 	
@@ -350,7 +390,6 @@ public class FormGenerator {
 				onchange += " onchange=\"showSubquestions('" + triggerString + "',";
 			else
 				onchange += " onchange=\"hideSubquestions('" + triggerString + "',";
-			
 			for(int i = 0; i < children.size(); i++) {
 				IRI c = children.get(i);
 				onchange += "'" + c.getShortForm() + "'";
@@ -360,14 +399,11 @@ public class FormGenerator {
 						for(FormElement ele : descendants)
 							if(ele.getEntityIRI().equals(c)) 
 								extraChildren.addAll(ele.getSubquestions());
-							
 				for(IRI iri : extraChildren) {
-					if(!onchange.endsWith(",")) 
-						onchange += ",";
+					if(!onchange.endsWith(",")) onchange += ",";
 					onchange += "'" + iri.getShortForm() + "'";
 				}
-				if(i<children.size()-1)
-					onchange += ",";
+				if(i<children.size()-1) onchange += ",";
 			}
 			onchange += ");\"";
 		}
