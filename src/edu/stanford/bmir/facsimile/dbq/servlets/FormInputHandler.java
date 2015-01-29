@@ -237,56 +237,68 @@ public class FormInputHandler extends HttpServlet {
 					}
 					else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));	// { answer : PhysicianInformation }
-						
 						OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create("certification-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));	// { physicianCert : PhysicianCertification }
 						addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), physicianCertInd, answerInd));	// { physicianCert hasComponent answer }
 						addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getHasDatePropertyBinding()), physicianCertInd, df.getOWLLiteral(dateStr, OWL2Datatype.XSD_DATE_TIME)));	// { physicianCert hasDate date }
-						
 						finalInfo = answerInd;
 					}
 					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus))));	// { data isResponseTo P*InformationDataElement }
 				}
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
 			}
-
-			// handle multiple answers to single question
-			for(int i = 0; i < params.length; i++) {
-				Map<String,String> aMap = eOptions.get(qIri);
-				String aIri = "";  
-				if(aMap != null)
-					for(String s : aMap.keySet())
-						if(aMap.get(s).equalsIgnoreCase(params[i])) {
-							aIri = s; break;
-						}
-				if(aIri.equalsIgnoreCase(""))
-					aIri = params[i];
-				
-				if(type.equals(SectionType.QUESTION_SECTION)) {
-					OWLNamedIndividual valInd = null;
-					if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED))
-						valInd = df.getOWLNamedIndividual(IRI.create(aIri));
-					else {
-						valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
-						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
-					}
-					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd));	// { answer hasValue val }
-					
-					if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
-						addAxiom(man, ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
-				}
-				else {
-					if(answerInd == null) {
-						if(type.equals(SectionType.PATIENT_SECTION))
-							answerInd = initInfo;
-						else if(type.equals(SectionType.PHYSICIAN_SECTION))
-							answerInd = finalInfo;
-					}
-					addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri));	// { answer hasX val } where X is given by the question IRI
-				}
-			}
+			processAnswers(params, qIri, qIriAlias, type, ont, answerInd, initInfo, finalInfo);
 		}
 		return ont;
+	}
+	
+	
+	/**
+	 * Process answers to a given question
+	 * @param params	Form values
+	 * @param qIri	Question IRI
+	 * @param qIriAlias	Question IRI alias (where applicable)
+	 * @param type	Section type
+	 * @param ont	OWL ontology
+	 * @param answerInd	Answer individual
+	 * @param initInfo	Individual representing patient information
+	 * @param finalInfo	Individual representing physician information
+	 */
+	private void processAnswers(String[] params, String qIri, String qIriAlias, SectionType type, OWLOntology ont, OWLNamedIndividual answerInd, OWLNamedIndividual initInfo, OWLNamedIndividual finalInfo) {
+		OWLOntologyManager man = ont.getOWLOntologyManager();
+		OWLDataFactory df = man.getOWLDataFactory();
+		for(int i = 0; i < params.length; i++) {
+			Map<String,String> aMap = eOptions.get(qIri);
+			String aIri = "";  
+			if(aMap != null)
+				for(String s : aMap.keySet())
+					if(aMap.get(s).equalsIgnoreCase(params[i])) {
+						aIri = s; break;
+					}
+			if(aIri.equalsIgnoreCase(""))
+				aIri = params[i];
+			if(type.equals(SectionType.QUESTION_SECTION)) {
+				OWLNamedIndividual valInd = null;
+				if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED))
+					valInd = df.getOWLNamedIndividual(IRI.create(aIri));
+				else {
+					valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
+					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
+				}
+				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd));	// { answer hasValue val }
+
+				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
+					addAxiom(man, ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
+			}
+			else {
+				if(answerInd == null)
+					if(type.equals(SectionType.PATIENT_SECTION))
+						answerInd = initInfo;
+					else if(type.equals(SectionType.PHYSICIAN_SECTION))
+						answerInd = finalInfo;
+				addAxiom(man, ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri));	// { answer hasX val } where X is given by the question IRI
+			}
+		}
 	}
 	
 	

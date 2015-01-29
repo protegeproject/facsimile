@@ -31,5 +31,6 @@
 <!ATTLIST section numbered (true|false) #IMPLIED>
 <!ATTLIST section type (patient_section|question_section|physician_section) #IMPLIED>
 <!ATTLIST questionList type (normal|inline) #IMPLIED>
+<!ATTLIST questionList repeat CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
 <!ATTLIST file title CDATA #IMPLIED>
