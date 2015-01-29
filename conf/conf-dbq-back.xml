@@ -460,10 +460,10 @@
 								<question type="none" numbered="false">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1</iri>
 									<questionList>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_1</iri>
 										</question>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_2</iri>
 										</question>
 									</questionList>
@@ -471,10 +471,10 @@
 								<question type="none" numbered="false">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2</iri>
 									<questionList>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_1</iri>
 										</question>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_2</iri>
 										</question>
 									</questionList>
@@ -482,10 +482,10 @@
 								<question type="none" numbered="false">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3</iri>
 									<questionList>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_1</iri>
 										</question>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_2</iri>
 										</question>
 									</questionList>
@@ -493,10 +493,10 @@
 								<question type="none" numbered="false">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4</iri>
 									<questionList>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_1</iri>
 										</question>
-										<question numbered="false" type="checkboxhorizontal">
+										<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 											<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_2</iri>
 										</question>
 									</questionList>
@@ -543,10 +543,10 @@
 						<question type="none">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12E</iri>
 							<questionList>
-								<question numbered="false" type="checkboxhorizontal">
+								<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12E_1</iri>
 								</question>
-								<question numbered="false" type="checkboxhorizontal">
+								<question numbered="false" type="checkboxhorizontal" optionOrder="3;*">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12E_2</iri>
 								</question>
 							</questionList>
