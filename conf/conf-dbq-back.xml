@@ -73,29 +73,7 @@
 				</question>
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</iri>
-					<questionList type="inline">
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1</iri>
-						</question>
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2</iri>
-						</question>
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3</iri>
-						</question>
-					</questionList>
-					<questionList type="inline">
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1</iri>
-						</question>
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2</iri>
-						</question>
-						<question numbered="false" type="text">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3</iri>
-						</question>
-					</questionList>
-					<questionList type="inline">
+					<questionList type="inline" repeat="2">
 						<question numbered="false" type="text">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1</iri>
 						</question>

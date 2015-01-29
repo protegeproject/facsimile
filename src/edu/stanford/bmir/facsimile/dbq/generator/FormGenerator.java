@@ -65,6 +65,7 @@ public class FormGenerator {
 			
 			List<FormElement> elements = s.getSectionElements();
 			List<IRI> invisibleElements = new ArrayList<IRI>();
+			int startRepIndex = 0, repeat = 0;
 			for(int j = 0; j < elements.size(); j++) {
 				FormElement element = elements.get(j);
 				List<IRI> superquestions = element.getSuperquestions();
@@ -86,16 +87,23 @@ public class FormGenerator {
 				}
 				
 				if(isFirstElementInQuestionList(element.getEntityIRI())) { // check if this is the first question of an inline-questionList element
-					int indent = 0;		
-					if(element instanceof Question)
-						indent = ((Question)element).getLevel()*50;
-					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left: " + indent + "px;\"" : "") + ">\n";
+					int indent = 0; startRepIndex = j; 
+					if(repeat == 0) repeat = getNumberRepetitionsForQuestionList(element.getEntityIRI());
+					
+					if(element instanceof Question) indent = ((Question)element).getLevel()*50;
+					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n";
 					output += "<div class=\"table\">\n<div class=\"table-row\">\n";
 				}
+				
 				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
 				
-				if(isLastElementInQuestionList(element.getEntityIRI())) // check if this is the last question of an inline-questionList element
+				if(isLastElementInQuestionList(element.getEntityIRI())) { // check if this is the last question of an inline-questionList element
 					output += "</div>\n</div>\n</div>\n";
+					if(repeat > 1) {
+						j = startRepIndex-1;
+						repeat--;
+					}
+				}
 			}
 			if(i < sections.size()-1) output += "<br><hr><br>\n";
 		}
@@ -106,20 +114,38 @@ public class FormGenerator {
 	}
 	
 	
+	private Integer getNumberRepetitionsForQuestionList(IRI iri) {
+		int output = 0;
+		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
+		loopNodes:
+			for(Node n : typesMap.keySet()) {
+				List<IRI> list = typesMap.get(n);
+				if(list.get(0).equals(iri)) {
+					output = config.getQuestionListRepeatMap().get(n);
+					break loopNodes;
+				}
+			}
+		return output;
+	}
+	
+	
 	/**
 	 * Check if given IRI is the first question IRI in an inline-questionList element
 	 * @param iri	Question IRI
 	 * @return true if question is the first of an inline-questionList element, false otherwise
 	 */
 	private boolean isFirstElementInQuestionList(IRI iri) {
-		boolean isFirstElement = false;
+		boolean firstEle = false;
 		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
-		for(Node n : typesMap.keySet()) {
-			List<IRI> list = typesMap.get(n);
-			if(list.get(0).equals(iri))
-				isFirstElement = true;
-		}
-		return isFirstElement;
+		loopNodes:
+			for(Node n : typesMap.keySet()) {
+				List<IRI> list = typesMap.get(n);
+				if(list.get(0).equals(iri)) {
+					firstEle = true;
+					break loopNodes;
+				}
+			}
+		return firstEle;
 	}
 	
 	
@@ -129,14 +155,17 @@ public class FormGenerator {
 	 * @return true if question is the last of an inline-questionList element, false otherwise 
 	 */
 	private boolean isLastElementInQuestionList(IRI iri) {
-		boolean isLastElement = false;
+		boolean lastEle = false;
 		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
-		for(Node n : typesMap.keySet()) {
-			List<IRI> list = typesMap.get(n);
-			if(list.get(list.size()-1).equals(iri))
-				isLastElement = true;
-		}
-		return isLastElement;
+		loopNodes:
+			for(Node n : typesMap.keySet()) {
+				List<IRI> list = typesMap.get(n);
+				if(list.get(list.size()-1).equals(iri)) {
+					lastEle = true;
+					break loopNodes;
+				}
+			}
+		return lastEle;
 	}
 	
 	
@@ -186,8 +215,8 @@ public class FormGenerator {
 	 * @return String with the HTML code for the given element
 	 */
 	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
-		String output = "", qNumber = "", qName = e.getEntity().getIRI().toString(), qNameShort = e.getEntity().getIRI().getShortForm();
-		StringBuilder builder = new StringBuilder(output);
+		String qNumber = "", qName = e.getEntity().getIRI().toString(), qNameShort = e.getEntity().getIRI().getShortForm();
+		StringBuilder output = new StringBuilder();
 		if(sectionNumbered && e.isElementNumbered()) 
 			qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText(); qText = qText.replaceAll("\n", "<br>");
@@ -199,20 +228,20 @@ public class FormGenerator {
 			
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
-				builder.append("<div class=\"" + cssClass + "\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
+				output.append("<div class=\"" + cssClass + "\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
 						+ (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			}
 			else
-				builder.append("<div class=\"" + cssClass + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n");
+				output.append("<div class=\"" + cssClass + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			
-			if(!qNumber.equals("") || !qText.equals("")) builder.append(labelInit);
+			if(!qNumber.equals("") || !qText.equals("")) output.append(labelInit);
 			
-			appendElementHTMLCode(builder, e, qName, qNameShort, trigger);
-			builder.append("</div>\n");
+			appendElementHTMLCode(output, e, qName, qNameShort, trigger);
+			output.append("</div>\n");
 		}
 		else
-			builder.append("<div class=\"question-holder\">\n" + labelInit + "</div>\n");
-		return builder.toString();
+			output.append("<div class=\"question-holder\">\n" + labelInit + "</div>\n");
+		return output.toString();
 	}
 	
 	

@@ -43,6 +43,7 @@ public class Configuration {
 	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
 	private Map<Node,List<IRI>> questionlistTypes;
+	private Map<Node,Integer> questionlistRepeat;
 	private final String delim = ";";
 	private File file;
 	private boolean verbose;
@@ -66,6 +67,7 @@ public class Configuration {
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
 		questionlistTypes = new HashMap<Node,List<IRI>>();
+		questionlistRepeat = new HashMap<Node,Integer>();
 	}
 	
 	
@@ -283,6 +285,10 @@ public class Configuration {
 		String type = getAttribute(questionListNode, "type");
 		if(type != null && type.equals("inline"))
 			questionlistTypes.put(questionListNode, questionList);
+		
+		String repeat = getAttribute(questionListNode, "repeat");
+		if(repeat != null && Integer.parseInt(repeat)>0)
+			questionlistRepeat.put(questionListNode, Integer.parseInt(repeat));
 		
 		return questions;
 	}
@@ -952,5 +958,14 @@ public class Configuration {
 	 */
 	public Map<Node,List<IRI>> getQuestionListTypesMap() {
 		return questionlistTypes;
+	}
+	
+	
+	/**
+	 * Get the map of 'questionList' nodes to the number of times this questionList should be repeated
+	 * @return Map of 'questionList' nodes to number of repetitions of this list
+	 */
+	public Map<Node,Integer> getQuestionListRepeatMap() {
+		return questionlistRepeat;
 	}
 }
