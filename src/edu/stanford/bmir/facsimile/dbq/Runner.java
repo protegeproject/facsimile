@@ -36,6 +36,7 @@ public class Runner {
 	private List<Section> sections;
 	private OWLOntology ont;
 	private Map<String,Map<String,String>> questionOptions;
+	private Map<IRI,IRI> aliases;
 	
 	
 	/**
@@ -91,6 +92,7 @@ public class Runner {
 		
 		FormGenerator formGen = new FormGenerator(sections, conf);
 		String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+		aliases = formGen.getIRIAliases();
 		System.out.println("finished");
 		return output;
 	}
@@ -169,6 +171,15 @@ public class Runner {
 			throw new OntologyFileParseException("Could not load ontology specified in the configuration file. Make sure that all imports are well-specified, and can be properly resolved");
 		System.out.println("done");
 		return ont;
+	}
+	
+	
+	/**
+	 * Get the map of IRI aliases
+	 * @return Map of IRI aliases
+	 */
+	public Map<IRI,IRI> getIRIAliases() {
+		return aliases;
 	}
 	
 	

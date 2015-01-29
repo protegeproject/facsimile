@@ -73,7 +73,7 @@
 				</question>
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B</iri>
-					<questionList type="inline" repeat="2">
+					<questionList type="inline" repeat="3">
 						<question numbered="false" type="text">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1</iri>
 						</question>

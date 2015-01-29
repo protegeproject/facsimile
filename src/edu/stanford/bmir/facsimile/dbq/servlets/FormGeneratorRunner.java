@@ -63,9 +63,7 @@ public class FormGeneratorRunner extends HttpServlet {
 		File config = getConfigurationFile(request, response);
 		Runner runner = new Runner(config, false);
 		
-		PrintWriter pw = null;
-		String output = null;
-		
+		PrintWriter pw = null; String output = null;
 		try {
 			pw = response.getWriter();
 			output = runner.run();
@@ -78,6 +76,7 @@ public class FormGeneratorRunner extends HttpServlet {
 			session.setAttribute("questionOptions", runner.getQuestionOptions());
 			session.setAttribute("ontology", runner.getOntology());
 			session.setAttribute("iri", runner.getOntology().getOntologyID().getOntologyIRI().get());
+			session.setAttribute("aliases", runner.getIRIAliases());
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
 			pw.append(output);

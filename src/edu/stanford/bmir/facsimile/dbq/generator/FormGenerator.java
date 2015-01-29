@@ -1,9 +1,12 @@
 package edu.stanford.bmir.facsimile.dbq.generator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.w3c.dom.Node;
@@ -26,6 +29,8 @@ public class FormGenerator {
 	private Map<IRI,List<String>> optionsOrder;
 	private final String triggerString;
 	private Configuration config;
+	private Set<IRI> processed;
+	private Map<IRI,IRI> aliases;
 	
 	
 	/**
@@ -40,6 +45,8 @@ public class FormGenerator {
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
 		optionsOrder = config.getOptionsOrderMap();
+		processed = new HashSet<IRI>();
+		aliases = new HashMap<IRI,IRI>();
 	}
 	
 	
@@ -67,43 +74,43 @@ public class FormGenerator {
 			List<IRI> invisibleElements = new ArrayList<IRI>();
 			int startRepIndex = 0, repeat = 0;
 			for(int j = 0; j < elements.size(); j++) {
+				String onchange = "";
 				FormElement element = elements.get(j);
+				IRI eleIri = element.getEntityIRI(), trigger = null;
 				List<IRI> superquestions = element.getSuperquestions();
+				// JavaScript onChange event handling
 				for(int k = 0; k < superquestions.size(); k++) 
 					if(posTriggers.containsKey(superquestions.get(k)))
-						invisibleElements.add(element.getEntityIRI());
-
-				String onchange = "";
-				IRI trigger = null;
-				if(posTriggers.containsKey(element.getEntityIRI())) {
-					trigger = posTriggers.get(element.getEntityIRI());
+						invisibleElements.add(eleIri);
+				if(posTriggers.containsKey(eleIri)) {
+					trigger = posTriggers.get(eleIri);
 					invisibleElements.addAll(element.getSubquestions());
 					List<FormElement> descendants = element.getDescendants(elements);
 					onchange = getOnChangeEvent(posTriggers, element, true, descendants);
 				}
-				else if(negTriggers.containsKey(element.getEntityIRI())) {
-					trigger = negTriggers.get(element.getEntityIRI());
+				else if(negTriggers.containsKey(eleIri)) {
+					trigger = negTriggers.get(eleIri);
 					onchange = getOnChangeEvent(negTriggers, element, false, null);
 				}
 				
-				if(isFirstElementInQuestionList(element.getEntityIRI())) { // check if this is the first question of an inline-questionList element
+				if(isFirstElementInQuestionList(eleIri)) { // check if this is the first question of an inline-questionList element
 					int indent = 0; startRepIndex = j; 
-					if(repeat == 0) repeat = getNumberRepetitionsForQuestionList(element.getEntityIRI());
-					
+					if(repeat == 0) repeat = getNumberRepetitionsForQuestionList(eleIri);
 					if(element instanceof Question) indent = ((Question)element).getLevel()*50;
 					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n";
 					output += "<div class=\"table\">\n<div class=\"table-row\">\n";
 				}
 				
-				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(element.getEntityIRI()) ? true : false));
+				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(eleIri) ? true : false));
 				
-				if(isLastElementInQuestionList(element.getEntityIRI())) { // check if this is the last question of an inline-questionList element
+				if(isLastElementInQuestionList(eleIri)) { // check if this is the last question of an inline-questionList element
 					output += "</div>\n</div>\n</div>\n";
 					if(repeat > 1) {
 						j = startRepIndex-1;
 						repeat--;
 					}
 				}
+				processed.add(eleIri);
 			}
 			if(i < sections.size()-1) output += "<br><hr><br>\n";
 		}
@@ -114,6 +121,11 @@ public class FormGenerator {
 	}
 	
 	
+	/**
+	 * Get the number of repetitions specified for a question list
+	 * @param iri	IRI of first element in inline-questionlist
+	 * @return Number of repetitions
+	 */
 	private Integer getNumberRepetitionsForQuestionList(IRI iri) {
 		int output = 0;
 		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
@@ -215,7 +227,9 @@ public class FormGenerator {
 	 * @return String with the HTML code for the given element
 	 */
 	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
-		String qNumber = "", qName = e.getEntity().getIRI().toString(), qNameShort = e.getEntity().getIRI().getShortForm();
+		IRI eleIri = e.getEntityIRI();
+		if(processed.contains(eleIri)) eleIri = getAlternateIRI(e);
+		String qNumber = "", qName = eleIri.toString(), qNameShort = eleIri.getShortForm();
 		StringBuilder output = new StringBuilder();
 		if(sectionNumbered && e.isElementNumbered()) 
 			qNumber = e.getElementNumber() + ") ";
@@ -229,10 +243,10 @@ public class FormGenerator {
 			if(e instanceof Question && ((Question)e).getLevel()>0) {
 				int indent = ((Question)e).getLevel()*50;
 				output.append("<div class=\"" + cssClass + "\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
-						+ (hidden? "display:none;" : "") + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n");
+						+ (hidden? "display:none;" : "") + "\" id=\"" + qNameShort + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			}
 			else
-				output.append("<div class=\"" + cssClass + "\" id=\"" + e.getEntity().getIRI().getShortForm() + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n");
+				output.append("<div class=\"" + cssClass + "\" id=\"" + qNameShort + "\"" + (hidden ? " style=\"display:none;\"" : "") + (!onchange.isEmpty() ? onchange : "") + ">\n");
 			
 			if(!qNumber.equals("") || !qText.equals("")) output.append(labelInit);
 			
@@ -242,6 +256,23 @@ public class FormGenerator {
 		else
 			output.append("<div class=\"question-holder\">\n" + labelInit + "</div>\n");
 		return output.toString();
+	}
+	
+	
+	/**
+	 * Get an alternate IRI for a form element which has already been displayed
+	 * @param e	Form element
+	 * @return Element IRI
+	 */
+	private IRI getAlternateIRI(FormElement e) {
+		String draft = e.getEntityIRI().toString() + "-rep-1";
+		if(aliases.containsKey(IRI.create(draft))) {
+			String suffix = draft.substring(draft.lastIndexOf("-rep-"), draft.length());
+			int nr = Integer.parseInt(suffix.substring(suffix.lastIndexOf("-")+1, suffix.length())) + 1;
+			draft = draft.replace(suffix, "-rep-" + nr);
+		}
+		aliases.put(IRI.create(draft), e.getEntityIRI());
+		return IRI.create(draft);
 	}
 	
 	
@@ -437,5 +468,14 @@ public class FormGenerator {
 			onchange += ");\"";
 		}
 		return onchange;
+	}
+	
+	
+	/**
+	 * Get the map of IRI aliases
+	 * @return Map of IRI aliases
+	 */
+	public Map<IRI,IRI> getIRIAliases() {
+		return aliases;
 	}
 }

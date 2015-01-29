@@ -59,6 +59,7 @@ public class FormInputHandler extends HttpServlet {
 	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
 	private Configuration conf;
+	private Map<IRI,IRI> aliases;
 	private OWLOntology inputOnt;
 
     
@@ -101,9 +102,11 @@ public class FormInputHandler extends HttpServlet {
 	 * @param request	Html request
 	 * @param response	Html response
 	 */
+	@SuppressWarnings("unchecked")
 	private void processInput(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		sortIdentifiers(session);
+		aliases = (Map<IRI, IRI>) session.getAttribute("aliases");
 		try {
 			session.setAttribute("uuid", uuid);
 			session.setAttribute("date", dateStr);
@@ -206,18 +209,21 @@ public class FormInputHandler extends HttpServlet {
 		addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasFormPropertyBinding()), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI()))); // { formDataInd hasForm form }
 		
 		while(paramNames.hasMoreElements()) {
-			String qIri = (String)paramNames.nextElement(); 	// element iri: Question individual IRI, or InformationElement property IRI
-			String[] params = request.getParameterValues(qIri);	// answer(s)
+			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; 	// element iri: Question individual IRI, or InformationElement property IRI
+			if(aliases.containsKey(IRI.create(qIriAlias)))
+				qIri = aliases.get(IRI.create(qIriAlias)).toString();
+			
+			String[] params = request.getParameterValues(qIriAlias);	// answer(s)
 			String qFocus = eFocusMap.get(qIri);				// element focus
 			SectionType type = eSectionType.get(qIri);			// section type
 
 			OWLNamedIndividual dataInd = null, answerInd = null; // answerInd is instance of one of (Observation | PatientInformation | PhysicianInformation)
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
-				dataInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-data-") + uuid));
+				dataInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-data-") + uuid));
 				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
 				
-				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIri, "-obs-") + uuid));				
+				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-obs-") + uuid));				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
 					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));	// { answer : Observation }
 					if(!qFocus.equals(""))
@@ -261,7 +267,7 @@ public class FormInputHandler extends HttpServlet {
 					if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED))
 						valInd = df.getOWLNamedIndividual(IRI.create(aIri));
 					else {
-						valInd = df.getOWLNamedIndividual(IRI.create(qIri + "-val-" + uuid));
+						valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
 						addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
 					}
 					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd));	// { answer hasValue val }
@@ -323,13 +329,17 @@ public class FormInputHandler extends HttpServlet {
 	private String getCSVFile(Enumeration<String> paramNames, HttpServletRequest request) {
 		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
 		while(paramNames.hasMoreElements()) {
-			String qIri = (String)paramNames.nextElement(); // element iri
-			String[] params = request.getParameterValues(qIri);
+			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; // element iri
+			if(aliases.containsKey(IRI.create(qIriAlias)))
+				qIri = aliases.get(IRI.create(qIriAlias)).toString();
+			String[] params = request.getParameterValues(qIriAlias);
 			String qFocus = eFocusMap.get(qIri);	// element focus
 			String qText = eTextMap.get(qIri);	// element text
-			qText = qText.replaceAll(",", ";");
-			qText = qText.replaceAll("\n", "");
-			csv += addAnswer(params, qIri, qText, qFocus);
+			if(qText != null) {
+				qText = qText.replaceAll(",", ";");
+				qText = qText.replaceAll("\n", "");
+			}
+			csv += addAnswer(params, qIri, qIriAlias, qText, qFocus);
 		}
 		return csv;
 	}
@@ -339,28 +349,28 @@ public class FormInputHandler extends HttpServlet {
 	 * Add question and answer details to a csv
 	 * @param params	Answers
 	 * @param qIri	Question IRI
+	 * @param qIriAlias	Question IRI alias (if any)
 	 * @param qText	Question text
 	 * @param qFocus	Question focus class IRI
 	 * @return String CSV entry / entries
 	 */
-	private String addAnswer(String[] params, String qIri, String qText, String qFocus) {
+	private String addAnswer(String[] params, String qIri, String qIriAlias, String qText, String qFocus) {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
 			String answer = params[i];
 			if(!answer.isEmpty()) {
 				Map<String,String> aMap = eOptions.get(qIri);
 				String aIri = "";
-				if(aMap != null) {
+				if(aMap != null)
 					for(String s : aMap.keySet())
 						if(aMap.get(s).equalsIgnoreCase(answer)) {
 							aIri = s; break;
 						}
-				}
 				if(answer.contains(","))
 					answer = answer.replaceAll(",", "");
 				if(aIri.equalsIgnoreCase(""))
 					aIri = answer;
-				csv += qIri + "," + aIri + "," + qText + "," + answer + "," + qFocus + "\n";
+				csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + "," + answer + "," + qFocus + "\n";
 			}
 		}
 		return csv;
