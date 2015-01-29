@@ -19,10 +19,10 @@
 <!ELEMENT question (iri,questionList*)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
-<!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
+<!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED>
 <!ATTLIST info property CDATA #IMPLIED>
 <!ATTLIST info required (true|false) #IMPLIED>
-<!ATTLIST question type (none|checkbox|checkboxhorizontal|text|textarea|dropdown) #IMPLIED>
+<!ATTLIST question type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED>
 <!ATTLIST question numbered (true|false) #IMPLIED>
 <!ATTLIST question required (true|false) #IMPLIED>
 <!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>

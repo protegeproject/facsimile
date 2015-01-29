@@ -84,8 +84,8 @@
 	line-height: 30px;
 }
 
-.bmir-style input[type="checkbox"] {
-	margin-right: 7px;
+.bmir-style input[type="checkbox"], .bmir-style input[type="radio"] {
+	margin-right: 5px;
 }
 
 .bmir-style .option {

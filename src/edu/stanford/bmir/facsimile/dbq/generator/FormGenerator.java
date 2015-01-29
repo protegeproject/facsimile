@@ -329,8 +329,8 @@ public class FormGenerator {
 				String qId = qNameShort + "-" + i;
 				if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 					output.replace(output.indexOf(triggerString), output.indexOf(triggerString)+triggerString.length(), qId);
-				output.append("<label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
-						+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label>\n");
+				output.append("<div class=\"option\"><label><input type=\"" + e.getType().toString().toLowerCase() + "\" name=\"" + qName + "\" id=\"" + qId
+						+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>\n");
 			}
 		}
 	}

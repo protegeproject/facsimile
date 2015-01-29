@@ -117,10 +117,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2</iri>
 						</question>
 					</questionList>
@@ -128,10 +128,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2</iri>
 						</question>
 					</questionList>
@@ -139,10 +139,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2</iri>
 						</question>
 					</questionList>
@@ -150,10 +150,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2</iri>
 						</question>
 					</questionList>
@@ -161,10 +161,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2</iri>
 						</question>
 					</questionList>
@@ -172,10 +172,10 @@
 				<question type="none">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F</iri>
 					<questionList>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1</iri>
 						</question>
-						<question numbered="false" type="checkboxhorizontal">
+						<question numbered="false" type="radio">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2</iri>
 						</question>
 					</questionList>

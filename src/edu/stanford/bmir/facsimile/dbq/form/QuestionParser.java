@@ -356,7 +356,7 @@ public class QuestionParser {
 				}
 			}
 		}
-		if(qType != null && qType.equals(ElementType.RADIO)) {
+		if(qType != null && qType.equals(ElementType.RADIO) && !conf.hasDefinedType(questionIri)) {
 			opts.put(conf.getBooleanTrueValueBinding().toString(), "Yes");
 			opts.put(conf.getBooleanFalseValueBinding().toString(), "No");
 		}
