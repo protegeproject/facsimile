@@ -24,6 +24,8 @@ import org.xml.sax.SAXException;
 import edu.stanford.bmir.facsimile.dbq.exception.ConfigurationFileParseException;
 import edu.stanford.bmir.facsimile.dbq.exception.MissingConfigurationElementException;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList.QuestionListType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
 
@@ -42,8 +44,7 @@ public class Configuration {
 	private Map<IRI,List<TreeNode<IRI>>> sections;
 	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
-	private Map<Node,List<IRI>> questionlistTypes;
-	private Map<Node,Integer> questionlistRepeat;
+	private List<QuestionList> questionlists;
 	private final String delim = ";";
 	private File file;
 	private boolean verbose;
@@ -66,8 +67,7 @@ public class Configuration {
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
-		questionlistTypes = new HashMap<Node,List<IRI>>();
-		questionlistRepeat = new HashMap<Node,Integer>();
+		questionlists = new ArrayList<QuestionList>();
 	}
 	
 	
@@ -282,15 +282,35 @@ public class Configuration {
 			if(subquestions != null)
 				questions.add(subquestions);
 		}
-		String type = getAttribute(questionListNode, "type");
-		if(type != null && type.equals("inline"))
-			questionlistTypes.put(questionListNode, questionList);
-		
-		String repeat = getAttribute(questionListNode, "repeat");
-		if(repeat != null && Integer.parseInt(repeat)>0)
-			questionlistRepeat.put(questionListNode, Integer.parseInt(repeat));
-		
+		createQuestionList(questionListNode, questionList);
 		return questions;
+	}
+	
+	
+	/**
+	 * Create and add a QuestionList instance
+	 * @param questionListNode	XML questionList node
+	 * @param questionList	List of question IRIs in this node
+	 */
+	private void createQuestionList(Node questionListNode, List<IRI> questionList) {
+		QuestionList ql = new QuestionList(questionList);
+		String type = getAttribute(questionListNode, "type");
+		String repeat = getAttribute(questionListNode, "repeat");
+		int reps = 0;
+		if(repeat != null && Integer.parseInt(repeat)>0)
+			reps = Integer.parseInt(repeat);
+		if(type != null && type.equals("inline"))
+			if(reps > 0) {
+				ql.setType(QuestionListType.INLINEREPEATED);
+				ql.setRepetitions(reps);
+			}
+			else
+				ql.setType(QuestionListType.INLINE);
+		else if(reps > 0){
+			ql.setType(QuestionListType.REPEATED);
+			ql.setRepetitions(reps);
+		}
+		questionlists.add(ql);
 	}
 	
 	
@@ -951,21 +971,12 @@ public class Configuration {
 		return optionsOrder;
 	}
 	
-	
+
 	/**
-	 * Get the map of 'questionList' nodes to the list of question IRIs contained within each node 
-	 * @return Map of 'questionList' nodes to list of question IRIs
+	 * Get the list of question lists parsed in this configuration
+	 * @return List of question list objects
 	 */
-	public Map<Node,List<IRI>> getQuestionListTypesMap() {
-		return questionlistTypes;
-	}
-	
-	
-	/**
-	 * Get the map of 'questionList' nodes to the number of times this questionList should be repeated
-	 * @return Map of 'questionList' nodes to number of repetitions of this list
-	 */
-	public Map<Node,Integer> getQuestionListRepeatMap() {
-		return questionlistRepeat;
+	public List<QuestionList> getQuestionLists() {
+		return questionlists;
 	}
 }

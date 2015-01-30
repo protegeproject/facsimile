@@ -145,22 +145,20 @@ public class Runner {
 		String inputFile = conf.getInputOntologyPath();
 		if(inputFile == null)
 			throw new MissingOntologyFileException("Could not find an input ontology element in the given configuration file");
-		
 		IRI iri = null;
-		if(inputFile.contains(":"))
-			iri = IRI.create(inputFile);
-		else
-			iri = IRI.create("file:" + inputFile);
+		if(inputFile.contains(":")) iri = IRI.create(inputFile);
+		else iri = IRI.create("file:" + inputFile);
 		
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
 		config.setLoadAnnotationAxioms(false);
 		
-		System.out.print("Loading ontology at: " + inputFile + "... ");
-		Map<IRI, String> map = conf.getInputImportsMap();
-		for(IRI i : map.keySet())
-			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create("file:" + map.get(i))));
-		
+		Map<IRI,String> map = conf.getInputImportsMap();
+		for(IRI i : map.keySet()) {
+			String path = map.get(i);
+			if(!path.contains(":")) path = "file:" + path;
+			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create(path)));
+		}
 		OWLOntology ont = null;
 		try {
 			ont = man.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);

@@ -247,7 +247,7 @@ public class FormInputHandler extends HttpServlet {
 				}
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
 			}
-			processAnswers(params, qIri, qIriAlias, type, ont, answerInd, initInfo, finalInfo);
+			processAnswerData(params, qIri, qIriAlias, type, ont, answerInd, initInfo, finalInfo);
 		}
 		return ont;
 	}
@@ -264,7 +264,7 @@ public class FormInputHandler extends HttpServlet {
 	 * @param initInfo	Individual representing patient information
 	 * @param finalInfo	Individual representing physician information
 	 */
-	private void processAnswers(String[] params, String qIri, String qIriAlias, SectionType type, OWLOntology ont, OWLNamedIndividual answerInd, OWLNamedIndividual initInfo, OWLNamedIndividual finalInfo) {
+	private void processAnswerData(String[] params, String qIri, String qIriAlias, SectionType type, OWLOntology ont, OWLNamedIndividual answerInd, OWLNamedIndividual initInfo, OWLNamedIndividual finalInfo) {
 		OWLOntologyManager man = ont.getOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();
 		for(int i = 0; i < params.length; i++) {

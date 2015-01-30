@@ -9,12 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.semanticweb.owlapi.model.IRI;
-import org.w3c.dom.Node;
 
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList.QuestionListType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -58,126 +59,83 @@ public class FormGenerator {
 	 */
 	public String generateHTMLForm(String title, String cssClass) {
 		System.out.print("Generating HTML form... ");
-		String output = generateHTMLTopPart(title, cssClass);
+		StringBuilder output = new StringBuilder();
+		output.append(generateHTMLTopPart(title, cssClass));
 		int skip = 0;
 		for(int i = 0; i < sections.size(); i++) {
 			Section s = sections.get(i);
 			boolean numbered = s.isSectionNumbered();
 			if(numbered)
-				output += "<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>";
+				output.append("<div class=\"section\"><span>" + (i+1-skip) + "</span>" + s.getSectionHeader() + "</div>");
 			else {
-				output += "<div class=\"section\">" + s.getSectionHeader() + "</div>"; skip++;
+				output.append("<div class=\"section\">" + s.getSectionHeader() + "</div>"); 
+				skip++;
 			}
-			output += getSectionText(s);
-			
-			List<FormElement> elements = s.getSectionElements();
-			List<IRI> invisibleElements = new ArrayList<IRI>();
-			int startRepIndex = 0, repeat = 0;
-			for(int j = 0; j < elements.size(); j++) {
-				String onchange = "";
-				FormElement element = elements.get(j);
-				IRI eleIri = element.getEntityIRI(), trigger = null;
-				List<IRI> superquestions = element.getSuperquestions();
-				// JavaScript onChange event handling
-				for(int k = 0; k < superquestions.size(); k++) 
-					if(posTriggers.containsKey(superquestions.get(k)))
-						invisibleElements.add(eleIri);
-				if(posTriggers.containsKey(eleIri)) {
-					trigger = posTriggers.get(eleIri);
-					invisibleElements.addAll(element.getSubquestions());
-					List<FormElement> descendants = element.getDescendants(elements);
-					onchange = getOnChangeEvent(posTriggers, element, true, descendants);
-				}
-				else if(negTriggers.containsKey(eleIri)) {
-					trigger = negTriggers.get(eleIri);
-					onchange = getOnChangeEvent(negTriggers, element, false, null);
-				}
-				
-				if(isFirstElementInQuestionList(eleIri)) { // check if this is the first question of an inline-questionList element
+			output.append(getSectionText(s));
+			generateSectionElements(output, s, numbered);
+			if(i < sections.size()-1) 
+				output.append("<br><hr><br>\n");
+		}
+		output.append("<br><br>\n<div class=\"button-section\">\n<input type=\"submit\" value=\"Submit\"/>\n</div>\n");
+		output.append("</form>\n</div>\n</body>\n</html>\n");
+		System.out.println("done");
+		return output.toString();
+	}
+	
+	
+	/**
+	 * Generate the elements of a given section 
+	 * @param output	Output HTML string builder
+	 * @param s	Section
+	 * @param numbered	true if section is numbered, false otherwise
+	 */
+	private void generateSectionElements(StringBuilder output, Section s, boolean numbered) {
+		List<FormElement> elements = s.getSectionElements();
+		List<IRI> invisibleElements = new ArrayList<IRI>();
+		int startRepIndex = 0, repeat = 0;
+		for(int j = 0; j < elements.size(); j++) {
+			String onchange = "";
+			FormElement element = elements.get(j);
+			IRI eleIri = element.getEntityIRI(), trigger = null;
+			List<IRI> superquestions = element.getSuperquestions();
+			for(int k = 0; k < superquestions.size(); k++) // hide this question if there exists a super-question with a showQuestions flag
+				if(posTriggers.containsKey(superquestions.get(k)))
+					invisibleElements.add(eleIri);
+			if(posTriggers.containsKey(eleIri)) { // JavaScript onChange event handling
+				trigger = posTriggers.get(eleIri);
+				invisibleElements.addAll(element.getSubquestions());
+				List<FormElement> descendants = element.getDescendants(elements);
+				onchange = getOnChangeEvent(posTriggers, element, true, descendants);
+			}
+			else if(negTriggers.containsKey(eleIri)) {
+				trigger = negTriggers.get(eleIri);
+				onchange = getOnChangeEvent(negTriggers, element, false, null);
+			}
+			QuestionList ql = element.getQuestionList();
+			if(ql != null) {
+				if(ql.getQuestions().get(0).equals(eleIri)) { // check if this is the first question of an inline-questionList element
 					int indent = 0; startRepIndex = j; 
-					if(repeat == 0) repeat = getNumberRepetitionsForQuestionList(eleIri);
+					if(repeat == 0) repeat = ql.getRepetitions(); // && (type.equals(QuestionListType.REPEATED) || type.equals(QuestionListType.INLINEREPEATED))
 					if(element instanceof Question) indent = ((Question)element).getLevel()*50;
-					output += "<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n";
-					output += "<div class=\"table\">\n<div class=\"table-row\">\n";
+					if(ql.getType().equals(QuestionListType.INLINE) || ql.getType().equals(QuestionListType.INLINEREPEATED)) {
+						output.append("<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n");
+						output.append("<div class=\"table\">\n<div class=\"table-row\">\n");
+					}
 				}
-				
-				output += writeElement(element, onchange, trigger, numbered, (invisibleElements.contains(eleIri) ? true : false));
-				
-				if(isLastElementInQuestionList(eleIri)) { // check if this is the last question of an inline-questionList element
-					output += "</div>\n</div>\n</div>\n";
+			}
+			output.append(generateElement(element, onchange, trigger, numbered, (invisibleElements.contains(eleIri) ? true : false)));
+			if(ql != null) {
+				if(ql.getQuestions().get(ql.getQuestions().size()-1).equals(eleIri)) { // check if this is the last question of an inline-questionList element
+					if(ql.getType().equals(QuestionListType.INLINE) || ql.getType().equals(QuestionListType.INLINEREPEATED))
+						output.append("</div>\n</div>\n</div>\n");
 					if(repeat > 1) {
 						j = startRepIndex-1;
 						repeat--;
 					}
 				}
-				processed.add(eleIri);
 			}
-			if(i < sections.size()-1) output += "<br><hr><br>\n";
+			processed.add(eleIri);
 		}
-		output += "<br><br>\n<div class=\"button-section\">\n<input type=\"submit\" value=\"Submit\"/>\n</div>\n";
-		output += "</form>\n</div>\n</body>\n</html>\n";
-		System.out.println("done");
-		return output;
-	}
-	
-	
-	/**
-	 * Get the number of repetitions specified for a question list
-	 * @param iri	IRI of first element in inline-questionlist
-	 * @return Number of repetitions
-	 */
-	private Integer getNumberRepetitionsForQuestionList(IRI iri) {
-		int output = 0;
-		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
-		loopNodes:
-			for(Node n : typesMap.keySet()) {
-				List<IRI> list = typesMap.get(n);
-				if(list.get(0).equals(iri)) {
-					output = config.getQuestionListRepeatMap().get(n);
-					break loopNodes;
-				}
-			}
-		return output;
-	}
-	
-	
-	/**
-	 * Check if given IRI is the first question IRI in an inline-questionList element
-	 * @param iri	Question IRI
-	 * @return true if question is the first of an inline-questionList element, false otherwise
-	 */
-	private boolean isFirstElementInQuestionList(IRI iri) {
-		boolean firstEle = false;
-		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
-		loopNodes:
-			for(Node n : typesMap.keySet()) {
-				List<IRI> list = typesMap.get(n);
-				if(list.get(0).equals(iri)) {
-					firstEle = true;
-					break loopNodes;
-				}
-			}
-		return firstEle;
-	}
-	
-	
-	/**
-	 * Check if given IRI is the last question IRI in an inline-questionList element
-	 * @param iri	Question IRI
-	 * @return true if question is the last of an inline-questionList element, false otherwise 
-	 */
-	private boolean isLastElementInQuestionList(IRI iri) {
-		boolean lastEle = false;
-		Map<Node, List<IRI>> typesMap = config.getQuestionListTypesMap();
-		loopNodes:
-			for(Node n : typesMap.keySet()) {
-				List<IRI> list = typesMap.get(n);
-				if(list.get(list.size()-1).equals(iri)) {
-					lastEle = true;
-					break loopNodes;
-				}
-			}
-		return lastEle;
 	}
 	
 	
@@ -226,7 +184,7 @@ public class FormGenerator {
 	 * @param hidden	true if question should be hidden by default, false otherwise
 	 * @return String with the HTML code for the given element
 	 */
-	private String writeElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
+	private String generateElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
 		IRI eleIri = e.getEntityIRI();
 		if(processed.contains(eleIri)) eleIri = getAlternateIRI(e);
 		String qNumber = "", qName = eleIri.toString(), qNameShort = eleIri.getShortForm();

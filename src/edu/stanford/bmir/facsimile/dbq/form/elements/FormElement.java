@@ -20,6 +20,7 @@ public class FormElement implements Serializable {
 	private ElementType type;
 	private List<IRI> subquestions, superquestions;
 	private boolean required;
+	private QuestionList questionList;
 	private IRI parent;
 	
 	
@@ -158,6 +159,15 @@ public class FormElement implements Serializable {
 	
 	
 	/**
+	 * Get the surrounding question list
+	 * @return Question list instance
+	 */
+	public QuestionList getQuestionList() {
+		return questionList;
+	}
+	
+	
+	/**
 	 * Get the list of all subquestions of this question within a given list
 	 * @param elements	List of elements within which the search for descendants will occur
 	 * @return List of form elements which are subquestions of this question
@@ -186,7 +196,7 @@ public class FormElement implements Serializable {
 	 * Add superquestion to superquestion list
 	 * @param iri	Superquestion IRI
 	 */
-	public void addSuperquestions(IRI iri) {
+	public void addSuperquestion(IRI iri) {
 		if(superquestions == null)
 			superquestions = new ArrayList<IRI>();
 		superquestions.add(iri);
@@ -199,6 +209,15 @@ public class FormElement implements Serializable {
 	 */
 	public void setParentQuestion(IRI iri) {
 		parent = iri;
+	}
+	
+	
+	/**
+	 * Set the surrounding questionlist of this question
+	 * @param questionList	Questionlist instance
+	 */
+	public void setQuestionList(QuestionList questionList) {
+		this.questionList = questionList; 
 	}
 	
 	

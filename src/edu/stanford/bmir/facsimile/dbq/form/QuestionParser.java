@@ -46,6 +46,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.InformationElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
+import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
@@ -111,7 +112,6 @@ public class QuestionParser {
 		for(IRI section : sections.keySet()) { // foreach section
 			if(verbose) System.out.println(" Section: " + section.getShortForm());
 			OWLEntity sectionEnt = null;
-			
 			if(ont.containsIndividualInSignature(section, Imports.INCLUDED))
 				sectionEnt = df.getOWLNamedIndividual(section);	// section (or form element) individual
 			else if(ont.containsClassInSignature(section, Imports.INCLUDED))
@@ -153,8 +153,7 @@ public class QuestionParser {
 					else skip_main++;
 					isNumbered = false; 
 				}
-				else
-					questionNr += (skip_main > 0 ? (i-skip_main >= 0 ? alphabet[i-skip_main] : 0) : alphabet[i]);
+				else questionNr += (skip_main > 0 ? (i-skip_main >= 0 ? alphabet[i-skip_main] : 0) : alphabet[i]);
 				
 				OWLNamedIndividual ind = df.getOWLNamedIndividual(node.data);
 				if(ont.containsIndividualInSignature(node.data, Imports.INCLUDED)) {
@@ -175,6 +174,7 @@ public class QuestionParser {
 				
 				if(q != null) {
 					if(verbose) printInfo(q);
+					setQuestionList(q);
 					formElements.add(q);
 				}
 				counter++;
@@ -213,7 +213,7 @@ public class QuestionParser {
 	private void addSuperquestionList(Question q, TreeNode<IRI> node) {
 		TreeNode<IRI> parent = node.parent;
 		if(parent != null) {
-			q.addSuperquestions(parent.data);
+			q.addSuperquestion(parent.data);
 			addSuperquestionList(q, parent);
 		}
 	}
@@ -230,6 +230,21 @@ public class QuestionParser {
 			while(iter.hasNext()) {
 				TreeNode<IRI> node = iter.next();
 				set.add(node.data);
+			}
+		}
+	}
+	
+	
+	/**
+	 * Set the question list for the given form element
+	 * @param element	Form element
+	 */
+	private void setQuestionList(FormElement element) {
+		List<QuestionList> qls = conf.getQuestionLists();
+		for(QuestionList ql : qls) {
+			if(ql.getQuestions().contains(element.getEntityIRI())) {
+				element.setQuestionList(ql);
+				break;
 			}
 		}
 	}
