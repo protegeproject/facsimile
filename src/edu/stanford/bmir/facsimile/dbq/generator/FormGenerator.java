@@ -113,9 +113,13 @@ public class FormGenerator {
 			}
 			FormElementList ql = element.getQuestionList();
 			if(ql != null) {
+				System.out.println("Checking beginning of questionlist...");
 				if(ql.getQuestions().get(0).equals(eleIri)) { // check if this is the first question of an inline-questionList element
+					System.out.println("     is 1st element or repeat-type: " + eleIri + " = " + ql.getQuestions().get(0));
 					int indent = 0; startRepIndex = j; 
 					if(repeat == 0) repeat = ql.getRepetitions(); // && (type.equals(QuestionListType.REPEATED) || type.equals(QuestionListType.INLINEREPEATED))
+					
+					System.out.println("     repetitions: " + repeat);
 					if(element instanceof Question) indent = ((Question)element).getLevel()*50;
 					if(ql.getType().equals(QuestionListType.INLINE) || ql.getType().equals(QuestionListType.INLINEREPEATED)) {
 						output.append("<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n");
@@ -123,9 +127,11 @@ public class FormGenerator {
 					}
 				}
 			}
-			output.append(generateElement(element, onchange, trigger, numbered, (invisibleElements.contains(eleIri) ? true : false)));
+			output.append(generateInnerElementDetails(element, onchange, trigger, numbered, (invisibleElements.contains(eleIri) ? true : false)));
 			if(ql != null) {
+				System.out.println("Checking end of questionlist...");
 				if(ql.getQuestions().get(ql.getQuestions().size()-1).equals(eleIri)) { // check if this is the last question of an inline-questionList element
+					System.out.println("     is last member of question list: " + eleIri + " = " + ql.getQuestions().get(ql.getQuestions().size()-1));
 					if(ql.getType().equals(QuestionListType.INLINE) || ql.getType().equals(QuestionListType.INLINEREPEATED))
 						output.append("</div>\n</div>\n</div>\n");
 					if(repeat > 1) {
@@ -184,7 +190,7 @@ public class FormGenerator {
 	 * @param hidden	true if question should be hidden by default, false otherwise
 	 * @return String with the HTML code for the given element
 	 */
-	private String generateElement(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
+	private String generateInnerElementDetails(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
 		IRI eleIri = e.getEntityIRI();
 		if(processed.contains(eleIri)) eleIri = getAlternateIRI(e);
 		String qNumber = "", qName = eleIri.toString(), qNameShort = eleIri.getShortForm();

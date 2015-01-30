@@ -9,10 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -375,7 +373,7 @@ public class FormInputHandler extends HttpServlet {
 	 * @return String containing the output CSV file
 	 */
 	private String getCSVFile(Enumeration<String> paramNames, HttpServletRequest request) {
-		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus\n"; 
+		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus,parent question\n"; 
 		while(paramNames.hasMoreElements()) {
 			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; // element iri
 			if(aliases.containsKey(IRI.create(qIriAlias)))
@@ -406,20 +404,31 @@ public class FormInputHandler extends HttpServlet {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
 			String answer = params[i];
-			if(!answer.isEmpty()) {
-				Map<String,String> aMap = eOptions.get(qIri);
-				String aIri = "";
-				if(aMap != null)
-					for(String s : aMap.keySet())
-						if(aMap.get(s).equalsIgnoreCase(answer)) {
-							aIri = s; break;
+			Map<String,String> aMap = eOptions.get(qIri);
+			String aIri = "";
+			if(aMap != null)
+				for(String s : aMap.keySet())
+					if(aMap.get(s).equalsIgnoreCase(answer)) {
+						aIri = s; break;
+					}
+			if(answer.contains(","))
+				answer = answer.replaceAll(",", "");
+			if(aIri.equalsIgnoreCase(""))
+				aIri = answer;
+			
+			FormElement ele = eIri.get(qIri);
+			IRI parentIri = ele.getParentQuestion();
+			String parentIriStr = "";
+			if(parentIri != null) {
+				parentIriStr = parentIri.toString();
+				if(aliases.containsValue(parentIri))
+					for(IRI iri : aliases.keySet())
+						if(aliases.get(iri).equals(parentIri)) {
+							parentIriStr = iri.toString();
+							break;
 						}
-				if(answer.contains(","))
-					answer = answer.replaceAll(",", "");
-				if(aIri.equalsIgnoreCase(""))
-					aIri = answer;
-				csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + "," + answer + "," + qFocus + "\n";
 			}
+			csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + "," + answer + "," + qFocus + "," + parentIriStr + "\n";
 		}
 		return csv;
 	}
