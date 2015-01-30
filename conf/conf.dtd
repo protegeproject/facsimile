@@ -12,11 +12,11 @@
 <!ELEMENT questionTypeBindings (binding*)>
 <!ELEMENT binding (#PCDATA)>
 <!ELEMENT form (iri,section+)>
-<!ELEMENT section (iri,(questionList|infoList)+)>
+<!ELEMENT section (iri,(questionList|infoList)?)>
 <!ELEMENT iri (#PCDATA)>
 <!ELEMENT questionList (question+)>
 <!ELEMENT infoList (info+)>
-<!ELEMENT question (iri,questionList*)>
+<!ELEMENT question (iri,questionList?)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
 <!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED>
@@ -32,5 +32,7 @@
 <!ATTLIST section type (patient_section|question_section|physician_section) #IMPLIED>
 <!ATTLIST questionList type (normal|inline) #IMPLIED>
 <!ATTLIST questionList repeat CDATA #IMPLIED>
+<!ATTLIST infoList type (normal|inline) #IMPLIED>
+<!ATTLIST infoList repeat CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
 <!ATTLIST file title CDATA #IMPLIED>

@@ -24,8 +24,8 @@ import org.xml.sax.SAXException;
 import edu.stanford.bmir.facsimile.dbq.exception.ConfigurationFileParseException;
 import edu.stanford.bmir.facsimile.dbq.exception.MissingConfigurationElementException;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
-import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList;
-import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList.QuestionListType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList.QuestionListType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
 
@@ -44,7 +44,7 @@ public class Configuration {
 	private Map<IRI,List<TreeNode<IRI>>> sections;
 	private Map<IRI,List<String>> optionsOrder;
 	private Map<IRI,Boolean> sectionNumbering, questionNumbering, questionRequired;
-	private List<QuestionList> questionlists;
+	private List<FormElementList> elementLists;
 	private final String delim = ";";
 	private File file;
 	private boolean verbose;
@@ -67,7 +67,7 @@ public class Configuration {
 		sectionNumbering = new HashMap<IRI,Boolean>();
 		questionNumbering = new HashMap<IRI,Boolean>();
 		questionRequired = new HashMap<IRI,Boolean>();
-		questionlists = new ArrayList<QuestionList>();
+		elementLists = new ArrayList<FormElementList>();
 	}
 	
 	
@@ -282,7 +282,7 @@ public class Configuration {
 			if(subquestions != null)
 				questions.add(subquestions);
 		}
-		createQuestionList(questionListNode, questionList);
+		createFormElementList(questionListNode, questionList);
 		return questions;
 	}
 	
@@ -292,8 +292,8 @@ public class Configuration {
 	 * @param questionListNode	XML questionList node
 	 * @param questionList	List of question IRIs in this node
 	 */
-	private void createQuestionList(Node questionListNode, List<IRI> questionList) {
-		QuestionList ql = new QuestionList(questionList);
+	private void createFormElementList(Node questionListNode, List<IRI> questionList) {
+		FormElementList ql = new FormElementList(questionList);
 		String type = getAttribute(questionListNode, "type");
 		String repeat = getAttribute(questionListNode, "repeat");
 		int reps = 0;
@@ -310,7 +310,7 @@ public class Configuration {
 			ql.setType(QuestionListType.REPEATED);
 			ql.setRepetitions(reps);
 		}
-		questionlists.add(ql);
+		elementLists.add(ql);
 	}
 	
 	
@@ -386,12 +386,13 @@ public class Configuration {
 	
 	/**
 	 * Get information requests (e.g., information such as name, id, etc) 
-	 * @param n	Infolist node
+	 * @param infoListNode	Infolist node
 	 * @return List of IRIs
 	 */
-	private List<TreeNode<IRI>> getInfoRequests(Node n) {
+	private List<TreeNode<IRI>> getInfoRequests(Node infoListNode) {
 		List<TreeNode<IRI>> inforeqs = new ArrayList<TreeNode<IRI>>();
-		NodeList nl = n.getChildNodes(); // <info>'s
+		List<IRI> infoList = new ArrayList<IRI>();
+		NodeList nl = infoListNode.getChildNodes(); // <info>'s
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node child = nl.item(i);
 			boolean required = false;
@@ -414,8 +415,10 @@ public class Configuration {
 			if(info != null) {
 				inforeqs.add(info);
 				questionRequired.put(iri, required);
+				infoList.add(iri);
 			}
 		}
+		createFormElementList(infoListNode, infoList);
 		return inforeqs;
 	}
 	
@@ -976,7 +979,7 @@ public class Configuration {
 	 * Get the list of question lists parsed in this configuration
 	 * @return List of question list objects
 	 */
-	public List<QuestionList> getQuestionLists() {
-		return questionlists;
+	public List<FormElementList> getQuestionLists() {
+		return elementLists;
 	}
 }

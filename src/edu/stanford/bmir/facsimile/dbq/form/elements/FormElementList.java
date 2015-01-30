@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model.IRI;
  * Stanford Center for Biomedical Informatics Research (BMIR) <br>
  * School of Medicine, Stanford University <br>
  */
-public class QuestionList {
+public class FormElementList {
 	private List<IRI> questions;
 	private QuestionListType type;
 	private int repeat;
@@ -19,7 +19,7 @@ public class QuestionList {
 	 * Constructor
 	 * @param questions	List of question IRIs
 	 */
-	public QuestionList(List<IRI> questions) {
+	public FormElementList(List<IRI> questions) {
 		this.questions = questions;
 		type = QuestionListType.NORMAL;
 		repeat = 0;

@@ -20,7 +20,7 @@ public class FormElement implements Serializable {
 	private ElementType type;
 	private List<IRI> subquestions, superquestions;
 	private boolean required;
-	private QuestionList questionList;
+	private FormElementList questionList;
 	private IRI parent;
 	
 	
@@ -162,7 +162,7 @@ public class FormElement implements Serializable {
 	 * Get the surrounding question list
 	 * @return Question list instance
 	 */
-	public QuestionList getQuestionList() {
+	public FormElementList getQuestionList() {
 		return questionList;
 	}
 	
@@ -216,7 +216,7 @@ public class FormElement implements Serializable {
 	 * Set the surrounding questionlist of this question
 	 * @param questionList	Questionlist instance
 	 */
-	public void setQuestionList(QuestionList questionList) {
+	public void setQuestionList(FormElementList questionList) {
 		this.questionList = questionList; 
 	}
 	

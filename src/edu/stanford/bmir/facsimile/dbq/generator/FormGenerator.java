@@ -14,8 +14,8 @@ import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
-import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList;
-import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionList.QuestionListType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList.QuestionListType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -111,7 +111,7 @@ public class FormGenerator {
 				trigger = negTriggers.get(eleIri);
 				onchange = getOnChangeEvent(negTriggers, element, false, null);
 			}
-			QuestionList ql = element.getQuestionList();
+			FormElementList ql = element.getQuestionList();
 			if(ql != null) {
 				if(ql.getQuestions().get(0).equals(eleIri)) { // check if this is the first question of an inline-questionList element
 					int indent = 0; startRepIndex = j; 

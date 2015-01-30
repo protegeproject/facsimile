@@ -60,7 +60,7 @@
 		<iri>http://purl.org/facsimile/dbq#VAForm_9-15-11_TBI_Initial</iri>
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
-			<infoList>
+			<infoList type="inline">
 				<info type="text" property="pat_name" required="true"/>
 				<info type="text" property="pat_id"/>
 			</infoList>
