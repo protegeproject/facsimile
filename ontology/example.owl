@@ -85,6 +85,9 @@
         <ObjectProperty IRI="#hasValue"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#isComponentOf"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#isResponseTo"/>
     </Declaration>
     <Declaration>
@@ -552,9 +555,19 @@
         <ObjectProperty IRI="#isResponseTo"/>
         <ObjectProperty IRI="#hasAnswer"/>
     </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#isComponentOf"/>
+        <ObjectProperty IRI="#hasComponent"/>
+    </InverseObjectProperties>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#hasForm"/>
     </FunctionalObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#hasComponent"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#isComponentOf"/>
+    </TransitiveObjectProperty>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasForm"/>
         <Class IRI="#Form"/>

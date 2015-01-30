@@ -9,8 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -55,6 +57,7 @@ public class FormInputHandler extends HttpServlet {
 	private List<Section> sections;
 	private Date date;
 	private String uuid, dateStr, dateShortStr;
+	private Map<String,FormElement> eIri;
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,SectionType> eSectionType;
 	private Map<String,Map<String,String>> eOptions;
@@ -196,33 +199,24 @@ public class FormInputHandler extends HttpServlet {
 	 * @return OWL ontology
 	 */
 	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
+		Map<IRI,OWLNamedIndividual> answerMap = new HashMap<IRI,OWLNamedIndividual>();
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
-		OWLDataFactory df = man.getOWLDataFactory();
-		OWLOntology ont = null;
-		try { ont = man.createOntology(getOntologyIRI()); } 
-		catch (OWLOntologyCreationException e) { e.printStackTrace(); }
-		addCommentAnnotations(ont);
-		
-		OWLNamedIndividual initInfo = null, finalInfo = null; 
-		OWLNamedIndividual formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
-		addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
-		addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasFormPropertyBinding()), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI()))); // { formDataInd hasForm form }
-		
+		OWLDataFactory df = man.getOWLDataFactory();		
+		OWLNamedIndividual initInfo = null, finalInfo = null, formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
+		OWLOntology ont = createOntology(man, df, formDataInd);
 		while(paramNames.hasMoreElements()) {
 			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; 	// element iri: Question individual IRI, or InformationElement property IRI
 			if(aliases.containsKey(IRI.create(qIriAlias)))
 				qIri = aliases.get(IRI.create(qIriAlias)).toString();
-			
 			String[] params = request.getParameterValues(qIriAlias);	// answer(s)
 			String qFocus = eFocusMap.get(qIri);				// element focus
 			SectionType type = eSectionType.get(qIri);			// section type
-
 			OWLNamedIndividual dataInd = null, answerInd = null; // answerInd is instance of one of (Observation | PatientInformation | PhysicianInformation)
 			if((type.equals(SectionType.PATIENT_SECTION) && initInfo == null) || (type.equals(SectionType.PHYSICIAN_SECTION) && finalInfo == null) || type.equals(SectionType.QUESTION_SECTION)) {
 				dataInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-data-") + uuid));
 				addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
 				addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
-				
+				answerMap.put(IRI.create(qIri), dataInd);
 				answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-obs-") + uuid));				
 				if(type.equals(SectionType.QUESTION_SECTION)) {
 					addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));	// { answer : Observation }
@@ -249,7 +243,49 @@ public class FormInputHandler extends HttpServlet {
 			}
 			processAnswerData(params, qIri, qIriAlias, type, ont, answerInd, initInfo, finalInfo);
 		}
+		addDataRelations(answerMap, ont);
 		return ont;
+	}
+	
+	
+	/**
+	 * Create output ontology and add basic form-data axioms
+	 * @param man	OWL ontology manager
+	 * @param df	OWL data factory
+	 * @param formDataInd	Form data individual
+	 * @return OWL ontology
+	 */
+	private OWLOntology createOntology(OWLOntologyManager man, OWLDataFactory df, OWLNamedIndividual formDataInd) {
+		OWLOntology ont = null;
+		try { 
+			ont = man.createOntology(getOntologyIRI());
+		} catch (OWLOntologyCreationException e) { 
+			e.printStackTrace();
+		}
+		addCommentAnnotations(ont);
+		addAxiom(man, ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
+		addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasFormPropertyBinding()), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI()))); // { formDataInd hasForm form }
+		return ont;
+	}
+	
+	
+	/**
+	 * Add 'hasComponent' data relations
+	 * @param map	Map of question IRIs to their -data- individuals
+	 * @param ont	Output ontology
+	 */
+	private void addDataRelations(Map<IRI,OWLNamedIndividual> map, OWLOntology ont) {
+		OWLOntologyManager man = ont.getOWLOntologyManager();
+		OWLDataFactory df = man.getOWLDataFactory();
+		for(IRI iri : map.keySet()) {
+			FormElement element = eIri.get(iri.toString());
+			OWLNamedIndividual answer = map.get(iri);
+			for(IRI parentIri : element.getSuperquestions()) {
+				OWLNamedIndividual parentDataInd = map.get(parentIri);
+				if(parentDataInd != null)
+					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), parentDataInd, answer));
+			}
+		}
 	}
 	
 	
@@ -453,6 +489,7 @@ public class FormInputHandler extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	private void createElementMaps(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		eIri = new HashMap<String,FormElement>();
 		eTextMap = new HashMap<String,String>();
 		eFocusMap = new HashMap<String,String>();
 		eSectionType = new HashMap<String,SectionType>();
@@ -464,6 +501,7 @@ public class FormInputHandler extends HttpServlet {
 				eTextMap.put(qIri, ele.getText());
 				eFocusMap.put(qIri, ele.getFocus());
 				eSectionType.put(qIri, s.getType());
+				eIri.put(qIri, ele);
 			}
 		}
 		conf = (Configuration)session.getAttribute("configuration");
