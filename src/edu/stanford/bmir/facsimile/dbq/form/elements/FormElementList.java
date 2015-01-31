@@ -11,7 +11,7 @@ import org.semanticweb.owlapi.model.IRI;
  */
 public class FormElementList {
 	private List<IRI> questions;
-	private QuestionListType type;
+	private FormElementListType type;
 	private int repeat;
 	
 	
@@ -21,7 +21,7 @@ public class FormElementList {
 	 */
 	public FormElementList(List<IRI> questions) {
 		this.questions = questions;
-		type = QuestionListType.NORMAL;
+		type = FormElementListType.NORMAL;
 		repeat = 0;
 	}
 	
@@ -39,7 +39,7 @@ public class FormElementList {
 	 * Get the type of question list
 	 * @return Type of question list
 	 */
-	public QuestionListType getType() {
+	public FormElementListType getType() {
 		return type;
 	}
 	
@@ -66,7 +66,7 @@ public class FormElementList {
 	 * Set the type of question list
 	 * @param type	Type of question list
 	 */
-	public void setType(QuestionListType type) {
+	public void setType(FormElementListType type) {
 		this.type = type;
 	}
 	
@@ -78,7 +78,7 @@ public class FormElementList {
 	 * <br>
 	 * Question list types
 	 */
-	public enum QuestionListType {
+	public enum FormElementListType {
 		NORMAL, INLINE, REPEATED, INLINEREPEATED;
 		
 		public String toString() {

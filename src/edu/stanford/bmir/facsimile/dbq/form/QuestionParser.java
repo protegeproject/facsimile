@@ -242,7 +242,7 @@ public class QuestionParser {
 	private void setQuestionList(FormElement element) {
 		List<FormElementList> qls = conf.getQuestionLists();
 		for(FormElementList ql : qls) {
-			if(ql.getQuestions().contains(element.getEntityIRI())) {
+			if(ql.getQuestions().contains(element.getIRI())) {
 				element.setQuestionList(ql);
 				break;
 			}

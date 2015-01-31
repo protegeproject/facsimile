@@ -20,7 +20,7 @@ public class FormElement implements Serializable {
 	private ElementType type;
 	private List<IRI> subquestions, superquestions;
 	private boolean required;
-	private FormElementList questionList;
+	private FormElementList formElementList;
 	private IRI parent;
 	
 	
@@ -79,7 +79,7 @@ public class FormElement implements Serializable {
 	 * Get IRI of OWL entity representing this form element 
 	 * @return IRI
 	 */
-	public IRI getEntityIRI() {
+	public IRI getIRI() {
 		return entity.getIRI();
 	}
 	
@@ -159,11 +159,11 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Get the surrounding question list
-	 * @return Question list instance
+	 * Get the surrounding question or info list
+	 * @return Form element list instance
 	 */
-	public FormElementList getQuestionList() {
-		return questionList;
+	public FormElementList getFormElementList() {
+		return formElementList;
 	}
 	
 	
@@ -175,7 +175,7 @@ public class FormElement implements Serializable {
 	public List<FormElement> getDescendants(List<FormElement> elements) {
 		List<FormElement> output = new ArrayList<FormElement>();
 		for(FormElement e : elements)
-			if(e.getSuperquestions().contains(getEntityIRI()))
+			if(e.getSuperquestions().contains(getIRI()))
 				output.add(e);
 		return output;
 	}
@@ -213,11 +213,11 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Set the surrounding questionlist of this question
-	 * @param questionList	Questionlist instance
+	 * Set the surrounding form-element-list of this question
+	 * @param formElementList	Form element list instance
 	 */
-	public void setQuestionList(FormElementList questionList) {
-		this.questionList = questionList; 
+	public void setQuestionList(FormElementList formElementList) {
+		this.formElementList = formElementList; 
 	}
 	
 	

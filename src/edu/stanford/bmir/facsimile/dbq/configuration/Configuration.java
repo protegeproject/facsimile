@@ -25,7 +25,7 @@ import edu.stanford.bmir.facsimile.dbq.exception.ConfigurationFileParseException
 import edu.stanford.bmir.facsimile.dbq.exception.MissingConfigurationElementException;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
-import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList.QuestionListType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList.FormElementListType;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 import edu.stanford.bmir.facsimile.dbq.tree.TreeNode;
 
@@ -301,13 +301,13 @@ public class Configuration {
 			reps = Integer.parseInt(repeat);
 		if(type != null && type.equals("inline"))
 			if(reps > 0) {
-				ql.setType(QuestionListType.INLINEREPEATED);
+				ql.setType(FormElementListType.INLINEREPEATED);
 				ql.setRepetitions(reps);
 			}
 			else
-				ql.setType(QuestionListType.INLINE);
+				ql.setType(FormElementListType.INLINE);
 		else if(reps > 0){
-			ql.setType(QuestionListType.REPEATED);
+			ql.setType(FormElementListType.REPEATED);
 			ql.setRepetitions(reps);
 		}
 		elementLists.add(ql);
