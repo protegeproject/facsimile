@@ -19,20 +19,30 @@
 <!ELEMENT question (iri,questionList?)>
 <!ELEMENT info (#PCDATA)>
 <!ATTLIST binding id ID #IMPLIED>
-<!ATTLIST info type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED>
-<!ATTLIST info property CDATA #IMPLIED>
-<!ATTLIST info required (true|false) #IMPLIED>
-<!ATTLIST question type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED>
-<!ATTLIST question numbered (true|false) #IMPLIED>
-<!ATTLIST question required (true|false) #IMPLIED>
-<!ATTLIST question showSubquestionsForAnswer CDATA #IMPLIED>
-<!ATTLIST question hideSubquestionsForAnswer CDATA #IMPLIED>
-<!ATTLIST question optionOrder CDATA #IMPLIED>
-<!ATTLIST section numbered (true|false) #IMPLIED>
-<!ATTLIST section type (patient_section|question_section|physician_section) #IMPLIED>
-<!ATTLIST questionList type (normal|inline) #IMPLIED>
-<!ATTLIST questionList repeat CDATA #IMPLIED>
-<!ATTLIST infoList type (normal|inline) #IMPLIED>
-<!ATTLIST infoList repeat CDATA #IMPLIED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
 <!ATTLIST file title CDATA #IMPLIED>
+<!ATTLIST info 
+	type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED
+	property CDATA #IMPLIED
+	required (true|false) #IMPLIED
+>
+<!ATTLIST question 
+	type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED
+	numbered (true|false) #IMPLIED
+	required (true|false) #IMPLIED
+	showSubquestionsForAnswer CDATA #IMPLIED
+	hideSubquestionsForAnswer CDATA #IMPLIED
+	optionOrder CDATA #IMPLIED
+>
+<!ATTLIST section 
+	numbered (true|false) #IMPLIED
+	type (patient_section|question_section|physician_section) #IMPLIED
+>
+<!ATTLIST questionList 
+	type (normal|inline) #IMPLIED
+	repeat CDATA #IMPLIED
+>
+<!ATTLIST infoList 
+	type (normal|inline) #IMPLIED
+	repeat CDATA #IMPLIED
+>
