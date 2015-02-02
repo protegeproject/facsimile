@@ -183,11 +183,11 @@
 				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1</iri>
 					<questionList>
-						<question type="checkbox" numbered="false">
+						<question type="checkbox" numbered="false" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#OtherDisorder" optionOrder="*;12">
 							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0</iri>
 							<questionList>
 								<question numbered="false">
-									<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_18_1</iri>
+									<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_1</iri>
 								</question>
 							</questionList>
 						</question>

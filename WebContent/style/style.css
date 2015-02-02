@@ -80,7 +80,7 @@
 	padding-right: 10px;
 }
 
-.bmir-style label ~ br {
+.bmir-style .option ~ br {
 	line-height: 30px;
 }
 
