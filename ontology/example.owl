@@ -31,9 +31,6 @@
         <Class IRI="#BooleanValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#CheckboxValue"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#DataElement"/>
     </Declaration>
     <Declaration>
@@ -50,6 +47,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#FormElement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ListValue"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Observation"/>
@@ -206,7 +206,7 @@
     </Declaration>
     <SubClassOf>
         <Class IRI="#AestheticsValue"/>
-        <Class IRI="#CheckboxValue"/>
+        <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#AnnotatedData"/>
@@ -217,12 +217,8 @@
         <Class IRI="#DataValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#CheckboxValue"/>
-        <Class IRI="#DataValue"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#EaseOfUseValue"/>
-        <Class IRI="#CheckboxValue"/>
+        <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Form"/>
@@ -231,6 +227,10 @@
     <SubClassOf>
         <Class IRI="#FormData"/>
         <Class IRI="#DataElement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ListValue"/>
+        <Class IRI="#DataValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Observation"/>
@@ -242,7 +242,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SatisfactionValue"/>
-        <Class IRI="#CheckboxValue"/>
+        <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Section"/>
@@ -556,8 +556,8 @@
         <ObjectProperty IRI="#hasAnswer"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#isComponentOf"/>
         <ObjectProperty IRI="#hasComponent"/>
+        <ObjectProperty IRI="#isComponentOf"/>
     </InverseObjectProperties>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#hasForm"/>

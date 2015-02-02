@@ -433,13 +433,13 @@
         <rdfs:subClassOf rdf:resource="&datamodel;Section"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
+                <owl:onProperty rdf:resource="&cfa;hasHeading"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasHeading"/>
+                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -707,14 +707,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#ResidualsValue -->
-
-    <owl:Class rdf:about="&dbq;ResidualsValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#RetiredDBQSection -->
 
     <owl:Class rdf:about="&dbq;RetiredDBQSection">
@@ -806,6 +798,14 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#AlterationOfSenseOfSmellOrTaste -->
+
+    <rdf:Description rdf:about="&cfa;AlterationOfSenseOfSmellOrTaste">
+        <rdfs:label>Alteration of sense of smell or taste. If checked, ALSO complete a Loss of Sense of Smell and Taste Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#AtrophyOfDisUse -->
 
     <owl:NamedIndividual rdf:about="&cfa;AtrophyOfDisUse">
@@ -817,6 +817,14 @@
     <!-- http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment -->
 
     <owl:NamedIndividual rdf:about="&cfa;ContributingFactorsOfBackImpairment"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#CranialNerveDysfunction -->
+
+    <rdf:Description rdf:about="&cfa;CranialNerveDysfunction">
+        <rdfs:label>Cranial nerve dysfunction. If checked, ALSO complete a Cranial Nerves Questionnaire.</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -842,6 +850,30 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#DizzinessVertigo -->
+
+    <rdf:Description rdf:about="&cfa;DizzinessVertigo">
+        <rdfs:label>Dizziness/vertigo. If checked, ALSO complete an Ear Conditions Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#EndocrineDysfunction -->
+
+    <rdf:Description rdf:about="&cfa;EndocrineDysfunction">
+        <rdfs:label rdf:datatype="&xsd;string">Endocrine dysfunction. If checked, ALSO complete the appropriate endocrine conditions Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#ErectileDysfunction -->
+
+    <rdf:Description rdf:about="&cfa;ErectileDysfunction">
+        <rdfs:label rdf:datatype="&xsd;string">Erectile dysfunction. If checked, ALSO complete Male Reproductive Conditions Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#ExcessFatigability -->
 
     <owl:NamedIndividual rdf:about="&cfa;ExcessFatigability">
@@ -850,10 +882,34 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#GaitCoordinationAndBalance -->
+
+    <rdf:Description rdf:about="&cfa;GaitCoordinationAndBalance">
+        <rdfs:label rdf:datatype="&xsd;string">Gait, coordination, and balance. If checked, ALSO complete appropriate Questionnaire for underlying cause of gait and balance disturbance, such as Ear or Central nervous system Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour -->
 
     <rdf:Description rdf:about="&cfa;GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour">
         <rdfs:label rdf:datatype="&xsd;string">Guarding or muscle spasm does not result in abnormal gait or spinal contour</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#Headache -->
+
+    <rdf:Description rdf:about="&cfa;Headache">
+        <rdfs:label rdf:datatype="&xsd;string">Headaches, including Migraine headaches. If checked, ALSO complete a Headache Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#HearingLossAndorTinnitus -->
+
+    <rdf:Description rdf:about="&cfa;HearingLossAndorTinnitus">
+        <rdfs:label rdf:datatype="&xsd;string">Hearing loss and/or tinnitus. If checked, a Hearing Loss and Tinnitus Questionnaire must ALSO be completed.</rdfs:label>
     </rdf:Description>
     
 
@@ -914,11 +970,43 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#MentalDisorder -->
+
+    <rdf:Description rdf:about="&cfa;MentalDisorder">
+        <rdfs:label rdf:datatype="&xsd;string">Mental disorder (including emotional, behavioral, or cognitive). If checked, a Mental Disorders or PTSD Questionnaire must ALSO be completed.</rdfs:label>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#MoreMovementThanNormal -->
 
     <owl:NamedIndividual rdf:about="&cfa;MoreMovementThanNormal">
         <rdfs:label rdf:datatype="&xsd;string">More movement than normal</rdfs:label>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MotorDysfunction -->
+
+    <rdf:Description rdf:about="&cfa;MotorDysfunction">
+        <rdfs:label rdf:datatype="&xsd;string">Motor dysfunction (other than those described in Section II.5). If checked, ALSO complete specific Joint or Spine Questionnaire for the affected joint or spinal area</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#NeurogenicBladder -->
+
+    <rdf:Description rdf:about="&cfa;NeurogenicBladder">
+        <rdfs:label rdf:datatype="&xsd;string">Neurogenic bladder. If checked, ALSO complete appropriate Genitourinary Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#OtherDisorder -->
+
+    <rdf:Description rdf:about="&cfa;OtherDisorder">
+        <rdfs:label rdf:datatype="&xsd;string">Other. If checked, ALSO complete appropriate Questionnaire.</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -933,6 +1021,38 @@
     <!-- http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual -->
 
     <owl:NamedIndividual rdf:about="&cfa;ReasonAbnormalROMIsNormalForIndividual"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#Seizures -->
+
+    <rdf:Description rdf:about="&cfa;Seizures">
+        <rdfs:label rdf:datatype="&xsd;string">Seizures. If checked, ALSO complete a Seizure Disorder Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SensoryDysfunction -->
+
+    <rdf:Description rdf:about="&cfa;SensoryDysfunction">
+        <rdfs:label rdf:datatype="&xsd;string">Sensory dysfunction. If checked, ALSO complete appropriate Central nervous system, Cranial, or Peripheral Nerve Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SkinDisorders -->
+
+    <rdf:Description rdf:about="&cfa;SkinDisorders">
+        <rdfs:label rdf:datatype="&xsd;string">Skin disorders. If checked, ALSO complete a Skin Questionnaire.</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SpeechDisorder -->
+
+    <rdf:Description rdf:about="&cfa;SpeechDisorder">
+        <rdfs:label rdf:datatype="&xsd;string">Speech (including aphasia and dysarthria). If checked, ALSO complete appropriate Questionnaire.</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -953,6 +1073,14 @@
     <!-- http://purl.org/facsimile/cfa#ThoracolumbarSpine -->
 
     <owl:NamedIndividual rdf:about="&cfa;ThoracolumbarSpine"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#VisualImpairment -->
+
+    <rdf:Description rdf:about="&cfa;VisualImpairment">
+        <rdfs:label rdf:datatype="&xsd;string">Visual impairment. If checked, an Eye Questionnaire must ALSO be completed.</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -2580,6 +2708,36 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1B">
         <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&datamodel;Observation"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="&cfa;ExternallyCodedValue"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="&cfa;terminology"/>
+                                                <owl:hasValue rdf:resource="&cfa;ICD9"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&cfa;hasFocus"/>
+                                <owl:hasValue rdf:resource="&dbq;Diagnosis"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">PROVIDE ONLY DIAGNOSIS THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS</cfa:hasText>
         <cfa:hasSortingLabel>1B</cfa:hasSortingLabel>
         <cfa:hasFocus rdf:resource="&cfa;DiagnosisRelatedToThoracolumbarSpine"/>
@@ -2636,6 +2794,36 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1C">
         <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&datamodel;Observation"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="&cfa;ExternallyCodedValue"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="&cfa;terminology"/>
+                                                <owl:hasValue rdf:resource="&cfa;ICD9"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&cfa;hasFocus"/>
+                                <owl:hasValue rdf:resource="&cfa;Diagnosis"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">IF THERE ARE ADDITIONAL DIAGNOSES THAT PERTAIN TO THORACOLUMBAR SPINE (back) CONDITIONS, LIST USING ABOVE FORMAT</cfa:hasText>
         <cfa:hasSortingLabel>1C</cfa:hasSortingLabel>
         <cfa:hasFocus rdf:resource="&cfa;DiagnosisRelatedToThoracolumbarSpine"/>
@@ -4424,7 +4612,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                             <rdf:Description rdf:about="&dbq;freq_inappropriate"/>
                             <rdf:Description rdf:about="&dbq;inappropriate"/>
                             <rdf:Description rdf:about="&dbq;appropriate"/>
-                            <rdf:Description rdf:about="&dbq;occ_inappropriate"/>
+                            <rdf:Description rdf:about="&dbq;occasionally_inappropriate"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4772,24 +4960,6 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
         <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Residuals&lt;/b&gt;
 
 Does the Veteran have any subjective symptoms or any mental, physical or neurological conditions or residuals attributable to a TBI (such as migraine headaches or Meniere&apos;s disease)?</cfa:hasText>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_1"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_10"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_11"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_12"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_13"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_14"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_15"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_16"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_17"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_18"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_2"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_3"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_4"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_5"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_6"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_7"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_8"/>
-        <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1_9"/>
     </owl:NamedIndividual>
     
 
@@ -4804,229 +4974,29 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;skin_disorders"/>
-                            <rdf:Description rdf:about="&dbq;neurogenic_bladder"/>
-                            <rdf:Description rdf:about="&dbq;motor_dysfunction"/>
-                            <rdf:Description rdf:about="&dbq;headaches_including_migraine_headaches"/>
-                            <rdf:Description rdf:about="&dbq;speech"/>
-                            <rdf:Description rdf:about="&dbq;alteration_of_sense_of_smell_or_taste"/>
-                            <rdf:Description rdf:about="&dbq;dizziness_vertigo"/>
-                            <rdf:Description rdf:about="&dbq;hearing_loss"/>
-                            <rdf:Description rdf:about="&dbq;seizures"/>
-                            <rdf:Description rdf:about="&dbq;erectile_dysfunction"/>
-                            <rdf:Description rdf:about="&dbq;cranial_nerve_dysfunction"/>
-                            <rdf:Description rdf:about="&dbq;endocrine_dysfunction"/>
-                            <rdf:Description rdf:about="&dbq;sensory_dysfunction"/>
-                            <rdf:Description rdf:about="&dbq;visual_impairment"/>
-                            <rdf:Description rdf:about="&dbq;gait_coordination_and_balance"/>
-                            <rdf:Description rdf:about="&dbq;mental_disorder"/>
-                            <rdf:Description rdf:about="&dbq;other_disorder"/>
+                            <rdf:Description rdf:about="&cfa;GaitCoordinationAndBalance"/>
+                            <rdf:Description rdf:about="&cfa;MotorDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;SpeechDisorder"/>
+                            <rdf:Description rdf:about="&cfa;OtherDisorder"/>
+                            <rdf:Description rdf:about="&cfa;SkinDisorders"/>
+                            <rdf:Description rdf:about="&cfa;SensoryDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;CranialNerveDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;MentalDisorder"/>
+                            <rdf:Description rdf:about="&cfa;VisualImpairment"/>
+                            <rdf:Description rdf:about="&cfa;AlterationOfSenseOfSmellOrTaste"/>
+                            <rdf:Description rdf:about="&cfa;Seizures"/>
+                            <rdf:Description rdf:about="&cfa;EndocrineDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;Headache"/>
+                            <rdf:Description rdf:about="&cfa;HearingLossAndorTinnitus"/>
+                            <rdf:Description rdf:about="&cfa;ErectileDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;DizzinessVertigo"/>
+                            <rdf:Description rdf:about="&cfa;NeurogenicBladder"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">If yes, check all that apply:</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_1 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;motor_dysfunction"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_10 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_10">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;neurogenic_bowel"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_11 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_11">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;cranial_nerve_dysfunction"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_12 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_12">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;skin_disorders"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_13 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_13">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;endocrine_dysfunction"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_14 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_14">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;erectile_dysfunction"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_15 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_15">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;headaches_including_migraine_headaches"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_16 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_16">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;dizziness_vertigo"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_17 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_17">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;mental_disorder"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_18 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_18">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;other_disorder"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5042,166 +5012,6 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">If &apos;other&apos;, describe:</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_2 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;sensory_dysfunction"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_3 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;hearing_loss"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_4 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;visual_impairment"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;alteration_of_sense_of_smell_or_taste"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_6 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_6">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;seizures"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_7 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_7">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;gait_coordination_and_balance"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_8 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_8">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;speech"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_9 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_9">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;neurogenic_bladder"/>
-                        </owl:oneOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5745,15 +5555,6 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     
 
 
-    <!-- http://purl.org/facsimile/dbq#alteration_of_sense_of_smell_or_taste -->
-
-    <owl:NamedIndividual rdf:about="&dbq;alteration_of_sense_of_smell_or_taste">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Alteration of sense of smell or taste. If checked, ALSO complete a Loss of Sense of Smell and Taste Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#altered_consciousness -->
 
     <owl:NamedIndividual rdf:about="&dbq;altered_consciousness">
@@ -5839,15 +5640,6 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <owl:NamedIndividual rdf:about="&dbq;constant">
         <rdf:type rdf:resource="&cfa;Frequency"/>
         <rdfs:label rdf:datatype="&xsd;string">Constant</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#cranial_nerve_dysfunction -->
-
-    <owl:NamedIndividual rdf:about="&dbq;cranial_nerve_dysfunction">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Cranial nerve dysfunction. If checked, ALSO complete a Cranial Nerves Questionnaire.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -6746,33 +6538,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#dizziness_vertigo -->
-
-    <owl:NamedIndividual rdf:about="&dbq;dizziness_vertigo">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Dizziness/vertigo. If checked, ALSO complete an Ear Conditions Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#endocrine_dysfunction -->
-
-    <owl:NamedIndividual rdf:about="&dbq;endocrine_dysfunction">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Endocrine dysfunction. If checked, ALSO complete the appropriate endocrine conditions Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#erectile_dysfunction -->
-
-    <owl:NamedIndividual rdf:about="&dbq;erectile_dysfunction">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Erectile dysfunction. If checked, ALSO complete Male Reproductive Conditions Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#freq_inappropriate -->
 
     <owl:NamedIndividual rdf:about="&dbq;freq_inappropriate">
@@ -6787,33 +6552,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     <owl:NamedIndividual rdf:about="&dbq;frequently-interfering_neurobehavioral_effects">
         <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
         <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that frequently interfere with workplace interaction, social interaction, or both but do not preclude them</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#gait_coordination_and_balance -->
-
-    <owl:NamedIndividual rdf:about="&dbq;gait_coordination_and_balance">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Gait, coordination, and balance. If checked, ALSO complete appropriate Questionnaire for underlying cause of gait and balance disturbance, such as Ear or Central nervous system Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#headaches_including_migraine_headaches -->
-
-    <owl:NamedIndividual rdf:about="&dbq;headaches_including_migraine_headaches">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Headaches, including Migraine headaches. If checked, ALSO complete a Headache Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hearing_loss -->
-
-    <owl:NamedIndividual rdf:about="&dbq;hearing_loss">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Hearing loss and/or tinnitus. If checked, a Hearing Loss and Tinnitus Questionnaire must ALSO be completed.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -6868,15 +6606,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     <owl:NamedIndividual rdf:about="&dbq;less_than_1_week">
         <rdf:type rdf:resource="&cfa;Frequency"/>
         <rdfs:label rdf:datatype="&xsd;string">Less than 1 week</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mental_disorder -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mental_disorder">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Mental disorder (including emotional, behavioral, or cognitive). If checked, a Mental Disorders or PTSD Questionnaire must ALSO be completed.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -6980,38 +6709,11 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#motor_dysfunction -->
-
-    <owl:NamedIndividual rdf:about="&dbq;motor_dysfunction">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor dysfunction (other than those described in Section II.5). If checked, ALSO complete specific Joint or Spine Questionnaire for the affected joint or spinal area</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#negative -->
 
     <owl:NamedIndividual rdf:about="&dbq;negative">
         <rdf:type rdf:resource="&cfa;StraightLegRaiseValue"/>
         <rdfs:label rdf:datatype="&xsd;string">Negative</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#neurogenic_bladder -->
-
-    <owl:NamedIndividual rdf:about="&dbq;neurogenic_bladder">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Neurogenic bladder. If checked, ALSO complete appropriate Genitourinary Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#neurogenic_bowel -->
-
-    <owl:NamedIndividual rdf:about="&dbq;neurogenic_bowel">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Neurogenic bowel. If checked, ALSO complete appropriate Intestines Questionnaire.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -7106,15 +6808,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#occ_inappropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occ_inappropriate">
-        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Social interaction is occasionally inappropriate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#occasional -->
 
     <owl:NamedIndividual rdf:about="&dbq;occasional">
@@ -7160,6 +6853,15 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
+    <!-- http://purl.org/facsimile/dbq#occasionally_inappropriate -->
+
+    <owl:NamedIndividual rdf:about="&dbq;occasionally_inappropriate">
+        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">Social interaction is occasionally inappropriate</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/dbq#often_disoriented -->
 
     <owl:NamedIndividual rdf:about="&dbq;often_disoriented">
@@ -7173,15 +6875,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
 
     <owl:NamedIndividual rdf:about="&dbq;other">
         <rdfs:label rdf:datatype="&xsd;string">Other</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#other_disorder -->
-
-    <owl:NamedIndividual rdf:about="&dbq;other_disorder">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Other. If checked, ALSO complete appropriate Questionnaire.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -7222,24 +6915,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#seizures -->
-
-    <owl:NamedIndividual rdf:about="&dbq;seizures">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Seizures. If checked, ALSO complete a Seizure Disorder Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#sensory_dysfunction -->
-
-    <owl:NamedIndividual rdf:about="&dbq;sensory_dysfunction">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Sensory dysfunction. If checked, ALSO complete appropriate Central nervous system, Cranial, or Peripheral Nerve Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#severe -->
 
     <owl:NamedIndividual rdf:about="&dbq;severe">
@@ -7267,24 +6942,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#skin_disorders -->
-
-    <owl:NamedIndividual rdf:about="&dbq;skin_disorders">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Skin disorders. If checked, ALSO complete a Skin Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#speech -->
-
-    <owl:NamedIndividual rdf:about="&dbq;speech">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Speech (including aphasia and dysarthria). If checked, ALSO complete appropriate Questionnaire.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#unable_to_communicate -->
 
     <owl:NamedIndividual rdf:about="&dbq;unable_to_communicate">
@@ -7308,15 +6965,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
     <owl:NamedIndividual rdf:about="&dbq;unable_to_perform">
         <rdf:type rdf:resource="&cfa;StraightLegRaiseValue"/>
         <rdfs:label rdf:datatype="&xsd;string">Unable to perform</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#visual_impairment -->
-
-    <owl:NamedIndividual rdf:about="&dbq;visual_impairment">
-        <rdf:type rdf:resource="&dbq;ResidualsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Visual impairment. If checked, an Eye Questionnaire must ALSO be completed.</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -7433,6 +7081,9 @@ Neuropsychological testing may need to be performed in order to be able to accur
     </rdf:Description>
     <rdf:Description rdf:about="&cfa;hasAddress">
         <rdfs:comment rdf:datatype="&xsd;string">Address</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="&cfa;NeurogenicBowel">
+        <rdfs:label rdf:datatype="&xsd;string">Neurogenic bowel. If checked, ALSO complete appropriate Intestines Questionnaire.</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="&cfa;hasID">
         <rdfs:comment rdf:datatype="&xsd;string">Social Security Number</rdfs:comment>

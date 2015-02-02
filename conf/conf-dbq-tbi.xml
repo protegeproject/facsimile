@@ -183,61 +183,6 @@
 				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1</iri>
 					<questionList>
-					<!--
-						<question numbered="false" type="none">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_1</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_2</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_3</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_4</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_5</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_6</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_7</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_8</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_9</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_10</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_11</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_12</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_13</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_14</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_15</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_16</iri>
-						</question>
-						<question type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_17</iri>
-						</question>-->
 						<question type="checkbox" numbered="false">
 							<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0</iri>
 							<questionList>
