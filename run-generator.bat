@@ -14,4 +14,3 @@ echo ! Once the server is running, point your Web browser to http://localhost:$p
 echo.
 :: open http://localhost:%port%
 java -jar jetty\jetty-runner.jar --port %port% form-generator.war
-

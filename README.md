@@ -6,13 +6,10 @@ The goal of the FACSIMILE project is to create a semantic framework for modeling
 
 usage
 --------------------
-The form generator can be used in two ways:
-
-* Using the provided Jetty server, via the script `run-generator.sh`
-* Deployed in some other Web server / Java servlet container (local or remotely)
+The Web application can be deployed using the provided Jetty server, via the script `run-generator`, or deployed in some other Web server / Java servlet container (local or remotely)
  
-In order to run it locally all you need to do is run the script `run-generator.sh` from the command line, or, alternatively, build `form-generator.war` using ant, and then execute:
+In order to run it locally all you need to do is execute the script `run-generator` for your operating system (use `run-generator.sh` on UNIX-based systems and `run-generator.bat` on Windows). Alternatively, one can build `form-generator.war` using ant, and then deploy it by executing:
 
 `java -jar jetty/jetty-runner.jar form-generator.war`
 
-The form generator should then be available at: http://localhost:8085 on any Web browser.
+The application should then be available at: http://localhost:8085 on any Web browser.
