@@ -89,7 +89,7 @@ public class Configuration {
 				+ "Ensure that the file is well-formed and valid with respect to the given DTD");
 		formIri = getFormIRI();
 		sections = getSections();
-		gatherOntologyFiles();
+		gatherInputInformation();
 		gatherOutputInformation();
 	}
 	
@@ -143,7 +143,7 @@ public class Configuration {
 	/**
 	 * Retrieve ontology files (including imports)
 	 */
-	private void gatherOntologyFiles() {
+	private void gatherInputInformation() {
 		NodeList nl = doc.getElementsByTagName("ontology");
 		for(int i = 0; i < nl.getLength(); i++) {
 			Node n = nl.item(i);
@@ -404,7 +404,10 @@ public class Configuration {
 					Node att = nodemap.item(j);
 					if(att.getNodeName().equals("property")) {
 						String prop = att.getNodeValue();
-						iri = getQuestionIRI(doc.getElementById(prop), child);
+						if(doc.getElementById(prop) != null)
+							iri = getQuestionIRI(doc.getElementById(prop), child);
+						else
+							iri = getInfoIRI(prop, child);
 						questionNumbering.put(iri, required);
 						info = new TreeNode<IRI>(iri);
 					}
@@ -424,12 +427,33 @@ public class Configuration {
 	
 	
 	/**
+	 * Get information element IRI
+	 * @param propIri	Data property IRI
+	 * @param node	Current node
+	 * @return IRI of the information element
+	 */
+	private IRI getInfoIRI(String propIri, Node node) {
+		IRI iri = null;
+		if(!propIri.equals("")) {
+			iri = IRI.create(propIri);
+			if(iri != null && verbose)
+				System.out.print("\tInfo: " + propIri);
+			if(node != null)
+				checkQuestionType(iri, node);
+			if(iri != null && verbose) 
+				System.out.println();
+		}
+		return iri;
+	}
+	
+	
+	/**
 	 * Get IRI of question at the given node
 	 * @param node	Current node
-	 * @param eleNode	Information element node, if applicable
+	 * @param infoEle	Information element node, if applicable
 	 * @return IRI of question in given node
 	 */
-	private IRI getQuestionIRI(Node node, Node eleNode) {
+	private IRI getQuestionIRI(Node node, Node infoEle) {
 		String iriTxt = node.getTextContent();
 		IRI iri = null;
 		if(!iriTxt.equals("")) {
@@ -440,15 +464,15 @@ public class Configuration {
 				checkQuestionType(iri, node);
 			if(node.getParentNode().hasAttributes())
 				checkQuestionType(iri, node.getParentNode());
-			if(eleNode != null)
-				checkQuestionType(iri, eleNode);
+			if(infoEle != null)
+				checkQuestionType(iri, infoEle);
 			if(iri != null && verbose) 
 				System.out.println();
 		}
 		return iri;
 	}
-
 	
+
 	/**
 	 * Get the type of question given as an attribute
 	 * @param iri	IRI of the question individual

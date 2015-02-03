@@ -40,14 +40,6 @@
 			<!-- output bindings -->
 			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
-			<!-- patient info bindings -->
-			<binding id="pat_name">http://purl.org/facsimile/dbq#hasPatientName</binding>
-			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
-			<!-- physician info bindings -->
-			<binding id="phy_name">http://purl.org/facsimile/dbq#hasPhysicianName</binding>
-			<binding id="phy_address">http://purl.org/facsimile/cfa#hasAddress</binding>
-			<binding id="phy_phone">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
-			<binding id="phy_license">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/cfa#StringValue</binding>
@@ -61,8 +53,8 @@
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList type="inline">
-				<info type="text" property="pat_name" required="true"/>
-				<info type="text" property="pat_id"/>
+				<info type="text" property="http://purl.org/facsimile/dbq#hasPatientName" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasID"/>
 			</infoList>
 		</section>
 		<section>
@@ -740,10 +732,10 @@
 		<section numbered="false" type="physician_section">
 			<iri>http://purl.org/facsimile/dbq#PhysicianInformationDataElement</iri>
 			<infoList>
-				<info type="text" property="phy_name"/>
-				<info type="text" property="phy_address"/>
-				<info type="text" property="phy_phone"/>
-				<info type="text" property="phy_license"/>
+				<info type="text" property="http://purl.org/facsimile/dbq#hasPhysicianName"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasAddress"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasPhoneNumber"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber"/>
 			</infoList>
 		</section>
 	</form>

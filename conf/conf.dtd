@@ -18,9 +18,9 @@
 <!ELEMENT infoList (info+)>
 <!ELEMENT question (iri,questionList?)>
 <!ELEMENT info (#PCDATA)>
-<!ATTLIST binding id ID #IMPLIED>
+<!ATTLIST binding id ID #REQUIRED>
 <!ATTLIST ontology iri CDATA #IMPLIED>
-<!ATTLIST file title CDATA #IMPLIED>
+<!ATTLIST file title CDATA #REQUIRED>
 <!ATTLIST info 
 	type (none|checkbox|checkboxhorizontal|text|textarea|dropdown|radio) #IMPLIED
 	property CDATA #IMPLIED

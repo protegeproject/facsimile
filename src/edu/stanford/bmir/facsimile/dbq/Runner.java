@@ -57,8 +57,8 @@ public class Runner {
 	public void generateFormToLocalFile() throws IOException {		
 		String output = run();
 		String outputDir = conf.getOutputFilePath();
-		if(outputDir.isEmpty())
-			outputDir = "output/form.html" + File.separator;
+		if(outputDir == null || outputDir.isEmpty())
+			outputDir = "output" + File.separator + "form.html" + File.separator;
 		File f = new File(outputDir);
 		if(!f.exists()) {
 			new File(f.getParent()).mkdirs();

@@ -33,9 +33,6 @@
 			<!-- output bindings -->
 			<binding id="is_answer_to">http://purl.org/facsimile/example#isResponseTo</binding>
 			<binding id="has_answer">http://purl.org/facsimile/example#hasAnswer</binding>
-			<!-- user info bindings -->
-			<binding id="user_name">http://purl.org/facsimile/example#hasUserName</binding>
-			<binding id="user_id">http://purl.org/facsimile/example#hasID</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/example#StringValue</binding>
@@ -49,8 +46,8 @@
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/example#user_details</iri>
 			<infoList>
-				<info type="text" property="user_name" required="true"/>
-				<info type="text" property="user_id" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/example#hasUserName" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/example#hasID" required="true"/>
 			</infoList>
 		</section>
 		<section>
@@ -70,7 +67,7 @@
 				<question hideSubquestionsForAnswer="http://purl.org/facsimile/example#No">
 					<iri>http://purl.org/facsimile/example#question_s1_q2</iri>
 					<questionList>
-						<question optionOrder="2" showSubquestionsForAnswer="http://purl.org/facsimile/example#Yes">
+						<question showSubquestionsForAnswer="http://purl.org/facsimile/example#Yes">
 							<iri>http://purl.org/facsimile/example#question_s1_q2_1</iri>
 							<questionList>
 								<question>
