@@ -6,9 +6,14 @@
 # Compile sources and produce the war and javadocs
 echo "Building from sources..." && ant
 #
-# Deploy form-generator.war on a local Jetty instance 
+# Deploy form-generator.war on a local Jetty instance, in the port specified below
+#
+port="8085"
 echo ""
-echo " !! Once the server is running, point your Web browser to http://localhost:8085 to generate and submit forms !!"
+echo "! Starting Jetty server on port $port..."
 echo ""
-echo "Starting server..."
-java -jar jetty/jetty-runner.jar --port 8085 form-generator.war
+echo "! Once the server is running, point your Web browser to http://localhost:$port to generate and submit forms"
+echo ""
+open http://localhost:$port
+java -jar jetty/jetty-runner.jar --port $port form-generator.war
+
