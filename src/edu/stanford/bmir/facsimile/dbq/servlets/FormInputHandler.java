@@ -113,7 +113,7 @@ public class FormInputHandler extends HttpServlet {
 			session.setAttribute("date", dateStr);
 			PrintWriter pw = response.getWriter();
 			System.out.print("\nParsing form input... ");
-			createElementMaps(request);
+			createElementMaps(session);
 			
 			File outDir = new File("output"); outDir.mkdirs();
 			String outName = "output/" + dateShortStr + "-form-" + uuid;
@@ -280,8 +280,10 @@ public class FormInputHandler extends HttpServlet {
 			OWLNamedIndividual answer = map.get(iri);
 			for(IRI parentIri : element.getSuperquestions()) {
 				OWLNamedIndividual parentDataInd = map.get(parentIri);
-				if(parentDataInd != null)
+				if(parentDataInd != null) {
 					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), parentDataInd, answer));
+					addAxiom(man, ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsComponentOfPropertyBinding()), answer, parentDataInd));
+				}
 			}
 		}
 	}
@@ -373,9 +375,11 @@ public class FormInputHandler extends HttpServlet {
 	 * @return String containing the output CSV file
 	 */
 	private String getCSVFile(Enumeration<String> paramNames, HttpServletRequest request) {
-		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus,parent question\n"; 
+		String csv = "question IRI,answer IRI (where applicable),question text,answer text,question focus,parent question\n";
+		int counter = 1; 
 		while(paramNames.hasMoreElements()) {
 			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; // element iri
+			System.out.println("param " + counter + ": " + qIriAlias);
 			if(aliases.containsKey(IRI.create(qIriAlias)))
 				qIri = aliases.get(IRI.create(qIriAlias)).toString();
 			String[] params = request.getParameterValues(qIriAlias);
@@ -386,6 +390,7 @@ public class FormInputHandler extends HttpServlet {
 				qText = qText.replaceAll("\n", "");
 			}
 			csv += addAnswer(params, qIri, qIriAlias, qText, qFocus);
+			counter++;
 		}
 		return csv;
 	}
@@ -493,11 +498,10 @@ public class FormInputHandler extends HttpServlet {
 	
 	/**
 	 * Gather the details of each form element
-	 * @param request	Http request
+	 * @param session	Http session
 	 */
 	@SuppressWarnings("unchecked")
-	private void createElementMaps(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	private void createElementMaps(HttpSession session) {
 		eIri = new HashMap<String,FormElement>();
 		eTextMap = new HashMap<String,String>();
 		eFocusMap = new HashMap<String,String>();

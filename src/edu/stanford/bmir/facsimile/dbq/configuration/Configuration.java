@@ -644,10 +644,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getOutputClass() {
-		String binding = "data";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("data", "class");
 	}	
 	
 	
@@ -656,10 +653,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getDataElementValueClassBinding() {
-		String binding = "data_element";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("data_element", "class");
 	}
 	
 	
@@ -668,10 +662,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getFormDataClassBinding() {
-		String binding = "form_data";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("form_data", "class");
 	}
 	
 	
@@ -680,10 +671,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getQuestionSectionClassBinding() {
-		String binding = "question_section";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("question_section", "class");
 	}
 	
 	
@@ -692,10 +680,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getInitialSectionClassBinding() {
-		String binding = "patient_section";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("patient_section", "class");
 	}
 	
 	
@@ -704,10 +689,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getFinalSectionClassBinding() {
-		String binding = "physician_section";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("physician_section", "class");
 	}
 	
 	
@@ -716,10 +698,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getPhysicianCertificationClassBinding() {
-		String binding = "physician_cert";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for class '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("physician_cert", "class");
 	}
 	
 	
@@ -731,10 +710,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionTextPropertyBinding() {
-		String binding = "questiontext";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("questiontext", "property");
 	}
 	
 
@@ -743,10 +719,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionFocusPropertyBinding() {
-		String binding = "questionfocus";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("questionfocus", "property");
 	}
 	
 	
@@ -755,10 +728,7 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getQuestionValuePropertyBinding() {
-		String binding = "questionvalue";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("questionvalue", "property");
 	}
 	
 	
@@ -767,10 +737,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getQuestionDataValuePropertyBinding() {
-		String binding = "questiondatavalue";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("questiondatavalue", "property");
 	}
 	
 	
@@ -779,10 +746,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getSectionHeaderPropertyBinding() {
-		String binding = "sectionheading";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("sectionheading", "property");
 	}
 	
 	
@@ -791,22 +755,7 @@ public class Configuration {
 	 * @return OWL data property IRI
 	 */
 	public IRI getSectionTextPropertyBinding() {
-		String binding = "sectiontext";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property'" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
-	}
-	
-	
-	/**
-	 * Get the OWL object property IRI for 'isAnswerTo'
-	 * @return OWL object property IRI
-	 */
-	public IRI getIsAnswerToPropertyBinding() {
-		String binding = "is_answer_to";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("sectiontext", "property");
 	}
 	
 	
@@ -815,10 +764,16 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getHasAnswerPropertyBinding() {
-		String binding = "has_answer";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("has_answer", "property");
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'isAnswerTo'
+	 * @return OWL object property IRI
+	 */
+	public IRI getIsAnswerToPropertyBinding() {
+		return getBinding("is_answer_to", "property");
 	}
 	
 	
@@ -827,22 +782,25 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getHasFormPropertyBinding() {
-		String binding = "has_form";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("has_form", "property");
 	}
 	
 	
 	/**
-	 * Get the OWL object property IRI for 'hasMember'
+	 * Get the OWL object property IRI for 'hasComponent'
 	 * @return OWL object property IRI
 	 */
 	public IRI getHasComponentPropertyBinding() {
-		String binding = "has_component";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("has_component", "property");
+	}
+	
+	
+	/**
+	 * Get the OWL object property IRI for 'isComponentOf'
+	 * @return OWL object property IRI
+	 */
+	public IRI getIsComponentOfPropertyBinding() {
+		return getBinding("is_component_of", "property");
 	}
 	
 	
@@ -851,9 +809,19 @@ public class Configuration {
 	 * @return OWL object property IRI
 	 */
 	public IRI getHasDatePropertyBinding() {
-		String binding = "has_date";
+		return getBinding("has_date", "property");
+	}
+	
+	
+	/**
+	 * Get IRI for a given binding 
+	 * @param binding	Name of binding
+	 * @param label	Label (e.g., property, class, individual,...)
+	 * @return IRI
+	 */
+	public IRI getBinding(String binding, String label) {
 		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for property '" + binding + "' is missing");
+			throw new MissingConfigurationElementException("Configuration binding for " + label + " '" + binding + "' is missing");
 		return IRI.create(doc.getElementById(binding).getTextContent());
 	}
 	
@@ -866,10 +834,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getRadioInputBinding() {
-		String binding = "radio";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for question type '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("radio", "question type");
 	}
 	
 	
@@ -878,10 +843,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getTextInputBinding() {
-		String binding = "textarea";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for question type '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("textarea", "question type");
 	}
 	
 	
@@ -890,10 +852,7 @@ public class Configuration {
 	 * @return OWL individual IRI
 	 */
 	public IRI getBooleanTrueValueBinding() {
-		String binding = "bool_true";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for boolean value '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("bool_true", "boolean value");
 	}
 	
 	
@@ -902,10 +861,7 @@ public class Configuration {
 	 * @return OWL individual IRI
 	 */
 	public IRI getBooleanFalseValueBinding() {
-		String binding = "bool_false";
-		if(doc.getElementById(binding) == null) 
-			throw new MissingConfigurationElementException("Configuration binding for boolean value '" + binding + "' is missing");
-		return IRI.create(doc.getElementById(binding).getTextContent());
+		return getBinding("bool_false", "boolean value");
 	}
 	
 	

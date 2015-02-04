@@ -27,6 +27,7 @@
 		<propertyBindings>
 			<!-- global property bindings -->
 			<binding id="has_component">http://purl.org/facsimile/cfa#hasComponent</binding>
+			<binding id="is_component_of">http://purl.org/facsimile/cfa#isComponentOf</binding>
 			<binding id="has_form">http://purl.org/facsimile/datamodel#hasForm</binding>
 			<binding id="has_date">http://purl.org/facsimile/datamodel#dateSigned</binding>
 			<!-- question property bindings -->
@@ -38,8 +39,8 @@
 			<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 			<binding id="sectiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<!-- output bindings -->
-			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
+			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/cfa#StringValue</binding>
@@ -60,7 +61,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1</iri>
 			<questionList>
-				<question required="true">
+				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1A</iri>
 				</question>
 				<question type="none">
@@ -77,7 +78,7 @@
 						</question>
 					</questionList>
 				</question>
-				<question required="true">
+				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q1C</iri>
 				</question>
 			</questionList>
