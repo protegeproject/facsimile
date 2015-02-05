@@ -303,14 +303,10 @@ public class FormGenerator {
 			List<String> optionList = opts.getOptionsValues();
 			if(optionsOrder.containsKey(((Question)e).getIRI()))
 				optionList = sortList(optionList, optionsOrder.get(((Question)e).getIRI()), qName);
-			boolean emptyAnswerPrinted = false;
+			output.append("<div class=\"option\"><input type=\"radio\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 			for(int i = 0; i < optionList.size(); i++) {
 				String opt = optionList.get(i);
 				String qId = qNameShort + "-" + i;
-				if(!emptyAnswerPrinted) {
-					output.append("<div class=\"option\"><input type=\"radio\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"\" hidden=\"true\"" + (e.isRequired() ? " required" : "") + " checked/></div>\n"); 
-					emptyAnswerPrinted = true;
-				}
 				if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 					output.replace(output.indexOf(triggerString), output.indexOf(triggerString)+triggerString.length(), qId);
 				output.append("<div class=\"option\"><label><input type=\"radio\" name=\"" + qName + "\" id=\"" + qId
@@ -359,14 +355,10 @@ public class FormGenerator {
 			List<String> optionList = opts.getOptionsValues();
 			if(optionsOrder.containsKey(((Question)e).getIRI()))
 				optionList = sortList(optionList, optionsOrder.get(((Question)e).getIRI()), qName);
-			boolean emptyAnswerPrinted = false;
+			output.append("<div class=\"option\"><input type=\"checkbox\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 			for(int i = 0; i < optionList.size(); i++) {
 				String opt = optionList.get(i);
 				String qId = qNameShort + "-" + i;
-				if(!emptyAnswerPrinted) {
-					output.append("<div class=\"option\"><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"\" hidden=\"true\"" + (e.isRequired() ? " required" : "") + " checked/></div>\n"); 
-					emptyAnswerPrinted = true;
-				}
 				if(trigger != null && opt.equalsIgnoreCase(opts.getOptionsMap().get(trigger.toString())))
 					output.replace(output.indexOf(triggerString), output.indexOf(triggerString)+triggerString.length(), qId);
 				output.append("<div class=\"option\"><label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
