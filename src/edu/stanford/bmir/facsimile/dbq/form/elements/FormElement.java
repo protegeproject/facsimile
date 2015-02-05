@@ -68,6 +68,22 @@ public class FormElement implements Serializable {
 	}
 	
 	
+	public boolean hasChildren() {
+		if(children.isEmpty())
+			return false;
+		else
+			return true;
+	}
+	
+	
+	public boolean hasParents() {
+		if(parents.isEmpty())
+			return false;
+		else
+			return true;
+	}
+	
+	
 	/**
 	 * Get the OWL entity that represents this form element 
 	 * @return OWL entity

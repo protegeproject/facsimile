@@ -9,10 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -200,8 +198,6 @@ public class FormInputHandler extends HttpServlet {
 	 * @return OWL ontology
 	 */
 	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
-		Map<IRI,Set<OWLNamedIndividual>> answerMap = new HashMap<IRI,Set<OWLNamedIndividual>>();
-		Map<FormElementList,String> eleListMap = new HashMap<FormElementList,String>();
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();		
 		OWLNamedIndividual initInfo = null, finalInfo = null, formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
@@ -213,12 +209,9 @@ public class FormInputHandler extends HttpServlet {
 			String[] params = request.getParameterValues(qIriAlias);	// answer(s)
 			String qFocus = eFocusMap.get(qIri);				// element focus
 			SectionType type = eSectionType.get(qIri);			// section type
-			 
+			
 			OWLNamedIndividual dataInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-data-") + uuid));
 			addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getOutputClass()), dataInd));	// { data : AnnotatedData }
-			addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), formDataInd, dataInd));	// { formDataInd hasComponent data }
-			
-			processGroupData(qIri, qIriAlias, eleListMap, dataInd, type, answerMap, df);
 			
 			OWLNamedIndividual answerInd = df.getOWLNamedIndividual(IRI.create(getName(type, qIriAlias, "-obs-") + uuid)); // answerInd is instance of one of (Observation | PatientInformation | PhysicianInformation)				
 			if(type.equals(SectionType.QUESTION_SECTION))
@@ -232,55 +225,71 @@ public class FormInputHandler extends HttpServlet {
 					addPhysicianSectionAxioms(ont, man, df, answerInd);
 					if(finalInfo == null) finalInfo = answerInd;
 				}
-				addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus))));	// { data isResponseTo P*InformationDataElement }
+				addObjPropAssertAxiom(ont, conf.getIsAnswerToPropertyBinding(), dataInd, df.getOWLNamedIndividual(IRI.create(qFocus)));	// { data isResponseTo P*InformationDataElement }
 			}
-			addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasAnswerPropertyBinding()), dataInd, answerInd));	// { data hasAnswer answer }
+			addObjPropAssertAxiom(ont, conf.getHasAnswerPropertyBinding(), dataInd, answerInd);	// { data hasAnswer answer }
 			processAnswerData(params, qIri, qIriAlias, type, ont, answerInd, initInfo, finalInfo);
+			addComponentPartonomy(qIri, qIriAlias, dataInd, formDataInd, type, df, ont);
 		}
-		addDataRelations(answerMap, ont);
 		return ont;
 	}
 	
 	
+	/**
+	 * Add hasComponent / isComponentOf partonomy 
+	 * @param qIri	Question IRI
+	 * @param qIriAlias	Question IRI alias
+	 * @param dataInd	Data individual
+	 * @param formDataInd	Form data individual
+	 * @param type	Section type
+	 * @param df	OWL data factory
+	 * @param ont	OWL ontology
+	 */
+	private void addComponentPartonomy(String qIri, String qIriAlias, OWLNamedIndividual dataInd, OWLNamedIndividual formDataInd, SectionType type, OWLDataFactory df, OWLOntology ont) {
+		FormElement element = eIri.get(qIri);
+		FormElementList eleList = element.getFormElementList();
+		IRI hasComp = conf.getHasComponentPropertyBinding(), isCompOf = conf.getIsComponentOfPropertyBinding();
+		String questionListStr = getName(type, "qlist-" + eleList.getID(), "-data-" + uuid),
+				questionListRepStr = getName(type, "qlist-" + eleList.getID(), getSubstring(qIriAlias, "-rep-") + "-data-" + uuid),
+				childQuestionListStr = getName(type, "qlist-" + element.getIRI().getShortForm(), "-data-" + uuid);
+		
+		OWLNamedIndividual questionListInd = df.getOWLNamedIndividual(IRI.create(questionListStr)), 
+				questionListRepInd = df.getOWLNamedIndividual(IRI.create(questionListRepStr)),
+				childQuestionListInd = df.getOWLNamedIndividual(IRI.create(childQuestionListStr));
 	
-	private void processGroupData(String qIri, String qIriAlias, Map<FormElementList,String> eleListMap, OWLNamedIndividual dataInd, SectionType type, Map<IRI,Set<OWLNamedIndividual>> answerMap, OWLDataFactory df) {
-		FormElementList eleList = eIri.get(qIri).getFormElementList();
-		if(eleList.isRepeating() || eleListMap.containsKey(eleList) || qIri != qIriAlias) {
-			System.out.println("qIriAlias: " + qIriAlias);
-			String s = qIriAlias.substring(qIriAlias.lastIndexOf("-rep-"), qIriAlias.length());
-			System.out.println("\tsuffix: " + s);
-			String dataGroupStr = getName(type, qIri, s + "-group-data-");
-//			if(eleListMap.containsKey(eleList))
-//				dataGroupStr = eleListMap.get(eleList);
-//			else {
-//				dataGroupStr = getName(type, qIri, "-group-data-" + uuid);
-//				eleListMap.put(eleList, dataGroupStr);
-//			}
-			addAnswer(dataGroupStr, dataInd, answerMap);
-			addAnswer(qIri, df.getOWLNamedIndividual(IRI.create(dataGroupStr)), answerMap);
+		if(element.hasChildren()) {
+			addObjPropAssertAxiom(ont, hasComp, questionListInd, childQuestionListInd);	// { questionListData hasComponent childQuestionListData }
+			addObjPropAssertAxiom(ont, isCompOf, childQuestionListInd, questionListInd);	// { childQuestionListData isComponentOf questionListData }
 		}
-		else addAnswer(qIri, dataInd, answerMap);
+		if(eleList.isRepeating() || qIri != qIriAlias) {
+			addObjPropAssertAxiom(ont, hasComp, questionListInd, questionListRepInd);	// { questionListData hasComponent questionListRepData }
+			addObjPropAssertAxiom(ont, isCompOf, questionListRepInd, questionListInd);	// { questionListRepData isComponentOd questionListData }
+
+			addObjPropAssertAxiom(ont, hasComp, questionListRepInd, dataInd);		// { questionListRepData hasComponent data }
+			addObjPropAssertAxiom(ont, isCompOf, dataInd, questionListRepInd);		// { data isComponentOf questionListRepData }
+		}
+		else if(type.equals(SectionType.QUESTION_SECTION)) {
+			addObjPropAssertAxiom(ont, hasComp, questionListInd, dataInd);			// { questionListData hasComponent data }
+			addObjPropAssertAxiom(ont, isCompOf, dataInd, questionListInd);		// { data isComponentOf questionListData }
+		}
+		if(!element.hasParents()) {
+			addObjPropAssertAxiom(ont, hasComp, formDataInd, questionListInd);		// { formData hasComponent questionListData }
+			addObjPropAssertAxiom(ont, isCompOf, questionListInd, formDataInd);	// { questionListData isComponentOf formData }
+		}
 	}
 	
-	
+
 	/**
-	 * Add an answer to the given answers map
-	 * @param qIri	Question IRI
-	 * @param ind	Data individual
-	 * @param map	Map of answers
+	 * Get a substring of the given string starting at the specified point until the end of the string
+	 * @param input	Input string
+	 * @param begin	Beginning of the substring
+	 * @return Substring of the given string
 	 */
-	private void addAnswer(String qIri, OWLNamedIndividual ind, Map<IRI,Set<OWLNamedIndividual>> map) {
-		IRI i = IRI.create(qIri);
-		Set<OWLNamedIndividual> inds = null;
-		if(map.containsKey(i)) {
-			inds = map.get(i);
-			inds.add(ind);
-		}
-		else {
-			inds = new HashSet<OWLNamedIndividual>();
-			inds.add(ind);
-		}
-		map.put(i, inds);
+	private String getSubstring(String input, String begin) {
+		String out = "";
+		try { out = input.substring(input.lastIndexOf(begin), input.length()); }
+		catch(IndexOutOfBoundsException e) { /* do nothing */ }
+		return out;
 	}
 	
 	
@@ -296,17 +305,14 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private void addQuestionSectionAxioms(OWLOntology ont, OWLOntologyManager man, OWLDataFactory df, OWLNamedIndividual answerInd, OWLNamedIndividual dataInd, String qFocus, String qIri) {
 		// { answer : Observation }
-		addAxiom(ont, df.getOWLClassAssertionAxiom(
-				df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));
+		addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getQuestionSectionClassBinding()), answerInd));
 		
 		// { answer hasFocus focus }
 		if(!qFocus.equals(""))
-			addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-					df.getOWLObjectProperty(conf.getQuestionFocusPropertyBinding()), answerInd, df.getOWLNamedIndividual(IRI.create(qFocus))));
+			addObjPropAssertAxiom(ont, conf.getQuestionFocusPropertyBinding(), answerInd, df.getOWLNamedIndividual(IRI.create(qFocus)));
 		
 		// { data isResponseTo question }
-		addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-				df.getOWLObjectProperty(conf.getIsAnswerToPropertyBinding()), dataInd, df.getOWLNamedIndividual(IRI.create(qIri))));
+		addObjPropAssertAxiom(ont, conf.getIsAnswerToPropertyBinding(), dataInd, df.getOWLNamedIndividual(IRI.create(qIri)));
 	}
 	
 	
@@ -328,8 +334,7 @@ public class FormInputHandler extends HttpServlet {
 				df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));
 		
 		// { physicianCert hasComponent answer }
-		addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-				df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), physicianCertInd, answerInd));
+		addObjPropAssertAxiom(ont, conf.getHasComponentPropertyBinding(), physicianCertInd, answerInd);
 		
 		// { physicianCert hasDate date }
 		addAxiom(ont, df.getOWLDataPropertyAssertionAxiom(
@@ -352,43 +357,9 @@ public class FormInputHandler extends HttpServlet {
 			e.printStackTrace();
 		}
 		addCommentAnnotations(ont);
-		addAxiom(ont, df.getOWLClassAssertionAxiom(
-				df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
-		addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(
-				df.getOWLObjectProperty(conf.getHasFormPropertyBinding()), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI()))); // { formDataInd hasForm form }
+		addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFormDataClassBinding()), formDataInd));	// { formDataInd : FormData }
+		addObjPropAssertAxiom(ont, conf.getHasFormPropertyBinding(), formDataInd, df.getOWLNamedIndividual(conf.getFormIndividualIRI())); // { formDataInd hasForm form }
 		return ont;
-	}
-	
-	
-	/**
-	 * Add 'hasComponent' data relations
-	 * @param map	Map of question IRIs to their -data- individuals
-	 * @param ont	Output ontology
-	 */
-	private void addDataRelations(Map<IRI,Set<OWLNamedIndividual>> map, OWLOntology ont) {
-		OWLOntologyManager man = ont.getOWLOntologyManager();
-		OWLDataFactory df = man.getOWLDataFactory();
-		for(IRI iri : map.keySet()) {
-			FormElement element = eIri.get(iri.toString());
-			Set<OWLNamedIndividual> answers = map.get(iri);
-			for(OWLNamedIndividual answer : answers) {
-				if(element != null) { 
-					for(IRI parentIri : element.getParentElements()) {
-						Set<OWLNamedIndividual> parents = map.get(parentIri);
-						for(OWLNamedIndividual parentDataInd : parents) {
-							if(parentDataInd != null) {
-								addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), parentDataInd, answer));
-								addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsComponentOfPropertyBinding()), answer, parentDataInd));
-							}
-						}
-					}
-				} else {
-					OWLNamedIndividual group = df.getOWLNamedIndividual(iri);
-					addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getHasComponentPropertyBinding()), group, answer));
-					addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getIsComponentOfPropertyBinding()), answer, group));
-				}
-			}
-		}
 	}
 	
 	
@@ -424,7 +395,7 @@ public class FormInputHandler extends HttpServlet {
 					valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
 					addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
 				}
-				addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(conf.getQuestionValuePropertyBinding()), answerInd, valInd));	// { answer hasValue val }
+				addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
 
 				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
 					addAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
@@ -468,6 +439,19 @@ public class FormInputHandler extends HttpServlet {
 	private void addAxiom(OWLOntology ont, OWLAxiom axiom) {
 		OWLOntologyManager man = ont.getOWLOntologyManager();
 		man.applyChange(new AddAxiom(ont, axiom));
+	}
+	
+	
+	/**
+	 * Add an object property assertion axiom to the specified ontology
+	 * @param ont	OWL ontology
+	 * @param propIri	Object property IRI
+	 * @param ind1	OWL individual
+	 * @param ind2	OWL individual
+	 */
+	private void addObjPropAssertAxiom(OWLOntology ont, IRI propIri, OWLNamedIndividual ind1, OWLNamedIndividual ind2) {
+		OWLDataFactory df = ont.getOWLOntologyManager().getOWLDataFactory();
+		addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(propIri), ind1, ind2));
 	}
 	
 	

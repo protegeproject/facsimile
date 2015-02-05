@@ -194,22 +194,22 @@ public class Configuration {
 			Node sectionNode = nl.item(i);
 			SectionType type = getSectionType(sectionNode);
 			NodeList children = sectionNode.getChildNodes(); // <iri>, (<questionList> | <infoList>)
-			List<TreeNode<IRI>> questions = null; IRI section = null;
+			List<TreeNode<IRI>> questions = null; IRI sectionIri = null;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node child = children.item(j);
 				if(child.getNodeName().equalsIgnoreCase("iri")) { // section iri
-					section = IRI.create(child.getTextContent());
-					if(verbose) System.out.println("   Section: " + section + " (type: " + type.toString() + ")");
+					sectionIri = IRI.create(child.getTextContent());
+					if(verbose) System.out.println("   Section: " + sectionIri + " (type: " + type.toString() + ")");
 				}
 				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
-					questions = getQuestions(child, null, null);
+					questions = getQuestions(sectionIri, child, null, null);
 				else if(child.getNodeName().equalsIgnoreCase("infolist"))
 					questions = getInfoRequests(child);
 			}
-			if(section != null && questions != null && !questions.isEmpty()) {
-				sections.put(section, questions);
-				sectionNumbering.put(section, isSectionNumbered(sectionNode));
-				sectionTypes.put(section, type);
+			if(sectionIri != null && questions != null && !questions.isEmpty()) {
+				sections.put(sectionIri, questions);
+				sectionNumbering.put(sectionIri, isSectionNumbered(sectionNode));
+				sectionTypes.put(sectionIri, type);
 			}
 		}
 		return sections;
@@ -258,19 +258,20 @@ public class Configuration {
 	 * @param parentQuestionList	Parent question list
 	 * @return List of question trees
 	 */
-	private List<TreeNode<IRI>> getQuestions(Node questionListNode, TreeNode<IRI> questionTree, List<IRI> parentQuestionList) {
+	private List<TreeNode<IRI>> getQuestions(IRI siblingIri, Node questionListNode, TreeNode<IRI> questionTree, List<IRI> parentQuestionList) {
 		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
 		List<IRI> questionList = new ArrayList<IRI>();
 		if(parentQuestionList == null) parentQuestionList = new ArrayList<IRI>();
 		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
+			IRI iri = null;
 			Node qNode = nl.item(i);
 			NodeList children = qNode.getChildNodes(); // (<iri> | <questionList>)
 			TreeNode<IRI> subquestions = questionTree;
 			for(int j = 0; j < children.getLength(); j++) {
 				Node curNode = children.item(j);
 				if(curNode.getNodeName().equalsIgnoreCase("iri")) {
-					IRI iri = getQuestionIRI(curNode, null);
+					iri = getQuestionIRI(curNode, null);
 					if(iri != null) {
 						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
 						else subquestions = subquestions.addChild(iri);
@@ -278,13 +279,13 @@ public class Configuration {
 						questionList.add(iri); parentQuestionList.add(iri);
 					}
 				}
-				if(curNode.getNodeName().equalsIgnoreCase("questionlist")) // (sub-)<questionList>
-					getQuestions(curNode, subquestions, questionList);
+				else if(curNode.getNodeName().equalsIgnoreCase("questionlist")) // (sub-)<questionList>
+					getQuestions(iri, curNode, subquestions, questionList);
 			}
 			if(subquestions != null)
 				questions.add(subquestions);
 		}
-		createFormElementList(questionListNode, questionList);
+		createFormElementList(questionListNode, questionList, siblingIri);
 		return questions;
 	}
 	
@@ -294,8 +295,10 @@ public class Configuration {
 	 * @param questionListNode	XML questionList node
 	 * @param questionList	List of question IRIs in this node
 	 */
-	private void createFormElementList(Node questionListNode, List<IRI> questionList) {
-		FormElementList ql = new FormElementList(questionList);
+	private void createFormElementList(Node questionListNode, List<IRI> questionList, IRI iri) {
+		String id = "fail"; 
+		if(iri != null) id = iri.getShortForm().toString();
+		FormElementList ql = new FormElementList(questionList, id);
 		String type = getAttribute(questionListNode, "type");
 		String repeat = getAttribute(questionListNode, "repeat");
 		int reps = 0;
@@ -423,7 +426,7 @@ public class Configuration {
 				infoList.add(iri);
 			}
 		}
-		createFormElementList(infoListNode, infoList);
+		createFormElementList(infoListNode, infoList, null);
 		return inforeqs;
 	}
 	

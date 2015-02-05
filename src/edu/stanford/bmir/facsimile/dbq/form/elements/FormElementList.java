@@ -13,16 +13,27 @@ public class FormElementList {
 	private List<IRI> formElements;
 	private FormElementListType type;
 	private int repeat;
+	private String id;
 	
 	
 	/**
 	 * Constructor
 	 * @param formElements	List of form element IRIs
 	 */
-	public FormElementList(List<IRI> formElements) {
+	public FormElementList(List<IRI> formElements, String id) {
 		this.formElements = formElements;
+		this.id = id;
 		type = FormElementListType.NORMAL;
 		repeat = 0;
+	}
+	
+	
+	/**
+	 * Get the ID of this form element list
+	 * @return Identifier of the question list, which follows from the sibling configuration element
+	 */
+	public String getID() {
+		return id;
 	}
 	
 	
