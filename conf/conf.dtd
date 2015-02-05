@@ -44,5 +44,4 @@
 >
 <!ATTLIST infoList 
 	type (normal|inline) #IMPLIED
-	repeat CDATA #IMPLIED
 >

@@ -13,9 +13,8 @@ import org.semanticweb.owlapi.model.IRI;
 import edu.stanford.bmir.facsimile.dbq.configuration.Configuration;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement.ElementType;
-import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
-import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList.FormElementListType;
+import edu.stanford.bmir.facsimile.dbq.form.elements.Question;
 import edu.stanford.bmir.facsimile.dbq.form.elements.QuestionOptions;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 
@@ -97,24 +96,22 @@ public class FormGenerator {
 		for(int j = 0; j < elements.size(); j++) {
 			FormElement element = elements.get(j);
 			if(!dontProcess.contains(element)) {
-				FormElementList ql = element.getFormElementList();
-				if(ql.getQuestions().get(0).equals(element.getIRI())) {
+				FormElementList ql = element.getFormElementList();				
+				if(ql.isFirstElement(element)) {
 					int indent = 0; startRepIndex = j;
 					if(repeat == 0) repeat = ql.getRepetitions();
 					if(element instanceof Question) indent = ((Question)element).getLevel()*50;
-					if(ql.getType().equals(FormElementListType.INLINE) || ql.getType().equals(FormElementListType.INLINEREPEATED)) {
-						output.append("<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n");
-						output.append("<div class=\"table\">\n<div class=\"table-row\">\n");
-					}
+					if(ql.isInline())
+						output.append("<div class=\"table-container\"" + (indent > 0 ? " style=\"margin-left:" + indent + "px;\"" : "") + ">\n<div class=\"table\">\n<div class=\"table-row\">\n");
 				}
 				generateElement(output, element, invisibleElements, elements, numbered);
-				if(!element.getSubquestions().isEmpty()) {
+				if(!element.getChildElements().isEmpty()) {
 					List<FormElement> children = element.getDescendants(elements);
 					dontProcess.addAll(children);
 					generateSectionElements(output, children, numbered);
 				}
-				if(ql.getQuestions().get(ql.getQuestions().size()-1).equals(element.getIRI())) { // check if this is the last question of an inline-questionList element
-					if(ql.getType().equals(FormElementListType.INLINE) || ql.getType().equals(FormElementListType.INLINEREPEATED))
+				if(ql.isLastElement(element)) { // check if this is the last question of an inline-questionList element
+					if(ql.isInline())
 						output.append("</div>\n</div>\n</div>\n");
 					if(repeat > 1) {
 						j = startRepIndex-1;
@@ -138,13 +135,13 @@ public class FormGenerator {
 	private void generateElement(StringBuilder output, FormElement element, List<IRI> invisibleElements, List<FormElement> elements, boolean numbered) {
 		String onchange = "";
 		IRI eleIri = element.getIRI(), trigger = null;
-		List<IRI> superquestions = element.getSuperquestions();
+		List<IRI> superquestions = element.getParentElements();
 		for(int k = 0; k < superquestions.size(); k++) // hide this question if there exists a super-question with a showQuestions flag
 			if(posTriggers.containsKey(superquestions.get(k)))
 				invisibleElements.add(eleIri);
 		if(posTriggers.containsKey(eleIri)) { // JavaScript onChange event handling
 			trigger = posTriggers.get(eleIri);
-			invisibleElements.addAll(element.getSubquestions());
+			invisibleElements.addAll(element.getChildElements());
 			List<FormElement> descendants = element.getDescendants(elements);
 			onchange = getOnChangeEvent(posTriggers, element, true, descendants);
 		}
@@ -203,10 +200,10 @@ public class FormGenerator {
 	 */
 	private String generateInnerElementDetails(FormElement e, String onchange, IRI trigger, boolean sectionNumbered, boolean hidden) {
 		IRI eleIri = e.getIRI();
-		if(processed.contains(eleIri)) eleIri = getAlternateIRI(e);
+		if(processed.contains(eleIri) || e.isInRepeatingElementList()) eleIri = getAlternateIRI(e);
 		String qNumber = "", qName = eleIri.toString(), qNameShort = eleIri.getShortForm();
 		StringBuilder output = new StringBuilder();
-		if(sectionNumbered && e.isElementNumbered()) 
+		if(sectionNumbered && e.isNumbered()) 
 			qNumber = e.getElementNumber() + ") ";
 		String qText = e.getText(); qText = qText.replaceAll("\n", "<br>");
 		String labelInit = "<p>" + qNumber.toUpperCase() + qText + (e.isRequired() ? " <sup>*</sup>" : "") + (!qNumber.equals("") || !qText.equals("") ? "</p>\n" : "");
@@ -239,14 +236,22 @@ public class FormGenerator {
 	 * @return Element IRI
 	 */
 	private IRI getAlternateIRI(FormElement e) {
-		String draft = e.getIRI().toString() + "-rep-1";
-		if(aliases.containsKey(IRI.create(draft))) {
-			String suffix = draft.substring(draft.lastIndexOf("-rep-"), draft.length());
-			int nr = Integer.parseInt(suffix.substring(suffix.lastIndexOf("-")+1, suffix.length())) + 1;
-			draft = draft.replace(suffix, "-rep-" + nr);
+		IRI eleIri = e.getIRI();
+		String newIri = eleIri.toString();
+		if(aliases.containsValue(eleIri)) {
+			int max = 0;
+			for(IRI i : aliases.keySet()) {
+				String iStr = i.toString();
+				if(aliases.get(i).equals(eleIri)) {
+					int rep = Integer.parseInt(iStr.substring(iStr.lastIndexOf("-")+1, iStr.length()));
+					if(rep > max) max = rep;
+				}
+			}
+			newIri += "-rep-" + (max+1);
 		}
-		aliases.put(IRI.create(draft), e.getIRI());
-		return IRI.create(draft);
+		else newIri += "-rep-1";
+		aliases.put(IRI.create(newIri), eleIri);
+		return IRI.create(newIri);
 	}
 	
 	
@@ -428,7 +433,7 @@ public class FormGenerator {
 	 */
 	private String getOnChangeEvent(Map<IRI,IRI> map, FormElement e, boolean pos, List<FormElement> descendants) {
 		String onchange = "";
-		List<IRI> children = e.getSubquestions();
+		List<IRI> children = e.getChildElements();
 		if(map.containsKey(e.getIRI())) {
 			if(pos)
 				onchange += " onchange=\"showSubquestions('" + triggerString + "',";
@@ -442,7 +447,7 @@ public class FormGenerator {
 					if(negTriggers.containsKey(c))
 						for(FormElement ele : descendants)
 							if(ele.getIRI().equals(c)) 
-								extraChildren.addAll(ele.getSubquestions());
+								extraChildren.addAll(ele.getChildElements());
 				for(IRI iri : extraChildren) {
 					if(!onchange.endsWith(",")) onchange += ",";
 					onchange += "'" + iri.getShortForm() + "'";

@@ -3,6 +3,7 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -18,9 +19,10 @@ public class FormElement implements Serializable {
 	private String eleNr, text, focus;
 	private int sectionNr;
 	private ElementType type;
-	private List<IRI> subquestions, superquestions;
+	private List<IRI> children, parents;
 	private boolean required;
 	private FormElementList formElementList;
+	private Set<FormElementList> formElementLists;
 	private IRI parent;
 	
 	
@@ -49,7 +51,7 @@ public class FormElement implements Serializable {
 	 * Check whether an element is numbered or not
 	 * @return true if element is numbered, false otherwise
 	 */
-	public boolean isElementNumbered() {
+	public boolean isNumbered() {
 		if(eleNr.equals(""))
 			return false;
 		else
@@ -130,30 +132,30 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Get the list of subquestions' IRIs
+	 * Get the list of sub-elements' IRIs
 	 * @return List of IRIs
 	 */
-	public List<IRI> getSubquestions() {
-		if(subquestions == null) subquestions = new ArrayList<IRI>();
-		return subquestions;
+	public List<IRI> getChildElements() {
+		if(children == null) children = new ArrayList<IRI>();
+		return children;
 	}
 	
 	
 	/**
-	 * Get the list of superquestions' IRIs
+	 * Get the list of super-elements' IRIs
 	 * @return List of IRIs
 	 */
-	public List<IRI> getSuperquestions() {
-		if(superquestions == null) superquestions = new ArrayList<IRI>();
-		return superquestions;
+	public List<IRI> getParentElements() {
+		if(parents == null) parents = new ArrayList<IRI>();
+		return parents;
 	}
 	
 	
 	/**
-	 * Get parent question IRI
+	 * Get direct parent element IRI
 	 * @return IRI
 	 */
-	public IRI getParentQuestion() {
+	public IRI getParentElement() {
 		return parent;
 	}
 	
@@ -168,56 +170,81 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Get the list of all subquestions of this question within a given list
+	 * Get the list of all sub-elements of this question within a given list
 	 * @param elements	List of elements within which the search for descendants will occur
-	 * @return List of form elements which are subquestions of this question
+	 * @return List of form elements which are sub-elements of this question
 	 */
 	public List<FormElement> getDescendants(List<FormElement> elements) {
 		List<FormElement> output = new ArrayList<FormElement>();
 		for(FormElement e : elements)
-			if(e.getSuperquestions().contains(getIRI()))
+			if(e.getParentElements().contains(getIRI()))
 				output.add(e);
 		return output;
 	}
 	
 	
 	/**
-	 * Add subquestion to subquestions list
-	 * @param iri	Subquestion IRI
+	 * Add child element to children list
+	 * @param iri	Element IRI
 	 */
-	public void addSubquestion(IRI iri) {
-		if(subquestions == null)
-			subquestions = new ArrayList<IRI>();
-		subquestions.add(iri);
+	public void addSubElement(IRI iri) {
+		if(children == null)
+			children = new ArrayList<IRI>();
+		children.add(iri);
 	}
 	
 	
 	/**
-	 * Add superquestion to superquestion list
-	 * @param iri	Superquestion IRI
+	 * Add parent element IRI to parent elements list
+	 * @param iri	Element IRI
 	 */
-	public void addSuperquestion(IRI iri) {
-		if(superquestions == null)
-			superquestions = new ArrayList<IRI>();
-		superquestions.add(iri);
+	public void addSuperElement(IRI iri) {
+		if(parents == null)
+			parents = new ArrayList<IRI>();
+		parents.add(iri);
 	}
 	
 	
 	/**
-	 * Set the parent question IRI
+	 * Set the direct parent element IRI
 	 * @param iri	IRI
 	 */
-	public void setParentQuestion(IRI iri) {
+	public void setParentElement(IRI iri) {
 		parent = iri;
 	}
 	
 	
 	/**
-	 * Set the surrounding form-element-list of this question
+	 * Set the directly surrounding form element list of this question
 	 * @param formElementList	Form element list instance
 	 */
-	public void setQuestionList(FormElementList formElementList) {
+	public void setFormElementList(FormElementList formElementList) {
 		this.formElementList = formElementList; 
+	}
+	
+	
+	/**
+	 * Set all surrounding form element lists
+	 * @param formElementLists	Set of form element lists
+	 */
+	public void setFormElementLists(Set<FormElementList> formElementLists) {
+		if(this.formElementLists == null) this.formElementLists = formElementLists;
+		else this.formElementLists.addAll(formElementLists);
+	}
+	
+	
+	/**
+	 * Check if this form element is involved in a repeating form element list
+	 * @return true if this element is involved in a repeating form element list, false otherwise
+	 */
+	public boolean isInRepeatingElementList() {
+		boolean isRepeating = false;
+		for(FormElementList list : formElementLists)
+			if(list.isRepeating() && list.contains(getIRI())) {
+				isRepeating = true;
+				break;
+			}
+		return isRepeating;
 	}
 	
 	

@@ -165,7 +165,7 @@ public class QuestionParser {
 					addSubquestionList((Question)q, node);
 					addSuperquestionList((Question)q, node);
 					if(!node.isRoot())
-						q.setParentQuestion(node.parent.data);
+						q.setParentElement(node.parent.data);
 				}
 				else if(ont.containsEntityInSignature(node.data, Imports.INCLUDED))
 					q = getInformationElement(node.data, sectionType, section, questionNr, i);
@@ -198,8 +198,8 @@ public class QuestionParser {
 			if(!child.data.toString().equalsIgnoreCase(entIri) && !ignored.contains(child.data)) {
 				if(conf.getSubquestionPositiveTriggers().containsKey(child.data) || conf.getSubquestionNegativeTriggers().containsKey(child.data))
 					addNode(ignored, child.children);
-				if(!q.getSubquestions().contains(child.data))
-					q.addSubquestion(child.data);
+				if(!q.getChildElements().contains(child.data))
+					q.addSubElement(child.data);
 			}
 		}
 	}
@@ -213,7 +213,7 @@ public class QuestionParser {
 	private void addSuperquestionList(Question q, TreeNode<IRI> node) {
 		TreeNode<IRI> parent = node.parent;
 		if(parent != null) {
-			q.addSuperquestion(parent.data);
+			q.addSuperElement(parent.data);
 			addSuperquestionList(q, parent);
 		}
 	}
@@ -241,12 +241,21 @@ public class QuestionParser {
 	 */
 	private void setQuestionList(FormElement element) {
 		List<FormElementList> qls = conf.getQuestionLists();
-		for(FormElementList ql : qls) {
-			if(ql.getQuestions().contains(element.getIRI())) {
-				element.setQuestionList(ql);
-				break;
+		Set<FormElementList> lists = new HashSet<FormElementList>();
+		for(FormElementList ql : qls)
+			if(ql.contains(element.getIRI()))
+				lists.add(ql);
+		element.setFormElementLists(lists);
+		Iterator<FormElementList> iter = lists.iterator();
+		FormElementList mostSpecific = iter.next(); int min = mostSpecific.size();
+		while(iter.hasNext()) {
+			FormElementList l = iter.next();
+			if(l.size() < min) {
+				min = l.size();
+				mostSpecific = l;
 			}
 		}
+		element.setFormElementList(mostSpecific);
 	}
 	
 	

@@ -202,7 +202,7 @@ public class Configuration {
 					if(verbose) System.out.println("   Section: " + section + " (type: " + type.toString() + ")");
 				}
 				else if(child.getNodeName().equalsIgnoreCase("questionlist"))
-					questions = getQuestions(child, null);
+					questions = getQuestions(child, null, null);
 				else if(child.getNodeName().equalsIgnoreCase("infolist"))
 					questions = getInfoRequests(child);
 			}
@@ -255,11 +255,13 @@ public class Configuration {
 	 * Gather the questions in a given (questionlist or subquestionlist) node
 	 * @param questionListNode	Questionlist node
 	 * @param questionTree	Question treenode, if applicable
+	 * @param parentQuestionList	Parent question list
 	 * @return List of question trees
 	 */
-	private List<TreeNode<IRI>> getQuestions(Node questionListNode, TreeNode<IRI> questionTree) {
+	private List<TreeNode<IRI>> getQuestions(Node questionListNode, TreeNode<IRI> questionTree, List<IRI> parentQuestionList) {
 		List<TreeNode<IRI>> questions = new ArrayList<TreeNode<IRI>>();
 		List<IRI> questionList = new ArrayList<IRI>();
+		if(parentQuestionList == null) parentQuestionList = new ArrayList<IRI>();
 		NodeList nl = questionListNode.getChildNodes(); // <question>'s
 		for(int i = 0; i < nl.getLength(); i++) { // foreach <question>
 			Node qNode = nl.item(i);
@@ -273,11 +275,11 @@ public class Configuration {
 						if(subquestions == null) subquestions = new TreeNode<IRI>(iri);
 						else subquestions = subquestions.addChild(iri);
 						checkAttributes(iri, qNode);
-						questionList.add(iri);
+						questionList.add(iri); parentQuestionList.add(iri);
 					}
 				}
 				if(curNode.getNodeName().equalsIgnoreCase("questionlist")) // (sub-)<questionList>
-					getQuestions(curNode, subquestions);
+					getQuestions(curNode, subquestions, questionList);
 			}
 			if(subquestions != null)
 				questions.add(subquestions);
