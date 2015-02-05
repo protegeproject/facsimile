@@ -252,7 +252,8 @@ public class Configuration {
 	
 	
 	/**
-	 * Gather the questions in a given (questionlist or subquestionlist) node
+	 * Gather the questions in a given questionlist node
+	 * @param siblingIri	IRI of the question which is a sibling of the given question-list 
 	 * @param questionListNode	Questionlist node
 	 * @param questionTree	Question treenode, if applicable
 	 * @param parentQuestionList	Parent question list
@@ -294,6 +295,7 @@ public class Configuration {
 	 * Create and add a QuestionList instance
 	 * @param questionListNode	XML questionList node
 	 * @param questionList	List of question IRIs in this node
+	 * @param iri	IRI of the question (or section) from which the form element list is derived
 	 */
 	private void createFormElementList(Node questionListNode, List<IRI> questionList, IRI iri) {
 		String id = "fail"; 
