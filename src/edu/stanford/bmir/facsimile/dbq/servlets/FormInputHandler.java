@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -251,12 +252,14 @@ public class FormInputHandler extends HttpServlet {
 		IRI hasComp = conf.getHasComponentPropertyBinding(), isCompOf = conf.getIsComponentOfPropertyBinding();
 		String questionListStr = getName(type, "qlist-" + eleList.getID(), "-data-" + uuid),
 				questionListRepStr = getName(type, "qlist-" + eleList.getID(), getSubstring(qIriAlias, "-rep-") + "-data-" + uuid),
-				childQuestionListStr = getName(type, "qlist-" + element.getIRI().getShortForm(), "-data-" + uuid);
+				childQuestionListStr = getName(type, "qlist-" + element.getIRI().getShortForm(), "-data-" + uuid),
+				parentQuestionListStr = getName(type, "qlist-" + getParentQuestionList(element), "-data-" + uuid);
 		
 		OWLNamedIndividual questionListInd = df.getOWLNamedIndividual(IRI.create(questionListStr)), 
 				questionListRepInd = df.getOWLNamedIndividual(IRI.create(questionListRepStr)),
-				childQuestionListInd = df.getOWLNamedIndividual(IRI.create(childQuestionListStr));
-	
+				childQuestionListInd = df.getOWLNamedIndividual(IRI.create(childQuestionListStr)),
+				parentQuestionListInd = df.getOWLNamedIndividual(IRI.create(parentQuestionListStr));
+		
 		if(element.hasChildren()) {
 			addObjPropAssertAxiom(ont, hasComp, questionListInd, childQuestionListInd);	// { questionListData hasComponent childQuestionListData }
 			addObjPropAssertAxiom(ont, isCompOf, childQuestionListInd, questionListInd);	// { childQuestionListData isComponentOf questionListData }
@@ -276,6 +279,29 @@ public class FormInputHandler extends HttpServlet {
 			addObjPropAssertAxiom(ont, hasComp, formDataInd, questionListInd);		// { formData hasComponent questionListData }
 			addObjPropAssertAxiom(ont, isCompOf, questionListInd, formDataInd);	// { questionListData isComponentOf formData }
 		}
+		else {
+			addObjPropAssertAxiom(ont, hasComp, parentQuestionListInd, questionListInd);
+			addObjPropAssertAxiom(ont, isCompOf, questionListInd, parentQuestionListInd);
+		}
+	}
+	
+	
+	/**
+	 * Get the text identifier of the 2nd most specific question list to the given element
+	 * @param element	Form element
+	 * @return Text identifier of 2nd most specific question list
+	 */
+	private String getParentQuestionList(FormElement element) {
+		Set<FormElementList> lists = element.getFormElementLists();
+		FormElementList mostSpecific = element.getFormElementList(), secMostSpecific = null;
+		int min = mostSpecific.size();
+		for(FormElementList l : lists)
+			if(!l.equals(mostSpecific))
+				if(l.size() > min) {
+					min = l.size();
+					secMostSpecific = l;
+				}
+		return secMostSpecific.getID();
 	}
 	
 

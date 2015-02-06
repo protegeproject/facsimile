@@ -250,6 +250,15 @@ public class FormElement implements Serializable {
 	
 	
 	/**
+	 * Get the set of all form element lists this form element appears in
+	 * @return Set of form element lists this element appears in
+	 */
+	public Set<FormElementList> getFormElementLists() {
+		return formElementLists;
+	}
+	
+	
+	/**
 	 * Check if this form element is involved in a repeating form element list
 	 * @return true if this element is involved in a repeating form element list, false otherwise
 	 */
