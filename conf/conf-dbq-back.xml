@@ -192,22 +192,22 @@
 				<question type="none" numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5AB</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5B</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5C</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5D</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5E</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5F</iri>
 				</question>
-				<question type="checkboxhorizontal">
+				<question type="radio">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q5G</iri>
 				</question>
 			</questionList>
