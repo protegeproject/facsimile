@@ -303,7 +303,6 @@ public class FormGenerator {
 			List<String> optionList = opts.getOptionsValues();
 			if(optionsOrder.containsKey(((Question)e).getIRI()))
 				optionList = sortList(optionList, optionsOrder.get(((Question)e).getIRI()), qName);
-			output.append("<div class=\"option\"><input type=\"radio\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 			for(int i = 0; i < optionList.size(); i++) {
 				String opt = optionList.get(i);
 				String qId = qNameShort + "-" + i;
@@ -312,6 +311,7 @@ public class FormGenerator {
 				output.append("<div class=\"option\"><label><input type=\"radio\" name=\"" + qName + "\" id=\"" + qId
 						+ "\" value=\"" + opt + "\"" + (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>\n");
 			}
+			output.append("<div class=\"option\"><input type=\"radio\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 		}
 	}
 	
@@ -355,7 +355,6 @@ public class FormGenerator {
 			List<String> optionList = opts.getOptionsValues();
 			if(optionsOrder.containsKey(((Question)e).getIRI()))
 				optionList = sortList(optionList, optionsOrder.get(((Question)e).getIRI()), qName);
-			output.append("<div class=\"option\"><input type=\"checkbox\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 			for(int i = 0; i < optionList.size(); i++) {
 				String opt = optionList.get(i);
 				String qId = qNameShort + "-" + i;
@@ -364,6 +363,7 @@ public class FormGenerator {
 				output.append("<div class=\"option\"><label><input type=\"checkbox\" name=\"" + qName + "\" id=\"" + qId + "\" value=\"" + opt.toLowerCase() + "\"" 
 					+ (e.isRequired() ? " required" : "") + "/>" + opt + "</label></div>" + (vertical && i<(optionList.size()-1) ? "<br>\n" : "\n"));
 			}
+			output.append("<div class=\"option\"><input type=\"checkbox\" name=\"" + qName + "\" value=\"\" hidden=\"true\" checked/></div>\n");
 		}
 	}
 	
