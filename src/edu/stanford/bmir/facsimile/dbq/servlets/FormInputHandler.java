@@ -292,6 +292,7 @@ public class FormInputHandler extends HttpServlet {
 	 * @return Text identifier of 2nd most specific question list
 	 */
 	private String getParentQuestionList(FormElement element) {
+		String name = "";
 		Set<FormElementList> lists = element.getFormElementLists();
 		FormElementList mostSpecific = element.getFormElementList(), secMostSpecific = null;
 		int min = mostSpecific.size();
@@ -301,7 +302,9 @@ public class FormInputHandler extends HttpServlet {
 					min = l.size();
 					secMostSpecific = l;
 				}
-		return secMostSpecific.getID();
+		if(secMostSpecific != null)
+			name = secMostSpecific.getID();
+		return name;
 	}
 	
 
