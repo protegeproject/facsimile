@@ -501,7 +501,7 @@ public class FormInputHandler extends HttpServlet {
 			String qText = eTextMap.get(qIri);	// element text
 			if(qText != null) {
 				qText = qText.replaceAll(",", ";");
-				qText = qText.replaceAll("\n", "");
+				qText = qText.replaceAll("\n", ". ");
 			}
 			csv += addAnswer(params, qIri, qIriAlias, qText, qFocus);
 		}
@@ -531,24 +531,51 @@ public class FormInputHandler extends HttpServlet {
 					}
 			if(answer.contains(","))
 				answer = answer.replaceAll(",", "");
+			if(answer.contains("\n"))
+				answer = normalizeString(answer);
 			if(aIri.equalsIgnoreCase(""))
 				aIri = answer;
-			
-			FormElement ele = eIri.get(qIri);
-			IRI parentIri = ele.getParentElement();
-			String parentIriStr = "";
-			if(parentIri != null) {
-				parentIriStr = parentIri.toString();
-				if(aliases.containsValue(parentIri))
-					for(IRI iri : aliases.keySet())
-						if(aliases.get(iri).equals(parentIri)) {
-							parentIriStr = iri.toString();
-							break;
-						}
-			}
-			csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + "," + answer + "," + qFocus + "," + parentIriStr + "\n";
+			String parentIriStr = getParentElementIRI(eIri.get(qIri));
+			csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + ",\"" + answer + "\"," + qFocus + "," + parentIriStr + "\n";
 		}
 		return csv;
+	}
+	
+	
+	/**
+	 * Given a string with new lines, remove those and replace with periods (.) 
+	 * @param string	String to remove new lines from
+	 * @return Single-line string, where new line symbols are replaced with periods
+	 */
+	private String normalizeString(String string) {
+		String result = "";
+		for(String line : string.split("\\n")) {
+			line = line.trim();
+			if(!line.isEmpty())
+				result += line + ". ";
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * Get the IRI of the form element that is the direct parent of the given form element 
+	 * @param ele	Form element
+	 * @return IRI of the parent form element to the one given
+	 */
+	private String getParentElementIRI(FormElement ele) {
+		String parentIriStr = "";
+		IRI parentIri = ele.getParentElement();
+		if(parentIri != null) {
+			parentIriStr = parentIri.toString();
+			if(aliases.containsValue(parentIri))
+				for(IRI iri : aliases.keySet())
+					if(aliases.get(iri).equals(parentIri)) {
+						parentIriStr = iri.toString();
+						break;
+					}
+		}
+		return parentIriStr;
 	}
 	
 	
