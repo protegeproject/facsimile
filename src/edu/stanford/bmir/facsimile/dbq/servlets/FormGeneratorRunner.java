@@ -61,7 +61,7 @@ public class FormGeneratorRunner extends HttpServlet {
 		session = request.getSession(true);
 		
 		File config = getConfigurationFile(request, response);
-		Runner runner = new Runner(config, false);
+		Runner runner = new Runner(config, false, false);
 		
 		PrintWriter pw = null; String output = null;
 		try {

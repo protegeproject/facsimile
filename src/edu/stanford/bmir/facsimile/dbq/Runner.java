@@ -30,8 +30,8 @@ import edu.stanford.bmir.facsimile.dbq.generator.FormGenerator;
  */
 public class Runner {
 	public final static String name = "facsimile-form-generator", version = "1.0b";
-	private File config;
-	private boolean verbose;
+	private File configFile;
+	private boolean verbose, saveHtml;
 	private Configuration conf;
 	private List<Section> sections;
 	private OWLOntology ont;
@@ -41,32 +41,14 @@ public class Runner {
 	
 	/**
 	 * Constructor
-	 * @param config	Configuration file
+	 * @param configFile	Configuration file
+	 * @param saveHtml	true if output HTML code should be saved to file, false otherwise
 	 * @param verbose	Verbose mode
 	 */
-	public Runner(File config, boolean verbose) {
-		this.config = config;
+	public Runner(File configFile, boolean saveHtml, boolean verbose) {
+		this.configFile = configFile;
+		this.saveHtml = saveHtml;
 		this.verbose = verbose;
-	}
-	
-	
-	/**
-	 * Generate form to a local file specified in the configuration file
-	 * @throws IOException	IO exception
-	 */
-	public void generateFormToLocalFile() throws IOException {		
-		String output = run();
-		String outputDir = conf.getOutputFilePath();
-		if(outputDir == null || outputDir.isEmpty())
-			outputDir = "output" + File.separator + "form.html" + File.separator;
-		File f = new File(outputDir);
-		if(!f.exists()) {
-			new File(f.getParent()).mkdirs();
-			f.createNewFile();
-		}
-		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-		bw.write(output);
-		bw.close();
 	}
 	
 	
@@ -75,16 +57,12 @@ public class Runner {
 	 * @return String containing HTML code for the form
 	 */
 	public String run() {
-		System.out.print("Loading configuration file: " + config.getAbsolutePath() + "... ");
+		System.out.print("Loading configuration file: " + configFile.getAbsolutePath() + "... ");
 		if(verbose) System.out.println();
-		conf = new Configuration(config, verbose);
+		conf = new Configuration(configFile, verbose);
 		conf.parseConfigurationFile();
 		System.out.println("done");
-		ont = loadOntology(conf);
-		
-		String outputPath = conf.getOutputFilePath();
-		if(outputPath != null && !outputPath.isEmpty())
-			System.out.println("Output: " + outputPath);
+		ont = loadOntology();
 		
 		QuestionParser gen = new QuestionParser(ont, conf, verbose);
 		sections = gen.getSections();
@@ -92,9 +70,68 @@ public class Runner {
 		
 		FormGenerator formGen = new FormGenerator(sections, conf);
 		String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
+		if(saveHtml) serializeOutput(output);
 		aliases = formGen.getIRIAliases();
 		System.out.println("finished");
 		return output;
+	}
+	
+	
+	/**
+	 * Generate form to a local file specified in the configuration file
+	 * @param output	Output HTML code
+	 */
+	public void serializeOutput(String output) {		
+		String outputDir = conf.getOutputFilePath();
+		if(outputDir == null || outputDir.isEmpty())
+			outputDir = "output" + File.separator + "form.html" + File.separator;
+		System.out.println("Output: " + outputDir);
+		File f = new File(outputDir);
+		try {
+			if(!f.exists()) {
+				new File(f.getParent()).mkdirs();
+				f.createNewFile();
+			}
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			bw.write(output); bw.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Load ontology specified in a configuration
+	 * @return OWL ontology
+	 */
+	private OWLOntology loadOntology() {
+		String inputFile = conf.getInputOntologyPath();
+		if(inputFile == null)
+			throw new MissingOntologyFileException("Could not find an input ontology element in the given configuration file");
+		IRI iri = null;
+		if(inputFile.contains(":")) iri = IRI.create(inputFile);
+		else iri = IRI.create("file:" + inputFile);
+		
+		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
+		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
+		config.setLoadAnnotationAxioms(false);
+		
+		Map<IRI,String> map = conf.getInputImportsMap();
+		for(IRI i : map.keySet()) {
+			String path = map.get(i);
+			if(!path.contains(":")) path = "file:" + path;
+			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create(path)));
+		}
+		OWLOntology ont = null;
+		try {
+			ont = man.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);
+		} catch (OWLOntologyCreationException e) { 
+			e.printStackTrace(); 
+		}
+		if(ont == null)
+			throw new OntologyFileParseException("Could not load ontology specified in the configuration file. Make sure that all imports are well-specified, and can be properly resolved");
+		System.out.println("done");
+		return ont;
 	}
 	
 	
@@ -137,42 +174,6 @@ public class Runner {
 	
 	
 	/**
-	 * Load ontology specified in a configuration
-	 * @param conf	Configuration
-	 * @return OWL ontology
-	 */
-	private OWLOntology loadOntology(Configuration conf) {
-		String inputFile = conf.getInputOntologyPath();
-		if(inputFile == null)
-			throw new MissingOntologyFileException("Could not find an input ontology element in the given configuration file");
-		IRI iri = null;
-		if(inputFile.contains(":")) iri = IRI.create(inputFile);
-		else iri = IRI.create("file:" + inputFile);
-		
-		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
-		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
-		config.setLoadAnnotationAxioms(false);
-		
-		Map<IRI,String> map = conf.getInputImportsMap();
-		for(IRI i : map.keySet()) {
-			String path = map.get(i);
-			if(!path.contains(":")) path = "file:" + path;
-			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create(path)));
-		}
-		OWLOntology ont = null;
-		try {
-			ont = man.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);
-		} catch (OWLOntologyCreationException e) { 
-			e.printStackTrace(); 
-		}
-		if(ont == null)
-			throw new OntologyFileParseException("Could not load ontology specified in the configuration file. Make sure that all imports are well-specified, and can be properly resolved");
-		System.out.println("done");
-		return ont;
-	}
-	
-	
-	/**
 	 * Get the map of IRI aliases
 	 * @return Map of IRI aliases
 	 */
@@ -190,7 +191,9 @@ public class Runner {
 		System.out.println("	[CONFIGURATION]	An XML configuration file input, output, entity bindings, and section/question ordering");
 		System.out.println();
 		System.out.println("	[OPTIONS]");
+		System.out.println("	-s		save resulting HTML form file");
 		System.out.println("	-v		verbose mode");
+		System.out.println("	-h		print usage");
 		System.out.println();
 	}
 	
@@ -201,25 +204,30 @@ public class Runner {
 	 * @throws IOException	IO exception
 	 */
 	public static void main(String[] args) throws IOException {
-		boolean verbose = false; File file = null;
+		boolean verbose = false, saveHtml = false; File file = null;
 		for(int i = 0; i < args.length; i++) {
 			String arg = args[i].trim();
 			if(arg.equalsIgnoreCase("-config")) {
 				if(++i == args.length) {
 					System.err.println("\n!! Error: -config must be followed by a path to a configuration file !!\n");
-					Runner.printUsage(); System.exit(1);
+					printUsage(); System.exit(1);
 				}
 				if(!args[i].startsWith("-"))
 					file = new File(args[i].trim());
 			}
 			if(arg.equalsIgnoreCase("-v"))
 				verbose = true;
+			if(arg.equalsIgnoreCase("-s"))
+				saveHtml = true;
+			if(arg.equalsIgnoreCase("-h")) {
+				printUsage(); System.exit(0);
+			}
 		}
 		if(file != null)
-			new Runner(file, verbose).generateFormToLocalFile();
+			new Runner(file, saveHtml, verbose).run();
 		else {
 			System.err.println("\n!! Error: Could not load configuration file; the path to the configuration must follow the -config flag !!\n");
-			Runner.printUsage(); System.exit(1);
+			printUsage(); System.exit(1);
 		}
 	}
 }

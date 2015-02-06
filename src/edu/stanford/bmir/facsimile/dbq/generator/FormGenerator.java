@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.semanticweb.owlapi.model.IRI;
 
@@ -28,7 +29,6 @@ public class FormGenerator {
 	private Map<IRI,IRI> posTriggers, negTriggers;
 	private Map<IRI,List<String>> optionsOrder;
 	private final String triggerString;
-	private Configuration config;
 	private Set<IRI> processed;
 	private Map<IRI,IRI> aliases;
 	
@@ -40,8 +40,7 @@ public class FormGenerator {
 	 */
 	public FormGenerator(List<Section> sections, Configuration config) {
 		this.sections = sections;
-		this.config = config;
-		triggerString = "xtriggerx";
+		triggerString = UUID.randomUUID().toString();
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
 		optionsOrder = config.getOptionsOrderMap();
@@ -72,7 +71,6 @@ public class FormGenerator {
 			}
 			output.append(getSectionText(s));
 			generateSectionElements(output, s.getSectionElements(), numbered);
-			
 			if(i < sections.size()-1) 
 				output.append("<br><hr><br>\n");
 		}
@@ -183,7 +181,7 @@ public class FormGenerator {
 		output += "<link href=\"http://fonts.googleapis.com/css?family=Bitter\" rel=\"stylesheet\" type=\"text/css\"/>\n";
 		output += "<script type=\"text/javascript\" src=\"js/script.js\"></script>\n";
 		output += "</head>\n<body>\n<div class=\"" + cssClass + "\">\n";
-		output += "<h1>" + config.getOutputFileTitle() + "<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
+		output += "<h1>" + title + "<span>Please answer all questions and submit your answers at the end</span></h1><br>\n";
 		output += "<form action=\"submit\" method=\"post\" id=\"form\">\n";
 		return output;
 	}
@@ -210,9 +208,8 @@ public class FormGenerator {
 		
 		if(!qText.isEmpty() || (qText.isEmpty() && (e instanceof Question && ((Question)e).isSubquestion()))) {
 			String cssClass = "inner-wrap";
-			if(e.getType().equals(ElementType.NONE)) 
-				cssClass = "question-holder";
-			if(e instanceof Question && ((Question)e).getLevel()>0) {
+			if(e.getType().equals(ElementType.NONE)) cssClass = "question-holder";
+			if(e instanceof Question && ((Question)e).getLevel() > 0) {
 				int indent = ((Question)e).getLevel()*50;
 				output.append("<div class=\"" + cssClass + "\" style=\"margin-left:" + indent + "px;" + ((qNumber.equals("") && qText.equals("")) ? "padding-bottom:10px;" : "") 
 						+ (hidden? "display:none;" : "") + "\" id=\"" + qNameShort + "\"" + (!onchange.isEmpty() ? onchange : "") + ">\n");
