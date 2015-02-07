@@ -55,7 +55,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Section> sections;
-	private String uuid, dateStr, dateShortStr;
+	private String uuid, dateStr, dateShortStr, baseNmsp, nmsp;
 	private Map<String,FormElement> eIri;
 	private Map<String,String> eTextMap, eFocusMap;
 	private Map<String,SectionType> eSectionType;
@@ -97,6 +97,9 @@ public class FormInputHandler extends HttpServlet {
 			uuid = getID();
 		dateStr = getDate();
 		dateShortStr = getShortDate(date);
+		// store values in session
+		session.setAttribute("uuid", uuid);
+		session.setAttribute("date", dateStr);
 	}
 	
 	
@@ -107,15 +110,15 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	private void processInput(HttpServletRequest request, HttpServletResponse response) {
+		System.out.print("\nParsing form input... ");
 		HttpSession session = request.getSession();
 		sortIdentifiers(session);
 		aliases = (Map<IRI, IRI>) session.getAttribute("aliases");
 		try {
-			session.setAttribute("uuid", uuid);
-			session.setAttribute("date", dateStr);
-			PrintWriter pw = response.getWriter();
-			System.out.print("\nParsing form input... ");
 			createElementMaps(session);
+			PrintWriter pw = response.getWriter();
+			baseNmsp = "http://purl.org/facsimile/"; 
+			nmsp = inputOnt.getOntologyID().getOntologyIRI().get().toString() + "#";
 			
 			File outDir = new File("output"); outDir.mkdirs();
 			String outName = "output/" + dateShortStr + "-form-" + uuid;
@@ -139,7 +142,7 @@ public class FormInputHandler extends HttpServlet {
 			for(OWLAxiom ax : ont.getAxioms())
 				ax.accept(trans);
 			session.setAttribute(uuid + "-rdf", graph);
-			serialize(graph, outName + ".rdf");
+			serialize(graph, outName + ".nt");
 			
 			printOutputPage(pw);
 			pw.close();
@@ -148,6 +151,9 @@ public class FormInputHandler extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	
 	
 	/**
@@ -201,7 +207,7 @@ public class FormInputHandler extends HttpServlet {
 	private OWLOntology getOntology(Enumeration<String> paramNames, HttpServletRequest request) {
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();		
-		OWLNamedIndividual initInfo = null, finalInfo = null, formDataInd = df.getOWLNamedIndividual(IRI.create("formdata-" + uuid)); 
+		OWLNamedIndividual initInfo = null, finalInfo = null, formDataInd = df.getOWLNamedIndividual(IRI.create(nmsp + "formdata-" + uuid)); 
 		OWLOntology ont = createOntology(man, df, formDataInd);
 		while(paramNames.hasMoreElements()) {
 			String qIriAlias = (String)paramNames.nextElement(), qIri = qIriAlias; 	// element iri: Question individual IRI, or InformationElement property IRI
@@ -255,10 +261,10 @@ public class FormInputHandler extends HttpServlet {
 				childQuestionListStr = getName(type, "qlist-" + element.getIRI().getShortForm(), "-data-" + uuid),
 				parentQuestionListStr = getName(type, "qlist-" + getParentQuestionList(element), "-data-" + uuid);
 		
-		OWLNamedIndividual questionListInd = df.getOWLNamedIndividual(IRI.create(questionListStr)), 
-				questionListRepInd = df.getOWLNamedIndividual(IRI.create(questionListRepStr)),
-				childQuestionListInd = df.getOWLNamedIndividual(IRI.create(childQuestionListStr)),
-				parentQuestionListInd = df.getOWLNamedIndividual(IRI.create(parentQuestionListStr));
+		OWLNamedIndividual questionListInd = df.getOWLNamedIndividual(IRI.create((questionListStr.startsWith(nmsp) ? "" : nmsp) + questionListStr)), 
+				questionListRepInd = df.getOWLNamedIndividual(IRI.create((questionListRepStr.startsWith(nmsp) ? "" : nmsp) + questionListRepStr)),
+				childQuestionListInd = df.getOWLNamedIndividual(IRI.create((childQuestionListStr.startsWith(nmsp) ? "" : nmsp) + childQuestionListStr)),
+				parentQuestionListInd = df.getOWLNamedIndividual(IRI.create((parentQuestionListStr.startsWith(nmsp) ? "" : nmsp) + parentQuestionListStr));
 		
 		if(element.hasChildren()) {
 			addObjPropAssertAxiom(ont, hasComp, questionListInd, childQuestionListInd);	// { questionListData hasComponent childQuestionListData }
@@ -354,11 +360,10 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private void addPhysicianSectionAxioms(OWLOntology ont, OWLOntologyManager man, OWLDataFactory df, OWLNamedIndividual answerInd) {
 		// { answer : PhysicianInformation }
-		addAxiom(ont, df.getOWLClassAssertionAxiom(
-				df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));
+		addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getFinalSectionClassBinding()), answerInd));
 		
 		// { physicianCert : PhysicianCertification }
-		OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create("certification-" + uuid));
+		OWLNamedIndividual physicianCertInd = df.getOWLNamedIndividual(IRI.create(nmsp + "certification-" + uuid));
 		addAxiom(ont, df.getOWLClassAssertionAxiom(
 				df.getOWLClass(conf.getPhysicianCertificationClassBinding()), physicianCertInd));
 		
@@ -453,9 +458,9 @@ public class FormInputHandler extends HttpServlet {
 		if(type.equals(SectionType.QUESTION_SECTION))
 			output = qIri + mid;
 		else if(type.equals(SectionType.PATIENT_SECTION))
-			output = "patient" + mid;
+			output = nmsp + "patient" + mid;
 		else if(type.equals(SectionType.PHYSICIAN_SECTION))
-			output = "physician" + mid;
+			output = nmsp + "physician" + mid;
 		return output;
 	}
 	
@@ -654,8 +659,7 @@ public class FormInputHandler extends HttpServlet {
 		String formName = conf.getOutputFileTitle();
 		if(formName.contains(" "))
 			formName = formName.replaceAll(" ", "_");
-		
-		return IRI.create("http://purl.org/facsimile/" + formName + "_" + dateShortStr + "_" + uuid);
+		return IRI.create(baseNmsp + formName + "_" + dateShortStr + "_" + uuid);
 	}
 	
 	

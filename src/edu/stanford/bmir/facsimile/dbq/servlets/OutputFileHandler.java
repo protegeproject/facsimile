@@ -74,7 +74,7 @@ public class OutputFileHandler extends HttpServlet {
 			RDFGraph graph = (RDFGraph) session.getAttribute(uuid + "-rdf");
 			graph.dumpTriples(writer);
 			file = writer.getBuffer().toString();
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".xml\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".nt\"");
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
