@@ -55,7 +55,6 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
 public class FormInputHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Section> sections;
-	private Date date;
 	private String uuid, dateStr, dateShortStr;
 	private Map<String,FormElement> eIri;
 	private Map<String,String> eTextMap, eFocusMap;
@@ -64,6 +63,7 @@ public class FormInputHandler extends HttpServlet {
 	private Configuration conf;
 	private Map<IRI,IRI> aliases;
 	private OWLOntology inputOnt;
+	private Date date;
 
     
 	/**
@@ -501,7 +501,7 @@ public class FormInputHandler extends HttpServlet {
 			String qText = eTextMap.get(qIri);	// element text
 			if(qText != null) {
 				qText = qText.replaceAll(",", ";");
-				qText = qText.replaceAll("\n", ". ");
+				qText = qText.replaceAll("\"", "\"\"");
 			}
 			csv += addAnswer(params, qIri, qIriAlias, qText, qFocus);
 		}
@@ -529,32 +529,16 @@ public class FormInputHandler extends HttpServlet {
 					if(aMap.get(s).equalsIgnoreCase(answer)) {
 						aIri = s; break;
 					}
-			if(answer.contains(","))
-				answer = answer.replaceAll(",", "");
-			if(answer.contains("\n"))
-				answer = normalizeString(answer);
-			if(aIri.equalsIgnoreCase(""))
+			if(answer.contains(","))	
+				answer = answer.replaceAll(",", ";");
+			if(answer.contains("\""))	
+				answer = answer.replaceAll("\"", "\"\"");
+			if(aIri.equalsIgnoreCase(""))	
 				aIri = answer;
 			String parentIriStr = getParentElementIRI(eIri.get(qIri));
-			csv += (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "," + aIri + "," + qText + ",\"" + answer + "\"," + qFocus + "," + parentIriStr + "\n";
+			csv += "\"" + (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "\",\"" + aIri + "\",\"" + qText + "\",\"" + answer + "\",\"" + qFocus + "\",\"" + parentIriStr + "\"\n";
 		}
 		return csv;
-	}
-	
-	
-	/**
-	 * Given a string with new lines, remove those and replace with periods (.) 
-	 * @param string	String to remove new lines from
-	 * @return Single-line string, where new line symbols are replaced with periods
-	 */
-	private String normalizeString(String string) {
-		String result = "";
-		for(String line : string.split("\\n")) {
-			line = line.trim();
-			if(!line.isEmpty())
-				result += line + ". ";
-		}
-		return result;
 	}
 	
 	
