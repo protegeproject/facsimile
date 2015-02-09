@@ -1,7 +1,6 @@
 package edu.stanford.bmir.facsimile.dbq.servlets;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentTarget;
-import org.semanticweb.owlapi.io.RDFTriple;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.AddOntologyAnnotation;
@@ -37,8 +35,6 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.parameters.Imports;
-import org.semanticweb.owlapi.rdf.model.RDFGraph;
-import org.semanticweb.owlapi.rdf.model.RDFTranslator;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import edu.stanford.bmir.facsimile.dbq.Runner;
@@ -47,6 +43,7 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
+import edu.stanford.bmir.facsimile.dbq.utils.OWL2RDFTranslator;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -138,12 +135,9 @@ public class FormInputHandler extends HttpServlet {
 			serialize(ont, outName + ".owl");
 
 			// RDF triple dump
-			RDFTranslator trans = new RDFTranslator(ont.getOWLOntologyManager(), ont, true);
-			RDFGraph graph = trans.getGraph();
-			for(OWLAxiom ax : ont.getAxioms())
-				ax.accept(trans);
-			session.setAttribute(uuid + "-rdf", graph);
-			serialize(graph, outName + ".nt");
+			String rdf = new OWL2RDFTranslator().translate(ont);
+			session.setAttribute(uuid + "-rdf", rdf);
+			serialize(rdf, outName + ".nt");
 			
 			printOutputPage(pw);
 			pw.close();
@@ -152,9 +146,6 @@ public class FormInputHandler extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 	
 	
 	/**
@@ -184,24 +175,6 @@ public class FormInputHandler extends HttpServlet {
 		}
 	}
 	
-	
-	/**
-	 * Serialize a dump of RDF triples in the given graph
-	 * @param graph	RDF graph
-	 * @param path	File path (incl. filename and extension)
-	 */
-	private void serialize(RDFGraph graph, String path) {
-		try {
-			FileWriter writer = new FileWriter(new File(path));
-			for(RDFTriple triple : graph.getAllTriples()) {
-				writer.append(triple.getSubject() + " " + triple.getPredicate() + " " + (triple.getObject().isLiteral() ? "\"" + triple.getObject() + "\"" : triple.getObject()) + ".\n");
-			}
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 	/**
 	 * Get the output ontology
