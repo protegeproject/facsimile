@@ -13,9 +13,9 @@ ant
 #
 port="8085"
 echo ""
-echo "! Starting Jetty server on port $port..."
+echo "Starting Jetty server on port $port..."
 echo ""
-echo "! Once the server is running, point your Web browser to http://localhost:$port to generate and submit forms"
+echo "Once the server is running, point your Web browser to http://localhost:$port to generate and submit forms"
 echo ""
 open http://localhost:$port
 java -jar jetty/jetty-runner.jar --port $port form-generator.war
