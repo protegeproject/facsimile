@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentTarget;
+import org.semanticweb.owlapi.io.RDFTriple;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.AddOntologyAnnotation;
@@ -191,7 +192,11 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private void serialize(RDFGraph graph, String path) {
 		try {
-			graph.dumpTriples(new FileWriter(new File(path)));
+			FileWriter writer = new FileWriter(new File(path));
+			for(RDFTriple triple : graph.getAllTriples()) {
+				writer.append(triple.getSubject() + " " + triple.getPredicate() + " " + (triple.getObject().isLiteral() ? "\"" + triple.getObject() + "\"" : triple.getObject()) + ".\n");
+			}
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -504,10 +509,8 @@ public class FormInputHandler extends HttpServlet {
 			String[] params = request.getParameterValues(qIriAlias);
 			String qFocus = eFocusMap.get(qIri);	// element focus
 			String qText = eTextMap.get(qIri);	// element text
-			if(qText != null) {
-				qText = qText.replaceAll(",", ";");
+			if(qText != null)
 				qText = qText.replaceAll("\"", "\"\"");
-			}
 			csv += addAnswer(params, qIri, qIriAlias, qText, qFocus);
 		}
 		return csv;
@@ -534,8 +537,6 @@ public class FormInputHandler extends HttpServlet {
 					if(aMap.get(s).equalsIgnoreCase(answer)) {
 						aIri = s; break;
 					}
-			if(answer.contains(","))	
-				answer = answer.replaceAll(",", ";");
 			if(answer.contains("\""))	
 				answer = answer.replaceAll("\"", "\"\"");
 			if(aIri.equalsIgnoreCase(""))	

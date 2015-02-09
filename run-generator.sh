@@ -4,7 +4,10 @@
 # the form generator will be accessible (via a Web browser) at http://localhost:8085. Java 1.7+ and Ant are required.
 #
 # Compile sources and produce the war and javadocs
-echo "Building from sources..." && ant
+echo ""
+echo "Building from sources..."
+echo ""
+ant
 #
 # Deploy form-generator.war on a local Jetty instance, in the port specified below
 #

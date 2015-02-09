@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.semanticweb.owlapi.io.RDFTriple;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
@@ -72,7 +73,7 @@ public class OutputFileHandler extends HttpServlet {
 		case "RDF":
 			StringWriter writer = new StringWriter();
 			RDFGraph graph = (RDFGraph) session.getAttribute(uuid + "-rdf");
-			graph.dumpTriples(writer);
+			dumpTriples(graph, writer);
 			file = writer.getBuffer().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".nt\"");
 			break;
@@ -87,5 +88,19 @@ public class OutputFileHandler extends HttpServlet {
 		}
 		pw.write(file);
 		pw.close();
+	}
+	
+	
+	/**
+	 * Append to a given writer the triples in the specified RDF graph
+	 * @param graph	RDF graph
+	 * @param writer	String writer
+	 * @throws IOException	IO exception
+	 */
+	private void dumpTriples(RDFGraph graph, StringWriter writer) throws IOException {
+		for(RDFTriple triple : graph.getAllTriples()) {
+			writer.append(triple.getSubject() + " " + triple.getPredicate() + " " + (triple.getObject().isLiteral() ? "\"" + triple.getObject() + "\"" : triple.getObject()) + ".\n");
+		}
+		writer.close();
 	}
 }
