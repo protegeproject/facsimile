@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.NTriplesDocumentFormat;
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
 import org.semanticweb.owlapi.io.FileDocumentTarget;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.AddImport;
@@ -29,12 +31,14 @@ import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDocumentFormat;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.parameters.Imports;
+import org.semanticweb.owlapi.model.parameters.OntologyCopy;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 import edu.stanford.bmir.facsimile.dbq.Runner;
@@ -43,7 +47,6 @@ import edu.stanford.bmir.facsimile.dbq.form.elements.FormElement;
 import edu.stanford.bmir.facsimile.dbq.form.elements.FormElementList;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section;
 import edu.stanford.bmir.facsimile.dbq.form.elements.Section.SectionType;
-import edu.stanford.bmir.facsimile.dbq.utils.OWL2RDFTranslator;
 
 /**
  * @author Rafael S. Goncalves <br>
@@ -126,23 +129,23 @@ public class FormInputHandler extends HttpServlet {
 			session.setAttribute(uuid + "-csv", csv);
 			serialize(csv, outName + ".csv");
 
-			// OWL ontology
 			OWLOntology ont = getOntology(request.getParameterNames(), request);
+			OWLOntology ont2 = OWLManager.createOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
+			
+			// Serialize RDF triple dump
+			session.setAttribute(uuid + "-rdf", ont2);
+			serialize(ont2, outName + ".nt", new NTriplesDocumentFormat());
+			
+			// Serialize OWL ontology with import
 			IRI ont_import = (IRI) session.getAttribute("iri");
-			AddImport imp = new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import));
-			ont.getOWLOntologyManager().applyChange(imp);
+			ont.getOWLOntologyManager().applyChange(new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import)));
 			session.setAttribute(uuid + "-owl", ont);
-			serialize(ont, outName + ".owl");
-
-			// RDF triple dump
-			String rdf = new OWL2RDFTranslator().translate(ont);
-			session.setAttribute(uuid + "-rdf", rdf);
-			serialize(rdf, outName + ".nt");
+			serialize(ont, outName + ".owl", new RDFXMLDocumentFormat());
 			
 			printOutputPage(pw);
 			pw.close();
 			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + dateStr + "\nfinished");
-		} catch (IOException e) {
+		} catch (IOException | OWLOntologyCreationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -166,10 +169,11 @@ public class FormInputHandler extends HttpServlet {
 	 * Serialize an ontology
 	 * @param ont	OWL ontology
 	 * @param path	File path (incl. filename and extension)
+	 * @param format	Ontology document format
 	 */
-	private void serialize(OWLOntology ont, String path) {
+	private void serialize(OWLOntology ont, String path, OWLDocumentFormat format) {
 		try {
-			ont.getOWLOntologyManager().saveOntology(ont, new FileDocumentTarget(new File(path)));
+			ont.getOWLOntologyManager().saveOntology(ont, format, new FileDocumentTarget(new File(path)));
 		} catch (OWLOntologyStorageException e) {
 			e.printStackTrace();
 		}

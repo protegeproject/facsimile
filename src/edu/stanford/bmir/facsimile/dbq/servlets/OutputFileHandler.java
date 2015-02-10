@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.semanticweb.owlapi.formats.NTriplesDocumentFormat;
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
@@ -68,13 +70,17 @@ public class OutputFileHandler extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".csv\"");
 			break;
 		case "RDF":
-			file = (String) session.getAttribute(uuid + "-rdf");
+			StringDocumentTarget rdf_target = new StringDocumentTarget();
+			OWLOntology rdf = (OWLOntology) session.getAttribute(uuid + "-rdf");
+			rdf.saveOntology(new NTriplesDocumentFormat(), rdf_target); 
+			rdf_target.getWriter().flush();
+			file = rdf_target.getWriter().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".nt\"");
 			break;
 		case "OWL":
 			StringDocumentTarget target = new StringDocumentTarget();
 			OWLOntology ont = (OWLOntology) session.getAttribute(uuid + "-owl");
-			ont.saveOntology(target); 
+			ont.saveOntology(new RDFXMLDocumentFormat(), target); 
 			target.getWriter().flush();
 			file = target.getWriter().toString();
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + date + "-form-" + uuid + ".owl\"");
