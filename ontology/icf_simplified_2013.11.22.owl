@@ -149,19 +149,6 @@
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
-
-    <owl:DatatypeProperty rdf:about="&skos;altLabel">
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#definition -->
-
-    <owl:DatatypeProperty rdf:about="&skos;definition"/>
     
 
 

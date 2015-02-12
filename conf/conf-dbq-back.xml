@@ -54,7 +54,7 @@
 		<section numbered="false" type="patient_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList type="inline">
-				<info type="text" property="http://purl.org/facsimile/dbq#hasPatientName" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasPatientName" required="true"/>
 				<info type="text" property="http://purl.org/facsimile/cfa#hasID"/>
 			</infoList>
 		</section>
@@ -733,7 +733,7 @@
 		<section numbered="false" type="physician_section">
 			<iri>http://purl.org/facsimile/dbq#PhysicianInformationDataElement</iri>
 			<infoList>
-				<info type="text" property="http://purl.org/facsimile/dbq#hasPhysicianName"/>
+				<info type="text" property="http://purl.org/facsimile/cfa#hasPhysicianName"/>
 				<info type="text" property="http://purl.org/facsimile/cfa#hasAddress"/>
 				<info type="text" property="http://purl.org/facsimile/cfa#hasPhoneNumber"/>
 				<info type="text" property="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber"/>

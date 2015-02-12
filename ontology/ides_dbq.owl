@@ -108,23 +108,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#hasDBQSection -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDBQSection">
-        <rdfs:subPropertyOf rdf:resource="&datamodel;hasSection"/>
-        <rdfs:domain rdf:resource="&dbq;DBQ"/>
-        <rdfs:range rdf:resource="&dbq;DBQSection"/>
-        <owl:inverseOf rdf:resource="&dbq;isDBQSectionOf"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasDataElement -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDataElement"/>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfo -->
 
     <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfo"/>
@@ -166,16 +149,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#isDBQSectionOf -->
-
-    <owl:ObjectProperty rdf:about="&dbq;isDBQSectionOf">
-        <rdfs:subPropertyOf rdf:resource="&datamodel;isSectionOf"/>
-        <rdfs:range rdf:resource="&dbq;DBQ"/>
-        <rdfs:domain rdf:resource="&dbq;DBQSection"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -209,24 +182,6 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:subPropertyOf rdf:resource="&cfa;hasDescription"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasPatientName -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;hasPatientName">
-        <rdfs:comment rdf:datatype="&xsd;string">Patient Name</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="&cfa;hasName"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasPhysicianName -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;hasPhysicianName">
-        <rdfs:comment rdf:datatype="&xsd;string">Physician Name</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="&cfa;hasName"/>
     </owl:DatatypeProperty>
     
 
@@ -374,79 +329,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#DBQ -->
-
-    <owl:Class rdf:about="&dbq;DBQ">
-        <rdfs:subClassOf rdf:resource="&datamodel;Form"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQPatientInformationSpec -->
-
-    <owl:Class rdf:about="&dbq;DBQPatientInformationSpec">
-        <rdfs:subClassOf rdf:resource="&datamodel;PatientInformationSpec"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQPhysicianCertificationSpec -->
-
-    <owl:Class rdf:about="&dbq;DBQPhysicianCertificationSpec">
-        <rdfs:subClassOf rdf:resource="&datamodel;PhysicianCertificationSpec"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasComponent"/>
-                <owl:someValuesFrom rdf:resource="&dbq;DBQPhysicianInformationSpec"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQPhysicianInformationSpec -->
-
-    <owl:Class rdf:about="&dbq;DBQPhysicianInformationSpec">
-        <rdfs:subClassOf rdf:resource="&datamodel;PhysicianInformationSpec"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQQuestion -->
-
-    <owl:Class rdf:about="&dbq;DBQQuestion">
-        <rdfs:subClassOf rdf:resource="&datamodel;Question"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string">would be described by question number, question text, reference to the data element description, restriction on the possible values in the form.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DBQSection -->
-
-    <owl:Class rdf:about="&dbq;DBQSection">
-        <rdfs:subClassOf rdf:resource="&datamodel;Section"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasHeading"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasSortingLabel"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#DiagnosisSection -->
 
     <owl:Class rdf:about="&dbq;DiagnosisSection">
@@ -469,12 +351,6 @@
         <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -493,6 +369,12 @@
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1291,7 +1173,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1312,7 +1194,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Upper anterior thigh (L2):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1321,7 +1203,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1344,7 +1226,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1367,7 +1249,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Thigh/knee (L3/4):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1376,7 +1258,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1399,7 +1281,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1422,7 +1304,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Lower leg/ankle (L4/L5/S1):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1431,7 +1313,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1454,7 +1336,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_3_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_3_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1477,7 +1359,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Foot/toes (L5):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1486,7 +1368,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_4_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_4_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1509,7 +1391,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_4_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_4_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1532,7 +1414,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10_5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1547,7 +1429,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q11 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q11">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">PROVIDE STRAIGHT LEG RAISING TEST RESULTS:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1556,7 +1438,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q11_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q11_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1579,7 +1461,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q11_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q11_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1602,7 +1484,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1617,7 +1499,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">INDICATE SYMPTOMS&apos; LOCATION AND SEVERITY (check all that apply):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1626,7 +1508,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Constant pain (may be excruciating at times)</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1635,7 +1517,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1659,7 +1541,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1683,7 +1565,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Intermittent pain (usually dull)</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1692,7 +1574,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1716,7 +1598,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1740,7 +1622,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Paresthesias and/or dysesthesias</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1749,7 +1631,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1773,7 +1655,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_3_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_3_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1797,7 +1679,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Numbness</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1806,7 +1688,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_4_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1830,7 +1712,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12B_4_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12B_4_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1854,7 +1736,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1869,7 +1751,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12C_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1884,7 +1766,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">INDICATE NERVE ROOTS INVOLVED: (check all that apply)</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -1893,7 +1775,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1913,7 +1795,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1936,7 +1818,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1956,7 +1838,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1979,7 +1861,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -1999,7 +1881,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12D_3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2014,7 +1896,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12E -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12E">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">INDICATE SEVERITY OF RADICULOPATHY AND SIDE AFFECTED:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -2023,7 +1905,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12E_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12E_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2047,7 +1929,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12E_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q12E_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2071,7 +1953,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q13 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q13">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2086,7 +1968,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q13_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q13_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2103,7 +1985,7 @@ IF THERE ARE NEUROLOGICAL ABNORMALITIES OTHER THAN RADICULOPATHY, ALSO COMPLETE 
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q14A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q14A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2118,7 +2000,7 @@ IF THERE ARE NEUROLOGICAL ABNORMALITIES OTHER THAN RADICULOPATHY, ALSO COMPLETE 
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q14B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q14B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2133,7 +2015,7 @@ IF THERE ARE NEUROLOGICAL ABNORMALITIES OTHER THAN RADICULOPATHY, ALSO COMPLETE 
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q14B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q14B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2160,7 +2042,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2175,7 +2057,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">IF YES, IDENTIFY ASSISTIVE DEVICE(S) USED (check all that apply and indicate frequency):</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -2184,7 +2066,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2204,7 +2086,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_1f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2227,7 +2109,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2247,7 +2129,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_2f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2270,7 +2152,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2290,7 +2172,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_3f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2313,7 +2195,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2333,7 +2215,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_4f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2356,7 +2238,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2376,7 +2258,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_5f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2399,7 +2281,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_6">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2419,7 +2301,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_6f">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2442,7 +2324,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15A_1_6t">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2457,7 +2339,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q15B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2472,7 +2354,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q16 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q16">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2487,7 +2369,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q16_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q16_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2509,7 +2391,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q17A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2524,7 +2406,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q17A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2539,7 +2421,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q17B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2554,7 +2436,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q17B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2569,7 +2451,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2584,7 +2466,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2599,7 +2481,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2614,7 +2496,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2629,7 +2511,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2644,7 +2526,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q18C_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2659,7 +2541,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q19 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q19">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2674,7 +2556,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q19_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q19_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2689,7 +2571,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2707,7 +2589,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2793,7 +2675,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q1C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2834,7 +2716,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2851,7 +2733,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q20 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q20">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2866,7 +2748,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q3_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q3_2"/>
     </owl:NamedIndividual>
@@ -2876,7 +2758,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2893,7 +2775,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q3_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2910,7 +2792,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">4</cfa:hasSortingLabel>
         <cfa:hasText>MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREES. DURING THE MEASUREMENTS, OBSERVE THE POINT AT WHICH PAINFUL MOTION BEGINS, EVIDENCED BY VISIBLE BEHAVIOR SUCH AS FACIAL EXPRESSION, WINCING, ETC. REPORT INITIAL MEASUREMENTS BELOW.
 NOTE: Following the initial assessment of ROM, perform repetitive-use testing. For VA purposes, repetitive-use testing must be included in all exams. The VA has determined that 3 repetitions of ROM (at minimum) can serve as a representative test of the effect of repetitive use. After the initial measurement, reassess ROM after 3 repetitions. Report post-test measurements in section 5.</cfa:hasText>
@@ -2923,7 +2805,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4A_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4A_2"/>
     </owl:NamedIndividual>
@@ -2933,13 +2815,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdf:type>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -2970,6 +2846,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)</cfa:hasText>
         <cfa:hasSortingLabel>A</cfa:hasSortingLabel>
         <cfa:hasFocus rdf:resource="&cfa;trunk_flexion_initial"/>
@@ -2980,7 +2862,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4A_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3022,7 +2904,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4B_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4B_2"/>
     </owl:NamedIndividual>
@@ -3032,7 +2914,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3061,7 +2943,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4B_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3091,7 +2973,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4C_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4C_2"/>
     </owl:NamedIndividual>
@@ -3101,7 +2983,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4C_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3130,7 +3012,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4C_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3160,7 +3042,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4D -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4D">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4D_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4D_2"/>
     </owl:NamedIndividual>
@@ -3170,7 +3052,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4D_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3199,7 +3081,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4D_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3229,7 +3111,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4E -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4E">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4E_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4E_2"/>
     </owl:NamedIndividual>
@@ -3239,7 +3121,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4E_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3268,7 +3150,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4E_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3298,7 +3180,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4F -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4F">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4F_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q4F_2"/>
     </owl:NamedIndividual>
@@ -3308,7 +3190,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4F_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3337,7 +3219,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4F_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3367,7 +3249,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4G -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q4G">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">IF ROM FOR THIS VETERAN DOES NOT CONFORM TO THE NORMAL RANGE OF MOTION IDENTIFIED ABOVE BUT IS NORMAL FOR THIS VETERAN (for reasons other than a back condition, such as age, body habitus, neurologic disease), EXPLAIN:</cfa:hasText>
         <cfa:hasSortingLabel>G</cfa:hasSortingLabel>
         <cfa:hasFocus rdf:resource="&cfa;ReasonAbnormalROMIsNormalForIndividual"/>
@@ -3378,7 +3260,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3393,7 +3275,7 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5AB -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5AB">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">IF VETERAN IS UNABLE TO PERFORM REPETITIVE-USE TESTING, SKIP TO SECTION 6.
 
 IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFTER A MINIMUM OF 3 REPETITIONS.</cfa:hasText>
@@ -3404,7 +3286,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3419,7 +3301,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3460,7 +3342,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3489,7 +3371,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5D -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5D">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3518,7 +3400,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5E -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5E">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3547,7 +3429,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5F -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5F">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3576,7 +3458,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5G -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q5G">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3605,7 +3487,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q6A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3622,7 +3504,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q6B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3639,7 +3521,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q6C">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3674,7 +3556,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q6C_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3689,7 +3571,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q7A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3706,7 +3588,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q7A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3722,7 +3604,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q7B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3738,7 +3620,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q7B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3761,7 +3643,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3789,7 +3671,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Hip flexion:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -3798,7 +3680,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3824,7 +3706,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3850,7 +3732,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Knee extension:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -3859,7 +3741,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3885,7 +3767,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3911,7 +3793,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Ankle plantar flexion:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -3920,7 +3802,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3946,7 +3828,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_3_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_3_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -3972,7 +3854,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Ankle dorsiflexion:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -3981,7 +3863,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_4_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4007,7 +3889,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_4_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_4_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4033,7 +3915,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Great toe extension:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -4042,7 +3924,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_5_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4068,7 +3950,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A_5_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8A_5_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4094,7 +3976,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8B">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4109,7 +3991,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8B_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4124,7 +4006,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8B_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">PROVIDE MEASUREMENTS IN CENTIMETERS OF NORMAL SIDE AND ATROPHIED SIDE, MEASURED AT MAXIMUM MUSCLE BULK:</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -4133,7 +4015,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8B_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4148,7 +4030,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q8B_2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4163,7 +4045,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4188,7 +4070,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Knee</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -4197,7 +4079,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4222,7 +4104,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4247,7 +4129,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Ankle</cfa:hasText>
     </owl:NamedIndividual>
     
@@ -4256,7 +4138,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4281,7 +4163,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9_2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q9_2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4306,7 +4188,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.1_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.1_2"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.1_3"/>
@@ -4317,7 +4199,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4334,7 +4216,7 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4356,7 +4238,7 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.1_3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4371,7 +4253,7 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.2_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.2_2"/>
     </owl:NamedIndividual>
@@ -4381,7 +4263,7 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4405,7 +4287,7 @@ Indicate medical records reviewed in preparation of this report:</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4420,7 +4302,7 @@ Indicate medical records reviewed in preparation of this report:</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QI.3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QI.3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4437,7 +4319,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText>Memory, attention, concentration, executive functions</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.1_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.1_2"/>
@@ -4448,7 +4330,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.10 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.10">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Consciousness</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.10_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.10_2"/>
@@ -4459,7 +4341,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.10_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.10_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4481,7 +4363,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.10_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.10_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4496,7 +4378,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4522,7 +4404,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.1_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.1_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4538,7 +4420,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText>Judgment</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.2_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.2_2"/>
@@ -4549,7 +4431,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.2_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.2_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4575,7 +4457,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.2_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.2_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4591,7 +4473,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText>Social interaction</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.3_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.3_2"/>
@@ -4602,7 +4484,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.3_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.3_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4626,7 +4508,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.3_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.3_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4641,7 +4523,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Orientation</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.4_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.4_2"/>
@@ -4652,7 +4534,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.4_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.4_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4677,7 +4559,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.4_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.4_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4692,7 +4574,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Motor activity (with intact motor and sensory system)</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.5_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.5_2"/>
@@ -4703,7 +4585,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.5_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.5_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4728,7 +4610,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.5_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.5_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4743,7 +4625,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.6 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.6">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Visual spatial orientation</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.6_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.6_2"/>
@@ -4754,7 +4636,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.6_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.6_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4779,7 +4661,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.6_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.6_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4794,7 +4676,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.7 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.7">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Subjective symptoms</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.7_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.7_2"/>
@@ -4805,7 +4687,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.7_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.7_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4829,7 +4711,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.7_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.7_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4844,7 +4726,7 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.8 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.8">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Neurobehavioral effects
 
 NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsivity, unpredictability, lack of motivation, verbal aggression, physical aggression, belligerence, apathy, lack of empathy, moodiness, lack of cooperation, inflexibility, and impaired awareness of disability. Any of these effects may range from slight to severe, although verbal and physical aggression are likely to have a more serious impact on workplace interaction and social interaction than some of the other effects.</cfa:hasText>
@@ -4857,7 +4739,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.8_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.8_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4884,7 +4766,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.8_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.8_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4899,7 +4781,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.9 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.9">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Communication</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.9_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QII.9_2"/>
@@ -4910,7 +4792,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.9_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.9_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4935,7 +4817,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QII.9_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QII.9_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4950,7 +4832,7 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -4967,7 +4849,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_0 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_0">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5004,7 +4886,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.1_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.1_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5019,7 +4901,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">&lt;b&gt;Other pertinent physical findings, scars, complications, conditions, signs and/or symptoms&lt;/b&gt;</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2a"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2a_1"/>
@@ -5032,7 +4914,7 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2a -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2a">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5049,7 +4931,7 @@ Does the Veteran have any scars (surgical or otherwise) related to any condition
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2a_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2a_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5064,7 +4946,7 @@ Does the Veteran have any scars (surgical or otherwise) related to any condition
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2b -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2b">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5079,7 +4961,7 @@ Does the Veteran have any scars (surgical or otherwise) related to any condition
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.2b_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.2b_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5094,7 +4976,7 @@ Does the Veteran have any scars (surgical or otherwise) related to any condition
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.3">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Diagnostic testing
 
 NOTE:  If diagnostic test results are in the medical record and reflect the Veteran’s current TBI residuals, repeat testing is not required. No specific imaging studies or are indicated for evaluation of TBI.</cfa:hasText>
@@ -5109,7 +4991,7 @@ NOTE:  If diagnostic test results are in the medical record and reflect the Vete
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3a -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.3a">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5128,7 +5010,7 @@ Has neuropsychological testing been performed?</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3a_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.3a_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5143,7 +5025,7 @@ Has neuropsychological testing been performed?</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3b -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.3b">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5158,7 +5040,7 @@ Has neuropsychological testing been performed?</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.3b_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.3b_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5173,7 +5055,7 @@ Has neuropsychological testing been performed?</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.4">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <cfa:hasText rdf:datatype="&xsd;string">Functional impact</cfa:hasText>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.4_1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.4_2"/>
@@ -5184,7 +5066,7 @@ Has neuropsychological testing been performed?</cfa:hasText>
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.4_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.4_1">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5201,7 +5083,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.4_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.4_2">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5216,7 +5098,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#DBQ_TBI_QIII.5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_TBI_QIII.5">
-        <rdf:type rdf:resource="&dbq;DBQQuestion"/>
+        <rdf:type rdf:resource="&datamodel;Question"/>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
@@ -5397,7 +5279,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#PatientInformationDataElement -->
 
     <owl:NamedIndividual rdf:about="&dbq;PatientInformationDataElement">
-        <rdf:type rdf:resource="&dbq;DBQPatientInformationSpec"/>
+        <rdf:type rdf:resource="&datamodel;PatientInformationSpec"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Patient Information</cfa:hasHeading>
     </owl:NamedIndividual>
     
@@ -5414,7 +5296,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#PhysicianInformationDataElement -->
 
     <owl:NamedIndividual rdf:about="&dbq;PhysicianInformationDataElement">
-        <rdf:type rdf:resource="&dbq;DBQPhysicianInformationSpec"/>
+        <rdf:type rdf:resource="&datamodel;PhysicianInformationSpec"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Physician Information</cfa:hasHeading>
     </owl:NamedIndividual>
     
@@ -5456,28 +5338,27 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ -->
 
     <owl:NamedIndividual rdf:about="&dbq;VAForm_21-0960M-14_BackConditionsDBQ">
-        <rdf:type rdf:resource="&dbq;DBQ"/>
-        <hasDataElement rdf:resource="&dbq;PatientInformationDataElement"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_1"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_10"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_11"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_12"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_13"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_14"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_15"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_16"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_17"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_18"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_19"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_2"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_20"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_3"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_4"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_5"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_6"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_7"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_8"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-14_section_9"/>
+        <rdf:type rdf:resource="&datamodel;Form"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_1"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_10"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_11"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_12"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_13"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_14"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_15"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_16"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_17"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_18"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_19"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_2"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_20"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_3"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_4"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_5"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_6"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_7"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_8"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-14_section_9"/>
     </owl:NamedIndividual>
     
 
@@ -5485,26 +5366,26 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#VAForm_21-0960M-9_KneeAndLowerLegConditionsDBQ -->
 
     <owl:NamedIndividual rdf:about="&dbq;VAForm_21-0960M-9_KneeAndLowerLegConditionsDBQ">
-        <rdf:type rdf:resource="&dbq;DBQ"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_1"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_10"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_11"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_12"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_13"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_14"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_15"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_16"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_17"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_18"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_19"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_2"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_3"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_4"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_5"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_6"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_7"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_8"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_21-0960M-9_section_9"/>
+        <rdf:type rdf:resource="&datamodel;Form"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_1"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_10"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_11"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_12"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_13"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_14"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_15"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_16"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_17"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_18"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_19"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_2"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_3"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_4"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_5"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_6"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_7"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_8"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_21-0960M-9_section_9"/>
     </owl:NamedIndividual>
     
 
@@ -5512,10 +5393,10 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#VAForm_9-15-11_TBI_Initial -->
 
     <owl:NamedIndividual rdf:about="&dbq;VAForm_9-15-11_TBI_Initial">
-        <rdf:type rdf:resource="&dbq;DBQ"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_9-15-11_section_1"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_9-15-11_section_2"/>
-        <hasDBQSection rdf:resource="&dbq;dbq_9-15-11_section_3"/>
+        <rdf:type rdf:resource="&datamodel;Form"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_1"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_2"/>
+        <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_3"/>
     </owl:NamedIndividual>
     
 
@@ -5647,7 +5528,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_1">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Diagnosis</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">Section I</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q1A"/>
@@ -5660,7 +5541,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_10 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_10">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION X</cfa:hasSortingLabel>
         <cfa:hasHeading rdf:datatype="&xsd;string">SENSORY EXAM</cfa:hasHeading>
     </owl:NamedIndividual>
@@ -5670,7 +5551,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_11 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_11">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasText rdf:datatype="&xsd;string">(This test can be performed with the veteran seated or supine. Raise each straightened leg until pain begins, typically at 30-70 degrees of elevation. The test is positive if the pain radiates below the knee, not merely in the back or hamstrings. Pain is often increased on dorsiflexion of the foot, and relieved by knee flexion. A positive test suggests radiculopathy, often due to disc herniation).</cfa:hasText>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XI</cfa:hasSortingLabel>
         <cfa:hasHeading rdf:datatype="&xsd;string">STRAIGHT LEG RAISING TEST</cfa:hasHeading>
@@ -5681,7 +5562,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_12 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_12">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">RADICULOPATHY</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5691,7 +5572,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_13 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_13">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">OTHER NEUROLOGIC ABNORMALITIES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIII</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q13"/>
@@ -5703,7 +5584,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_14 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_14">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">INTERVERTEBRAL DISC SYNDROME (IVDS) AND INCAPACITATING EPISODES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIV</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q14A"/>
@@ -5716,7 +5597,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_15 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_15">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">ASSISTIVE DEVICES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XV</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5726,7 +5607,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_16 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_16">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">REMAINING EFFECTIVE FUNCTION OF THE EXTREMITIES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XVI</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q16"/>
@@ -5738,7 +5619,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_17 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_17">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">OTHER PERTINENT PHYSICAL FINDINGS, COMPLICATIONS, CONDITIONS, SIGNS AND/OR SYMPTOMS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XVII</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q17A"/>
@@ -5752,7 +5633,7 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_18 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_18">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">DIAGNOSTIC TESTING</cfa:hasHeading>
         <cfa:hasText rdf:datatype="&xsd;string">NOTE: The diagnosis of arthritis must be confirmed by imaging studies. Once arthritis has been documented, no further imaging studies are required by VA, even if arthritis has worsened.
 
@@ -5773,7 +5654,7 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_19 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_19">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">FUNCTIONAL IMPACT</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIX</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q19"/>
@@ -5785,7 +5666,7 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_2">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Medical History</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION II</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q2"/>
@@ -5796,7 +5677,7 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_20 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_20">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">REMARKS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XXI</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q20"/>
@@ -5807,7 +5688,13 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_3">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdf:type>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
@@ -5830,12 +5717,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION III</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q3"/>
@@ -5848,7 +5729,7 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_4">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">INITIAL RANGE OF MOTION (ROM) MEASUREMENTS</cfa:hasHeading>
         <cfa:hasText rdf:datatype="&xsd;string">NOTE: Following the inital assessment of ROM, perform repetivie-use testing. For VA purposes, repetivie-use testing must be included in all exams. The VA has determined that 3 repetitions of ROM (at minimum) can serve as a representative test of the effect of repetivie use. After the initial measurement, reassess ROM after 3 repetitions. Report post-test measurements in section 5.
 
@@ -5880,7 +5761,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_5">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">ROM MEASUREMENT AFTER REPETITIVE-USE TESTING</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION V</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_Back_Q5B"/>
@@ -5896,7 +5777,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_6 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_6">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">FUNCTIONAL LOSS AND ADDITIONAL LIMITATION IN ROM</cfa:hasHeading>
         <cfa:hasText rdf:datatype="&xsd;string">NOTE: The following section addresses reasons for functional loss, if present, and additional loss of ROM after repetitive-use testing, if present. The VA defines functional loss as the inability to perform normal working movements of the body with normal excursion, strength, speed, coordination and/or endurance.</cfa:hasText>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VI</cfa:hasSortingLabel>
@@ -5910,7 +5791,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_7 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_7">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">PAIN AND MUSCLE SPASM</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5920,7 +5801,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_8">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">MUSCLE STRENGTH TESTING</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VIII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5930,7 +5811,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_9 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-14_section_9">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">REFLEX EXAM</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION IX</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5940,7 +5821,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_1">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Diagnosis</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">Section I</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5950,7 +5831,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_10 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_10">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">PATELLAR SUBLUXATION/DISLOCATION</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION X</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5960,7 +5841,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_11 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_11">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">ADDITIONAL CONDITIONS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XI</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5970,7 +5851,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_12 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_12">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">RADICULOPATHY</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5980,7 +5861,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_13 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_13">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">JOINT REPLACEMENT AND OTHER SURGICAL PROCEDURES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -5990,7 +5871,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_14 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_14">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">OTHER PERTINENT PHYSICAL FINDINGS, COMPLICATIONS, CONDITIONS, SIGNS AND/OR SYMPTOMS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIV</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6000,7 +5881,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_15 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_15">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">ASSISTIVE DEVICES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XV</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6010,7 +5891,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_16 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_16">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">REMAINING EFFECTIVE FUNCTION OF THE EXTREMITIES</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XVI</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6020,7 +5901,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_17 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_17">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">DIAGNOSTIC TESTING</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XVII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6030,7 +5911,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_18 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_18">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">FUNCTIONAL IMPACT</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6040,7 +5921,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_19 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_19">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">REMARKS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION XIX</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6050,7 +5931,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_2">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">MEDICAL HISTORY</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION II</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6060,7 +5941,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_3">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION III</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6070,7 +5951,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_4 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_4">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">INITIAL RANGE OF MOTION (ROM) MEASUREMENTS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION IV</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6080,7 +5961,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_5">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">ROM MEASUREMENT AFTER REPETITIVE-USE-TESTING</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION V</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6090,7 +5971,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_6 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_6">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">FUNCTIONAL LOSS AND ADDITIONAL LIMITATION IN ROM</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VI</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6100,7 +5981,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_7 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_7">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">PAIN (PAIN ON PALPATION)</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6110,7 +5991,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_8 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_8">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">PAINFUL MOTION, TENDERNESS AND STRENGTH TESTING</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION VIII</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6120,7 +6001,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_21-0960M-9_section_9 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_21-0960M-9_section_9">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">JOINT STABILITY TESTS</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION IX</cfa:hasSortingLabel>
     </owl:NamedIndividual>
@@ -6130,7 +6011,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_9-15-11_section_1 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_9-15-11_section_1">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Diagnosis and medical history</cfa:hasHeading>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.1"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QI.2"/>
@@ -6142,7 +6023,7 @@ MEASURE ROM WITH A GONIOMETER, ROUNDING EACH MEASUREMENT TO THE NEAREST 5 DEGREE
     <!-- http://purl.org/facsimile/dbq#dbq_9-15-11_section_2 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_9-15-11_section_2">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Assessment of facets of TBI-related cognitive impairment and subjective symptoms of TBI</cfa:hasHeading>
         <cfa:hasText rdf:datatype="&xsd;string">NOTE: For each of the following 10 facets of TBI-related cognitive impairment and subjective symptoms (facets 1-10 below), select the ONE answer that best represents the Veteran&apos;s current functional status. 
 
@@ -6165,7 +6046,7 @@ Neuropsychological testing may need to be performed in order to be able to accur
     <!-- http://purl.org/facsimile/dbq#dbq_9-15-11_section_3 -->
 
     <owl:NamedIndividual rdf:about="&dbq;dbq_9-15-11_section_3">
-        <rdf:type rdf:resource="&dbq;DBQSection"/>
+        <rdf:type rdf:resource="&datamodel;Section"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Additional residuals, other findings, diagnostic testing, functional impact and remarks</cfa:hasHeading>
         <cfa:hasSortingLabel rdf:datatype="&xsd;string">SECTION III</cfa:hasSortingLabel>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.1"/>
@@ -7078,9 +6959,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
 
     <rdf:Description rdf:about="&cfa;hasFaxNumber">
         <rdfs:comment rdf:datatype="&xsd;string">Fax Number</rdfs:comment>
-    </rdf:Description>
-    <rdf:Description rdf:about="&cfa;hasAddress">
-        <rdfs:comment rdf:datatype="&xsd;string">Address</rdfs:comment>
     </rdf:Description>
     <rdf:Description rdf:about="&cfa;NeurogenicBowel">
         <rdfs:label rdf:datatype="&xsd;string">Neurogenic bowel. If checked, ALSO complete appropriate Intestines Questionnaire.</rdfs:label>
