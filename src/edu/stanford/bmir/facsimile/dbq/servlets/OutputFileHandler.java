@@ -3,6 +3,7 @@ package edu.stanford.bmir.facsimile.dbq.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +30,10 @@ public class OutputFileHandler extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = getServletContext().getRequestDispatcher("/index.html");
 		try {
-			processRequest(request, response);
-		} catch (OWLOntologyStorageException e) {
+			view.forward(request, response);
+		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 	}

@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,7 +72,12 @@ public class FormInputHandler extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processInput(request, response);
+		RequestDispatcher view = getServletContext().getRequestDispatcher("/index.html");
+		try {
+			view.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -126,11 +132,10 @@ public class FormInputHandler extends HttpServlet {
 			
 			// CSV file
 			String csv = getCSVFile(request.getParameterNames(), request);
-			session.setAttribute(uuid + "-csv", csv);
-			serialize(csv, outName + ".csv");
+			session.setAttribute(uuid + "-csv", csv); serialize(csv, outName + ".csv");
 
-			OWLOntology ont = getOntology(request.getParameterNames(), request);
-			OWLOntology ont2 = OWLManager.createOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
+			OWLOntology ont = getOntology(request.getParameterNames(), request),
+					ont2 = OWLManager.createOWLOntologyManager().copyOntology(ont, OntologyCopy.DEEP);
 			
 			// Serialize RDF triple dump
 			session.setAttribute(uuid + "-rdf", ont2);
@@ -139,11 +144,9 @@ public class FormInputHandler extends HttpServlet {
 			// Serialize OWL ontology with import
 			IRI ont_import = (IRI) session.getAttribute("iri");
 			ont.getOWLOntologyManager().applyChange(new AddImport(ont, ont.getOWLOntologyManager().getOWLDataFactory().getOWLImportsDeclaration(ont_import)));
-			session.setAttribute(uuid + "-owl", ont);
-			serialize(ont, outName + ".owl", new RDFXMLDocumentFormat());
+			session.setAttribute(uuid + "-owl", ont); serialize(ont, outName + ".owl", new RDFXMLDocumentFormat());
 			
-			printOutputPage(pw);
-			pw.close();
+			printOutputPage(pw); pw.close();
 			System.out.println("done\n  Submission UUID: " + uuid + "\n  Submission date: " + dateStr + "\nfinished");
 		} catch (IOException | OWLOntologyCreationException e) {
 			e.printStackTrace();
@@ -598,8 +601,9 @@ public class FormInputHandler extends HttpServlet {
 		pw.append("<div class=\"button-section\">\n");
 		pw.append("<input type=\"submit\" value=\"CSV\" name=\"filetype\">&nbsp;");
 		pw.append("<input type=\"submit\" value=\"RDF\" name=\"filetype\">&nbsp;");
-		pw.append("<input type=\"submit\" value=\"OWL\" name=\"filetype\">&nbsp;\n");
-		pw.append("</div>\n</form>\n</div>\n</body>\n</html>");
+		pw.append("<input type=\"submit\" value=\"OWL\" name=\"filetype\">\n");
+		pw.append("</div>\n</form>\n<br>\n<p><a href=\"index.html\">Back to main page</a></p>\n");
+		pw.append("</div>\n</body>\n</html>");
 	}
 	
 	
