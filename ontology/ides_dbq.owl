@@ -94,14 +94,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/datamodel#isResponseTo -->
-
-    <rdf:Description rdf:about="&datamodel;isResponseTo">
-        <owl:inverseOf rdf:resource="&datamodel;hasAnswer"/>
-    </rdf:Description>
-    
-
-
     <!-- http://purl.org/facsimile/datamodel#isSectionOf -->
 
     <owl:ObjectProperty rdf:about="&datamodel;isSectionOf"/>
@@ -224,424 +216,15 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#BackDisabilityContributingFactorValue -->
-
-    <owl:Class rdf:about="&cfa;BackDisabilityContributingFactorValue">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&cfa;AtrophyOfDisUse"/>
-                    <rdf:Description rdf:about="&cfa;DisturbanceOfLocomotion"/>
-                    <rdf:Description rdf:about="&cfa;MoreMovementThanNormal"/>
-                    <rdf:Description rdf:about="&cfa;InstabilityOfStation"/>
-                    <rdf:Description rdf:about="&cfa;Swelling"/>
-                    <rdf:Description rdf:about="&cfa;PainInMovement"/>
-                    <rdf:Description rdf:about="&cfa;Incoordination"/>
-                    <rdf:Description rdf:about="&cfa;ExcessFatigability"/>
-                    <rdf:Description rdf:about="&cfa;WeakenedMovement"/>
-                    <rdf:Description rdf:about="&cfa;Deformity"/>
-                    <rdf:Description rdf:about="&cfa;InterferenceWithSittingStandingOrWeightBearing"/>
-                    <rdf:Description rdf:about="&cfa;LessMovementThanNormal"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#BooleanValue -->
 
     <owl:Class rdf:about="&cfa;BooleanValue"/>
     
 
 
-    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionSeverityScaleValue -->
-
-    <rdf:Description rdf:about="&cfa;JudgmentFunctionSeverityScaleValue">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&dbq;JudgmentFunctionModeratelySeverelyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;JudgmentFunctionMildlyImpairedValue"/>
-                    <rdf:Description rdf:about="&dbq;JudgmentFunctionNormal"/>
-                    <rdf:Description rdf:about="&dbq;JudgmentFunctionModeratelyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;JudgmentFunctionSeverelyImpaired"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </rdf:Description>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#MACEF_ScaleValue -->
-
-    <rdf:Description rdf:about="&cfa;MACEF_ScaleValue">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&dbq;MACEFunctionObjectivelyMildlyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;MACEFunctionModeratelyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;MACEFunctionSeverelyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;MACEFunctionSubjectivelyMildlyImpaired"/>
-                    <rdf:Description rdf:about="&dbq;MACEFunctionNormal"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </rdf:Description>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#StringValue -->
 
     <owl:Class rdf:about="&cfa;StringValue"/>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#AdditionalKneeOrLowerLegConditionsSection -->
-
-    <owl:Class rdf:about="&dbq;AdditionalKneeOrLowerLegConditionsSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#AssistiveDevicesSection -->
-
-    <owl:Class rdf:about="&dbq;AssistiveDevicesSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#CommunicationValue -->
-
-    <owl:Class rdf:about="&dbq;CommunicationValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ConsciousnessValue -->
-
-    <owl:Class rdf:about="&dbq;ConsciousnessValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DiagnosisSection -->
-
-    <owl:Class rdf:about="&dbq;DiagnosisSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#DiagnosticTestingSection -->
-
-    <owl:Class rdf:about="&dbq;DiagnosticTestingSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#FlareUpsSection -->
-
-    <owl:Class rdf:about="&dbq;FlareUpsSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:oneOf>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&rdf;List"/>
-                                <rdf:first rdf:datatype="&xsd;boolean">false</rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&rdf;List"/>
-                                        <rdf:first rdf:datatype="&xsd;boolean">true</rdf:first>
-                                        <rdf:rest rdf:resource="&rdf;nil"/>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </owl:oneOf>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#FunctionalImpactSection -->
-
-    <owl:Class rdf:about="&dbq;FunctionalImpactSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#FunctionalLossAndAdditionalLimitationInROMSection -->
-
-    <owl:Class rdf:about="&dbq;FunctionalLossAndAdditionalLimitationInROMSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#IntervertebralDiscSyndromAndIncapacitatingEpisodesSection -->
-
-    <owl:Class rdf:about="&dbq;IntervertebralDiscSyndromAndIncapacitatingEpisodesSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JointReplacementAndOtherSurgicalProceduresSection -->
-
-    <owl:Class rdf:about="&dbq;JointReplacementAndOtherSurgicalProceduresSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JointStabilityTestsSection -->
-
-    <owl:Class rdf:about="&dbq;JointStabilityTestsSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MedicalHistorySection -->
-
-    <owl:Class rdf:about="&dbq;MedicalHistorySection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfMedicalHistory"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MeniscalConditionsAndMesnicalSurgerySection -->
-
-    <owl:Class rdf:about="&dbq;MeniscalConditionsAndMesnicalSurgerySection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MotorActivityValue -->
-
-    <owl:Class rdf:about="&dbq;MotorActivityValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MuscleStrengthTestingSection -->
-
-    <owl:Class rdf:about="&dbq;MuscleStrengthTestingSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#NerveRootInvolvement -->
-
-    <owl:Class rdf:about="&dbq;NerveRootInvolvement">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#NeurobehavioralEffectsValue -->
-
-    <owl:Class rdf:about="&dbq;NeurobehavioralEffectsValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#OrientationValue -->
-
-    <owl:Class rdf:about="&dbq;OrientationValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#OtherFindingsSection -->
-
-    <owl:Class rdf:about="&dbq;OtherFindingsSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#OtherNeurologicAbnormalitiesSection -->
-
-    <owl:Class rdf:about="&dbq;OtherNeurologicAbnormalitiesSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#PainAndMuscleSpasmSection -->
-
-    <owl:Class rdf:about="&dbq;PainAndMuscleSpasmSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#PainOnPalpationSection -->
-
-    <owl:Class rdf:about="&dbq;PainOnPalpationSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#PainfulMotionTendernessAndStrengthTestingSection -->
-
-    <owl:Class rdf:about="&dbq;PainfulMotionTendernessAndStrengthTestingSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#PatellarSubluxationOrDislocationSection -->
-
-    <owl:Class rdf:about="&dbq;PatellarSubluxationOrDislocationSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ROMMeasurementAfterRepetitiveUseSection -->
-
-    <owl:Class rdf:about="&dbq;ROMMeasurementAfterRepetitiveUseSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ROMMeasurementInitialSection -->
-
-    <owl:Class rdf:about="&dbq;ROMMeasurementInitialSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#RadiculopathySection -->
-
-    <owl:Class rdf:about="&dbq;RadiculopathySection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ReflexExamSection -->
-
-    <owl:Class rdf:about="&dbq;ReflexExamSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#RemainingEffectiveFunctionOfTheExtremitiesSection -->
-
-    <owl:Class rdf:about="&dbq;RemainingEffectiveFunctionOfTheExtremitiesSection">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&dbq;RetiredDBQSection"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasHeading"/>
-                        <owl:hasValue rdf:datatype="&xsd;string">REMAINING EFFECTIVE FUNCTION OF THE EXTREMITIES</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#RemarksSection -->
-
-    <owl:Class rdf:about="&dbq;RemarksSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#RetiredDBQSection -->
-
-    <owl:Class rdf:about="&dbq;RetiredDBQSection">
-        <rdfs:subClassOf rdf:resource="&cfa;Retired"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SensoryExamSection -->
-
-    <owl:Class rdf:about="&dbq;SensoryExamSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SocialInteractionValue -->
-
-    <owl:Class rdf:about="&dbq;SocialInteractionValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SpatialOrientationValue -->
-
-    <owl:Class rdf:about="&dbq;SpatialOrientationValue">
-        <rdfs:subClassOf rdf:resource="&dbq;OrientationValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#StraightLegRaisingTestSection -->
-
-    <owl:Class rdf:about="&dbq;StraightLegRaisingTestSection">
-        <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SubjectiveSymptomsValue -->
-
-    <owl:Class rdf:about="&dbq;SubjectiveSymptomsValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue -->
-
-    <owl:Class rdf:about="&dbq;ThreeValueSeverityScaleValue">
-        <rdfs:subClassOf rdf:resource="&cfa;SeverityScaleValue"/>
-    </owl:Class>
     
 
 
@@ -685,6 +268,18 @@
     <owl:NamedIndividual rdf:about="&cfa;AtrophyOfDisUse">
         <rdfs:label rdf:datatype="&xsd;string">Atrophy of disuse</rdfs:label>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#CommunicationCapable -->
+
+    <owl:NamedIndividual rdf:about="&cfa;CommunicationCapable"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#ConsciousnessNormal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;ConsciousnessNormal"/>
     
 
 
@@ -830,6 +425,46 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionMildlyImpairedValue -->
+
+    <owl:NamedIndividual rdf:about="&cfa;JudgmentFunctionMildlyImpairedValue">
+        <rdfs:label rdf:datatype="&xsd;string">Mildly impaired judgment: For complex or unfamiliar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionModeratelyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;JudgmentFunctionModeratelyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Moderately impaired judgment: For complex or unfamiliar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision, although has little difficulty with simple decisions</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionModeratelySeverelyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;JudgmentFunctionModeratelySeverelyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Moderately severely impaired judgment: For even routine and familiar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionNormal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;JudgmentFunctionNormal">
+        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#JudgmentFunctionSeverelyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;JudgmentFunctionSeverelyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Severely impaired judgment: For even routine and familiar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision. For example, unable to determine appropriate clothing for current weather conditions or judge when to avoid dangerous situations or activities.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#LessMovementThanNormal -->
 
     <owl:NamedIndividual rdf:about="&cfa;LessMovementThanNormal">
@@ -841,6 +476,46 @@
     <!-- http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack -->
 
     <owl:NamedIndividual rdf:about="&cfa;LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MACEFunctionModeratelyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MACEFunctionModeratelyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of moderate impairment of memory, attention, concentration, or executive functions resulting in moderate functional impairment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MACEFunctionNormal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MACEFunctionNormal">
+        <rdfs:label rdf:datatype="&xsd;string">No complaints of impairment of memory, attention, concentration, or executive functions</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MACEFunctionObjectivelyMildlyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MACEFunctionObjectivelyMildlyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of mild impairment of memory, attention, concentration, or executive functions resulting in mild functional impairment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MACEFunctionSeverelyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MACEFunctionSeverelyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of severe impairment of memory, attention, concentration, or executive functions resulting in severe functional impairment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#MACEFunctionSubjectivelyMildlyImpaired -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MACEFunctionSubjectivelyMildlyImpaired">
+        <rdfs:label rdf:datatype="&xsd;string">A complaint of mild memory loss (such as having difficulty following a conversation, recalling recent conversations, remembering names of new acquaintances, or finding words, or often misplacing items), attention, concentration, or executive functions, but without objective evidence on testing</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -860,6 +535,12 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#MotorActivityNormal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;MotorActivityNormal"/>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#MotorDysfunction -->
 
     <rdf:Description rdf:about="&cfa;MotorDysfunction">
@@ -876,6 +557,48 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#NoNeurobehavioralEffects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;NoNeurobehavioralEffects"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#NoSubjectiveSymptoms -->
+
+    <owl:NamedIndividual rdf:about="&cfa;NoSubjectiveSymptoms"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion -->
+
+    <owl:NamedIndividual rdf:about="&cfa;No_objective_evidence_of_painful_motion">
+        <rdfs:label rdf:datatype="&xsd;string">No objective evidence of painful motion</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#Oriented -->
+
+    <owl:NamedIndividual rdf:about="&cfa;Oriented"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#Other -->
+
+    <owl:NamedIndividual rdf:about="&cfa;Other">
+        <rdfs:label rdf:datatype="&xsd;string">Other</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#OtherDiagnosedResidualsAttributableToTBI -->
+
+    <owl:NamedIndividual rdf:about="&cfa;OtherDiagnosedResidualsAttributableToTBI">
+        <rdfs:label rdf:datatype="&xsd;string">Other diagnosed residuals attributable to TBI</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#OtherDisorder -->
 
     <rdf:Description rdf:about="&cfa;OtherDisorder">
@@ -889,6 +612,12 @@
     <owl:NamedIndividual rdf:about="&cfa;PainInMovement">
         <rdfs:label rdf:datatype="&xsd;string">Pain on movement</rdfs:label>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#PersistentAlteredStateOfConsciousness -->
+
+    <owl:NamedIndividual rdf:about="&cfa;PersistentAlteredStateOfConsciousness"/>
     
 
 
@@ -922,6 +651,18 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#SocialInteractionAppropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;SocialInteractionAppropriate"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SocialInteractionOccasionallyInappropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;SocialInteractionOccasionallyInappropriate"/>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#SpeechDisorder -->
 
     <rdf:Description rdf:about="&cfa;SpeechDisorder">
@@ -950,6 +691,14 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#TraumaticBrainInjury -->
+
+    <owl:NamedIndividual rdf:about="&cfa;TraumaticBrainInjury">
+        <rdfs:label rdf:datatype="&xsd;string">Traumatic brain injury (TBI)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#VisualImpairment -->
 
     <rdf:Description rdf:about="&cfa;VisualImpairment">
@@ -958,10 +707,96 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#VisualSpatialOrientationNormal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;VisualSpatialOrientationNormal"/>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#WeakenedMovement -->
 
     <owl:NamedIndividual rdf:about="&cfa;WeakenedMovement">
         <rdfs:label rdf:datatype="&xsd;string">Weakened movement</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#able_to_communicate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;able_to_communicate">
+        <rdfs:label rdf:datatype="&xsd;string">Able to communicate by spoken and written language (expressive communication) and to comprehend spoken and written language</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#absent -->
+
+    <owl:NamedIndividual rdf:about="&cfa;absent">
+        <rdfs:label rdf:datatype="&xsd;string">Absent</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#all_normal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;all_normal">
+        <rdfs:label rdf:datatype="&xsd;string">All normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#altered_consciousness -->
+
+    <owl:NamedIndividual rdf:about="&cfa;altered_consciousness">
+        <rdfs:label rdf:datatype="&xsd;string">Persistent altered state of consciousness, such as vegetative state, minimally responsive state, coma</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#always_oriented -->
+
+    <owl:NamedIndividual rdf:about="&cfa;always_oriented">
+        <rdfs:label rdf:datatype="&xsd;string">Always oriented to person, time, place, and situation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#appropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;appropriate">
+        <rdfs:label rdf:datatype="&xsd;string">Social interaction is routinely appropriate</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_1_week_but_less_than_2_weeks -->
+
+    <owl:NamedIndividual rdf:about="&cfa;at_least_1_week_but_less_than_2_weeks">
+        <rdfs:label rdf:datatype="&xsd;string">At least 1 week but less than 2 weeks</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_2_weeks_but_less_than_4_weeks -->
+
+    <owl:NamedIndividual rdf:about="&cfa;at_least_2_weeks_but_less_than_4_weeks">
+        <rdfs:label rdf:datatype="&xsd;string">At least 2 weeks but less than 4 weeks</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_4_weeks_but_less_than_6_weeks -->
+
+    <owl:NamedIndividual rdf:about="&cfa;at_least_4_weeks_but_less_than_6_weeks">
+        <rdfs:label rdf:datatype="&xsd;string">At least 4 weeks but less than 6 weeks</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_6_weeks -->
+
+    <owl:NamedIndividual rdf:about="&cfa;at_least_6_weeks">
+        <rdfs:label rdf:datatype="&xsd;string">At least 6 weeks</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -982,11 +817,35 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#c-file -->
+
+    <owl:NamedIndividual rdf:about="&cfa;c-file">
+        <rdfs:label rdf:datatype="&xsd;string">C-file (VA only)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#canes -->
 
     <rdf:Description rdf:about="&cfa;canes">
         <rdfs:label rdf:datatype="&xsd;string">Cane(s)</rdfs:label>
     </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#consistently_disoriented -->
+
+    <owl:NamedIndividual rdf:about="&cfa;consistently_disoriented">
+        <rdfs:label rdf:datatype="&xsd;string">Consistently disoriented to two or more of the four aspects (person, time, place, situation) of orientation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#constant -->
+
+    <owl:NamedIndividual rdf:about="&cfa;constant">
+        <rdfs:label rdf:datatype="&xsd;string">Constant</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -998,11 +857,323 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#decreased -->
+
+    <owl:NamedIndividual rdf:about="&cfa;decreased">
+        <rdfs:label rdf:datatype="&xsd;string">Decreased</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#freq_inappropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;freq_inappropriate">
+        <rdfs:label rdf:datatype="&xsd;string">Social interaction is frequently inappropriate</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#frequently-interfering_neurobehavioral_effects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;frequently-interfering_neurobehavioral_effects">
+        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that frequently interfere with workplace interaction, social interaction, or both but do not preclude them</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#inappropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;inappropriate">
+        <rdfs:label rdf:datatype="&xsd;string">Social interaction is inappropriate most or all of the time</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#interfering_neurobehavioral_effects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;interfering_neurobehavioral_effects">
+        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that interfere with or preclude workplace interaction, social interaction, or both on most days or that occasionally require supervision for safety of self or others</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#l2_l3_l4_nerve_roots -->
+
+    <owl:NamedIndividual rdf:about="&cfa;l2_l3_l4_nerve_roots">
+        <rdfs:label rdf:datatype="&xsd;string">INVOLVEMENT OF L2/L3/L4 NERVE ROOTS (femoral nerve)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#l4_l5_s1_s2_s3_nerve_roots -->
+
+    <owl:NamedIndividual rdf:about="&cfa;l4_l5_s1_s2_s3_nerve_roots">
+        <rdfs:label rdf:datatype="&xsd;string">INVOLVEMENT OF L4/L5/S1/S2/S3 NERVE ROOTS (sciatic nerve)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#left -->
 
     <rdf:Description rdf:about="&cfa;left">
         <rdfs:label rdf:datatype="&xsd;string">Left</rdfs:label>
     </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#left_lower -->
+
+    <owl:NamedIndividual rdf:about="&cfa;left_lower">
+        <rdfs:label rdf:datatype="&xsd;string">Left lower</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#less_than_1_week -->
+
+    <owl:NamedIndividual rdf:about="&cfa;less_than_1_week">
+        <rdfs:label rdf:datatype="&xsd;string">Less than 1 week</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#mild -->
+
+    <owl:NamedIndividual rdf:about="&cfa;mild">
+        <rdfs:label rdf:datatype="&xsd;string">Mild</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#mildly-interfering_subjective_symptoms -->
+
+    <owl:NamedIndividual rdf:about="&cfa;mildly-interfering_subjective_symptoms">
+        <rdfs:label rdf:datatype="&xsd;string">Three or more subjective symptoms that mildly interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples of findings that might be seen at this level of impairment are: intermittent dizziness, daily mild to moderate headaches, tinnitus, frequent insomnia, hypersensitivity to sound, hypersensitivity to light</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#mildly_decreased_motor_activity -->
+
+    <owl:NamedIndividual rdf:about="&cfa;mildly_decreased_motor_activity">
+        <rdfs:label rdf:datatype="&xsd;string">Motor activity is mildly decreased or with moderate slowing due to apraxia</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#mildly_impaired_spatial_orientation -->
+
+    <owl:NamedIndividual rdf:about="&cfa;mildly_impaired_spatial_orientation">
+        <rdfs:label rdf:datatype="&xsd;string">Mildly impaired: Occasionally gets lost in unfamiliar surroundings, has difficulty reading maps or following directions. Is able to use assistive devices such as GPS (global positioning system)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#moderate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;moderate">
+        <rdfs:label rdf:datatype="&xsd;string">Moderate</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#moderately-interfering_subjective_symptoms -->
+
+    <owl:NamedIndividual rdf:about="&cfa;moderately-interfering_subjective_symptoms">
+        <rdfs:label rdf:datatype="&xsd;string">Three or more subjective symptoms that moderately interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples of findings that might be seen at this level of impairment are: marked fatigability, blurred or double vision, headaches requiring rest periods during most days</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#moderately_decreased_motor_activity -->
+
+    <owl:NamedIndividual rdf:about="&cfa;moderately_decreased_motor_activity">
+        <rdfs:label rdf:datatype="&xsd;string">Motor activity moderately decreased due to apraxia</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#moderately_impaired_spatial_orientation -->
+
+    <owl:NamedIndividual rdf:about="&cfa;moderately_impaired_spatial_orientation">
+        <rdfs:label rdf:datatype="&xsd;string">Moderately impaired: Usually gets lost in unfamiliar surroundings, has difficulty reading maps, following directions, and judging distance. Has difficulty using assistive devices such as GPS (global positioning system)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#moderately_severely_impaired_spatial_orientation -->
+
+    <owl:NamedIndividual rdf:about="&cfa;moderately_severely_impaired_spatial_orientation">
+        <rdfs:label rdf:datatype="&xsd;string">Moderately severely impaired: Gets lost even in familiar surroundings, unable to use assistive devices such as GPS (global positioning system)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#more_than_occasionally_impaired_communication -->
+
+    <owl:NamedIndividual rdf:about="&cfa;more_than_occasionally_impaired_communication">
+        <rdfs:label rdf:datatype="&xsd;string">Inability to communicate either by spoken language, written language, or both, more than occasionally but less than half of the time, or to comprehend spoken language, written language, or both, more than occasionally but less than half of the time. Can generally communicate complex ideas</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#mostly_normal_motor_activity -->
+
+    <owl:NamedIndividual rdf:about="&cfa;mostly_normal_motor_activity">
+        <rdfs:label rdf:datatype="&xsd;string">Motor activity is normal most of the time, but mildly slowed at times due to apraxia (inability to perform previously learned motor activities, despite normal motor function)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#negative -->
+
+    <owl:NamedIndividual rdf:about="&cfa;negative">
+        <rdfs:label rdf:datatype="&xsd;string">Negative</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#no_neurobehavioral_effects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;no_neurobehavioral_effects">
+        <rdfs:label rdf:datatype="&xsd;string">No neurobehavioral effects</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#no_subjective_symptoms -->
+
+    <owl:NamedIndividual rdf:about="&cfa;no_subjective_symptoms">
+        <rdfs:label rdf:datatype="&xsd;string">No subjective symptoms</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#non-interfering_neurobehavioral_effects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;non-interfering_neurobehavioral_effects">
+        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that do not interfere with workplace interaction or social interaction.</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#non-interfering_subjective_symptoms -->
+
+    <owl:NamedIndividual rdf:about="&cfa;non-interfering_subjective_symptoms">
+        <rdfs:label rdf:datatype="&xsd;string">Subjective symptoms that do not interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples are: mild or occasional headaches, mild anxiety</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#none -->
+
+    <owl:NamedIndividual rdf:about="&cfa;none">
+        <rdfs:label rdf:datatype="&xsd;string">None</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#normal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;normal">
+        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#normal_consciousness -->
+
+    <owl:NamedIndividual rdf:about="&cfa;normal_consciousness">
+        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#normal_motor_activity -->
+
+    <owl:NamedIndividual rdf:about="&cfa;normal_motor_activity">
+        <rdfs:label rdf:datatype="&xsd;string">Motor activity normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#normal_spatial_orientation -->
+
+    <owl:NamedIndividual rdf:about="&cfa;normal_spatial_orientation">
+        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#not_affected -->
+
+    <owl:NamedIndividual rdf:about="&cfa;not_affected">
+        <rdfs:label rdf:datatype="&xsd;string">Not affected</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasional -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasional">
+        <rdfs:label rdf:datatype="&xsd;string">Occasional</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasionally-interfering_neurobehavioral_effects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasionally-interfering_neurobehavioral_effects">
+        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that occasionally interfere with workplace interaction, social interaction, or both but do not preclude them</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasionally_disoriented_1of4aspects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasionally_disoriented_1of4aspects">
+        <rdfs:label rdf:datatype="&xsd;string">Occasionally disoriented to one of the four aspects (person, time, place, situation) of orientation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasionally_disoriented_2of4aspects -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasionally_disoriented_2of4aspects">
+        <rdfs:label rdf:datatype="&xsd;string">Occasionally disoriented to two of the four aspects (person, time, place, situation) of orientation or often disoriented to one aspect of orientation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasionally_impaired_communication -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasionally_impaired_communication">
+        <rdfs:label rdf:datatype="&xsd;string">Comprehension or expression, or both, of either spoken language or written language is only occasionally impaired. Can communicate complex ideas</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasionally_inappropriate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;occasionally_inappropriate">
+        <rdfs:label rdf:datatype="&xsd;string">Social interaction is occasionally inappropriate</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#often_disoriented -->
+
+    <owl:NamedIndividual rdf:about="&cfa;often_disoriented">
+        <rdfs:label rdf:datatype="&xsd;string">Often disoriented to two or more of the four aspects (person, time, place, situation) of orientation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#other -->
+
+    <owl:NamedIndividual rdf:about="&cfa;other">
+        <rdfs:label rdf:datatype="&xsd;string">Other</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -1014,11 +1185,67 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#other_nerves -->
+
+    <owl:NamedIndividual rdf:about="&cfa;other_nerves">
+        <rdfs:label rdf:datatype="&xsd;string">OTHER NERVES</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#positive -->
+
+    <owl:NamedIndividual rdf:about="&cfa;positive">
+        <rdfs:label rdf:datatype="&xsd;string">Positive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#regular -->
+
+    <owl:NamedIndividual rdf:about="&cfa;regular">
+        <rdfs:label rdf:datatype="&xsd;string">Regular</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#right -->
 
     <rdf:Description rdf:about="&cfa;right">
         <rdfs:label rdf:datatype="&xsd;string">Right</rdfs:label>
     </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#right_lower -->
+
+    <owl:NamedIndividual rdf:about="&cfa;right_lower">
+        <rdfs:label rdf:datatype="&xsd;string">Right lower</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#severe -->
+
+    <owl:NamedIndividual rdf:about="&cfa;severe">
+        <rdfs:label rdf:datatype="&xsd;string">Severe</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#severely_decreased_motor_activity -->
+
+    <owl:NamedIndividual rdf:about="&cfa;severely_decreased_motor_activity">
+        <rdfs:label rdf:datatype="&xsd;string">Motor activity severely decreased due to apraxia</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#severely_impaired_spatial_orientation -->
+
+    <owl:NamedIndividual rdf:about="&cfa;severely_impaired_spatial_orientation">
+        <rdfs:label rdf:datatype="&xsd;string">Severely impaired: May be unable to touch or name own body parts when asked by the examiner, identify the relative position in space of two different objects, or find the way from one room to another in a familiar environment</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -1130,6 +1357,30 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#unable_to_communicate -->
+
+    <owl:NamedIndividual rdf:about="&cfa;unable_to_communicate">
+        <rdfs:label rdf:datatype="&xsd;string">Complete inability to communicate either by spoken language, written language, or both, or to comprehend spoken language, written language, or both. Unable to communicate basic needs</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#unable_to_communicate_half_the_time -->
+
+    <owl:NamedIndividual rdf:about="&cfa;unable_to_communicate_half_the_time">
+        <rdfs:label rdf:datatype="&xsd;string">Inability to communicate either by spoken language, written language, or both, at least half of the time but not all of the time, or to comprehend spoken language, written language, or both, at least half of the time but not all of the time. May rely on gestures or other alternative modes of communication. Able to communicate basic needs</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#unable_to_perform -->
+
+    <owl:NamedIndividual rdf:about="&cfa;unable_to_perform">
+        <rdfs:label rdf:datatype="&xsd;string">Unable to perform</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#walker -->
 
     <rdf:Description rdf:about="&cfa;walker">
@@ -1154,10 +1405,34 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#0_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;0_in_5">
+        <rdfs:label rdf:datatype="&rdfs;Literal">0/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#1_hypoactive -->
 
     <owl:NamedIndividual rdf:about="&cfa;1_hypoactive">
         <rdfs:label rdf:datatype="&xsd;string">1+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#1_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;1_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">1/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#2_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;2_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">2/5</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1178,6 +1453,14 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#3_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;3_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">3/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#4_hyperactive_w_clonus -->
 
     <owl:NamedIndividual rdf:about="&cfa;4_hyperactive_w_clonus">
@@ -1186,18 +1469,18 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#CommunicationCapable -->
+    <!-- http://purl.org/facsimile/cfa#4_in_5 -->
 
-    <owl:NamedIndividual rdf:about="&dbq;CommunicationCapable">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
+    <owl:NamedIndividual rdf:about="&cfa;4_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">4/5</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://purl.org/facsimile/dbq#ConsciousnessNormal -->
+    <!-- http://purl.org/facsimile/cfa#5_in_5 -->
 
-    <owl:NamedIndividual rdf:about="&dbq;ConsciousnessNormal">
-        <rdf:type rdf:resource="&cfa;ZeroIn2ValueSeverityScaleValue"/>
+    <owl:NamedIndividual rdf:about="&cfa;5_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">5/5</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1212,7 +1495,7 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;all_normal"/>
+                            <rdf:Description rdf:about="&cfa;all_normal"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1242,9 +1525,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1265,9 +1548,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1297,9 +1580,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1320,9 +1603,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1352,9 +1635,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1375,9 +1658,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1407,9 +1690,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1430,9 +1713,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;decreased"/>
-                            <rdf:Description rdf:about="&dbq;normal"/>
-                            <rdf:Description rdf:about="&dbq;absent"/>
+                            <rdf:Description rdf:about="&cfa;normal"/>
+                            <rdf:Description rdf:about="&cfa;absent"/>
+                            <rdf:Description rdf:about="&cfa;decreased"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1477,9 +1760,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;positive"/>
-                            <rdf:Description rdf:about="&dbq;unable_to_perform"/>
-                            <rdf:Description rdf:about="&dbq;negative"/>
+                            <rdf:Description rdf:about="&cfa;negative"/>
+                            <rdf:Description rdf:about="&cfa;positive"/>
+                            <rdf:Description rdf:about="&cfa;unable_to_perform"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1500,9 +1783,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;positive"/>
-                            <rdf:Description rdf:about="&dbq;unable_to_perform"/>
-                            <rdf:Description rdf:about="&dbq;negative"/>
+                            <rdf:Description rdf:about="&cfa;negative"/>
+                            <rdf:Description rdf:about="&cfa;positive"/>
+                            <rdf:Description rdf:about="&cfa;unable_to_perform"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1556,10 +1839,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1580,10 +1863,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1613,10 +1896,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1637,10 +1920,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1670,10 +1953,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1694,10 +1977,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1727,10 +2010,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1751,10 +2034,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
-                            <rdf:Description rdf:about="&dbq;none"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;none"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1814,7 +2097,7 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;l2_l3_l4_nerve_roots"/>
+                            <rdf:Description rdf:about="&cfa;l2_l3_l4_nerve_roots"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1857,7 +2140,7 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;l4_l5_s1_s2_s3_nerve_roots"/>
+                            <rdf:Description rdf:about="&cfa;l4_l5_s1_s2_s3_nerve_roots"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1900,7 +2183,7 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;other_nerves"/>
+                            <rdf:Description rdf:about="&cfa;other_nerves"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1944,10 +2227,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;not_affected"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;not_affected"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1968,10 +2251,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderate"/>
-                            <rdf:Description rdf:about="&dbq;not_affected"/>
-                            <rdf:Description rdf:about="&dbq;severe"/>
-                            <rdf:Description rdf:about="&dbq;mild"/>
+                            <rdf:Description rdf:about="&cfa;severe"/>
+                            <rdf:Description rdf:about="&cfa;mild"/>
+                            <rdf:Description rdf:about="&cfa;moderate"/>
+                            <rdf:Description rdf:about="&cfa;not_affected"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2054,11 +2337,11 @@ IF THERE ARE NEUROLOGICAL ABNORMALITIES OTHER THAN RADICULOPATHY, ALSO COMPLETE 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;at_least_6_weeks"/>
-                            <rdf:Description rdf:about="&dbq;less_than_1_week"/>
-                            <rdf:Description rdf:about="&dbq;at_least_4_weeks_but_less_than_6_weeks"/>
-                            <rdf:Description rdf:about="&dbq;at_least_1_week_but_less_than_2_weeks"/>
-                            <rdf:Description rdf:about="&dbq;at_least_2_weeks_but_less_than_4_weeks"/>
+                            <rdf:Description rdf:about="&cfa;at_least_2_weeks_but_less_than_4_weeks"/>
+                            <rdf:Description rdf:about="&cfa;at_least_6_weeks"/>
+                            <rdf:Description rdf:about="&cfa;at_least_1_week_but_less_than_2_weeks"/>
+                            <rdf:Description rdf:about="&cfa;at_least_4_weeks_but_less_than_6_weeks"/>
+                            <rdf:Description rdf:about="&cfa;less_than_1_week"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2125,9 +2408,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2168,9 +2451,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2211,9 +2494,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2254,9 +2537,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2297,9 +2580,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2340,9 +2623,9 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;regular"/>
-                            <rdf:Description rdf:about="&dbq;constant"/>
-                            <rdf:Description rdf:about="&dbq;occasional"/>
+                            <rdf:Description rdf:about="&cfa;constant"/>
+                            <rdf:Description rdf:about="&cfa;regular"/>
+                            <rdf:Description rdf:about="&cfa;occasional"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2408,8 +2691,8 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;left_lower"/>
-                            <rdf:Description rdf:about="&dbq;right_lower"/>
+                            <rdf:Description rdf:about="&cfa;left_lower"/>
+                            <rdf:Description rdf:about="&cfa;right_lower"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2645,7 +2928,7 @@ NOTE: For VA purposes, an incapacitating episode is a period of acute symptoms s
                             </owl:Restriction>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="&cfa;hasFocus"/>
-                                <owl:hasValue rdf:resource="&dbq;Diagnosis"/>
+                                <owl:hasValue rdf:resource="&cfa;Diagnosis"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -2860,25 +3143,25 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_90plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_65"/>
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_75"/>
-                            <rdf:Description rdf:about="&dbq;degree_45"/>
-                            <rdf:Description rdf:about="&dbq;degree_55"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_35"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_70"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
-                            <rdf:Description rdf:about="&dbq;degree_80"/>
-                            <rdf:Description rdf:about="&dbq;degree_50"/>
-                            <rdf:Description rdf:about="&dbq;degree_60"/>
-                            <rdf:Description rdf:about="&dbq;degree_85"/>
-                            <rdf:Description rdf:about="&dbq;degree_30"/>
-                            <rdf:Description rdf:about="&dbq;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_60"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
+                            <rdf:Description rdf:about="&cfa;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
+                            <rdf:Description rdf:about="&cfa;degree_30"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_90plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_80"/>
+                            <rdf:Description rdf:about="&cfa;degree_35"/>
+                            <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2901,26 +3184,26 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_90plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_65"/>
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_75"/>
-                            <rdf:Description rdf:about="&dbq;degree_45"/>
-                            <rdf:Description rdf:about="&dbq;degree_55"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_35"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_70"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
-                            <rdf:Description rdf:about="&dbq;degree_80"/>
-                            <rdf:Description rdf:about="&dbq;degree_50"/>
-                            <rdf:Description rdf:about="&dbq;degree_60"/>
-                            <rdf:Description rdf:about="&dbq;degree_85"/>
-                            <rdf:Description rdf:about="&dbq;degree_30"/>
-                            <rdf:Description rdf:about="&dbq;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_60"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
+                            <rdf:Description rdf:about="&cfa;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
+                            <rdf:Description rdf:about="&cfa;degree_30"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_90plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_80"/>
+                            <rdf:Description rdf:about="&cfa;degree_35"/>
+                            <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2953,13 +3236,13 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2982,14 +3265,14 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3022,13 +3305,13 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3051,14 +3334,14 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3091,13 +3374,13 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3120,14 +3403,14 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3160,13 +3443,13 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3189,14 +3472,14 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3229,13 +3512,13 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3258,14 +3541,14 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;No_objective_evidence_of_painful_motion"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3340,25 +3623,25 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_90plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_65"/>
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_75"/>
-                            <rdf:Description rdf:about="&dbq;degree_45"/>
-                            <rdf:Description rdf:about="&dbq;degree_55"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_35"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_70"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
-                            <rdf:Description rdf:about="&dbq;degree_80"/>
-                            <rdf:Description rdf:about="&dbq;degree_50"/>
-                            <rdf:Description rdf:about="&dbq;degree_60"/>
-                            <rdf:Description rdf:about="&dbq;degree_85"/>
-                            <rdf:Description rdf:about="&dbq;degree_30"/>
-                            <rdf:Description rdf:about="&dbq;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_60"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
+                            <rdf:Description rdf:about="&cfa;degree_40"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
+                            <rdf:Description rdf:about="&cfa;degree_30"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_90plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_80"/>
+                            <rdf:Description rdf:about="&cfa;degree_35"/>
+                            <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3381,13 +3664,13 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3410,13 +3693,13 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3439,13 +3722,13 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3468,13 +3751,13 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3497,13 +3780,13 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;degree_10"/>
-                            <rdf:Description rdf:about="&dbq;degree_20"/>
-                            <rdf:Description rdf:about="&dbq;degree_30plus"/>
-                            <rdf:Description rdf:about="&dbq;degree_25"/>
-                            <rdf:Description rdf:about="&dbq;degree_0"/>
-                            <rdf:Description rdf:about="&dbq;degree_15"/>
-                            <rdf:Description rdf:about="&dbq;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_20"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
+                            <rdf:Description rdf:about="&cfa;degree_10"/>
+                            <rdf:Description rdf:about="&cfa;degree_15"/>
+                            <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3564,9 +3847,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                             <rdf:Description rdf:about="&cfa;DisturbanceOfLocomotion"/>
                             <rdf:Description rdf:about="&cfa;MoreMovementThanNormal"/>
                             <rdf:Description rdf:about="&cfa;InstabilityOfStation"/>
-                            <rdf:Description rdf:about="&dbq;Other"/>
                             <rdf:Description rdf:about="&cfa;Swelling"/>
                             <rdf:Description rdf:about="&cfa;PainInMovement"/>
+                            <rdf:Description rdf:about="&cfa;Other"/>
                             <rdf:Description rdf:about="&cfa;ExcessFatigability"/>
                             <rdf:Description rdf:about="&cfa;Incoordination"/>
                             <rdf:Description rdf:about="&cfa;WeakenedMovement"/>
@@ -3682,7 +3965,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;all_normal"/>
+                            <rdf:Description rdf:about="&cfa;all_normal"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3719,12 +4002,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3745,12 +4028,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3780,12 +4063,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3806,12 +4089,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3841,12 +4124,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3867,12 +4150,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3902,12 +4185,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3928,12 +4211,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3963,12 +4246,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3989,12 +4272,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;0_in_5"/>
-                            <rdf:Description rdf:about="&dbq;1_in_5"/>
-                            <rdf:Description rdf:about="&dbq;2_in_5"/>
-                            <rdf:Description rdf:about="&dbq;3_in_5"/>
-                            <rdf:Description rdf:about="&dbq;4_in_5"/>
-                            <rdf:Description rdf:about="&dbq;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
+                            <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4084,7 +4367,7 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;all_normal"/>
+                            <rdf:Description rdf:about="&cfa;all_normal"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4255,8 +4538,8 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;OtherDiagnosedResidualsAttributableToTBI"/>
-                            <rdf:Description rdf:about="&dbq;TraumaticBrainInjury"/>
+                            <rdf:Description rdf:about="&cfa;OtherDiagnosedResidualsAttributableToTBI"/>
+                            <rdf:Description rdf:about="&cfa;TraumaticBrainInjury"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4302,8 +4585,8 @@ Does the Veteran now have or has he/she ever had a traumatic brain injury (TBI) 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;c-file"/>
-                            <rdf:Description rdf:about="&dbq;other"/>
+                            <rdf:Description rdf:about="&cfa;c-file"/>
+                            <rdf:Description rdf:about="&cfa;other"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4380,8 +4663,8 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;altered_consciousness"/>
-                            <rdf:Description rdf:about="&dbq;normal_consciousness"/>
+                            <rdf:Description rdf:about="&cfa;normal_consciousness"/>
+                            <rdf:Description rdf:about="&cfa;altered_consciousness"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4417,11 +4700,11 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;MACEFunctionObjectivelyMildlyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;MACEFunctionModeratelyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;MACEFunctionSeverelyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;MACEFunctionSubjectivelyMildlyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;MACEFunctionNormal"/>
+                            <rdf:Description rdf:about="&cfa;MACEFunctionSeverelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;MACEFunctionModeratelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;MACEFunctionNormal"/>
+                            <rdf:Description rdf:about="&cfa;MACEFunctionObjectivelyMildlyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;MACEFunctionSubjectivelyMildlyImpaired"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4470,11 +4753,11 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;JudgmentFunctionMildlyImpairedValue"/>
-                            <rdf:Description rdf:about="&dbq;JudgmentFunctionModeratelySeverelyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;JudgmentFunctionNormal"/>
-                            <rdf:Description rdf:about="&dbq;JudgmentFunctionModeratelyImpaired"/>
-                            <rdf:Description rdf:about="&dbq;JudgmentFunctionSeverelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;JudgmentFunctionModeratelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;JudgmentFunctionSeverelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;JudgmentFunctionModeratelySeverelyImpaired"/>
+                            <rdf:Description rdf:about="&cfa;JudgmentFunctionNormal"/>
+                            <rdf:Description rdf:about="&cfa;JudgmentFunctionMildlyImpairedValue"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4523,10 +4806,10 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;freq_inappropriate"/>
-                            <rdf:Description rdf:about="&dbq;inappropriate"/>
-                            <rdf:Description rdf:about="&dbq;appropriate"/>
-                            <rdf:Description rdf:about="&dbq;occasionally_inappropriate"/>
+                            <rdf:Description rdf:about="&cfa;occasionally_inappropriate"/>
+                            <rdf:Description rdf:about="&cfa;inappropriate"/>
+                            <rdf:Description rdf:about="&cfa;freq_inappropriate"/>
+                            <rdf:Description rdf:about="&cfa;appropriate"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4573,11 +4856,11 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;occasionally_disoriented_2of4aspects"/>
-                            <rdf:Description rdf:about="&dbq;always_oriented"/>
-                            <rdf:Description rdf:about="&dbq;often_disoriented"/>
-                            <rdf:Description rdf:about="&dbq;consistently_disoriented"/>
-                            <rdf:Description rdf:about="&dbq;occasionally_disoriented_1of4aspects"/>
+                            <rdf:Description rdf:about="&cfa;often_disoriented"/>
+                            <rdf:Description rdf:about="&cfa;occasionally_disoriented_2of4aspects"/>
+                            <rdf:Description rdf:about="&cfa;occasionally_disoriented_1of4aspects"/>
+                            <rdf:Description rdf:about="&cfa;consistently_disoriented"/>
+                            <rdf:Description rdf:about="&cfa;always_oriented"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4624,11 +4907,11 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;normal_motor_activity"/>
-                            <rdf:Description rdf:about="&dbq;moderately_decreased_motor_activity"/>
-                            <rdf:Description rdf:about="&dbq;mildly_decreased_motor_activity"/>
-                            <rdf:Description rdf:about="&dbq;severely_decreased_motor_activity"/>
-                            <rdf:Description rdf:about="&dbq;mostly_normal_motor_activity"/>
+                            <rdf:Description rdf:about="&cfa;mildly_decreased_motor_activity"/>
+                            <rdf:Description rdf:about="&cfa;severely_decreased_motor_activity"/>
+                            <rdf:Description rdf:about="&cfa;moderately_decreased_motor_activity"/>
+                            <rdf:Description rdf:about="&cfa;normal_motor_activity"/>
+                            <rdf:Description rdf:about="&cfa;mostly_normal_motor_activity"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4675,11 +4958,11 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderately_severely_impaired_spatial_orientation"/>
-                            <rdf:Description rdf:about="&dbq;normal_spatial_orientation"/>
-                            <rdf:Description rdf:about="&dbq;mildly_impaired_spatial_orientation"/>
-                            <rdf:Description rdf:about="&dbq;severely_impaired_spatial_orientation"/>
-                            <rdf:Description rdf:about="&dbq;moderately_impaired_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;moderately_severely_impaired_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;moderately_impaired_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;normal_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;mildly_impaired_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;severely_impaired_spatial_orientation"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4726,9 +5009,9 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;moderately-interfering_subjective_symptoms"/>
-                            <rdf:Description rdf:about="&dbq;no_subjective_symptoms"/>
-                            <rdf:Description rdf:about="&dbq;mildly-interfering_subjective_symptoms"/>
+                            <rdf:Description rdf:about="&cfa;mildly-interfering_subjective_symptoms"/>
+                            <rdf:Description rdf:about="&cfa;no_subjective_symptoms"/>
+                            <rdf:Description rdf:about="&cfa;moderately-interfering_subjective_symptoms"/>
                             <rdf:Description rdf:about="&cfa;subjective_symptoms"/>
                         </owl:oneOf>
                     </owl:Class>
@@ -4778,11 +5061,11 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;frequently-interfering_neurobehavioral_effects"/>
-                            <rdf:Description rdf:about="&dbq;non-interfering_neurobehavioral_effects"/>
-                            <rdf:Description rdf:about="&dbq;no_neurobehavioral_effects"/>
-                            <rdf:Description rdf:about="&dbq;occasionally-interfering_neurobehavioral_effects"/>
-                            <rdf:Description rdf:about="&dbq;interfering_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;interfering_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;no_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;non-interfering_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;frequently-interfering_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;occasionally-interfering_neurobehavioral_effects"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4831,11 +5114,11 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;occasionally_impaired_communication"/>
-                            <rdf:Description rdf:about="&dbq;more_than_occasionally_impaired_communication"/>
-                            <rdf:Description rdf:about="&dbq;unable_to_communicate_half_the_time"/>
-                            <rdf:Description rdf:about="&dbq;unable_to_communicate"/>
-                            <rdf:Description rdf:about="&dbq;able_to_communicate"/>
+                            <rdf:Description rdf:about="&cfa;unable_to_communicate"/>
+                            <rdf:Description rdf:about="&cfa;unable_to_communicate_half_the_time"/>
+                            <rdf:Description rdf:about="&cfa;able_to_communicate"/>
+                            <rdf:Description rdf:about="&cfa;more_than_occasionally_impaired_communication"/>
+                            <rdf:Description rdf:about="&cfa;occasionally_impaired_communication"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -5142,172 +5425,6 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     
 
 
-    <!-- http://purl.org/facsimile/dbq#Diagnosis -->
-
-    <owl:NamedIndividual rdf:about="&dbq;Diagnosis">
-        <rdf:type rdf:resource="&cfa;ExternallyCodedValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JudgmentFunctionMildlyImpairedValue -->
-
-    <owl:NamedIndividual rdf:about="&dbq;JudgmentFunctionMildlyImpairedValue">
-        <rdf:type rdf:resource="&cfa;OneIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Mildly impaired judgment: For complex or unfamiliar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Mildly impaired judgment: For complex or unfamiliar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JudgmentFunctionModeratelyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;JudgmentFunctionModeratelyImpaired">
-        <rdf:type rdf:resource="&cfa;TwoIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Moderately impaired judgment: For complex or unfamiliar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision, although has little difficulty with simple decisions</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Moderately impaired judgment: For complex or unfamiliar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision, although has little difficulty with simple decisions</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JudgmentFunctionModeratelySeverelyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;JudgmentFunctionModeratelySeverelyImpaired">
-        <rdf:type rdf:resource="&cfa;ThreeIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Moderately severely impaired judgment: For even routine and familiar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Moderately severely impaired judgment: For even routine and familiar decisions, occasionally unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JudgmentFunctionNormal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;JudgmentFunctionNormal">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Normal</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#JudgmentFunctionSeverelyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;JudgmentFunctionSeverelyImpaired">
-        <rdf:type rdf:resource="&cfa;FourIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Severely impaired judgment: For even routine and familiar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision. For example, unable to determine appropriate clothing for current weather conditions or judge when to avoid dangerous situations or activities.</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Severely impaired judgment: For even routine and familiar decisions, usually unable to identify, understand, and weigh the alternatives, understand the consequences of choices, and make a reasonable decision. For example, unable to determine appropriate clothing for current weather conditions or judge when to avoid dangerous situations or activities.</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MACEFunctionModeratelyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MACEFunctionModeratelyImpaired">
-        <rdf:type rdf:resource="&cfa;ThreeIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of moderate impairment of memory, attention, concentration, or executive functions resulting in moderate functional impairment</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Objective evidence on testing of moderate impairment of memory, attention, concentration, or executive functions resulting in moderate functional impairment</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MACEFunctionNormal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MACEFunctionNormal">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">No complaints of impairment of memory, attention, concentration, or executive functions</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">No complaints of impairment of memory, attention, concentration, or executive functions</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MACEFunctionObjectivelyMildlyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MACEFunctionObjectivelyMildlyImpaired">
-        <rdf:type rdf:resource="&cfa;TwoIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of mild impairment of memory, attention, concentration, or executive functions resulting in mild functional impairment</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Objective evidence on testing of mild impairment of memory, attention, concentration, or executive functions resulting in mild functional impairment</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MACEFunctionSeverelyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MACEFunctionSeverelyImpaired">
-        <rdf:type rdf:resource="&cfa;FourIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Objective evidence on testing of severe impairment of memory, attention, concentration, or executive functions resulting in severe functional impairment</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">Objective evidence on testing of severe impairment of memory, attention, concentration, or executive functions resulting in severe functional impairment</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MACEFunctionSubjectivelyMildlyImpaired -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MACEFunctionSubjectivelyMildlyImpaired">
-        <rdf:type rdf:resource="&cfa;OneIn5ValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">A complaint of mild memory loss (such as having difficulty following a conversation, recalling recent conversations, remembering names of new acquaintances, or finding words, or often misplacing items), attention, concentration, or executive functions, but without objective evidence on testing</rdfs:label>
-        <cfa:hasText rdf:datatype="&xsd;string">A complaint of mild memory loss (such as having difficulty following a conversation, recalling recent conversations, remembering names of new acquaintances, or finding words, or often misplacing items), attention, concentration, or executive functions, but without objective evidence on testing</cfa:hasText>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#MotorActivityNormal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;MotorActivityNormal">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#NoNeurobehavioralEffects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;NoNeurobehavioralEffects">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#NoSubjectiveSymptoms -->
-
-    <owl:NamedIndividual rdf:about="&dbq;NoSubjectiveSymptoms">
-        <rdf:type rdf:resource="&cfa;ZeroIn4ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#No_objective_evidence_of_painful_motion -->
-
-    <owl:NamedIndividual rdf:about="&dbq;No_objective_evidence_of_painful_motion">
-        <rdf:type rdf:resource="&cfa;InternallyCodedValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">No objective evidence of painful motion</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#Oriented -->
-
-    <owl:NamedIndividual rdf:about="&dbq;Oriented">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#Other -->
-
-    <owl:NamedIndividual rdf:about="&dbq;Other">
-        <rdf:type rdf:resource="&cfa;Finding"/>
-        <rdfs:label rdf:datatype="&xsd;string">Other</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#OtherDiagnosedResidualsAttributableToTBI -->
-
-    <owl:NamedIndividual rdf:about="&dbq;OtherDiagnosedResidualsAttributableToTBI">
-        <rdfs:label rdf:datatype="&xsd;string">Other diagnosed residuals attributable to TBI</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#PatientInformationDataElement -->
 
     <owl:NamedIndividual rdf:about="&dbq;PatientInformationDataElement">
@@ -5317,52 +5434,11 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
     
 
 
-    <!-- http://purl.org/facsimile/dbq#PersistentAlteredStateOfConsciousness -->
-
-    <owl:NamedIndividual rdf:about="&dbq;PersistentAlteredStateOfConsciousness">
-        <rdf:type rdf:resource="&cfa;OneIn2ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#PhysicianInformationDataElement -->
 
     <owl:NamedIndividual rdf:about="&dbq;PhysicianInformationDataElement">
         <rdf:type rdf:resource="&datamodel;PhysicianInformationSpec"/>
         <cfa:hasHeading rdf:datatype="&xsd;string">Physician Information</cfa:hasHeading>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ResultOfGuardingOrMuscleSpamOfThoracolumbarSpine -->
-
-    <owl:NamedIndividual rdf:about="&dbq;ResultOfGuardingOrMuscleSpamOfThoracolumbarSpine">
-        <rdf:type rdf:resource="&cfa;RelationalFinding"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SocialInteractionAppropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;SocialInteractionAppropriate">
-        <rdf:type rdf:resource="&cfa;ZeroIn4ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SocialInteractionOccasionallyInappropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;SocialInteractionOccasionallyInappropriate">
-        <rdf:type rdf:resource="&cfa;OneIn4ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#TraumaticBrainInjury -->
-
-    <owl:NamedIndividual rdf:about="&dbq;TraumaticBrainInjury">
-        <rdf:type rdf:resource="&cfa;Finding"/>
-        <rdfs:label rdf:datatype="&xsd;string">Traumatic brain injury (TBI)</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5429,130 +5505,6 @@ Do any of the Veteran&apos;s residual conditions attributable to a traumatic bra
         <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_1"/>
         <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_2"/>
         <datamodel:hasSection rdf:resource="&dbq;dbq_9-15-11_section_3"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#VisualSpatialOrientationNormal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;VisualSpatialOrientationNormal">
-        <rdf:type rdf:resource="&cfa;ZeroIn5ValueSeverityScaleValue"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#able_to_communicate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;able_to_communicate">
-        <rdf:type rdf:resource="&dbq;CommunicationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Able to communicate by spoken and written language (expressive communication) and to comprehend spoken and written language</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#absent -->
-
-    <owl:NamedIndividual rdf:about="&dbq;absent">
-        <rdf:type rdf:resource="&cfa;SensationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Absent</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#all_normal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;all_normal">
-        <rdf:type rdf:resource="&cfa;SensationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">All normal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#altered_consciousness -->
-
-    <owl:NamedIndividual rdf:about="&dbq;altered_consciousness">
-        <rdf:type rdf:resource="&dbq;ConsciousnessValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Persistent altered state of consciousness, such as vegetative state, minimally responsive state, coma</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#always_oriented -->
-
-    <owl:NamedIndividual rdf:about="&dbq;always_oriented">
-        <rdf:type rdf:resource="&dbq;OrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Always oriented to person, time, place, and situation</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#appropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;appropriate">
-        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Social interaction is routinely appropriate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#at_least_1_week_but_less_than_2_weeks -->
-
-    <owl:NamedIndividual rdf:about="&dbq;at_least_1_week_but_less_than_2_weeks">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">At least 1 week but less than 2 weeks</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#at_least_2_weeks_but_less_than_4_weeks -->
-
-    <owl:NamedIndividual rdf:about="&dbq;at_least_2_weeks_but_less_than_4_weeks">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">At least 2 weeks but less than 4 weeks</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#at_least_4_weeks_but_less_than_6_weeks -->
-
-    <owl:NamedIndividual rdf:about="&dbq;at_least_4_weeks_but_less_than_6_weeks">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">At least 4 weeks but less than 6 weeks</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#at_least_6_weeks -->
-
-    <owl:NamedIndividual rdf:about="&dbq;at_least_6_weeks">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">At least 6 weeks</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#c-file -->
-
-    <owl:NamedIndividual rdf:about="&dbq;c-file">
-        <rdfs:label rdf:datatype="&xsd;string">C-file (VA only)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#consistently_disoriented -->
-
-    <owl:NamedIndividual rdf:about="&dbq;consistently_disoriented">
-        <rdf:type rdf:resource="&dbq;OrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Consistently disoriented to two or more of the four aspects (person, time, place, situation) of orientation</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#constant -->
-
-    <owl:NamedIndividual rdf:about="&dbq;constant">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">Constant</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5723,12 +5675,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&datamodel;Section"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -5747,6 +5693,12 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
@@ -6085,853 +6037,6 @@ Neuropsychological testing may need to be performed in order to be able to accur
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.2"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.3"/>
         <datamodel:hasQuestion rdf:resource="&dbq;DBQ_TBI_QIII.4"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#decreased -->
-
-    <owl:NamedIndividual rdf:about="&dbq;decreased">
-        <rdf:type rdf:resource="&cfa;SensationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Decreased</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_0 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_0">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">0</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_10 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_10">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">10</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_100 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_100">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">100</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_105 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_105">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">105</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_110 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_110">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">110</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_115 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_115">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">115</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_120 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_120">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">120</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_125 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_125">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">125</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_130 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_130">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">130</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_135 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_135">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">135</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_140 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_140">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">140</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_140plus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_140plus">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:onDatatype rdf:resource="&xsd;integer"/>
-                        <owl:withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">140</xsd:minInclusive>
-                            </rdf:Description>
-                        </owl:withRestrictions>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_15 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_15">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">15</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_20 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_20">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">20</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_25 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_25">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">25</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_30 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_30">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">30</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_30plus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_30plus">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:onDatatype rdf:resource="&xsd;integer"/>
-                        <owl:withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">30</xsd:minInclusive>
-                            </rdf:Description>
-                        </owl:withRestrictions>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_35 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_35">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">35</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_40 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_40">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">40</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_45 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_45">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">45</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_45plus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_45plus">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:onDatatype rdf:resource="&xsd;integer"/>
-                        <owl:withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">45</xsd:minInclusive>
-                            </rdf:Description>
-                        </owl:withRestrictions>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_5">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">5</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_50 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_50">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">50</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_55 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_55">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">55</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_60 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_60">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">60</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_65 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_65">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">65</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_70 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_70">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">70</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_75 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_75">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">75</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_80 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_80">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">80</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_85 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_85">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">85</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_90 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_90">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">90</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_90plus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_90plus">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:onDatatype rdf:resource="&xsd;integer"/>
-                        <owl:withRestrictions rdf:parseType="Collection">
-                            <rdf:Description>
-                                <xsd:minInclusive rdf:datatype="&xsd;integer">90</xsd:minInclusive>
-                            </rdf:Description>
-                        </owl:withRestrictions>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#degree_95 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;degree_95">
-        <rdf:type rdf:resource="&cfa;Angle"/>
-        <cfa:hasDataValue rdf:datatype="&xsd;integer">95</cfa:hasDataValue>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#freq_inappropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;freq_inappropriate">
-        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Social interaction is frequently inappropriate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#frequently-interfering_neurobehavioral_effects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;frequently-interfering_neurobehavioral_effects">
-        <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that frequently interfere with workplace interaction, social interaction, or both but do not preclude them</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#inappropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;inappropriate">
-        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Social interaction is inappropriate most or all of the time</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#interfering_neurobehavioral_effects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;interfering_neurobehavioral_effects">
-        <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that interfere with or preclude workplace interaction, social interaction, or both on most days or that occasionally require supervision for safety of self or others</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#l2_l3_l4_nerve_roots -->
-
-    <owl:NamedIndividual rdf:about="&dbq;l2_l3_l4_nerve_roots">
-        <rdf:type rdf:resource="&dbq;NerveRootInvolvement"/>
-        <rdfs:label rdf:datatype="&xsd;string">INVOLVEMENT OF L2/L3/L4 NERVE ROOTS (femoral nerve)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#l4_l5_s1_s2_s3_nerve_roots -->
-
-    <owl:NamedIndividual rdf:about="&dbq;l4_l5_s1_s2_s3_nerve_roots">
-        <rdf:type rdf:resource="&dbq;NerveRootInvolvement"/>
-        <rdfs:label rdf:datatype="&xsd;string">INVOLVEMENT OF L4/L5/S1/S2/S3 NERVE ROOTS (sciatic nerve)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#left_lower -->
-
-    <owl:Thing rdf:about="&dbq;left_lower">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <rdfs:label rdf:datatype="&xsd;string">Left lower</rdfs:label>
-    </owl:Thing>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#less_than_1_week -->
-
-    <owl:NamedIndividual rdf:about="&dbq;less_than_1_week">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">Less than 1 week</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mild -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mild">
-        <rdf:type rdf:resource="&dbq;ThreeValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Mild</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mildly-interfering_subjective_symptoms -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mildly-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="&dbq;SubjectiveSymptomsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Three or more subjective symptoms that mildly interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples of findings that might be seen at this level of impairment are: intermittent dizziness, daily mild to moderate headaches, tinnitus, frequent insomnia, hypersensitivity to sound, hypersensitivity to light</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mildly_decreased_motor_activity -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mildly_decreased_motor_activity">
-        <rdf:type rdf:resource="&dbq;MotorActivityValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor activity is mildly decreased or with moderate slowing due to apraxia</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mildly_impaired_spatial_orientation -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mildly_impaired_spatial_orientation">
-        <rdf:type rdf:resource="&dbq;SpatialOrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Mildly impaired: Occasionally gets lost in unfamiliar surroundings, has difficulty reading maps or following directions. Is able to use assistive devices such as GPS (global positioning system)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#moderate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;moderate">
-        <rdf:type rdf:resource="&dbq;ThreeValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Moderate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#moderately-interfering_subjective_symptoms -->
-
-    <owl:NamedIndividual rdf:about="&dbq;moderately-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="&dbq;SubjectiveSymptomsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Three or more subjective symptoms that moderately interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples of findings that might be seen at this level of impairment are: marked fatigability, blurred or double vision, headaches requiring rest periods during most days</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#moderately_decreased_motor_activity -->
-
-    <owl:NamedIndividual rdf:about="&dbq;moderately_decreased_motor_activity">
-        <rdf:type rdf:resource="&dbq;MotorActivityValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor activity moderately decreased due to apraxia</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#moderately_impaired_spatial_orientation -->
-
-    <owl:NamedIndividual rdf:about="&dbq;moderately_impaired_spatial_orientation">
-        <rdf:type rdf:resource="&dbq;SpatialOrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Moderately impaired: Usually gets lost in unfamiliar surroundings, has difficulty reading maps, following directions, and judging distance. Has difficulty using assistive devices such as GPS (global positioning system)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#moderately_severely_impaired_spatial_orientation -->
-
-    <owl:NamedIndividual rdf:about="&dbq;moderately_severely_impaired_spatial_orientation">
-        <rdf:type rdf:resource="&dbq;SpatialOrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Moderately severely impaired: Gets lost even in familiar surroundings, unable to use assistive devices such as GPS (global positioning system)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#more_than_occasionally_impaired_communication -->
-
-    <owl:NamedIndividual rdf:about="&dbq;more_than_occasionally_impaired_communication">
-        <rdf:type rdf:resource="&dbq;CommunicationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Inability to communicate either by spoken language, written language, or both, more than occasionally but less than half of the time, or to comprehend spoken language, written language, or both, more than occasionally but less than half of the time. Can generally communicate complex ideas</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#mostly_normal_motor_activity -->
-
-    <owl:NamedIndividual rdf:about="&dbq;mostly_normal_motor_activity">
-        <rdf:type rdf:resource="&dbq;MotorActivityValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor activity is normal most of the time, but mildly slowed at times due to apraxia (inability to perform previously learned motor activities, despite normal motor function)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#negative -->
-
-    <owl:NamedIndividual rdf:about="&dbq;negative">
-        <rdf:type rdf:resource="&cfa;StraightLegRaiseValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Negative</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#no_neurobehavioral_effects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;no_neurobehavioral_effects">
-        <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">No neurobehavioral effects</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#no_subjective_symptoms -->
-
-    <owl:NamedIndividual rdf:about="&dbq;no_subjective_symptoms">
-        <rdf:type rdf:resource="&dbq;SubjectiveSymptomsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">No subjective symptoms</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#non-interfering_neurobehavioral_effects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;non-interfering_neurobehavioral_effects">
-        <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that do not interfere with workplace interaction or social interaction.</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#non-interfering_subjective_symptoms -->
-
-    <owl:NamedIndividual rdf:about="&dbq;non-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="&dbq;SubjectiveSymptomsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Subjective symptoms that do not interfere with work; instrumental activities of daily living; or work, family or other close relationships. Examples are: mild or occasional headaches, mild anxiety</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#none -->
-
-    <owl:NamedIndividual rdf:about="&dbq;none">
-        <rdf:type rdf:resource="&dbq;ThreeValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">None</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#normal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;normal">
-        <rdf:type rdf:resource="&cfa;SensationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#normal_consciousness -->
-
-    <owl:NamedIndividual rdf:about="&dbq;normal_consciousness">
-        <rdf:type rdf:resource="&dbq;ConsciousnessValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#normal_motor_activity -->
-
-    <owl:NamedIndividual rdf:about="&dbq;normal_motor_activity">
-        <rdf:type rdf:resource="&dbq;MotorActivityValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor activity normal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#normal_spatial_orientation -->
-
-    <owl:NamedIndividual rdf:about="&dbq;normal_spatial_orientation">
-        <rdf:type rdf:resource="&dbq;SpatialOrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Normal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#not_affected -->
-
-    <owl:NamedIndividual rdf:about="&dbq;not_affected">
-        <rdf:type rdf:resource="&dbq;ThreeValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Not affected</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasional -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasional">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">Occasional</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasionally-interfering_neurobehavioral_effects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasionally-interfering_neurobehavioral_effects">
-        <rdf:type rdf:resource="&dbq;NeurobehavioralEffectsValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">One or more neurobehavioral effects that occasionally interfere with workplace interaction, social interaction, or both but do not preclude them</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasionally_disoriented_1of4aspects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasionally_disoriented_1of4aspects">
-        <rdf:type rdf:resource="&dbq;OrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Occasionally disoriented to one of the four aspects (person, time, place, situation) of orientation</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasionally_disoriented_2of4aspects -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasionally_disoriented_2of4aspects">
-        <rdf:type rdf:resource="&dbq;OrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Occasionally disoriented to two of the four aspects (person, time, place, situation) of orientation or often disoriented to one aspect of orientation</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasionally_impaired_communication -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasionally_impaired_communication">
-        <rdf:type rdf:resource="&dbq;CommunicationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Comprehension or expression, or both, of either spoken language or written language is only occasionally impaired. Can communicate complex ideas</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#occasionally_inappropriate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;occasionally_inappropriate">
-        <rdf:type rdf:resource="&dbq;SocialInteractionValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Social interaction is occasionally inappropriate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#often_disoriented -->
-
-    <owl:NamedIndividual rdf:about="&dbq;often_disoriented">
-        <rdf:type rdf:resource="&dbq;OrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Often disoriented to two or more of the four aspects (person, time, place, situation) of orientation</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#other -->
-
-    <owl:NamedIndividual rdf:about="&dbq;other">
-        <rdfs:label rdf:datatype="&xsd;string">Other</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#other_nerves -->
-
-    <owl:NamedIndividual rdf:about="&dbq;other_nerves">
-        <rdf:type rdf:resource="&dbq;NerveRootInvolvement"/>
-        <rdfs:label rdf:datatype="&xsd;string">OTHER NERVES</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#positive -->
-
-    <owl:NamedIndividual rdf:about="&dbq;positive">
-        <rdf:type rdf:resource="&cfa;StraightLegRaiseValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Positive</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#regular -->
-
-    <owl:NamedIndividual rdf:about="&dbq;regular">
-        <rdf:type rdf:resource="&cfa;Frequency"/>
-        <rdfs:label rdf:datatype="&xsd;string">Regular</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#right_lower -->
-
-    <owl:Thing rdf:about="&dbq;right_lower">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <rdfs:label rdf:datatype="&xsd;string">Right lower</rdfs:label>
-    </owl:Thing>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#severe -->
-
-    <owl:NamedIndividual rdf:about="&dbq;severe">
-        <rdf:type rdf:resource="&dbq;ThreeValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Severe</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#severely_decreased_motor_activity -->
-
-    <owl:NamedIndividual rdf:about="&dbq;severely_decreased_motor_activity">
-        <rdf:type rdf:resource="&dbq;MotorActivityValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Motor activity severely decreased due to apraxia</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#severely_impaired_spatial_orientation -->
-
-    <owl:NamedIndividual rdf:about="&dbq;severely_impaired_spatial_orientation">
-        <rdf:type rdf:resource="&dbq;SpatialOrientationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Severely impaired: May be unable to touch or name own body parts when asked by the examiner, identify the relative position in space of two different objects, or find the way from one room to another in a familiar environment</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#unable_to_communicate -->
-
-    <owl:NamedIndividual rdf:about="&dbq;unable_to_communicate">
-        <rdf:type rdf:resource="&dbq;CommunicationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Complete inability to communicate either by spoken language, written language, or both, or to comprehend spoken language, written language, or both. Unable to communicate basic needs</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#unable_to_communicate_half_the_time -->
-
-    <owl:NamedIndividual rdf:about="&dbq;unable_to_communicate_half_the_time">
-        <rdf:type rdf:resource="&dbq;CommunicationValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Inability to communicate either by spoken language, written language, or both, at least half of the time but not all of the time, or to comprehend spoken language, written language, or both, at least half of the time but not all of the time. May rely on gestures or other alternative modes of communication. Able to communicate basic needs</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#unable_to_perform -->
-
-    <owl:NamedIndividual rdf:about="&dbq;unable_to_perform">
-        <rdf:type rdf:resource="&cfa;StraightLegRaiseValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">Unable to perform</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#0_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;0_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&rdfs;Literal">0/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#1_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;1_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">1/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#2_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;2_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">2/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#3_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;3_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">3/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#4_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;4_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">4/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#5_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&dbq;5_in_5">
-        <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">5/5</rdfs:label>
     </owl:NamedIndividual>
     
 

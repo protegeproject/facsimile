@@ -652,14 +652,14 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#PhysicalQuantity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#IntegerValue"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasUnit"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasUnit"/>
-                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#IntegerValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -701,6 +701,24 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#BackDisabilityContributingFactorValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#BackDisabilityContributingFactorValue">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#AtrophyOfDisUse"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DisturbanceOfLocomotion"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#MoreMovementThanNormal"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#InstabilityOfStation"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Swelling"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#PainInMovement"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Incoordination"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ExcessFatigability"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#WeakenedMovement"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Deformity"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#InterferenceWithSittingStandingOrWeightBearing"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LessMovementThanNormal"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
     </owl:Class>
     
@@ -811,14 +829,14 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#terminology"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Terminology"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasExternalCode"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasExternalCode"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#terminology"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Terminology"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -906,14 +924,14 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
+                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
-                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1143,190 +1161,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#InitialRangeOfMotionMeasurement"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#flexionEndpoint"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:oneOf>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&rdf;List"/>
-                                <rdf:first rdf:datatype="&xsd;integer">0</rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&rdf;List"/>
-                                        <rdf:first rdf:datatype="&xsd;integer">10</rdf:first>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                <rdf:first rdf:datatype="&xsd;integer">100</rdf:first>
-                                                <rdf:rest>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                        <rdf:first rdf:datatype="&xsd;integer">105</rdf:first>
-                                                        <rdf:rest>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                <rdf:first rdf:datatype="&xsd;integer">110</rdf:first>
-                                                                <rdf:rest>
-                                                                    <rdf:Description>
-                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                        <rdf:first rdf:datatype="&xsd;integer">115</rdf:first>
-                                                                        <rdf:rest>
-                                                                            <rdf:Description>
-                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                <rdf:first rdf:datatype="&xsd;integer">120</rdf:first>
-                                                                                <rdf:rest>
-                                                                                    <rdf:Description>
-                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                        <rdf:first rdf:datatype="&xsd;integer">125</rdf:first>
-                                                                                        <rdf:rest>
-                                                                                            <rdf:Description>
-                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                <rdf:first rdf:datatype="&xsd;integer">130</rdf:first>
-                                                                                                <rdf:rest>
-                                                                                                    <rdf:Description>
-                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                        <rdf:first rdf:datatype="&xsd;integer">135</rdf:first>
-                                                                                                        <rdf:rest>
-                                                                                                            <rdf:Description>
-                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                <rdf:first rdf:datatype="&xsd;integer">140</rdf:first>
-                                                                                                                <rdf:rest>
-                                                                                                                    <rdf:Description>
-                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">15</rdf:first>
-                                                                                                                        <rdf:rest>
-                                                                                                                            <rdf:Description>
-                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">20</rdf:first>
-                                                                                                                                <rdf:rest>
-                                                                                                                                    <rdf:Description>
-                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">25</rdf:first>
-                                                                                                                                        <rdf:rest>
-                                                                                                                                            <rdf:Description>
-                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">30</rdf:first>
-                                                                                                                                                <rdf:rest>
-                                                                                                                                                    <rdf:Description>
-                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">35</rdf:first>
-                                                                                                                                                        <rdf:rest>
-                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">40</rdf:first>
-                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">45</rdf:first>
-                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">5</rdf:first>
-                                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">50</rdf:first>
-                                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">55</rdf:first>
-                                                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">60</rdf:first>
-                                                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">65</rdf:first>
-                                                                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">70</rdf:first>
-                                                                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">75</rdf:first>
-                                                                                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">80</rdf:first>
-                                                                                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">85</rdf:first>
-                                                                                                                                                                                                                                                <rdf:rest>
-                                                                                                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">90</rdf:first>
-                                                                                                                                                                                                                                                        <rdf:rest>
-                                                                                                                                                                                                                                                            <rdf:Description>
-                                                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">95</rdf:first>
-                                                                                                                                                                                                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                                                                                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                                                                                                </rdf:rest>
-                                                                                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                                                                                </rdf:rest>
-                                                                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                                                                </rdf:rest>
-                                                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                                                </rdf:rest>
-                                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                                </rdf:rest>
-                                                                                                                                                                            </rdf:Description>
-                                                                                                                                                                        </rdf:rest>
-                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                </rdf:rest>
-                                                                                                                                                            </rdf:Description>
-                                                                                                                                                        </rdf:rest>
-                                                                                                                                                    </rdf:Description>
-                                                                                                                                                </rdf:rest>
-                                                                                                                                            </rdf:Description>
-                                                                                                                                        </rdf:rest>
-                                                                                                                                    </rdf:Description>
-                                                                                                                                </rdf:rest>
-                                                                                                                            </rdf:Description>
-                                                                                                                        </rdf:rest>
-                                                                                                                    </rdf:Description>
-                                                                                                                </rdf:rest>
-                                                                                                            </rdf:Description>
-                                                                                                        </rdf:rest>
-                                                                                                    </rdf:Description>
-                                                                                                </rdf:rest>
-                                                                                            </rdf:Description>
-                                                                                        </rdf:rest>
-                                                                                    </rdf:Description>
-                                                                                </rdf:rest>
-                                                                            </rdf:Description>
-                                                                        </rdf:rest>
-                                                                    </rdf:Description>
-                                                                </rdf:rest>
-                                                            </rdf:Description>
-                                                        </rdf:rest>
-                                                    </rdf:Description>
-                                                </rdf:rest>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </owl:oneOf>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#flexionPainful"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -1453,6 +1287,190 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                                                                                                                                                                                                                                                                         <rdf:rest rdf:resource="&rdf;nil"/>
                                                                                                                                                                                                                                                                     </rdf:Description>
                                                                                                                                                                                                                                                                 </rdf:rest>
+                                                                                                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                                                                                                </rdf:rest>
+                                                                                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                                                                                </rdf:rest>
+                                                                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                                                                </rdf:rest>
+                                                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                                                </rdf:rest>
+                                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                                </rdf:rest>
+                                                                                                                                                                            </rdf:Description>
+                                                                                                                                                                        </rdf:rest>
+                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                </rdf:rest>
+                                                                                                                                                            </rdf:Description>
+                                                                                                                                                        </rdf:rest>
+                                                                                                                                                    </rdf:Description>
+                                                                                                                                                </rdf:rest>
+                                                                                                                                            </rdf:Description>
+                                                                                                                                        </rdf:rest>
+                                                                                                                                    </rdf:Description>
+                                                                                                                                </rdf:rest>
+                                                                                                                            </rdf:Description>
+                                                                                                                        </rdf:rest>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:rest>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#flexionEndpoint"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;integer">0</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;integer">10</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;integer">100</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first rdf:datatype="&xsd;integer">105</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                <rdf:first rdf:datatype="&xsd;integer">110</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                        <rdf:first rdf:datatype="&xsd;integer">115</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                <rdf:first rdf:datatype="&xsd;integer">120</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                        <rdf:first rdf:datatype="&xsd;integer">125</rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                <rdf:first rdf:datatype="&xsd;integer">130</rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                        <rdf:first rdf:datatype="&xsd;integer">135</rdf:first>
+                                                                                                        <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                <rdf:first rdf:datatype="&xsd;integer">140</rdf:first>
+                                                                                                                <rdf:rest>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">15</rdf:first>
+                                                                                                                        <rdf:rest>
+                                                                                                                            <rdf:Description>
+                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">20</rdf:first>
+                                                                                                                                <rdf:rest>
+                                                                                                                                    <rdf:Description>
+                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">25</rdf:first>
+                                                                                                                                        <rdf:rest>
+                                                                                                                                            <rdf:Description>
+                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">30</rdf:first>
+                                                                                                                                                <rdf:rest>
+                                                                                                                                                    <rdf:Description>
+                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">35</rdf:first>
+                                                                                                                                                        <rdf:rest>
+                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">40</rdf:first>
+                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">45</rdf:first>
+                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">5</rdf:first>
+                                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">50</rdf:first>
+                                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">55</rdf:first>
+                                                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">60</rdf:first>
+                                                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">65</rdf:first>
+                                                                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">70</rdf:first>
+                                                                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">75</rdf:first>
+                                                                                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">80</rdf:first>
+                                                                                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">85</rdf:first>
+                                                                                                                                                                                                                                                <rdf:rest>
+                                                                                                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                                                        <rdf:first rdf:datatype="&xsd;integer">90</rdf:first>
+                                                                                                                                                                                                                                                        <rdf:rest>
+                                                                                                                                                                                                                                                            <rdf:Description>
+                                                                                                                                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                                                                                                                                <rdf:first rdf:datatype="&xsd;integer">95</rdf:first>
+                                                                                                                                                                                                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
                                                                                                                                                                                                                                                             </rdf:Description>
                                                                                                                                                                                                                                                         </rdf:rest>
                                                                                                                                                                                                                                                     </rdf:Description>
@@ -1769,6 +1787,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#OrientationValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#OrientationValue">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#PhysicalQuantity -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#PhysicalQuantity">
@@ -2071,76 +2097,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#PostTestRangeOfMotionMeasurement"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#extensionEndpoint"/>
-                <owl:someValuesFrom>
-                    <rdfs:Datatype>
-                        <owl:oneOf>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&rdf;List"/>
-                                <rdf:first rdf:datatype="&xsd;integer">0</rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&rdf;List"/>
-                                        <rdf:first rdf:datatype="&xsd;integer">10</rdf:first>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                <rdf:first rdf:datatype="&xsd;integer">15</rdf:first>
-                                                <rdf:rest>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                        <rdf:first rdf:datatype="&xsd;integer">20</rdf:first>
-                                                        <rdf:rest>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                <rdf:first rdf:datatype="&xsd;integer">25</rdf:first>
-                                                                <rdf:rest>
-                                                                    <rdf:Description>
-                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                        <rdf:first rdf:datatype="&xsd;integer">30</rdf:first>
-                                                                        <rdf:rest>
-                                                                            <rdf:Description>
-                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                <rdf:first rdf:datatype="&xsd;integer">35</rdf:first>
-                                                                                <rdf:rest>
-                                                                                    <rdf:Description>
-                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                        <rdf:first rdf:datatype="&xsd;integer">40</rdf:first>
-                                                                                        <rdf:rest>
-                                                                                            <rdf:Description>
-                                                                                                <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                <rdf:first rdf:datatype="&xsd;integer">45</rdf:first>
-                                                                                                <rdf:rest>
-                                                                                                    <rdf:Description>
-                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
-                                                                                                        <rdf:first rdf:datatype="&xsd;integer">5</rdf:first>
-                                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
-                                                                                                    </rdf:Description>
-                                                                                                </rdf:rest>
-                                                                                            </rdf:Description>
-                                                                                        </rdf:rest>
-                                                                                    </rdf:Description>
-                                                                                </rdf:rest>
-                                                                            </rdf:Description>
-                                                                        </rdf:rest>
-                                                                    </rdf:Description>
-                                                                </rdf:rest>
-                                                            </rdf:Description>
-                                                        </rdf:rest>
-                                                    </rdf:Description>
-                                                </rdf:rest>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </owl:oneOf>
-                    </rdfs:Datatype>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#flexionEndpoint"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -2325,6 +2281,76 @@ can be described by a text, anat. location, finding code, additional qual. code 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#extensionEndpoint"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:oneOf>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;integer">0</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;integer">10</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;integer">15</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first rdf:datatype="&xsd;integer">20</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                <rdf:first rdf:datatype="&xsd;integer">25</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                        <rdf:first rdf:datatype="&xsd;integer">30</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                <rdf:first rdf:datatype="&xsd;integer">35</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                        <rdf:first rdf:datatype="&xsd;integer">40</rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                <rdf:first rdf:datatype="&xsd;integer">45</rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                        <rdf:first rdf:datatype="&xsd;integer">5</rdf:first>
+                                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </owl:oneOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
             </owl:Restriction>
@@ -2385,8 +2411,8 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Measurement"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2397,26 +2423,26 @@ can be described by a text, anat. location, finding code, additional qual. code 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMeasuredAttribute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#motionDirectionOfROMMeasurement"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotionDirection"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#motionOfROMMeasurement"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMeasuredAttribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2462,6 +2488,22 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#SocialInteractionValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#SocialInteractionValue">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SpatialOrientationValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#SpatialOrientationValue">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#SpinalStructure -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SpinalStructure">
@@ -2489,6 +2531,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#SubjectMatterOntology -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SubjectMatterOntology"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#SubjectiveSymptomsValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+    </owl:Class>
     
 
 
@@ -2544,6 +2594,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ThreeIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityScaleValue"/>
     </owl:Class>
     
 
@@ -2614,46 +2672,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ZeroIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#OrientationValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/dbq#OrientationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SocialInteractionValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/dbq#SocialInteractionValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SpatialOrientationValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/dbq#SpatialOrientationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#SubjectiveSymptomsValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/dbq#SubjectiveSymptomsValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityScaleValue"/>
     </owl:Class>
     
 
@@ -2828,6 +2846,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#Diagnosis">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Assessment"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
     </owl:NamedIndividual>
     
 
@@ -2917,14 +2936,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isRelatedTo"/>
-                <owl:someValuesFrom rdf:resource="&icf;b640"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:someValuesFrom rdf:resource="&icf;s6305"/>
             </owl:Restriction>
         </rdf:type>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="&icf;s6305"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isRelatedTo"/>
+                <owl:someValuesFrom rdf:resource="&icf;b640"/>
             </owl:Restriction>
         </rdf:type>
     </owl:NamedIndividual>
@@ -3288,12 +3307,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3303,6 +3316,12 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
             </owl:Restriction>
         </rdf:type>
         <rdfs:label rdf:datatype="&xsd;string">Impairment of thoracolumbar spine function</rdfs:label>
@@ -3598,10 +3617,26 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#InternallyCodedValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#Oriented -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#Oriented">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ZeroIn5ValueSeverityScaleValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#Other -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#Other">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
     </owl:NamedIndividual>
     
 
@@ -3640,6 +3675,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#StringValue"/>
             </owl:Restriction>
         </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#ResultOfGuardingOrMuscleSpamOfThoracolumbarSpine -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ResultOfGuardingOrMuscleSpamOfThoracolumbarSpine">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RelationalFinding"/>
     </owl:NamedIndividual>
     
 
@@ -3824,6 +3867,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#TraumaticBrainInjury -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#TraumaticBrainInjury">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#True -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#True">
@@ -3890,6 +3941,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#absent -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#absent">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SensationValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#adduction -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#adduction">
@@ -3906,6 +3965,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#all_normal -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#all_normal">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SensationValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#altered_consciousness -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#altered_consciousness">
@@ -3917,7 +3984,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#always_oriented -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#always_oriented">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -3949,7 +4016,39 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#appropriate -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#appropriate">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SocialInteractionValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SocialInteractionValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_1_week_but_less_than_2_weeks -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#at_least_1_week_but_less_than_2_weeks">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_2_weeks_but_less_than_4_weeks -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#at_least_2_weeks_but_less_than_4_weeks">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_4_weeks_but_less_than_6_weeks -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#at_least_4_weeks_but_less_than_6_weeks">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#at_least_6_weeks -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#at_least_6_weeks">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
     </owl:NamedIndividual>
     
 
@@ -4046,7 +4145,15 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#consistently_disoriented -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#consistently_disoriented">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#constant -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#constant">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
     </owl:NamedIndividual>
     
 
@@ -4067,6 +4174,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#decreased -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#decreased">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SensationValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#deep_tendon_reflex_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#deep_tendon_reflex_value_set">
@@ -4080,6 +4195,359 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#UnitOfMeasurement"/>
         <rdfs:comment rdf:datatype="&xsd;string">arc degree</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_0 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_0">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">0</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_10 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_10">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">10</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_100 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_100">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">100</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_105 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_105">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">105</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_110 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_110">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">110</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_115 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_115">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">115</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_120 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_120">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">120</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_125 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_125">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">125</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_130 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_130">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">130</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_135 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_135">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">135</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_140 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_140">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">140</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_140plus -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_140plus">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDataValue"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">140</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_15 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_15">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">15</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_20 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_20">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">20</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_25 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_25">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">25</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_30 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_30">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">30</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_30plus -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_30plus">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDataValue"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">30</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_35 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_35">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">35</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_40 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_40">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">40</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_45 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_45">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">45</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_45plus -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_45plus">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDataValue"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">45</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_5 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_5">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">5</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_50 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_50">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">50</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_55 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_55">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">55</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_60 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_60">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">60</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_65 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_65">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">65</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_70 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_70">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">70</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_75 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_75">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">75</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_80 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_80">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">80</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_85 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_85">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">85</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_90 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_90">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">90</hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_90plus -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_90plus">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDataValue"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="&xsd;integer"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="&xsd;integer">90</xsd:minInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#degree_95 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_95">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
+        <hasDataValue rdf:datatype="&xsd;integer">95</hasDataValue>
     </owl:NamedIndividual>
     
 
@@ -4186,7 +4654,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#freq_inappropriate -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#freq_inappropriate">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SocialInteractionValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SocialInteractionValue"/>
     </owl:NamedIndividual>
     
 
@@ -4279,7 +4747,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#inappropriate -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#inappropriate">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SocialInteractionValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SocialInteractionValue"/>
     </owl:NamedIndividual>
     
 
@@ -4547,6 +5015,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#less_than_1_week -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#less_than_1_week">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#lift -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#lift">
@@ -4700,7 +5176,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#mild -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#mild">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue"/>
     </owl:NamedIndividual>
     
 
@@ -4708,7 +5184,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#mildly-interfering_subjective_symptoms -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#mildly-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SubjectiveSymptomsValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue"/>
     </owl:NamedIndividual>
     
 
@@ -4724,7 +5200,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#mildly_impaired_spatial_orientation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#mildly_impaired_spatial_orientation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SpatialOrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SpatialOrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4732,7 +5208,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#moderate -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#moderate">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue"/>
     </owl:NamedIndividual>
     
 
@@ -4740,7 +5216,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#moderately-interfering_subjective_symptoms -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#moderately-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SubjectiveSymptomsValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue"/>
     </owl:NamedIndividual>
     
 
@@ -4756,7 +5232,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#moderately_impaired_spatial_orientation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#moderately_impaired_spatial_orientation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SpatialOrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SpatialOrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4764,7 +5240,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#moderately_severely_impaired_spatial_orientation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#moderately_severely_impaired_spatial_orientation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SpatialOrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SpatialOrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4809,6 +5285,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#negative -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#negative">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#StraightLegRaiseValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#no_neurobehavioral_effects -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#no_neurobehavioral_effects">
@@ -4820,7 +5304,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#no_subjective_symptoms -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#no_subjective_symptoms">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SubjectiveSymptomsValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue"/>
     </owl:NamedIndividual>
     
 
@@ -4836,7 +5320,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#non-interfering_subjective_symptoms -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#non-interfering_subjective_symptoms">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SubjectiveSymptomsValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue"/>
     </owl:NamedIndividual>
     
 
@@ -4844,7 +5328,15 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#none -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#none">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#normal -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#normal">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SensationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4868,7 +5360,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#normal_spatial_orientation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#normal_spatial_orientation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SpatialOrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SpatialOrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4884,7 +5376,15 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#not_affected -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#not_affected">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#occasional -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#occasional">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
     </owl:NamedIndividual>
     
 
@@ -4908,7 +5408,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#occasionally_disoriented_1of4aspects -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#occasionally_disoriented_1of4aspects">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4916,7 +5416,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#occasionally_disoriented_2of4aspects -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#occasionally_disoriented_2of4aspects">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4932,7 +5432,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#occasionally_inappropriate -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#occasionally_inappropriate">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SocialInteractionValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SocialInteractionValue"/>
     </owl:NamedIndividual>
     
 
@@ -4940,7 +5440,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#often_disoriented -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#often_disoriented">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#OrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#OrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -4990,6 +5490,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#plantar_flexion">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#positive -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#positive">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#StraightLegRaiseValue"/>
     </owl:NamedIndividual>
     
 
@@ -5047,6 +5555,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#radial_deviation">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#regular -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#regular">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Frequency"/>
     </owl:NamedIndividual>
     
 
@@ -5197,7 +5713,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#severe -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#severe">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#ThreeValueSeverityScaleValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ThreeValueSeverityScaleValue"/>
     </owl:NamedIndividual>
     
 
@@ -5213,7 +5729,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#severely_impaired_spatial_orientation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#severely_impaired_spatial_orientation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/dbq#SpatialOrientationValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#SpatialOrientationValue"/>
     </owl:NamedIndividual>
     
 
@@ -5550,6 +6066,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
     
 
 
+    <!-- http://purl.org/facsimile/cfa#unable_to_perform -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#unable_to_perform">
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#StraightLegRaiseValue"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#upper_extremity -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#upper_extremity">
@@ -5855,7 +6379,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#constantly"/>
                                 <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                             </rdf:Description>
@@ -5870,20 +6394,33 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
                         <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
                         <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                             </rdf:Description>
                         </rdf:first>
@@ -5904,7 +6441,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#constantly"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
                                 <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                             </rdf:Description>
@@ -5923,41 +6460,28 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                             </rdf:Description>
                         </rdf:first>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                            </rdf:Description>
-                        </rdf:rest>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:head>
     </rdf:Description>
