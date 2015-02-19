@@ -255,7 +255,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_8</iri>
 			<questionList>
-				<question type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
+				<question type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/cfa#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q8A</iri>
 					<questionList>
 						<question type="none" numbered="false">
@@ -339,7 +339,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_9</iri>
 			<questionList>
-				<question type="checkbox" numbered="false" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
+				<question type="checkbox" numbered="false" hideSubquestionsForAnswer="http://purl.org/facsimile/cfa#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q9</iri>
 					<questionList>
 						<question type="none" numbered="false">
@@ -371,7 +371,7 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_10</iri>
 			<questionList>
-				<question numbered="false" type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/dbq#all_normal">
+				<question numbered="false" type="checkbox" hideSubquestionsForAnswer="http://purl.org/facsimile/cfa#all_normal">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q10</iri>
 					<questionList>
 						<question numbered="false" type="none">

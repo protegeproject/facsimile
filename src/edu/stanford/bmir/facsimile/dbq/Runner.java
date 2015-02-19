@@ -130,6 +130,11 @@ public class Runner {
 		}
 		if(ont == null)
 			throw new OntologyFileParseException("Could not load ontology specified in the configuration file. Make sure that all imports are well-specified, and can be properly resolved");
+		
+		for(OWLOntology imported : ont.getImports()) {
+			man.applyChanges(man.addAxioms(ont, imported.getAxioms()));
+			man.removeOntology(imported);
+		}
 		System.out.println("done");
 		return ont;
 	}
