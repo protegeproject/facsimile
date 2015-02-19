@@ -221,7 +221,7 @@
 				<question>
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6B</iri>
 				</question>
-				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#Other" optionOrder="*;10">
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Other" optionOrder="*;10">
 					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q6C</iri>
 					<questionList>
 						<question numbered="false">
@@ -507,7 +507,7 @@
 						<question type="none">
 							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D</iri>
 							<questionList>
-								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#l2_l3_l4_nerve_roots">
+								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#l2_l3_l4_nerve_roots">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_1</iri>
 									<questionList>
 										<question numbered="false" type="checkboxhorizontal">
@@ -515,7 +515,7 @@
 										</question>
 									</questionList>
 								</question>
-								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#l4_l5_s1_s2_s3_nerve_roots">
+								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#l4_l5_s1_s2_s3_nerve_roots">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_2</iri>
 									<questionList>
 										<question numbered="false" type="checkboxhorizontal">
@@ -523,7 +523,7 @@
 										</question>
 									</questionList>
 								</question>
-								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#other_nerves">
+								<question numbered="false" type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#other_nerves">
 									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3</iri>
 									<questionList>
 										<question numbered="false">

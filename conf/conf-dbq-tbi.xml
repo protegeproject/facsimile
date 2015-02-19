@@ -41,10 +41,10 @@
 			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
 			<!-- patient info bindings -->
-			<binding id="pat_name">http://purl.org/facsimile/dbq#hasPatientName</binding>
+			<binding id="pat_name">http://purl.org/facsimile/cfa#hasPatientName</binding>
 			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
 			<!-- physician info bindings -->
-			<binding id="phy_name">http://purl.org/facsimile/dbq#hasPhysicianName</binding>
+			<binding id="phy_name">http://purl.org/facsimile/cfa#hasPhysicianName</binding>
 			<binding id="phy_address">http://purl.org/facsimile/cfa#hasAddress</binding>
 			<binding id="phy_phone">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
 			<binding id="phy_license">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
@@ -79,7 +79,7 @@
 				<question numbered="false">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.1_3</iri>
 				</question>
-				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#other">
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#other">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QI.2_1</iri>
 					<questionList>
 						<question numbered="false">
@@ -167,7 +167,7 @@
 						</question>
 					</questionList>
 				</question>
-				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/dbq#altered_consciousness">
+				<question type="checkbox" showSubquestionsForAnswer="http://purl.org/facsimile/cfa#altered_consciousness">
 					<iri>http://purl.org/facsimile/dbq#DBQ_TBI_QII.10_1</iri>
 					<questionList>
 						<question numbered="false">
