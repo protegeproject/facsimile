@@ -31,15 +31,18 @@ public class FormGenerator {
 	private final String triggerString;
 	private Set<IRI> processed;
 	private Map<IRI,IRI> aliases;
+	private boolean verbose;
 	
 	
 	/**
 	 * Constructor
 	 * @param sections	List of sections to populate the form
 	 * @param config	Configuration
+	 * @param verbose	Verbose mode
 	 */
-	public FormGenerator(List<Section> sections, Configuration config) {
+	public FormGenerator(List<Section> sections, Configuration config, boolean verbose) {
 		this.sections = sections;
+		this.verbose = verbose;
 		triggerString = UUID.randomUUID().toString();
 		posTriggers = config.getSubquestionPositiveTriggers();
 		negTriggers = config.getSubquestionNegativeTriggers();
@@ -378,7 +381,7 @@ public class FormGenerator {
 		boolean wildcharUsed = false;
 		for(int i = 0; i < orderList.size(); i++) {
 			if(orderList.get(i).equals("*")) {
-				System.err.println("\n! Warning: Not all options' order specified for question " + qName + " ('*' wildcard character used)");
+				if(verbose) System.err.println("\n! Warning: Not all options' order specified for question " + qName + " ('*' wildcard character used)");
 				wildcharUsed = true;
 				int diff = list.size()-orderList.size()+1;
 				for(int j = 0; j < diff; j++) {

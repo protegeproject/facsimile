@@ -351,6 +351,12 @@
         <rdfs:subClassOf rdf:resource="&dbq;RetiredDBQSection"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -369,12 +375,6 @@
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -632,14 +632,6 @@
     <!-- http://purl.org/facsimile/dbq#SubjectiveSymptomsValue -->
 
     <owl:Class rdf:about="&dbq;SubjectiveSymptomsValue">
-        <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#TendonReflexValue -->
-
-    <owl:Class rdf:about="&dbq;TendonReflexValue">
         <rdfs:subClassOf rdf:resource="&cfa;DataElementValue"/>
     </owl:Class>
     
@@ -1151,6 +1143,46 @@
     <rdf:Description rdf:about="&cfa;wheelchair">
         <rdfs:label rdf:datatype="&xsd;string">Wheelchair</rdfs:label>
     </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#0_absent -->
+
+    <owl:NamedIndividual rdf:about="&cfa;0_absent">
+        <rdfs:label rdf:datatype="&xsd;string">0</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#1_hypoactive -->
+
+    <owl:NamedIndividual rdf:about="&cfa;1_hypoactive">
+        <rdfs:label rdf:datatype="&xsd;string">1+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#2_normal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;2_normal">
+        <rdfs:label rdf:datatype="&xsd;string">2+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#3_hyperactive_wo_clonus -->
+
+    <owl:NamedIndividual rdf:about="&cfa;3_hyperactive_wo_clonus">
+        <rdfs:label rdf:datatype="&xsd;string">3+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#4_hyperactive_w_clonus -->
+
+    <owl:NamedIndividual rdf:about="&cfa;4_hyperactive_w_clonus">
+        <rdfs:label rdf:datatype="&xsd;string">4+</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -2819,6 +2851,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
@@ -2844,12 +2882,6 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)</cfa:hasText>
@@ -4086,11 +4118,11 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;2_normal"/>
-                            <rdf:Description rdf:about="&dbq;0_absent"/>
-                            <rdf:Description rdf:about="&dbq;1_hypoactive"/>
-                            <rdf:Description rdf:about="&dbq;4_hyperactive_w_clonus"/>
-                            <rdf:Description rdf:about="&dbq;3_hyperactive_wo_clonus"/>
+                            <rdf:Description rdf:about="&cfa;0_absent"/>
+                            <rdf:Description rdf:about="&cfa;1_hypoactive"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
+                            <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4111,11 +4143,11 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;2_normal"/>
-                            <rdf:Description rdf:about="&dbq;0_absent"/>
-                            <rdf:Description rdf:about="&dbq;1_hypoactive"/>
-                            <rdf:Description rdf:about="&dbq;4_hyperactive_w_clonus"/>
-                            <rdf:Description rdf:about="&dbq;3_hyperactive_wo_clonus"/>
+                            <rdf:Description rdf:about="&cfa;0_absent"/>
+                            <rdf:Description rdf:about="&cfa;1_hypoactive"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
+                            <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4145,11 +4177,11 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;2_normal"/>
-                            <rdf:Description rdf:about="&dbq;0_absent"/>
-                            <rdf:Description rdf:about="&dbq;1_hypoactive"/>
-                            <rdf:Description rdf:about="&dbq;4_hyperactive_w_clonus"/>
-                            <rdf:Description rdf:about="&dbq;3_hyperactive_wo_clonus"/>
+                            <rdf:Description rdf:about="&cfa;0_absent"/>
+                            <rdf:Description rdf:about="&cfa;1_hypoactive"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
+                            <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4170,11 +4202,11 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&dbq;2_normal"/>
-                            <rdf:Description rdf:about="&dbq;0_absent"/>
-                            <rdf:Description rdf:about="&dbq;1_hypoactive"/>
-                            <rdf:Description rdf:about="&dbq;4_hyperactive_w_clonus"/>
-                            <rdf:Description rdf:about="&dbq;3_hyperactive_wo_clonus"/>
+                            <rdf:Description rdf:about="&cfa;0_absent"/>
+                            <rdf:Description rdf:about="&cfa;1_hypoactive"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
+                            <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -6850,29 +6882,11 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#0_absent -->
-
-    <owl:NamedIndividual rdf:about="&dbq;0_absent">
-        <rdf:type rdf:resource="&dbq;TendonReflexValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">0</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#0_in_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;0_in_5">
         <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
         <rdfs:label rdf:datatype="&rdfs;Literal">0/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#1_hypoactive -->
-
-    <owl:NamedIndividual rdf:about="&dbq;1_hypoactive">
-        <rdf:type rdf:resource="&dbq;TendonReflexValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">1+</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -6895,38 +6909,11 @@ Neuropsychological testing may need to be performed in order to be able to accur
     
 
 
-    <!-- http://purl.org/facsimile/dbq#2_normal -->
-
-    <owl:NamedIndividual rdf:about="&dbq;2_normal">
-        <rdf:type rdf:resource="&dbq;TendonReflexValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">2+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#3_hyperactive_wo_clonus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;3_hyperactive_wo_clonus">
-        <rdf:type rdf:resource="&dbq;TendonReflexValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">3+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#3_in_5 -->
 
     <owl:NamedIndividual rdf:about="&dbq;3_in_5">
         <rdf:type rdf:resource="&cfa;FiveValueSeverityScaleValue"/>
         <rdfs:label rdf:datatype="&xsd;string">3/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#4_hyperactive_w_clonus -->
-
-    <owl:NamedIndividual rdf:about="&dbq;4_hyperactive_w_clonus">
-        <rdf:type rdf:resource="&dbq;TendonReflexValue"/>
-        <rdfs:label rdf:datatype="&xsd;string">4+</rdfs:label>
     </owl:NamedIndividual>
     
 

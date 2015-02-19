@@ -68,7 +68,7 @@ public class Runner {
 		sections = gen.getSections();
 		questionOptions = gen.getQuestionOptions();
 		
-		FormGenerator formGen = new FormGenerator(sections, conf);
+		FormGenerator formGen = new FormGenerator(sections, conf, verbose);
 		String output = formGen.generateHTMLForm(conf.getOutputFileTitle(), conf.getCSSStyleClass());
 		if(saveHtml) serializeOutput(output);
 		aliases = formGen.getIRIAliases();
