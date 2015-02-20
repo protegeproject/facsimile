@@ -338,6 +338,26 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#descriptionOfFlare-Ups -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#descriptionOfFlare-Ups">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#descriptionOfMedicalHistory -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#descriptionOfMedicalHistory">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#diagnosisDate -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#diagnosisDate">
@@ -554,6 +574,24 @@ It is not to be confused with the ICF qualifier for impairment, which can take m
     
 
 
+    <!-- http://purl.org/facsimile/cfa#isKneeOrLowerLegConditionPresent -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#isKneeOrLowerLegConditionPresent">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#isOrWasEverMainConditionPresent"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#isOrWasEverMainConditionPresent -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#isOrWasEverMainConditionPresent">
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#isTransactionTimeSameAsValidTime -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#isTransactionTimeSameAsValidTime">
@@ -574,6 +612,15 @@ It is not to be confused with the ICF qualifier for impairment, which can take m
     <!-- http://purl.org/facsimile/cfa#rangeOfMotion -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#rangeOfMotion"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#reportsFlare-Ups -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#reportsFlare-Ups">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -5166,6 +5213,14 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -5193,14 +5248,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
             </rdf:Description>
         </swrl:head>
         <swrl:body>
@@ -5232,32 +5279,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -5285,6 +5306,32 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 </rdf:rest>
             </rdf:Description>
         </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>

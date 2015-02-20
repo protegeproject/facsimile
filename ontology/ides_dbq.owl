@@ -158,53 +158,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#descriptionOfFlare-Ups -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;descriptionOfFlare-Ups">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&cfa;hasDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#descriptionOfMedicalHistory -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;descriptionOfMedicalHistory">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&cfa;hasDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#isKneeOrLowerLegConditionPresent -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;isKneeOrLowerLegConditionPresent">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&dbq;isOrWasEverDBQConditionPresent"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#isOrWasEverDBQConditionPresent -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;isOrWasEverDBQConditionPresent">
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#reportsFlare-Ups -->
-
-    <owl:DatatypeProperty rdf:about="&dbq;reportsFlare-Ups">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -5675,7 +5628,13 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&datamodel;Section"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;reportsFlare-Ups"/>
+                <owl:onProperty rdf:resource="&cfa;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
                         <owl:oneOf>
@@ -5693,12 +5652,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&dbq;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
