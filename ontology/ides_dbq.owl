@@ -46,6 +46,38 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#affectedSideByDiagnosis -->
+
+    <rdf:Description rdf:about="&cfa;affectedSideByDiagnosis">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#hasAssessedFunction -->
+
+    <rdf:Description rdf:about="&cfa;hasAssessedFunction">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#hasCodedValue -->
+
+    <rdf:Description rdf:about="&cfa;hasCodedValue">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#hasContributingFactor -->
+
+    <rdf:Description rdf:about="&cfa;hasContributingFactor">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#hasPart -->
 
     <owl:ObjectProperty rdf:about="&cfa;hasPart"/>
@@ -70,9 +102,41 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#magnitudeOfImpairment -->
+
+    <rdf:Description rdf:about="&cfa;magnitudeOfImpairment">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/criteria#satisfiedByObservation -->
+
+    <rdf:Description rdf:about="http://purl.org/facsimile/criteria#satisfiedByObservation">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/criteria#satisfiesCriteria -->
+
+    <rdf:Description rdf:about="http://purl.org/facsimile/criteria#satisfiesCriteria">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/datamodel#hasAnswer -->
 
     <owl:ObjectProperty rdf:about="&datamodel;hasAnswer"/>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#hasDataElement -->
+
+    <rdf:Description rdf:about="&datamodel;hasDataElement">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedObjectProperty"/>
+    </rdf:Description>
     
 
 
@@ -100,44 +164,9 @@
     
 
 
-    <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfo -->
+    <!-- http://purl.org/facsimile/dbq#unusedObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfo"/>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfo1 -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfo1">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&dbq;hasDiagnosisInfo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfo2 -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfo2">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&dbq;hasDiagnosisInfo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfo3 -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfo3">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:subPropertyOf rdf:resource="&dbq;hasDiagnosisInfo"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/dbq#hasDiagnosisInfoAdditional -->
-
-    <owl:ObjectProperty rdf:about="&dbq;hasDiagnosisInfoAdditional">
-        <rdfs:subPropertyOf rdf:resource="&dbq;hasDiagnosisInfo"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&dbq;unusedObjectProperty"/>
     
 
 
@@ -152,9 +181,103 @@
     
 
 
+    <!-- http://purl.org/facsimile/cfa#diagnosisDate -->
+
+    <rdf:Description rdf:about="&cfa;diagnosisDate">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#diagnosisName -->
+
+    <rdf:Description rdf:about="&cfa;diagnosisName">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#hasDescription -->
 
     <owl:DatatypeProperty rdf:about="&cfa;hasDescription"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#icdCode -->
+
+    <rdf:Description rdf:about="&cfa;icdCode">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#isOrWasEverMainConditionPresent -->
+
+    <rdf:Description rdf:about="&cfa;isOrWasEverMainConditionPresent">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#numberOfRepetitionPrecedingPostTestROM -->
+
+    <rdf:Description rdf:about="&cfa;numberOfRepetitionPrecedingPostTestROM">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#rangeOfMotion -->
+
+    <rdf:Description rdf:about="&cfa;rangeOfMotion">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#reportsFlare-Ups -->
+
+    <rdf:Description rdf:about="&cfa;reportsFlare-Ups">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/facsimile/dbq#unusedDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="&dbq;unusedDataProperty"/>
+    
+
+
+    <!-- http://who.int/icf#code -->
+
+    <rdf:Description rdf:about="http://who.int/icf#code">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://who.int/icf#exclusion -->
+
+    <rdf:Description rdf:about="http://who.int/icf#exclusion">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://who.int/icf#inclusion -->
+
+    <rdf:Description rdf:about="http://who.int/icf#inclusion">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://who.int/icf#kind -->
+
+    <rdf:Description rdf:about="http://who.int/icf#kind">
+        <rdfs:subPropertyOf rdf:resource="&dbq;unusedDataProperty"/>
+    </rdf:Description>
     
 
 
@@ -3087,12 +3210,6 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
@@ -3118,6 +3235,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)</cfa:hasText>
@@ -5628,12 +5751,6 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
         <rdf:type rdf:resource="&datamodel;Section"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;descriptionOfFlare-Ups"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;reportsFlare-Ups"/>
                 <owl:someValuesFrom>
                     <rdfs:Datatype>
@@ -5652,6 +5769,12 @@ For purposes of this examination, the diagnosis of IVDS and/or radiculopathy can
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;descriptionOfFlare-Ups"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasHeading rdf:datatype="&xsd;string">FLARE-UPS</cfa:hasHeading>
