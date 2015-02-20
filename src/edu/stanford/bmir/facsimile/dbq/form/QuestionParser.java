@@ -506,7 +506,7 @@ public class QuestionParser {
 	 * @return List of sections
 	 */
 	public List<Section> getSections() {
-		System.out.print("Parsing questions and sections... ");
+		System.out.print("  Parsing questions and sections... ");
 		if(verbose) System.out.println();
 		List<Section> list = parseSections();
 		System.out.println("done");

@@ -57,7 +57,7 @@ public class Runner {
 	 * @return String containing HTML code for the form
 	 */
 	public String run() {
-		System.out.print("Loading configuration file: " + configFile.getAbsolutePath() + "... ");
+		System.out.print("\nLoading configuration file: " + configFile.getAbsolutePath() + "... ");
 		if(verbose) System.out.println();
 		conf = new Configuration(configFile, verbose);
 		conf.parseConfigurationFile();
@@ -122,6 +122,8 @@ public class Runner {
 			if(!path.contains(":")) path = "file:" + path;
 			man.getIRIMappers().add(new SimpleIRIMapper(i, IRI.create(path)));
 		}
+		
+		System.out.print("  Loading ontology: " + inputFile + "... ");
 		OWLOntology ont = null;
 		try {
 			ont = man.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);

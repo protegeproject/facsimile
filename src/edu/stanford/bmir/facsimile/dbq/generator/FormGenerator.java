@@ -59,7 +59,7 @@ public class FormGenerator {
 	 * @return Document representing an HTML form
 	 */
 	public String generateHTMLForm(String title, String cssClass) {
-		System.out.print("Generating HTML form... ");
+		System.out.print("  Generating HTML form... ");
 		StringBuilder output = new StringBuilder();
 		output.append(generateHTMLTopPart(title, cssClass));
 		int skip = 0;
