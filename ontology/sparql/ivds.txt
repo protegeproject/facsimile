@@ -1,0 +1,30 @@
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix cfa: <http://purl.org/facsimile/cfa#>
+prefix datamodel: <http://purl.org/facsimile/datamodel#>
+prefix dbq: <http://purl.org/facsimile/dbq#>
+
+select ?patient ?physician where {
+  	# get patient names
+  	?pat a datamodel:PatientInformation .
+  	?pat cfa:hasPatientName ?patient .
+  	?pat datamodel:isResponseTo ?ad1 . # AnnotatedData instance
+  
+  	# get physician names
+	?phy a datamodel:PhysicianInformation .
+  	?phy cfa:hasPhysicianName ?physician .
+  	?phy datamodel:isResponseTo ?ad2 . # AnnotatedData instance
+  	
+  	# converge on form data instance
+	?ad1 cfa:isComponentOf ?fd .
+	?ad2 cfa:isComponentOf ?fd .
+  	?fd a datamodel:FormData .
+       
+  	# find a 'Yes' answer to Q14A
+  	?fd cfa:hasComponent ?ad3 . # AnnotatedData instance
+  	?ad3 datamodel:isResponseTo dbq:DBQ_Back_Q14A .
+ 	?ad3 datamodel:hasAnswer ?obs .
+  	?obs cfa:hasValue cfa:Yes
+}

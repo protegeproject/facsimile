@@ -1,0 +1,19 @@
+{
+  "head" : {
+    "vars" : [ "patient", "physician" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "patient" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#string",
+        "type" : "literal",
+        "value" : "Brown"
+      },
+      "physician" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#string",
+        "type" : "literal",
+        "value" : "Tierney"
+      }
+    } ]
+  }
+}
