@@ -1484,7 +1484,7 @@
     <!-- http://purl.org/facsimile/cfa#0_in_5 -->
 
     <owl:NamedIndividual rdf:about="&cfa;0_in_5">
-        <rdfs:label rdf:datatype="&rdfs;Literal">0/5</rdfs:label>
+        <rdfs:label rdf:datatype="&xsd;string">0/5</rdfs:label>
     </owl:NamedIndividual>
     
 
