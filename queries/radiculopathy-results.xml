@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='patient'/>
+		<variable name='physician'/>
+	</head>
+	<results>
+		<result>
+			<binding name='patient'>
+				<literal datatype='http://www.w3.org/2001/XMLSchema#string'>Brown</literal>
+			</binding>
+			<binding name='physician'>
+				<literal datatype='http://www.w3.org/2001/XMLSchema#string'>Tierney</literal>
+			</binding>
+		</result>
+	</results>
+</sparql>
