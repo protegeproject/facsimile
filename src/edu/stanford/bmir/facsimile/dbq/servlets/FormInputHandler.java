@@ -396,6 +396,7 @@ public class FormInputHandler extends HttpServlet {
 	private void processAnswerData(String[] params, String qIri, String qIriAlias, SectionType type, OWLOntology ont, OWLNamedIndividual answerInd, OWLNamedIndividual initInfo, OWLNamedIndividual finalInfo) {
 		OWLOntologyManager man = ont.getOWLOntologyManager();
 		OWLDataFactory df = man.getOWLDataFactory();
+		boolean hasvalue = false;
 		for(int i = 0; i < params.length; i++) {
 			Map<String,String> aMap = eOptions.get(qIri);
 			String aIri = "";  
@@ -406,16 +407,19 @@ public class FormInputHandler extends HttpServlet {
 					}
 			if(aIri.equalsIgnoreCase(""))
 				aIri = params[i];
+			
 			if(type.equals(SectionType.QUESTION_SECTION)) {
 				OWLNamedIndividual valInd = null;
-				if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED))
+				if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED)) {
 					valInd = df.getOWLNamedIndividual(IRI.create(aIri));
-				else {
+					addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
+				}
+				else if( (hasvalue && !aIri.isEmpty()) || !hasvalue ) {
 					valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
 					addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
+					addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
 				}
-				addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
-
+				hasvalue = true;
 				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
 					addAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
 			}
