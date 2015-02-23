@@ -10,21 +10,26 @@ select ?patient ?physician where {
   	# get patient names
   	?pat a datamodel:PatientInformation .
   	?pat cfa:hasPatientName ?patient .
-  	?pat datamodel:isResponseTo ?ad1 . # AnnotatedData instance
+
+    # get patient AnnotatedData instance
+    ?pat datamodel:isResponseTo ?ad1 .
+  	?ad1 a datamodel:AnnotatedData .
   
-  	# get physician names
-	?phy a datamodel:PhysicianInformation .
-  	?phy cfa:hasPhysicianName ?physician .
-  	?phy datamodel:isResponseTo ?ad2 . # AnnotatedData instance
-  	
-  	# converge on form data instance
+  	# get patient FormData instance
 	?ad1 cfa:isComponentOf ?fd .
-	?ad2 cfa:isComponentOf ?fd .
   	?fd a datamodel:FormData .
        
   	# find a 'Yes' answer to Q12A
   	?fd cfa:hasComponent ?z . 
   	?z datamodel:isResponseTo dbq:DBQ_Back_Q12A .
  	?z datamodel:hasAnswer ?obs .
-  	?obs cfa:hasValue cfa:Yes
+  	?obs cfa:hasValue cfa:Yes 
+    
+    OPTIONAL {
+		# get physician name
+	    ?pd a datamodel:PhysicianInformation .
+  		?pd datamodel:isResponseTo ?ad2 .
+	  	?ad2 cfa:isComponentOf ?fd .
+    	?pd cfa:hasPhysicianName ?physician  
+	}
 }
