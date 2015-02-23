@@ -412,12 +412,12 @@ public class FormInputHandler extends HttpServlet {
 				OWLNamedIndividual valInd = null;
 				if(inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED)) {
 					valInd = df.getOWLNamedIndividual(IRI.create(aIri));
-					addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
+					addObjPropAssertAxiom(ont, conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
 				}
 				else if( (hasvalue && !aIri.isEmpty()) || !hasvalue ) {
 					valInd = df.getOWLNamedIndividual(IRI.create(qIriAlias + "-val-" + uuid));
 					addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getDataElementValueClassBinding()), valInd));	// { val : DataElementValue }
-					addObjPropAssertAxiom(ont,conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
+					addObjPropAssertAxiom(ont, conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
 				}
 				hasvalue = true;
 				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
@@ -514,19 +514,21 @@ public class FormInputHandler extends HttpServlet {
 		String csv = "";
 		for(int i = 0; i < params.length; i++) {
 			String answer = params[i];
-			Map<String,String> aMap = eOptions.get(qIri);
-			String aIri = "";
-			if(aMap != null)
-				for(String s : aMap.keySet())
-					if(aMap.get(s).equalsIgnoreCase(answer)) {
-						aIri = s; break;
-					}
-			if(answer.contains("\""))	
-				answer = answer.replaceAll("\"", "\"\"");
-			if(aIri.equalsIgnoreCase(""))	
-				aIri = answer;
-			String parentIriStr = getParentElementIRI(eIri.get(qIri));
-			csv += "\"" + (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "\",\"" + aIri + "\",\"" + qText + "\",\"" + answer + "\",\"" + qFocus + "\",\"" + parentIriStr + "\"\n";
+			if( (i > 0 && !answer.isEmpty()) || i == 0) {
+				Map<String,String> aMap = eOptions.get(qIri);
+				String aIri = "";
+				if(aMap != null)
+					for(String s : aMap.keySet())
+						if(aMap.get(s).equalsIgnoreCase(answer)) {
+							aIri = s; break;
+						}
+				if(answer.contains("\""))	
+					answer = answer.replaceAll("\"", "\"\"");
+				if(aIri.equalsIgnoreCase(""))	
+					aIri = answer;
+				String parentIriStr = getParentElementIRI(eIri.get(qIri));
+				csv += "\"" + (qIriAlias.equals(qIri) ? qIri : qIriAlias) + "\",\"" + aIri + "\",\"" + qText + "\",\"" + answer + "\",\"" + qFocus + "\",\"" + parentIriStr + "\"\n";
+			}
 		}
 		return csv;
 	}
