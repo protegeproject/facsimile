@@ -27,9 +27,20 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
  * School of Medicine, Stanford University <br>
  */
 public class OntologyUtils {
-	private final SimpleShortFormProvider sf = new SimpleShortFormProvider();
-	private String ontIRI = "http://purl.org/facsimile/main";
+	private SimpleShortFormProvider sf;
 	private OWLOntology ont;
+	private String ontIri;
+	
+	
+	/**
+	 * Constructor
+	 * @param ont	OWL ontology
+	 * @param ontIri	Desired ontology IRI
+	 */
+	public OntologyUtils(OWLOntology ont, String ontIri) {
+		this.ont = ont;
+		this.ontIri = ontIri;
+	}
 	
 	
 	/**
@@ -37,30 +48,35 @@ public class OntologyUtils {
 	 * @param ont	OWL ontology
 	 */
 	public OntologyUtils(OWLOntology ont) {
-		this.ont = ont;
+		this(ont, null);
 	}
 	
 	
 	/**
 	 * Get the union of the entire imports closure of an ontology. This is done by either creating a new ontology and porting all axioms
-	 * to that ontology, or taking the original ontology and merging imported axioms into that one (and removing the imports statements) 
+	 * to that ontology, or taking the original ontology and merging imported axioms into that one (and removing the imports statements)
+	 * @param ontType	Type of root ontology 
 	 * @return Union ontology
 	 */
-	public OWLOntology getUnionOntology(MainOntology ontType) {
+	public OWLOntology getUnionOntology(RootOntology ontType) {
 		OWLOntology toProcess = null;
 		switch(ontType) {
-		case EMPTY_ONT: 
-			try { toProcess = OWLManager.createOWLOntologyManager().createOntology(IRI.create(ontIRI)); } 
-			catch (OWLOntologyCreationException e) { e.printStackTrace(); } break;
-		case INPUT_ONT: 
-			toProcess = ont; break;
+		case EMPTY_ONT:
+			try { 
+				if(ontIri != null)
+					toProcess = OWLManager.createOWLOntologyManager().createOntology(IRI.create(ontIri));
+				else
+					toProcess = OWLManager.createOWLOntologyManager().createOntology();
+			} catch (OWLOntologyCreationException e) { 
+				e.printStackTrace(); 
+			} break;
+		case INPUT_ONT: toProcess = ont; break;
 		}
 		
 		inflateOntologyWithImports(toProcess, ontType);
 		
-		if(ontType.equals(MainOntology.INPUT_ONT)) { 
+		if(ontType.equals(RootOntology.INPUT_ONT)) 
 			removeImports(toProcess);
-		}
 		return toProcess;
 	}
 	
@@ -83,13 +99,14 @@ public class OntologyUtils {
 	 */
 	@SuppressWarnings("unused")
 	private String getManchesterRendering(OWLObject obj) {
+		if(sf == null) sf = new SimpleShortFormProvider();
+		
 		StringWriter wr = new StringWriter();
 		ManchesterOWLSyntaxObjectRenderer render = new ManchesterOWLSyntaxObjectRenderer(wr, sf);
 		obj.accept(render);
-
+		
 		String str = wr.getBuffer().toString();
-		str = str.replace("<", "");
-		str = str.replace(">", "");
+		str = str.replace("<", ""); str = str.replace(">", "");
 		return str;
 	}
 	
@@ -99,13 +116,13 @@ public class OntologyUtils {
 	 */
 	@SuppressWarnings("unused")
 	private void normalizeEntityURIs() {
-		System.out.print("Normalizing entity URIs... ");
+		System.out.print("  Normalizing entity URIs... ");
 		Set<OWLOntology> ontSet = new HashSet<OWLOntology>(); ontSet.add(ont);
 		OWLEntityURIConverter converter = new OWLEntityURIConverter(ont.getOWLOntologyManager(), ontSet, new OWLEntityURIConverterStrategy() {
 			@Override
 			public IRI getConvertedIRI(OWLEntity e) {
 				String entityName = getShortForm(e.getIRI());
-				IRI iri = IRI.create(ontIRI + "#" + entityName);
+				IRI iri = IRI.create(ontIri + "#" + entityName);
 				return iri;
 			}
 		});
@@ -116,10 +133,10 @@ public class OntologyUtils {
 	
 	/**
 	 * Remove all imports from the given ontology
-	 * @param ont	OWL ontology
+	 * @param target	OWL ontology
 	 */
 	public void removeImports(OWLOntology target) {
-		System.out.print("Removing imports declarations... ");
+		System.out.print("  Removing imports declarations... ");
 		OWLOntologyManager man = ont.getOWLOntologyManager();
 		for(OWLImportsDeclaration importDecl : ont.getImportsDeclarations()) {
 			man.applyChange(new RemoveImport(ont, importDecl));
@@ -130,16 +147,16 @@ public class OntologyUtils {
 	
 	/**
 	 * Add all axioms of imported ontologies to the parent ontology, and remove the imports pointers
-	 * @param ont	OWL ontology
+	 * @param target	OWL ontology
 	 * @param ontType	Main ontology type
 	 */
-	public void inflateOntologyWithImports(OWLOntology target, MainOntology ontType) {
-		System.out.print("Inflating ontology with imported axioms... ");
+	public void inflateOntologyWithImports(OWLOntology target, RootOntology ontType) {
+		System.out.print("  Inflating ontology with imported axioms... ");
 		OWLOntologyManager man = target.getOWLOntologyManager();
 		for(OWLOntology imported : ont.getImports()) {
 			man.applyChanges(man.addAxioms(target, imported.getAxioms()));
 		}
-		if(ontType.equals(MainOntology.EMPTY_ONT)) 
+		if(ontType.equals(RootOntology.EMPTY_ONT)) 
 			man.applyChanges(man.addAxioms(target, ont.getAxioms()));
 		System.out.println("done");
 	}
@@ -157,19 +174,21 @@ public class OntologyUtils {
 	/**
 	 * Main ontology types; either an empty ontology or take the input ontology and work from there 
 	 */
-	public enum MainOntology { 
+	public enum RootOntology { 
 		EMPTY_ONT, INPUT_ONT; 
 	}
-	
+
 	
 	/**
 	 * main
 	 * @param args	arguments: 
-	 * 	arg 0: ontology file path
-	 * 	arg 1: output file path
+	 * 	arg[0]: ontology file path
+	 * 	arg[1]: output file path
+	 * @throws OWLOntologyCreationException	Ontology creation exception
+	 * @throws OWLOntologyStorageException	Ontology storage exception
 	 */
-	public static void main(String[] args) {
-		String outputDir = args[1];
+	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException {
+		String outputPath = args[1];
 		
 		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/datamodel.owl")));
@@ -177,20 +196,15 @@ public class OntologyUtils {
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/cfa"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/ides_cfa.owl")));
 		
 		File ontFile = new File(args[0]);
-		System.out.println("Loading ontology: " + ontFile.getAbsolutePath());
-		OWLOntology ont = null;
-		try {
-			ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile));
-		} catch (OWLOntologyCreationException e1) {
-			e1.printStackTrace();
-		}
+		System.out.print("Loading ontology: " + ontFile.getAbsolutePath() + "... ");
+		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile));
+		System.out.println("done");
 		
-		OntologyUtils util = new OntologyUtils(ont);
-		OWLOntology union = util.getUnionOntology(MainOntology.EMPTY_ONT);
-		try {
-			union.saveOntology(IRI.create("file:" + outputDir));
-		} catch (OWLOntologyStorageException e) {
-			e.printStackTrace();
-		}
+		System.out.println("Creating union ontology... ");
+		OntologyUtils util = new OntologyUtils(ont, "http://purl.org/facsimile/main");
+		OWLOntology union = util.getUnionOntology(RootOntology.EMPTY_ONT);
+		System.out.print("done\nSaving ontology... ");
+		union.saveOntology(IRI.create("file:" + outputPath));
+		System.out.println("done");
 	}
 }
