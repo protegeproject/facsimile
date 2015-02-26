@@ -140,15 +140,15 @@
     
 
 
-    <!-- http://purl.org/facsimile/datamodel#hasForm -->
-
-    <owl:ObjectProperty rdf:about="&datamodel;hasForm"/>
-    
-
-
     <!-- http://purl.org/facsimile/datamodel#hasQuestion -->
 
     <owl:ObjectProperty rdf:about="&datamodel;hasQuestion"/>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#isDerivedFrom -->
+
+    <owl:ObjectProperty rdf:about="&datamodel;isDerivedFrom"/>
     
 
 
@@ -312,6 +312,94 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#0_absent -->
+
+    <owl:NamedIndividual rdf:about="&cfa;0_absent">
+        <rdfs:label rdf:datatype="&xsd;string">0</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#0_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;0_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">0/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#1_hypoactive -->
+
+    <owl:NamedIndividual rdf:about="&cfa;1_hypoactive">
+        <rdfs:label rdf:datatype="&xsd;string">1+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#1_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;1_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">1/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#2_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;2_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">2/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#2_normal -->
+
+    <owl:NamedIndividual rdf:about="&cfa;2_normal">
+        <rdfs:label rdf:datatype="&xsd;string">2+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#3_hyperactive_wo_clonus -->
+
+    <owl:NamedIndividual rdf:about="&cfa;3_hyperactive_wo_clonus">
+        <rdfs:label rdf:datatype="&xsd;string">3+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#3_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;3_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">3/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#4_hyperactive_w_clonus -->
+
+    <owl:NamedIndividual rdf:about="&cfa;4_hyperactive_w_clonus">
+        <rdfs:label rdf:datatype="&xsd;string">4+</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#4_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;4_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">4/5</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#5_in_5 -->
+
+    <owl:NamedIndividual rdf:about="&cfa;5_in_5">
+        <rdfs:label rdf:datatype="&xsd;string">5/5</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -1473,94 +1561,6 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#0_absent -->
-
-    <owl:NamedIndividual rdf:about="&cfa;0_absent">
-        <rdfs:label rdf:datatype="&xsd;string">0</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#0_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;0_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">0/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#1_hypoactive -->
-
-    <owl:NamedIndividual rdf:about="&cfa;1_hypoactive">
-        <rdfs:label rdf:datatype="&xsd;string">1+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#1_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;1_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">1/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#2_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;2_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">2/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#2_normal -->
-
-    <owl:NamedIndividual rdf:about="&cfa;2_normal">
-        <rdfs:label rdf:datatype="&xsd;string">2+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#3_hyperactive_wo_clonus -->
-
-    <owl:NamedIndividual rdf:about="&cfa;3_hyperactive_wo_clonus">
-        <rdfs:label rdf:datatype="&xsd;string">3+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#3_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;3_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">3/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#4_hyperactive_w_clonus -->
-
-    <owl:NamedIndividual rdf:about="&cfa;4_hyperactive_w_clonus">
-        <rdfs:label rdf:datatype="&xsd;string">4+</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#4_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;4_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">4/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#5_in_5 -->
-
-    <owl:NamedIndividual rdf:about="&cfa;5_in_5">
-        <rdfs:label rdf:datatype="&xsd;string">5/5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10 -->
 
     <owl:NamedIndividual rdf:about="&dbq;DBQ_Back_Q10">
@@ -1854,6 +1854,7 @@
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">Right:</cfa:hasText>
+        <cfa:hasFocus rdf:resource="&cfa;straight_right_leg_raising"/>
     </owl:NamedIndividual>
     
 
@@ -1877,6 +1878,7 @@
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">Left:</cfa:hasText>
+        <cfa:hasFocus rdf:resource="&cfa;straight_left_leg_raising"/>
     </owl:NamedIndividual>
     
 
@@ -2431,8 +2433,8 @@ IF THERE ARE NEUROLOGICAL ABNORMALITIES OTHER THAN RADICULOPATHY, ALSO COMPLETE 
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="&cfa;at_least_6_weeks"/>
-                            <rdf:Description rdf:about="&cfa;at_least_1_week_but_less_than_2_weeks"/>
                             <rdf:Description rdf:about="&cfa;less_than_1_week"/>
+                            <rdf:Description rdf:about="&cfa;at_least_1_week_but_less_than_2_weeks"/>
                             <rdf:Description rdf:about="&cfa;at_least_2_weeks_but_less_than_4_weeks"/>
                             <rdf:Description rdf:about="&cfa;at_least_4_weeks_but_less_than_6_weeks"/>
                         </owl:oneOf>
@@ -3227,27 +3229,21 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cfa;hasValue"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_50"/>
-                            <rdf:Description rdf:about="&cfa;degree_85"/>
-                            <rdf:Description rdf:about="&cfa;degree_5"/>
                             <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
                             <rdf:Description rdf:about="&cfa;degree_60"/>
-                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_35"/>
-                            <rdf:Description rdf:about="&cfa;degree_70"/>
-                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
                             <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_80"/>
                             <rdf:Description rdf:about="&cfa;degree_90plus"/>
@@ -3258,6 +3254,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdf:type>
         <cfa:hasText rdf:datatype="&xsd;string">SELECT WHERE FORWARD FLEXION ENDS (normal endpoint is 90)</cfa:hasText>
@@ -3277,22 +3279,22 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_50"/>
-                            <rdf:Description rdf:about="&cfa;degree_85"/>
-                            <rdf:Description rdf:about="&cfa;degree_5"/>
                             <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
                             <rdf:Description rdf:about="&cfa;degree_60"/>
-                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_35"/>
-                            <rdf:Description rdf:about="&cfa;degree_70"/>
-                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
                             <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_80"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_90plus"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_30"/>
                             <rdf:Description rdf:about="&cfa;degree_40"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3329,9 +3331,9 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3358,12 +3360,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
                             <rdf:Description rdf:about="&cfa;degree_10"/>
                         </owl:oneOf>
@@ -3398,9 +3400,9 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3427,12 +3429,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
                             <rdf:Description rdf:about="&cfa;degree_10"/>
                         </owl:oneOf>
@@ -3467,9 +3469,9 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3496,12 +3498,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
                             <rdf:Description rdf:about="&cfa;degree_10"/>
                         </owl:oneOf>
@@ -3536,9 +3538,9 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3565,12 +3567,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
                             <rdf:Description rdf:about="&cfa;degree_10"/>
                         </owl:oneOf>
@@ -3605,9 +3607,9 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3634,12 +3636,12 @@ NOTE: Following the initial assessment of ROM, perform repetitive-use testing. F
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
+                            <rdf:Description rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
                             <rdf:Description rdf:about="&cfa;degree_10"/>
                         </owl:oneOf>
@@ -3716,18 +3718,18 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_50"/>
-                            <rdf:Description rdf:about="&cfa;degree_85"/>
-                            <rdf:Description rdf:about="&cfa;degree_5"/>
                             <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_85"/>
+                            <rdf:Description rdf:about="&cfa;degree_50"/>
                             <rdf:Description rdf:about="&cfa;degree_60"/>
-                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
-                            <rdf:Description rdf:about="&cfa;degree_55"/>
+                            <rdf:Description rdf:about="&cfa;degree_75"/>
                             <rdf:Description rdf:about="&cfa;degree_35"/>
-                            <rdf:Description rdf:about="&cfa;degree_70"/>
-                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_55"/>
                             <rdf:Description rdf:about="&cfa;degree_45"/>
+                            <rdf:Description rdf:about="&cfa;degree_65"/>
+                            <rdf:Description rdf:about="&cfa;degree_70"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_80"/>
                             <rdf:Description rdf:about="&cfa;degree_90plus"/>
@@ -3757,9 +3759,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3786,9 +3788,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3815,9 +3817,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3844,9 +3846,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3873,9 +3875,9 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
-                            <rdf:Description rdf:about="&cfa;degree_25"/>
                             <rdf:Description rdf:about="&cfa;degree_5"/>
+                            <rdf:Description rdf:about="&cfa;degree_25"/>
+                            <rdf:Description rdf:about="&cfa;degree_30plus"/>
                             <rdf:Description rdf:about="&cfa;degree_15"/>
                             <rdf:Description rdf:about="&cfa;degree_0"/>
                             <rdf:Description rdf:about="&cfa;degree_20"/>
@@ -3938,15 +3940,15 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="&cfa;InstabilityOfStation"/>
                             <rdf:Description rdf:about="&cfa;Incoordination"/>
-                            <rdf:Description rdf:about="&cfa;ExcessFatigability"/>
                             <rdf:Description rdf:about="&cfa;InterferenceWithSittingStandingOrWeightBearing"/>
+                            <rdf:Description rdf:about="&cfa;ExcessFatigability"/>
                             <rdf:Description rdf:about="&cfa;AtrophyOfDisUse"/>
-                            <rdf:Description rdf:about="&cfa;MoreMovementThanNormal"/>
                             <rdf:Description rdf:about="&cfa;LessMovementThanNormal"/>
+                            <rdf:Description rdf:about="&cfa;MoreMovementThanNormal"/>
                             <rdf:Description rdf:about="&cfa;Deformity"/>
                             <rdf:Description rdf:about="&cfa;Swelling"/>
-                            <rdf:Description rdf:about="&cfa;DisturbanceOfLocomotion"/>
                             <rdf:Description rdf:about="&cfa;Other"/>
+                            <rdf:Description rdf:about="&cfa;DisturbanceOfLocomotion"/>
                             <rdf:Description rdf:about="&cfa;PainInMovement"/>
                             <rdf:Description rdf:about="&cfa;WeakenedMovement"/>
                         </owl:oneOf>
@@ -4095,12 +4097,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4121,12 +4123,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4156,12 +4158,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4182,12 +4184,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4217,12 +4219,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4243,12 +4245,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4278,12 +4280,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4304,12 +4306,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4339,12 +4341,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4365,12 +4367,12 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;4_in_5"/>
-                            <rdf:Description rdf:about="&cfa;5_in_5"/>
-                            <rdf:Description rdf:about="&cfa;0_in_5"/>
-                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                             <rdf:Description rdf:about="&cfa;2_in_5"/>
+                            <rdf:Description rdf:about="&cfa;4_in_5"/>
                             <rdf:Description rdf:about="&cfa;3_in_5"/>
+                            <rdf:Description rdf:about="&cfa;0_in_5"/>
+                            <rdf:Description rdf:about="&cfa;5_in_5"/>
+                            <rdf:Description rdf:about="&cfa;1_in_5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -4494,8 +4496,8 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                             <rdf:Description rdf:about="&cfa;0_absent"/>
                             <rdf:Description rdf:about="&cfa;1_hypoactive"/>
@@ -4519,8 +4521,8 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                             <rdf:Description rdf:about="&cfa;0_absent"/>
                             <rdf:Description rdf:about="&cfa;1_hypoactive"/>
@@ -4553,8 +4555,8 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                             <rdf:Description rdf:about="&cfa;0_absent"/>
                             <rdf:Description rdf:about="&cfa;1_hypoactive"/>
@@ -4578,8 +4580,8 @@ IF VETERAN IS ABLE TO PERFORM REPETITIVE-USE TESTING, MEASURE AND REPORT ROM AFT
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;4_hyperactive_w_clonus"/>
+                            <rdf:Description rdf:about="&cfa;2_normal"/>
                             <rdf:Description rdf:about="&cfa;3_hyperactive_wo_clonus"/>
                             <rdf:Description rdf:about="&cfa;0_absent"/>
                             <rdf:Description rdf:about="&cfa;1_hypoactive"/>
@@ -5051,8 +5053,8 @@ Describe the history (including onset and course) of the Veteran&apos;s TBI and 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;moderately_severely_impaired_spatial_orientation"/>
                             <rdf:Description rdf:about="&cfa;moderately_impaired_spatial_orientation"/>
+                            <rdf:Description rdf:about="&cfa;moderately_severely_impaired_spatial_orientation"/>
                             <rdf:Description rdf:about="&cfa;severely_impaired_spatial_orientation"/>
                             <rdf:Description rdf:about="&cfa;mildly_impaired_spatial_orientation"/>
                             <rdf:Description rdf:about="&cfa;normal_spatial_orientation"/>
@@ -5155,8 +5157,8 @@ NOTE: Examples of neurobehavioral effects of TBI include: irritability, impulsiv
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="&cfa;frequently-interfering_neurobehavioral_effects"/>
-                            <rdf:Description rdf:about="&cfa;no_neurobehavioral_effects"/>
                             <rdf:Description rdf:about="&cfa;occasionally-interfering_neurobehavioral_effects"/>
+                            <rdf:Description rdf:about="&cfa;no_neurobehavioral_effects"/>
                             <rdf:Description rdf:about="&cfa;non-interfering_neurobehavioral_effects"/>
                             <rdf:Description rdf:about="&cfa;interfering_neurobehavioral_effects"/>
                         </owl:oneOf>
@@ -5264,23 +5266,23 @@ Does the Veteran have any subjective symptoms or any mental, physical or neurolo
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cfa;OtherDisorder"/>
-                            <rdf:Description rdf:about="&cfa;SensoryDysfunction"/>
                             <rdf:Description rdf:about="&cfa;Seizures"/>
+                            <rdf:Description rdf:about="&cfa;SensoryDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;OtherDisorder"/>
                             <rdf:Description rdf:about="&cfa;HearingLossAndorTinnitus"/>
                             <rdf:Description rdf:about="&cfa;GaitCoordinationAndBalance"/>
                             <rdf:Description rdf:about="&cfa;SpeechDisorder"/>
-                            <rdf:Description rdf:about="&cfa;Headache"/>
                             <rdf:Description rdf:about="&cfa;DizzinessVertigo"/>
+                            <rdf:Description rdf:about="&cfa;Headache"/>
                             <rdf:Description rdf:about="&cfa;CranialNerveDysfunction"/>
                             <rdf:Description rdf:about="&cfa;AlterationOfSenseOfSmellOrTaste"/>
                             <rdf:Description rdf:about="&cfa;MentalDisorder"/>
-                            <rdf:Description rdf:about="&cfa;EndocrineDysfunction"/>
                             <rdf:Description rdf:about="&cfa;ErectileDysfunction"/>
+                            <rdf:Description rdf:about="&cfa;EndocrineDysfunction"/>
                             <rdf:Description rdf:about="&cfa;VisualImpairment"/>
                             <rdf:Description rdf:about="&cfa;MotorDysfunction"/>
-                            <rdf:Description rdf:about="&cfa;SkinDisorders"/>
                             <rdf:Description rdf:about="&cfa;NeurogenicBladder"/>
+                            <rdf:Description rdf:about="&cfa;SkinDisorders"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -6161,5 +6163,5 @@ Neuropsychological testing may need to be performed in order to be able to accur
 
 
 
-<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

@@ -564,18 +564,20 @@
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_14</iri>
 			<questionList>
-				<question>
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14A</iri>
-				</question>
 				<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
-					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B</iri>
+					<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14A</iri>
 					<questionList>
-						<question numbered="false" type="checkbox">
-							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B_1</iri>
+						<question showSubquestionsForAnswer="http://purl.org/facsimile/cfa#Yes">
+							<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B</iri>
+							<questionList>
+								<question numbered="false" type="checkbox">
+									<iri>http://purl.org/facsimile/dbq#DBQ_Back_Q14B_1</iri>
+								</question>
+							</questionList>
 						</question>
 					</questionList>
 				</question>
-			</questionList>
+			</questionList>	
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/dbq#dbq_21-0960M-14_section_15</iri>
