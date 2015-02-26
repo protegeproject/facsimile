@@ -13,6 +13,7 @@ import org.semanticweb.owlapi.model.OWLImportsDeclaration;
 import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.model.RemoveImport;
@@ -194,10 +195,14 @@ public class OntologyUtils {
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/datamodel.owl")));
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://who.int/icf"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/icf_simplified_2013.11.22.owl")));
 		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/cfa"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/ides_cfa.owl")));
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/criteria"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/criteria.owl")));
+		
+		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
+		config = config.addIgnoredImport(IRI.create("http://purl.org/facsimile/mos"));
 		
 		File ontFile = new File(args[0]);
 		System.out.print("Loading ontology: " + ontFile.getAbsolutePath() + "... ");
-		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile));
+		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile), config);
 		System.out.println("done");
 		
 		System.out.println("Creating union ontology... ");
