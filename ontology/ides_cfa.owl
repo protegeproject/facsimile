@@ -715,7 +715,6 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#AnkleStructure">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#LegStructure"/>
-        <owl:disjointWith rdf:resource="http://purl.org/facsimile/cfa#LowerLegStructure"/>
     </owl:Class>
     
 
@@ -760,11 +759,11 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
                 <owl:oneOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#InstabilityOfStation"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Incoordination"/>
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#InterferenceWithSittingStandingOrWeightBearing"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ExcessFatigability"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#InterferenceWithSittingStandingOrWeightBearing"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#AtrophyOfDisUse"/>
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LessMovementThanNormal"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#MoreMovementThanNormal"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LessMovementThanNormal"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Deformity"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Swelling"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DisturbanceOfLocomotion"/>
@@ -877,13 +876,13 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#descriptionOfExternalCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasExternalCode"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasExternalCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#descriptionOfExternalCode"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -987,14 +986,14 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
+                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
-                <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1036,7 +1035,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#Finding"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#FunctionalFinding"/>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="&icf;ICFCategory"/>
@@ -1059,7 +1058,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
     </owl:Class>
     
 
@@ -1107,14 +1105,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     
 
 
-    <!-- http://purl.org/facsimile/cfa#KneeStructure -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#KneeStructure">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#LegStructure"/>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#LabResult -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#LabResult">
@@ -1136,14 +1126,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#LegStructure">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#AnatomicalStructure"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#LowerLegStructure -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#LegStructure"/>
     </owl:Class>
     
 
@@ -1382,6 +1364,12 @@ can be described by a text, anat. location, finding code, additional qual. code 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMeasuredAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
             </owl:Restriction>
@@ -1396,12 +1384,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#contextOfROMMeasurement"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementContext"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMeasuredAttribute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1514,6 +1496,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <!-- http://purl.org/facsimile/cfa#ThighStructure -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ThighStructure">
+        <owl:equivalentClass rdf:resource="&icf;s7500"/>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#LegStructure"/>
     </owl:Class>
     
@@ -1629,6 +1612,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#UpperAnteriorThigh">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ThighStructure"/>
+        <rdfs:subClassOf rdf:resource="&icf;s7500"/>
     </owl:Class>
     
 
@@ -1668,6 +1652,12 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ZeroIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
     </owl:Class>
+    
+
+
+    <!-- http://who.int/icf#s7500 -->
+
+    <rdf:Description rdf:about="&icf;s7500"/>
     
 
 
@@ -1852,12 +1842,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ObservationListDescription"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1867,6 +1851,12 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
             </owl:Restriction>
         </rdf:type>
         <hasCategory rdf:datatype="&xsd;string">Diagnosis</hasCategory>
@@ -2302,6 +2292,18 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
         <rdf:type>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
+                <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2311,12 +2313,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
             </owl:Restriction>
         </rdf:type>
         <rdfs:label rdf:datatype="&xsd;string">Impairment of thoracolumbar spine function</rdfs:label>
@@ -3197,11 +3193,17 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#PainSensationInBodyPartAssessmentCausedByRadculopathy"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#constant"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                            <rdf:Description rdf:about="&icf;s750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
@@ -3222,11 +3224,17 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#PainSensationInBodyPartAssessmentCausedByRadculopathy"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#constant"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                            <rdf:Description rdf:about="&icf;s750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
@@ -3862,11 +3870,11 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#PainSensationInBodyPartAssessmentCausedByRadculopathy"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                            <rdf:Description rdf:about="&icf;s750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
@@ -3896,7 +3904,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                            <rdf:Description rdf:about="&icf;s750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
@@ -4542,14 +4550,20 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#numbness_caused_by_radiculopathy_left_lower_extremity">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isExactMatchOf"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7501"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                         <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
@@ -4564,12 +4578,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isExactMatchOf"/>
-                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
-            </owl:Restriction>
         </rdf:type>
         <isExactMatchOf rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
     </owl:NamedIndividual>
@@ -4590,11 +4598,11 @@ can be described by a text, anat. location, finding code, additional qual. code 
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7501"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                         <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
@@ -4736,11 +4744,11 @@ can be described by a text, anat. location, finding code, additional qual. code 
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7501"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
                                         <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
@@ -4778,6 +4786,28 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#paresthesia_or_dysesthesia_caused_by_radiculopathy_right_lower_extremity">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
+                                <owl:someValuesFrom rdf:resource="&icf;s7501"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
+                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
+                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#Radiculopathy"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isExactMatchOf"/>
                 <owl:someValuesFrom>
@@ -4789,30 +4819,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
-                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#Radiculopathy"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
         </rdf:type>
     </owl:NamedIndividual>
     
@@ -5047,7 +5053,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
                                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#AnkleStructure"/>
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7501"/>
                                 </owl:unionOf>
                             </owl:Class>
                             <owl:Restriction>
@@ -5076,7 +5082,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
                                     <rdf:Description rdf:about="http://purl.org/facsimile/cfa#AnkleStructure"/>
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LowerLegStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7501"/>
                                 </owl:unionOf>
                             </owl:Class>
                             <owl:Restriction>
@@ -5098,14 +5104,20 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b265"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#KneeStructure"/>
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThighStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7500"/>
+                                    <rdf:Description rdf:about="&icf;s75011"/>
                                 </owl:unionOf>
                             </owl:Class>
                             <owl:Restriction>
@@ -5115,12 +5127,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b265"/>
             </owl:Restriction>
         </rdf:type>
     </owl:NamedIndividual>
@@ -5133,14 +5139,20 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b265"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#KneeStructure"/>
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThighStructure"/>
+                                    <rdf:Description rdf:about="&icf;s7500"/>
+                                    <rdf:Description rdf:about="&icf;s75011"/>
                                 </owl:unionOf>
                             </owl:Class>
                             <owl:Restriction>
@@ -5150,12 +5162,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b265"/>
             </owl:Restriction>
         </rdf:type>
     </owl:NamedIndividual>
@@ -5226,13 +5232,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b265"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -5246,6 +5246,12 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b265"/>
+            </owl:Restriction>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5256,7 +5262,7 @@ can be described by a text, anat. location, finding code, additional qual. code 
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasBodyStructure"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -5916,6 +5922,15 @@ can be described by a text, anat. location, finding code, additional qual. code 
      -->
 
     <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#OneIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThreeIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#TwoIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ZeroIn4ValueSeverityScaleValue"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://purl.org/facsimile/cfa#AbnormalGait"/>
@@ -5960,15 +5975,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#OneIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThreeIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#TwoIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ZeroIn4ValueSeverityScaleValue"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://purl.org/facsimile/cfa#FourIn5ValueSeverityScaleValue"/>
             <rdf:Description rdf:about="http://purl.org/facsimile/cfa#OneIn5ValueSeverityScaleValue"/>
             <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThreeIn5ValueSeverityScaleValue"/>
@@ -5989,6 +5995,62 @@ can be described by a text, anat. location, finding code, additional qual. code 
 
     <rdf:Description rdf:about="urn:swrl#ded">
         <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
@@ -6035,50 +6097,9 @@ can be described by a text, anat. location, finding code, additional qual. code 
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
@@ -6086,11 +6107,22 @@ can be described by a text, anat. location, finding code, additional qual. code 
                         <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                     </rdf:Description>
                 </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#constantly"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
             </rdf:Description>
         </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -6131,32 +6163,6 @@ can be described by a text, anat. location, finding code, additional qual. code 
                 </rdf:rest>
             </rdf:Description>
         </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#constantly"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
     </rdf:Description>
 </rdf:RDF>
 
