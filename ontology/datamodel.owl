@@ -16,15 +16,15 @@
 
 <rdf:RDF xmlns="http://purl.org/facsimile/datamodel#"
      xml:base="http://purl.org/facsimile/datamodel"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://purl.org/facsimile/datamodel">
         <skos:definition>Rule: datamodel:FormData(?fd), datamodel:Observation(?obs), datamodel:PatientInformation(?pi), datamodel:AnnotatedData(?ad), datamodel:AnnotatedData(?pad), datamodel:hasAnswer(?ad, ?obs), datamodel:hasAnswer(?pad, ?pi), cfa:hasComponent(?fd, ?ad), cfa:hasComponent(?fd, ?pad), cfa:hasID(?pi, ?id) -&gt; cfa:hasID(?obs, ?id)</skos:definition>
         <owl:imports rdf:resource="http://purl.org/facsimile/cfa"/>
@@ -49,15 +49,15 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#hasFocus -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasFocus"/>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#hasValue -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasValue"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isAbout"/>
     
 
 
@@ -87,6 +87,16 @@
     
 
 
+    <!-- http://purl.org/facsimile/datamodel#generates -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#generates">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
+        <rdfs:domain rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/facsimile/datamodel#hasAnswer -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#hasAnswer"/>
@@ -100,9 +110,9 @@
         <rdfs:range>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformation"/>
                     <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Observation"/>
-                    <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#PatientInformation"/>
-                    <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#PhysicianInformation"/>
+                    <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#SubjectInformation"/>
                 </owl:unionOf>
             </owl:Class>
         </rdfs:range>
@@ -139,7 +149,9 @@
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#isDerivedFrom">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="http://purl.org/facsimile/datamodel#Form"/>
+        <rdfs:domain rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
+        <rdfs:range rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
+        <owl:inverseOf rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
     </owl:ObjectProperty>
     
 
@@ -149,12 +161,6 @@
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#isQuestionOf">
         <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#isComponentOf"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#isResponseTo -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#isResponseTo"/>
     
 
 
@@ -204,6 +210,20 @@
     
 
 
+    <!-- http://purl.org/facsimile/datamodel#signature -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/datamodel#signature">
+        <rdfs:range rdf:resource="&xsd;hexBinary"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#submissionTime -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/datamodel#submissionTime"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -250,7 +270,7 @@
                         <owl:intersectionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Observation"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasFocus"/>
+                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isAbout"/>
                                 <owl:someValuesFrom>
                                     <owl:Class>
                                         <owl:intersectionOf rdf:parseType="Collection">
@@ -284,25 +304,65 @@
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isResponseTo"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Question"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#hasAnswer"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformation"/>
                             <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Observation"/>
-                            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#PatientInformation"/>
-                            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#PhysicianInformation"/>
+                            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#SubjectInformation"/>
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Question"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Data with annotation, such as its source.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#Certification -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Certification">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Metadata"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#signature"/>
+                <owl:someValuesFrom rdf:resource="&xsd;hexBinary"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#dateSigned"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#CertificationSection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#CertificationSection -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#CertificationSection">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Section"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Certification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -313,170 +373,25 @@
     
 
 
-    <!-- http://purl.org/facsimile/datamodel#Form -->
+    <!-- http://purl.org/facsimile/datamodel#EvaluatorInformation -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Form">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#FormData -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormData">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasComponent"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Metadata"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Form"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#EvaluatorInformationSection"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string">Binds data derived from a form to the form itself.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#FormDataElement -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormDataElement">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#FormStructure -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormStructure"/>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#Observation -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Observation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasFocus"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#CodedValue"/>
-                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#validTime"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string">An Observation represents an element of data that is observed or assesed about a subject. It contains a description of what being observed, an observed value, and a time when the observed value is observed.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#PatientInformation -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PatientInformation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasPatientName"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasID"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDOB"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#PatientInformationSpec -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PatientInformationSpec">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormDataElement"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#hasData"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#PatientInformation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#PhysicianCertification -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PhysicianCertification">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasComponent"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#PhysicianInformation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#dateSigned"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#PhysicianCertificationSpec -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PhysicianCertificationSpec">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormDataElement"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#dateSigned"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasComponent"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#PhysicianInformationSpec"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#PhysicianInformation -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PhysicianInformation">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasFaxNumber"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -494,12 +409,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAddress"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -508,16 +417,117 @@
     
 
 
-    <!-- http://purl.org/facsimile/datamodel#PhysicianInformationSpec -->
+    <!-- http://purl.org/facsimile/datamodel#EvaluatorInformationSection -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#PhysicianInformationSpec">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormDataElement"/>
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformationSection">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Section"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#hasData"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#PhysicianInformation"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#EvaluatorInformation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#Form -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Form">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#FormData"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#FormData -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormData">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Form"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#submissionTime"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Binds data derived from a form to the form itself.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#FormStructure -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormStructure"/>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#Metadata -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Metadata">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Section"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#Observation -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Observation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Data"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#validTime"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isAbout"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#CodedValue"/>
+                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Question"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">An Observation represents an element of data that is observed or assesed about a subject. It contains a description of what being observed, an observed value, and a time when the observed value is observed.</rdfs:comment>
     </owl:Class>
     
 
@@ -525,17 +535,24 @@
     <!-- http://purl.org/facsimile/datamodel#Question -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Question">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormDataElement"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasFocus"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#hasData"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isAbout"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#CodedValue"/>
+                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -546,6 +563,58 @@
 
     <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Section">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#FormStructure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#Metadata"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#SubjectInformation -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#SubjectInformation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Metadata"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasDOB"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasPatientName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#SubjectInformationSection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasID"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/datamodel#SubjectInformationSection -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#SubjectInformationSection">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/datamodel#Section"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/datamodel#generates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/datamodel#SubjectInformation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -608,8 +677,16 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#CertificationSection"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformationSection"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#SubjectInformationSection"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Form"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#FormDataElement"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Question"/>
             <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#Section"/>
         </owl:members>
     </rdf:Description>
@@ -624,16 +701,16 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="urn:swrl#ad">
-        <rdf:type rdf:resource="&swrl;Variable"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="urn:swrl#a">
-        <rdf:type rdf:resource="&swrl;Variable"/>
-    </rdf:Description>
     <rdf:Description rdf:about="urn:swrl#q">
         <rdf:type rdf:resource="&swrl;Variable"/>
     </rdf:Description>
     <rdf:Description rdf:about="urn:swrl#focus">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#ad">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#a">
         <rdf:type rdf:resource="&swrl;Variable"/>
     </rdf:Description>
     <rdf:Description>
@@ -641,25 +718,25 @@
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ad"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/datamodel#hasAnswer"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#a"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ad"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
                                 <rdf:first>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasFocus"/>
-                                        <swrl:argument2 rdf:resource="urn:swrl#focus"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#q"/>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#a"/>
                                     </rdf:Description>
                                 </rdf:first>
                                 <rdf:rest>
@@ -668,9 +745,9 @@
                                         <rdf:first>
                                             <rdf:Description>
                                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/datamodel#hasAnswer"/>
-                                                <swrl:argument2 rdf:resource="urn:swrl#a"/>
+                                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
                                                 <swrl:argument1 rdf:resource="urn:swrl#ad"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#q"/>
                                             </rdf:Description>
                                         </rdf:first>
                                         <rdf:rest>
@@ -679,10 +756,9 @@
                                                 <rdf:rest rdf:resource="&rdf;nil"/>
                                                 <rdf:first>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/datamodel#isResponseTo"/>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/datamodel#AnnotatedData"/>
                                                         <swrl:argument1 rdf:resource="urn:swrl#ad"/>
-                                                        <swrl:argument2 rdf:resource="urn:swrl#q"/>
                                                     </rdf:Description>
                                                 </rdf:first>
                                             </rdf:Description>
@@ -691,15 +767,16 @@
                                 </rdf:rest>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#a"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#isAbout"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#focus"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#q"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -709,7 +786,7 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasFocus"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#isAbout"/>
                         <swrl:argument1 rdf:resource="urn:swrl#a"/>
                         <swrl:argument2 rdf:resource="urn:swrl#focus"/>
                     </rdf:Description>
@@ -721,5 +798,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
 
