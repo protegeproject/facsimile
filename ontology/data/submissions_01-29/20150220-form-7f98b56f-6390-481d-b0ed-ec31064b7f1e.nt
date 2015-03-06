@@ -1,0 +1,1526 @@
+<http://purl.org/facsimile/VA_Form_21-0960M-14_20150220_7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://purl.org/facsimile/VA_Form_21-0960M-14_20150220_7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#comment> "form data submitted on: 2015-02-20T12:03:13-08:00"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/VA_Form_21-0960M-14_20150220_7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#comment> "ontology created by facsimile-form-generator v1.0b"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/facsimile/cfa#hasComponent
+<http://purl.org/facsimile/cfa#hasComponent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasValue
+<http://purl.org/facsimile/cfa#hasValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/facsimile/cfa#isAbout
+<http://purl.org/facsimile/cfa#isAbout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/facsimile/cfa#isComponentOf
+<http://purl.org/facsimile/cfa#isComponentOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/facsimile/datamodel#hasAnswer
+<http://purl.org/facsimile/datamodel#hasAnswer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/facsimile/datamodel#isDerivedFrom
+<http://purl.org/facsimile/datamodel#isDerivedFrom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/facsimile/cfa#hasAddress
+<http://purl.org/facsimile/cfa#hasAddress> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasID
+<http://purl.org/facsimile/cfa#hasID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasMedicalLicenseNumber
+<http://purl.org/facsimile/cfa#hasMedicalLicenseNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasPatientName
+<http://purl.org/facsimile/cfa#hasPatientName> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasPhoneNumber
+<http://purl.org/facsimile/cfa#hasPhoneNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/cfa#hasPhysicianName
+<http://purl.org/facsimile/cfa#hasPhysicianName> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/facsimile/datamodel#dateSigned
+<http://purl.org/facsimile/datamodel#dateSigned> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/facsimile/cfa#DataElementValue
+<http://purl.org/facsimile/cfa#DataElementValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#AnnotatedData
+<http://purl.org/facsimile/datamodel#AnnotatedData> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#Certification
+<http://purl.org/facsimile/datamodel#Certification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#EvaluatorInformation
+<http://purl.org/facsimile/datamodel#EvaluatorInformation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#FormData
+<http://purl.org/facsimile/datamodel#FormData> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#Observation
+<http://purl.org/facsimile/datamodel#Observation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://purl.org/facsimile/datamodel#SubjectInformation
+<http://purl.org/facsimile/datamodel#SubjectInformation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment
+<http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine
+<http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse
+<http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps
+<http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction
+<http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack
+<http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#No
+<http://purl.org/facsimile/cfa#No> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion
+<http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#PainInMovement
+<http://purl.org/facsimile/cfa#PainInMovement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual
+<http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#ThoracolumbarCondition
+<http://purl.org/facsimile/cfa#ThoracolumbarCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#Yes
+<http://purl.org/facsimile/cfa#Yes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#all_normal
+<http://purl.org/facsimile/cfa#all_normal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#degree_30plus
+<http://purl.org/facsimile/cfa#degree_30plus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#degree_90plus
+<http://purl.org/facsimile/cfa#degree_90plus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#negative
+<http://purl.org/facsimile/cfa#negative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_extension_initial
+<http://purl.org/facsimile/cfa#trunk_extension_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_extension_painful_initial
+<http://purl.org/facsimile/cfa#trunk_extension_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_extension_post_test
+<http://purl.org/facsimile/cfa#trunk_extension_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_flexion_initial
+<http://purl.org/facsimile/cfa#trunk_flexion_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_flexion_painful_initial
+<http://purl.org/facsimile/cfa#trunk_flexion_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_flexion_post_test
+<http://purl.org/facsimile/cfa#trunk_flexion_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial
+<http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial
+<http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test
+<http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial
+<http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial
+<http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test
+<http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial
+<http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial
+<http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test
+<http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial
+<http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial
+<http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test
+<http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q10
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#all_normal> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q10> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q10_5
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q10_5> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q11_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#negative> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q11_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q11_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#negative> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q11_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q12A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q13
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q13> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q13_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q13_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q14A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q14A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q14B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q14B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q15B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q16
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q16> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q17A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q17B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q18A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q18B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18C
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q18C> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q19
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q19> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q19_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q19_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ThoracolumbarCondition> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1C
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q1C> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ThoracolumbarCondition> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q20
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q20> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q3_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q3_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q3_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q3_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_90plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_flexion_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_90plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_flexion_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_extension_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_extension_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4G
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q4G> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_90plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_flexion_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5C
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_extension_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5C> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5D
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5D> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5E
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5E> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5F
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5F> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5G
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#degree_30plus> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q5G> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q6A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q6B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6C
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#PainInMovement> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q6C> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#Yes> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q7A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isAbout> <http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q7B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8A
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#all_normal> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q8A> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#No> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/cfa#DataElementValue> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q9
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Observation> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasValue> <http://purl.org/facsimile/cfa#all_normal> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#DBQ_Back_Q9> .
+<http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#PatientInformationDataElement
+<http://purl.org/facsimile/dbq#PatientInformationDataElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#PhysicianInformationDataElement
+<http://purl.org/facsimile/dbq#PhysicianInformationDataElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ
+<http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# http://purl.org/facsimile/dbq#certification-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#certification-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#Certification> .
+<http://purl.org/facsimile/dbq#certification-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#certification-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#dateSigned> "2015-02-20T12:03:13-08:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://purl.org/facsimile/dbq#certification-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#FormData> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#SubjectInformation> .
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasID> "123-54-4321"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasPatientName> "Smith"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#PatientInformationDataElement> .
+<http://purl.org/facsimile/dbq#patient-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/facsimile/datamodel#EvaluatorInformation> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasAddress> "3801 Miranda Ave."^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasPhoneNumber> "650-493-5000 x65912"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasMedicalLicenseNumber> "C123456"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasPhysicianName> "Tierney Michael"^^<http://www.w3.org/2001/XMLSchema#string> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/datamodel#isDerivedFrom> <http://purl.org/facsimile/dbq#PhysicianInformationDataElement> .
+<http://purl.org/facsimile/dbq#physician-obs-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q14B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q14B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q14B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q10-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q14B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q16-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8A-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#isComponentOf> <http://purl.org/facsimile/dbq#formdata-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+<http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://purl.org/facsimile/cfa#hasComponent> <http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q9-data-7f98b56f-6390-481d-b0ed-ec31064b7f1e> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Annotations
+# #
+# #################################################################
+# 
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "Interferes with lifting and carrying in an occupational setting."^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "Worsening stiffness in the mornings. Has to stretch to loosen up. Interferes with exercise lifting carrying."^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "714.2"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "Lumbosacral strain"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "pain the the lumbar paraspinals"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "Vet strained back while hiking with heavy gear moving equipment. Later developed osteoarthritis of the lumbar spine. "^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "Lumbar osteoarthritis 704.5 2014"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+<http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7f98b56f-6390-481d-b0ed-ec31064b7f1e> <http://www.w3.org/2000/01/rdf-schema#label> "1990"^^<http://www.w3.org/2001/XMLSchema#string> .
+# 
+# Generated by the OWL API (version 4.0.1) http://owlapi.sourceforge.net
