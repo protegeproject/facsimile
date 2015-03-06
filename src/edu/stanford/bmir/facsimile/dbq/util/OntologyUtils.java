@@ -98,8 +98,7 @@ public class OntologyUtils {
 	 * @param obj	OWL object
 	 * @return String with given object rendered in Manchester syntax 
 	 */
-	@SuppressWarnings("unused")
-	private String getManchesterRendering(OWLObject obj) {
+	public String getManchesterRendering(OWLObject obj) {
 		if(sf == null) sf = new SimpleShortFormProvider();
 		
 		StringWriter wr = new StringWriter();
@@ -181,6 +180,35 @@ public class OntologyUtils {
 
 	
 	/**
+	 * Load DBQ ontology
+	 * @param filePath	File path
+	 * @return OWL ontology
+	 */
+	public static OWLOntology loadDBQOntology(String filePath) {
+		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/datamodel.owl")));
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://who.int/icf"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/icf_simplified_2013.11.22.owl")));
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/cfa"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/ides_cfa.owl")));
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/dbq"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/ides_dbq.owl")));
+		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/criteria"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/criteria.owl")));
+		
+		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
+		config = config.addIgnoredImport(IRI.create("http://purl.org/facsimile/mos"));
+		
+		File ontFile = new File(filePath);
+		System.out.print("Loading ontology: " + ontFile.getAbsolutePath() + "... ");
+		OWLOntology ont = null;
+		try {
+			ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile), config);
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+		}
+		System.out.println("done");
+		return ont;
+	}
+	
+	
+	/**
 	 * main
 	 * @param args	arguments: 
 	 * 	arg[0]: ontology file path
@@ -190,26 +218,15 @@ public class OntologyUtils {
 	 */
 	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException {
 		String outputPath = args[1];
-		
-		OWLOntologyManager man = OWLManager.createOWLOntologyManager();
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/datamodel"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/datamodel.owl")));
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://who.int/icf"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/icf_simplified_2013.11.22.owl")));
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/cfa"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/ides_cfa.owl")));
-		man.getIRIMappers().add(new SimpleIRIMapper(IRI.create("http://purl.org/facsimile/criteria"), IRI.create("file:/Users/rgoncalves/Documents/workspace/facsimile/ontology/criteria.owl")));
-		
-		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
-		config = config.addIgnoredImport(IRI.create("http://purl.org/facsimile/mos"));
-		
-		File ontFile = new File(args[0]);
-		System.out.print("Loading ontology: " + ontFile.getAbsolutePath() + "... ");
-		OWLOntology ont = man.loadOntologyFromOntologyDocument(new FileDocumentSource(ontFile), config);
-		System.out.println("done");
+		OWLOntology ont = loadDBQOntology(args[0]);
 		
 		System.out.println("Creating union ontology... ");
 		OntologyUtils util = new OntologyUtils(ont, "http://purl.org/facsimile/main");
 		OWLOntology union = util.getUnionOntology(RootOntology.EMPTY_ONT);
+		
 		System.out.print("done\nSaving ontology... ");
 		union.saveOntology(IRI.create("file:" + outputPath));
+		
 		System.out.println("done");
 	}
 }

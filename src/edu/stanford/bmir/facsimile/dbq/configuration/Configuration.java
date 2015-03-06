@@ -317,7 +317,23 @@ public class Configuration {
 			ql.setType(FormElementListType.REPEATED);
 			ql.setRepetitions(reps);
 		}
+		ql.setDepth(getDepth(questionListNode));
 		elementLists.add(ql);
+	}
+	
+	
+	/**
+	 * Get depth of a node w.r.t. the root node
+	 * @param node	Node to check depth of
+	 * @return Depth of given node
+	 */
+	private int getDepth(Node node) {
+		int depth = 0;
+		while(node.getParentNode() != null) {
+			depth++;
+			node = node.getParentNode();
+		}
+		return depth;
 	}
 	
 	

@@ -3,7 +3,6 @@ package edu.stanford.bmir.facsimile.dbq.form.elements;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLEntity;
@@ -22,7 +21,7 @@ public class FormElement implements Serializable {
 	private List<IRI> children, parents;
 	private boolean required;
 	private FormElementList formElementList;
-	private Set<FormElementList> formElementLists;
+	private List<FormElementList> formElementLists;
 	private IRI parent;
 	
 	
@@ -240,20 +239,20 @@ public class FormElement implements Serializable {
 	
 	
 	/**
-	 * Set all surrounding form element lists
-	 * @param formElementLists	Set of form element lists
+	 * List all surrounding form element lists
+	 * @param formElementLists	List of form element lists
 	 */
-	public void setFormElementLists(Set<FormElementList> formElementLists) {
+	public void setFormElementLists(List<FormElementList> formElementLists) {
 		if(this.formElementLists == null) this.formElementLists = formElementLists;
 		else this.formElementLists.addAll(formElementLists);
 	}
 	
 	
 	/**
-	 * Get the set of all form element lists this form element appears in
-	 * @return Set of form element lists this element appears in
+	 * Get the list of all form element lists this form element appears in
+	 * @return List of form element lists this element appears in
 	 */
-	public Set<FormElementList> getFormElementLists() {
+	public List<FormElementList> getFormElementLists() {
 		return formElementLists;
 	}
 	

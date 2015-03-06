@@ -241,7 +241,7 @@ public class QuestionParser {
 	 */
 	private void setQuestionList(FormElement element) {
 		List<FormElementList> qls = conf.getQuestionLists();
-		Set<FormElementList> lists = new HashSet<FormElementList>();
+		List<FormElementList> lists = new ArrayList<FormElementList>();
 		for(FormElementList ql : qls)
 			if(ql.contains(element.getIRI()))
 				lists.add(ql);

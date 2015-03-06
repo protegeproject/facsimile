@@ -10,7 +10,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
@@ -284,7 +283,7 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private String getParentQuestionList(FormElement element) {
 		String name = "";
-		Set<FormElementList> lists = element.getFormElementLists();
+		List<FormElementList> lists = element.getFormElementLists();
 		FormElementList mostSpecific = element.getFormElementList(), secMostSpecific = null;
 		int min = mostSpecific.size();
 		for(FormElementList l : lists)
@@ -474,7 +473,9 @@ public class FormInputHandler extends HttpServlet {
 	 */
 	private void addObjPropAssertAxiom(OWLOntology ont, IRI propIri, OWLNamedIndividual ind1, OWLNamedIndividual ind2) {
 		OWLDataFactory df = ont.getOWLOntologyManager().getOWLDataFactory();
-		addAxiom(ont, df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(propIri), ind1, ind2));
+		OWLAxiom axiom = df.getOWLObjectPropertyAssertionAxiom(df.getOWLObjectProperty(propIri), ind1, ind2);
+		if(!ont.containsAxiom(axiom))
+			addAxiom(ont, axiom);
 	}
 	
 	

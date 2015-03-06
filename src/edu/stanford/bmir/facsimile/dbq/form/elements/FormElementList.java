@@ -12,7 +12,7 @@ import org.semanticweb.owlapi.model.IRI;
 public class FormElementList {
 	private List<IRI> formElements;
 	private FormElementListType type;
-	private int repeat;
+	private int repeat, depth;
 	private String id;
 	
 	
@@ -48,6 +48,15 @@ public class FormElementList {
 		
 	
 	/**
+	 * Get the depth of this list in the XML form configuration
+	 * @return Depth of this list
+	 */
+	public int getDepth() {
+		return depth;
+	}
+	
+	
+	/**
 	 * Get the type of form element list
 	 * @return Type of form element list
 	 */
@@ -80,6 +89,15 @@ public class FormElementList {
 	 */
 	public void setType(FormElementListType type) {
 		this.type = type;
+	}
+	
+	
+	/**
+	 * Set the depth of this node in the XML configuration
+	 * @param depth	integer representing node depth
+	 */
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 	
 	
