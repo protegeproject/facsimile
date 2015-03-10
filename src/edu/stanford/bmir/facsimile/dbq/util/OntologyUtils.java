@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.OWLXMLDocumentFormat;
+import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
 import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.manchestersyntax.renderer.ManchesterOWLSyntaxObjectRenderer;
 import org.semanticweb.owlapi.model.IRI;
@@ -203,6 +206,7 @@ public class OntologyUtils {
 		} catch (OWLOntologyCreationException e) {
 			e.printStackTrace();
 		}
+		
 		System.out.println("done");
 		return ont;
 	}
@@ -225,7 +229,10 @@ public class OntologyUtils {
 		OWLOntology union = util.getUnionOntology(RootOntology.EMPTY_ONT);
 		
 		System.out.print("done\nSaving ontology... ");
-		union.saveOntology(IRI.create("file:" + outputPath));
+		
+		RDFXMLDocumentFormat format = new RDFXMLDocumentFormat();
+		format.setPrefix("dbq", "http://purl.org/facsimile/dbq");
+		union.saveOntology(format, IRI.create("file:" + outputPath));
 		
 		System.out.println("done");
 	}
