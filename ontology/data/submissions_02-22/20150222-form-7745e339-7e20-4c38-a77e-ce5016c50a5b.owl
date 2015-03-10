@@ -1,16 +1,27 @@
 <?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cfa "http://purl.org/facsimile/cfa#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY datamodel "http://purl.org/facsimile/datamodel#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
 <rdf:RDF xmlns="http://purl.org/facsimile/VA_Form_21-0960M-14_20150222_7745e339-7e20-4c38-a77e-ce5016c50a5b#"
      xml:base="http://purl.org/facsimile/VA_Form_21-0960M-14_20150222_7745e339-7e20-4c38-a77e-ce5016c50a5b"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:datamodel="http://purl.org/facsimile/datamodel#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:cfa="http://purl.org/facsimile/cfa#">
     <owl:Ontology rdf:about="http://purl.org/facsimile/VA_Form_21-0960M-14_20150222_7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">form data submitted on: 2015-02-22T20:15:39-08:00</rdfs:comment>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ontology created by facsimile-form-generator v1.0b</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">form data submitted on: 2015-02-22T20:15:39-08:00</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">ontology created by facsimile-form-generator v1.0b</rdfs:comment>
         <owl:imports rdf:resource="http://purl.org/facsimile/dbq"/>
     </owl:Ontology>
     
@@ -29,37 +40,37 @@
 
     <!-- http://purl.org/facsimile/cfa#hasComponent -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasComponent"/>
+    <owl:ObjectProperty rdf:about="&cfa;hasComponent"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasValue -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasValue"/>
+    <owl:ObjectProperty rdf:about="&cfa;hasValue"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#isAbout -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isAbout"/>
+    <owl:ObjectProperty rdf:about="&cfa;isAbout"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#isComponentOf -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isComponentOf"/>
+    <owl:ObjectProperty rdf:about="&cfa;isComponentOf"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#hasAnswer -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#hasAnswer"/>
+    <owl:ObjectProperty rdf:about="&datamodel;hasAnswer"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#isDerivedFrom -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
+    <owl:ObjectProperty rdf:about="&datamodel;isDerivedFrom"/>
     
 
 
@@ -76,43 +87,43 @@
 
     <!-- http://purl.org/facsimile/cfa#hasAddress -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasAddress"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasAddress"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasID -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasID"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasID"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasMedicalLicenseNumber -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasMedicalLicenseNumber"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasPatientName -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPatientName"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasPatientName"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasPhoneNumber -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPhoneNumber"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasPhoneNumber"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#hasPhysicianName -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPhysicianName"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasPhysicianName"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#dateSigned -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/datamodel#dateSigned"/>
+    <owl:DatatypeProperty rdf:about="&datamodel;dateSigned"/>
     
 
 
@@ -129,43 +140,37 @@
 
     <!-- http://purl.org/facsimile/cfa#DataElementValue -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#DataElementValue"/>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#AnnotatedData -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#AnnotatedData"/>
+    <owl:Class rdf:about="&cfa;DataElementValue"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#Certification -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Certification"/>
+    <owl:Class rdf:about="&datamodel;Certification"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#EvaluatorInformation -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#EvaluatorInformation"/>
+    <owl:Class rdf:about="&datamodel;EvaluatorInformation"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#FormData -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#FormData"/>
+    <owl:Class rdf:about="&datamodel;FormData"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#Observation -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Observation"/>
+    <owl:Class rdf:about="&datamodel;Observation"/>
     
 
 
     <!-- http://purl.org/facsimile/datamodel#SubjectInformation -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#SubjectInformation"/>
+    <owl:Class rdf:about="&datamodel;SubjectInformation"/>
     
 
 
@@ -182,205 +187,205 @@
 
     <!-- http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment"/>
+    <owl:NamedIndividual rdf:about="&cfa;ContributingFactorsOfBackImpairment"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine"/>
+    <owl:NamedIndividual rdf:about="&cfa;DiagnosisRelatedToThoracolumbarSpine"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour"/>
+    <owl:NamedIndividual rdf:about="&cfa;GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse"/>
+    <owl:NamedIndividual rdf:about="&cfa;ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
+    <owl:NamedIndividual rdf:about="&cfa;ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction"/>
+    <owl:NamedIndividual rdf:about="&cfa;ImpairmentOfThoracolumbarSpineFunction"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
+    <owl:NamedIndividual rdf:about="&cfa;LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#No -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#No"/>
+    <owl:NamedIndividual rdf:about="&cfa;No"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
+    <owl:NamedIndividual rdf:about="&cfa;No_objective_evidence_of_painful_motion"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual"/>
+    <owl:NamedIndividual rdf:about="&cfa;ReasonAbnormalROMIsNormalForIndividual"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#ThoracolumbarCondition -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
+    <owl:NamedIndividual rdf:about="&cfa;ThoracolumbarCondition"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#Yes -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#Yes"/>
+    <owl:NamedIndividual rdf:about="&cfa;Yes"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#all_normal -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#all_normal"/>
+    <owl:NamedIndividual rdf:about="&cfa;all_normal"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#degree_30plus -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_30plus"/>
+    <owl:NamedIndividual rdf:about="&cfa;degree_30plus"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#degree_90plus -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#degree_90plus"/>
+    <owl:NamedIndividual rdf:about="&cfa;degree_90plus"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#negative -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#negative"/>
+    <owl:NamedIndividual rdf:about="&cfa;negative"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_extension_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_extension_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_extension_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_extension_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_extension_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_extension_post_test"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_flexion_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_flexion_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_flexion_post_test"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_flexion_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_flexion_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_flexion_post_test"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_rotation_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_rotation_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_left_lateral_rotation_post_test"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_flexion_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_flexion_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_flexion_post_test"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_rotation_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_rotation_painful_initial"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test"/>
+    <owl:NamedIndividual rdf:about="&cfa;trunk_right_lateral_rotation_post_test"/>
     
 
 
@@ -393,8 +398,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q10-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#all_normal"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;all_normal"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q10"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -410,7 +415,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q10_5"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -421,7 +426,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q10_5-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -435,8 +440,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q11_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#negative"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;negative"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q11_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -452,8 +457,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q11_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#negative"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;negative"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q11_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q11-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -469,8 +474,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q12A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q12A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_12-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -486,7 +491,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12C-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -497,7 +502,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q12C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -511,7 +516,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q12D_3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -522,7 +527,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q12D_3_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -536,8 +541,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q13-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q13"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_13-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -553,7 +558,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q13_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q13-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -564,7 +569,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q13_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -578,8 +583,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q14A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q14A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -595,8 +600,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q14B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q14B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_14-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -612,8 +617,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -629,7 +634,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -640,7 +645,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_1f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -654,7 +659,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -665,7 +670,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_2f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -679,7 +684,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -690,7 +695,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_3f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -704,7 +709,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_4-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -715,7 +720,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_4f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -729,7 +734,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -740,7 +745,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_5f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -754,7 +759,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -765,7 +770,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6f-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -779,7 +784,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q15A_1_6-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -790,7 +795,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15A_1_6t-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -804,7 +809,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15B"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_15-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -815,7 +820,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q15B-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -829,8 +834,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q16-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q16"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_16-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -846,8 +851,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q17A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q17A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -863,8 +868,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q17B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q17B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_17-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -880,7 +885,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q17B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -891,7 +896,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q17B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -905,8 +910,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -922,8 +927,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -939,7 +944,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -950,7 +955,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -964,8 +969,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18C"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_18-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -981,7 +986,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q18C-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -992,7 +997,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q18C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1006,8 +1011,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q19-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q19"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_19-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1023,7 +1028,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q19_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q19-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1034,7 +1039,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q19_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1048,9 +1053,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ThoracolumbarCondition"/>
+        <cfa:hasValue rdf:resource="&cfa;Yes"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1066,7 +1071,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1077,7 +1082,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">Thoracic strain</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1085,7 +1091,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1096,7 +1102,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1104,7 +1110,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1115,7 +1121,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1129,7 +1135,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1140,7 +1146,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">789.9</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1148,7 +1155,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1159,7 +1166,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1167,7 +1174,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1178,7 +1185,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1192,7 +1199,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1203,7 +1210,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">2/23/78</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1211,7 +1219,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1222,7 +1230,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1230,7 +1238,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q1B-rep-3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1241,7 +1249,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-3-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1255,8 +1263,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#DiagnosisRelatedToThoracolumbarSpine"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;DiagnosisRelatedToThoracolumbarSpine"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1C"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1267,7 +1275,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1281,8 +1289,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ThoracolumbarCondition"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ThoracolumbarCondition"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1293,7 +1301,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">Vet strained back carrying heavy pack and equipment during training in 1978</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1307,7 +1316,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q20-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q20"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_20-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1318,7 +1327,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q20-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1332,9 +1341,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q3_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
+        <cfa:hasValue rdf:resource="&cfa;Yes"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q3_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_3-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1350,8 +1359,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ImpairmentOfThoracolumbarSpineCauseByFlareUps"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q3_1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1362,7 +1371,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">Reports pain worse when driving
+</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1376,9 +1387,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_90plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_flexion_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_90plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_flexion_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1394,9 +1405,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_flexion_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No_objective_evidence_of_painful_motion"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_flexion_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4A_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4A-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1412,9 +1423,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_extension_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1430,9 +1441,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_extension_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4B_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1448,9 +1459,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_flexion_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1466,9 +1477,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No_objective_evidence_of_painful_motion"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_flexion_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4C_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4C-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1484,9 +1495,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_flexion_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1502,9 +1513,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No_objective_evidence_of_painful_motion"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_flexion_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4D_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4D-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1520,9 +1531,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_rotation_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1538,9 +1549,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No_objective_evidence_of_painful_motion"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_rotation_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4E_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4E-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1556,9 +1567,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_rotation_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1574,9 +1585,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No_objective_evidence_of_painful_motion"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No_objective_evidence_of_painful_motion"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_rotation_painful_initial"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4F_2"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q4F-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1592,8 +1603,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4G-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ReasonAbnormalROMIsNormalForIndividual"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ReasonAbnormalROMIsNormalForIndividual"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4G"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_4-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1604,7 +1615,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q4G-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1618,8 +1629,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;Yes"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1635,7 +1646,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q5A-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1646,7 +1657,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1660,9 +1671,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_90plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_flexion_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_90plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_flexion_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1678,9 +1689,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_extension_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_extension_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5C"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1696,9 +1707,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5D-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_flexion_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5D"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1714,9 +1725,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5E-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_flexion_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5E"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1732,9 +1743,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5F-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_right_lateral_rotation_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5F"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1750,9 +1761,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q5G-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#degree_30plus"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;degree_30plus"/>
+        <cfa:isAbout rdf:resource="&cfa;trunk_left_lateral_rotation_post_test"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q5G"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_5-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1768,9 +1779,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1786,9 +1797,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ImpairmentOfThoracolumbarSpineFunction"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1804,8 +1815,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6C-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;ContributingFactorsOfBackImpairment"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6C"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_6-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1816,7 +1827,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6C-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1830,7 +1841,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q6C-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1841,7 +1852,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q6C_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1855,9 +1866,9 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
+        <cfa:hasValue rdf:resource="&cfa;Yes"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q7A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1873,8 +1884,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:isAbout rdf:resource="http://purl.org/facsimile/cfa#LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:isAbout rdf:resource="&cfa;LocalizedTendernessOrPainToPalpationForJointsAndOrSoftTissueOfTheBack"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7A-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1885,7 +1896,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
+        <rdfs:label rdf:datatype="&xsd;string">pain to the paraspinal muscles of the thoracic spine</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1899,8 +1911,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#Yes"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;Yes"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q7B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_7-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1916,8 +1928,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;GuardingOrMuscleSpasmWOAbnormalGaitOrSpinalContour"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q7B_1"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q7B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1933,8 +1945,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8A-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#all_normal"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;all_normal"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8A"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1950,8 +1962,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#No"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;No"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_8-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -1967,7 +1979,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -1978,7 +1990,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -1992,7 +2004,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -2003,7 +2015,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -2017,7 +2029,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2"/>
         <cfa:hasValue rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q8B_2-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -2028,7 +2040,7 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q8B_2_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdf:type rdf:resource="&cfa;DataElementValue"/>
     </owl:NamedIndividual>
     
 
@@ -2042,8 +2054,8 @@
     <!-- http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q9-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <cfa:hasValue rdf:resource="http://purl.org/facsimile/cfa#all_normal"/>
+        <rdf:type rdf:resource="&datamodel;Observation"/>
+        <cfa:hasValue rdf:resource="&cfa;all_normal"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#DBQ_Back_Q9"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_9-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -2071,8 +2083,8 @@
     <!-- http://purl.org/facsimile/dbq#certification-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#certification-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#Certification"/>
-        <datamodel:dateSigned rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-02-22T20:15:39-08:00</datamodel:dateSigned>
+        <rdf:type rdf:resource="&datamodel;Certification"/>
+        <datamodel:dateSigned rdf:datatype="&xsd;dateTime">2015-02-22T20:15:39-08:00</datamodel:dateSigned>
         <cfa:hasComponent rdf:resource="http://purl.org/facsimile/dbq#physician-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
     
@@ -2081,7 +2093,7 @@
     <!-- http://purl.org/facsimile/dbq#formdata-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#formdata-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#FormData"/>
+        <rdf:type rdf:resource="&datamodel;FormData"/>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#VAForm_21-0960M-14_BackConditionsDBQ"/>
         <cfa:hasComponent rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_1-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:hasComponent rdf:resource="http://purl.org/facsimile/dbq#qlist-dbq_21-0960M-14_section_10-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
@@ -2109,9 +2121,9 @@
     <!-- http://purl.org/facsimile/dbq#patient-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#patient-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#SubjectInformation"/>
-        <cfa:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">052330023</cfa:hasID>
-        <cfa:hasPatientName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Joe Shmo</cfa:hasPatientName>
+        <rdf:type rdf:resource="&datamodel;SubjectInformation"/>
+        <cfa:hasID rdf:datatype="&xsd;string">052330023</cfa:hasID>
+        <cfa:hasPatientName rdf:datatype="&xsd;string">Joe Shmo</cfa:hasPatientName>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#PatientInformationDataElement"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#formdata-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -2121,11 +2133,11 @@
     <!-- http://purl.org/facsimile/dbq#physician-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/dbq#physician-obs-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdf:type rdf:resource="http://purl.org/facsimile/datamodel#EvaluatorInformation"/>
-        <cfa:hasAddress rdf:datatype="http://www.w3.org/2001/XMLSchema#string">222 main st</cfa:hasAddress>
-        <cfa:hasPhoneNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">830-405-2333</cfa:hasPhoneNumber>
-        <cfa:hasMedicalLicenseNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CA 89432</cfa:hasMedicalLicenseNumber>
-        <cfa:hasPhysicianName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dr. Smith</cfa:hasPhysicianName>
+        <rdf:type rdf:resource="&datamodel;EvaluatorInformation"/>
+        <cfa:hasAddress rdf:datatype="&xsd;string">222 main st</cfa:hasAddress>
+        <cfa:hasPhoneNumber rdf:datatype="&xsd;string">830-405-2333</cfa:hasPhoneNumber>
+        <cfa:hasMedicalLicenseNumber rdf:datatype="&xsd;string">CA 89432</cfa:hasMedicalLicenseNumber>
+        <cfa:hasPhysicianName rdf:datatype="&xsd;string">Dr. Smith</cfa:hasPhysicianName>
         <datamodel:isDerivedFrom rdf:resource="http://purl.org/facsimile/dbq#PhysicianInformationDataElement"/>
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#formdata-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
@@ -2664,39 +2676,9 @@
         <cfa:isComponentOf rdf:resource="http://purl.org/facsimile/dbq#formdata-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
         <cfa:hasComponent rdf:resource="http://purl.org/facsimile/dbq#qlist-DBQ_Back_Q9-data-7745e339-7e20-4c38-a77e-ce5016c50a5b"/>
     </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_3-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2/23/78</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_1-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thoracic strain</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q1B_2-rep-1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">789.9</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q3_2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reports pain worse when driving
-</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q2-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vet strained back carrying heavy pack and equipment during training in 1978</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/facsimile/dbq#DBQ_Back_Q7A_1-val-7745e339-7e20-4c38-a77e-ce5016c50a5b">
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pain to the paraspinal muscles of the thoracic spine</rdfs:label>
-    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.0.1) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 
