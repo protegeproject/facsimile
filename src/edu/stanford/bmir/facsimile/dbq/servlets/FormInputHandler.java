@@ -208,11 +208,11 @@ public class FormInputHandler extends HttpServlet {
 			if(type.equals(SectionType.QUESTION_SECTION))
 				addQuestionSectionAxioms(ont, man, df, answerInd, dataInd, qFocus, qIri);
 			else { 
-				if(type.equals(SectionType.PATIENT_SECTION)) {
+				if(type.equals(SectionType.SUBJECT_SECTION)) {
 					addAxiom(ont, df.getOWLClassAssertionAxiom(df.getOWLClass(conf.getInitialSectionClassBinding()), answerInd));	// { answer : PatientInformation }
 					if(initInfo == null) initInfo = answerInd;
 				}
-				else if(type.equals(SectionType.PHYSICIAN_SECTION)) {
+				else if(type.equals(SectionType.EVALUATOR_SECTION)) {
 					addPhysicianSectionAxioms(ont, man, df, answerInd);
 					if(finalInfo == null) finalInfo = answerInd;
 				}
@@ -424,9 +424,9 @@ public class FormInputHandler extends HttpServlet {
 			}
 			else {
 				if(answerInd == null)
-					if(type.equals(SectionType.PATIENT_SECTION))
+					if(type.equals(SectionType.SUBJECT_SECTION))
 						answerInd = initInfo;
-					else if(type.equals(SectionType.PHYSICIAN_SECTION))
+					else if(type.equals(SectionType.EVALUATOR_SECTION))
 						answerInd = finalInfo;
 				addAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(IRI.create(qIri)), answerInd, aIri));	// { answer hasX val } where X is given by the question IRI
 			}
@@ -445,9 +445,9 @@ public class FormInputHandler extends HttpServlet {
 		String output = qIri;
 		if(type.equals(SectionType.QUESTION_SECTION))
 			output = qIri + mid;
-		else if(type.equals(SectionType.PATIENT_SECTION))
+		else if(type.equals(SectionType.SUBJECT_SECTION))
 			output = nmsp + "patient" + mid;
-		else if(type.equals(SectionType.PHYSICIAN_SECTION))
+		else if(type.equals(SectionType.EVALUATOR_SECTION))
 			output = nmsp + "physician" + mid;
 		return output;
 	}

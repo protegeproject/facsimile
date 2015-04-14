@@ -99,7 +99,7 @@ public class Section implements Serializable {
 	 * Section types
 	 */
 	public enum SectionType {
-		QUESTION_SECTION, PATIENT_SECTION, PHYSICIAN_SECTION;
+		QUESTION_SECTION, SUBJECT_SECTION, EVALUATOR_SECTION;
 		
 		public String toString() {
 			return name().charAt(0) + name().substring(1).toLowerCase();
