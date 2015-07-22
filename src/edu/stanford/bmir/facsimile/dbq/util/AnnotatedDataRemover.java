@@ -58,7 +58,7 @@ public class AnnotatedDataRemover {
 	
 	/**
 	 * Shift object property assertions from instances of AnnotatedData to instances
-	 * @return
+	 * @return Ontology
 	 */
 	public OWLOntology shift() {
 		Set<OWLAxiom> toRemove = new HashSet<OWLAxiom>(), toAdd = new HashSet<OWLAxiom>();

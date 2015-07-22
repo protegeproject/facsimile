@@ -15,7 +15,7 @@
 			<binding id="data_element">http://purl.org/facsimile/example#DataValue</binding>
 			<binding id="form_data">http://purl.org/facsimile/example#FormData</binding>
 			<binding id="question_section">http://purl.org/facsimile/example#Observation</binding>
-			<binding id="patient_section">http://purl.org/facsimile/example#UserInformation</binding>
+			<binding id="subject_section">http://purl.org/facsimile/example#UserInformation</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- global property bindings -->
@@ -44,7 +44,7 @@
 	</bindings>
 	<form>
 		<iri>http://purl.org/facsimile/example#user_info_form</iri>
-		<section numbered="false" type="patient_section">
+		<section numbered="false" type="subject_section">
 			<iri>http://purl.org/facsimile/example#user_details</iri>
 			<infoList>
 				<info type="text" property="http://purl.org/facsimile/example#hasUserName" required="true"/>

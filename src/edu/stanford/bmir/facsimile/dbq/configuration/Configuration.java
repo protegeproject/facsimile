@@ -86,7 +86,8 @@ public class Configuration {
 	public void parseConfigurationFile() {
 		doc = loadConfigurationFile(file);
 		if(doc == null) throw new ConfigurationFileParseException("An error occurred parsing the given XML configuration file. "
-				+ "Ensure that the file is well-formed and valid with respect to the given DTD");
+				+ "Ensure that the file is well-formed and valid with respect to the given DTD. Also ensure that the ontology paths"
+				+ "are all absolute, as well as the path to the DTD file.");
 		formIri = getFormIRI();
 		sections = getSections();
 		gatherInputInformation();
@@ -703,7 +704,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getInitialSectionClassBinding() {
-		return getBinding("patient_section", "class");
+		return getBinding("subject_section", "class");
 	}
 	
 	
@@ -712,7 +713,7 @@ public class Configuration {
 	 * @return OWL class IRI
 	 */
 	public IRI getFinalSectionClassBinding() {
-		return getBinding("physician_section", "class");
+		return getBinding("evaluator_section", "class");
 	}
 	
 	

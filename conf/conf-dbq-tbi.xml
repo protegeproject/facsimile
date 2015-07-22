@@ -16,38 +16,31 @@
 	<bindings>
 		<!-- question and section classes bindings -->
 		<classBindings>
-			<binding id="data">http://purl.org/facsimile/datamodel#AnnotatedData</binding>
-			<binding id="data_element">http://purl.org/facsimile/cfa#DataElementValue</binding>
+			<binding id="data">http://purl.org/facsimile/datamodel#Data</binding>
+			<binding id="data_element">http://purl.org/facsimile/datamodel#DataElementValue</binding>
 			<binding id="form_data">http://purl.org/facsimile/datamodel#FormData</binding>
 			<binding id="question_section">http://purl.org/facsimile/datamodel#Observation</binding>
-			<binding id="patient_section">http://purl.org/facsimile/datamodel#PatientInformation</binding>
-			<binding id="physician_section">http://purl.org/facsimile/datamodel#PhysicianInformation</binding>
-			<binding id="physician_cert">http://purl.org/facsimile/datamodel#PhysicianCertification</binding>
+			<binding id="subject_section">http://purl.org/facsimile/datamodel#SubjectInformation</binding>
+			<binding id="evaluator_section">http://purl.org/facsimile/datamodel#EvaluatorInformation</binding>
+			<binding id="physician_cert">http://purl.org/facsimile/datamodel#Certification</binding>
 		</classBindings>		
 		<propertyBindings>
 			<!-- global property bindings -->
-			<binding id="has_component">http://purl.org/facsimile/cfa#hasComponent</binding>
+			<binding id="has_component">http://purl.org/facsimile/datamodel#hasComponent</binding>
+			<binding id="is_component_of">http://purl.org/facsimile/datamodel#isComponentOf</binding>
 			<binding id="has_form">http://purl.org/facsimile/datamodel#isDerivedFrom</binding>
 			<binding id="has_date">http://purl.org/facsimile/datamodel#dateSigned</binding>
 			<!-- question property bindings -->
 			<binding id="questiontext">http://purl.org/facsimile/cfa#hasText</binding>
-			<binding id="questionfocus">http://purl.org/facsimile/cfa#hasFocus</binding>
-			<binding id="questionvalue">http://purl.org/facsimile/cfa#hasValue</binding>
+			<binding id="questionfocus">http://purl.org/facsimile/datamodel#hasFocus</binding>
+			<binding id="questionvalue">http://purl.org/facsimile/datamodel#hasValue</binding>
 			<binding id="questiondatavalue">http://purl.org/facsimile/cfa#hasDataValue</binding>
 			<!-- section property bindings -->
 			<binding id="sectionheading">http://purl.org/facsimile/cfa#hasHeading</binding>
 			<binding id="sectiontext">http://purl.org/facsimile/cfa#hasText</binding>
 			<!-- output bindings -->
-			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isResponseTo</binding>
 			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
-			<!-- patient info bindings -->
-			<binding id="pat_name">http://purl.org/facsimile/cfa#hasPatientName</binding>
-			<binding id="pat_id">http://purl.org/facsimile/cfa#hasID</binding>
-			<!-- physician info bindings -->
-			<binding id="phy_name">http://purl.org/facsimile/cfa#hasPhysicianName</binding>
-			<binding id="phy_address">http://purl.org/facsimile/cfa#hasAddress</binding>
-			<binding id="phy_phone">http://purl.org/facsimile/cfa#hasPhoneNumber</binding>
-			<binding id="phy_license">http://purl.org/facsimile/cfa#hasMedicalLicenseNumber</binding>
+			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isAnswerTo</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/cfa#StringValue</binding>
@@ -58,11 +51,11 @@
 	</bindings>
 	<form>
 		<iri>http://purl.org/facsimile/dbq#VAForm_9-15-11_TBI_Initial</iri>
-		<section numbered="false" type="patient_section">
+		<section numbered="false" type="subject_section">
 			<iri>http://purl.org/facsimile/dbq#PatientInformationDataElement</iri>
 			<infoList type="inline">
-				<info type="text" property="pat_name" required="true"/>
-				<info type="text" property="pat_id"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasPatientName" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasID"/>
 			</infoList>
 		</section>
 		<section>
@@ -238,13 +231,13 @@
 				</question>
 			</questionList>
 		</section>
-		<section numbered="false" type="physician_section">
+		<section numbered="false" type="evaluator_section">
 			<iri>http://purl.org/facsimile/dbq#PhysicianInformationDataElement</iri>
 			<infoList>
-				<info type="text" property="phy_name"/>
-				<info type="text" property="phy_address"/>
-				<info type="text" property="phy_phone"/>
-				<info type="text" property="phy_license"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasPhysicianName"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasAddress"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasPhoneNumber"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasMedicalLicenseNumber"/>
 			</infoList>
 		</section>
 	</form>
