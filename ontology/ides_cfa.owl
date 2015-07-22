@@ -83,7 +83,6 @@
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#contextOfROMMeasurement">
         <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementContext"/>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
     </owl:ObjectProperty>
     
@@ -92,14 +91,6 @@
     <!-- http://purl.org/facsimile/cfa#hasAnatomicalLocation -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasAnatomicalLocationCode -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode">
-        <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
-    </owl:ObjectProperty>
     
 
 
@@ -123,27 +114,9 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#hasComponent -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasComponent">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasPart"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#hasContributingFactor -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasContributingFactor"/>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasFocus -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasFocus">
-        <rdfs:comment rdf:datatype="&xsd;string">equivalentTo hl7:hasFocus</rdfs:comment>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-    </owl:ObjectProperty>
     
 
 
@@ -153,11 +126,6 @@
         <rdfs:comment rdf:datatype="&xsd;string">This does not work on instances of observations right now, because the property assertions are still on instances of AnnotatedData, which are now get this hasFocus assertion instead.</rdfs:comment>
         <rdfs:comment rdf:datatype="&xsd;string">When an instance o:Observation has an object property assertion: isDerivedFrom some q:Question, and q has an object property assertion: isAbout some X, then: o hasFocus some X</rdfs:comment>
         <rdfs:comment rdf:datatype="&xsd;string">equivalent to hl7:hasFocus</rdfs:comment>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/datamodel#Observation"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#isAbout"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -167,23 +135,6 @@
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasLaterality">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasMember -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasMember">
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasPart"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasPart -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#hasPart">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <owl:inverseOf rdf:resource="http://purl.org/facsimile/cfa#isPartOf"/>
     </owl:ObjectProperty>
     
 
@@ -214,38 +165,12 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#isAbout -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isAbout">
-        <rdfs:comment rdf:datatype="&xsd;string">focus is the &quot;subject&quot; of an Observation. It can be an external code or an DataElementDescription</rdfs:comment>
-        <rdfs:range>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#isCodeFor -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isCodeFor">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#InternallyCodedValue"/>
         <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#SubjectMatterOntology"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#isComponentOf -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isComponentOf">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <owl:inverseOf rdf:resource="http://purl.org/facsimile/cfa#hasComponent"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#isPartOf"/>
     </owl:ObjectProperty>
     
 
@@ -266,28 +191,9 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#isMemberOf -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isMemberOf">
-        <owl:inverseOf rdf:resource="http://purl.org/facsimile/cfa#hasMember"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#isPartOf"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#isPartOf -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isPartOf">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#isRelatedTo -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isRelatedTo">
-        <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#isRelatedTo"/>
     
 
 
@@ -322,32 +228,7 @@
     <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#motionDirectionOfROMMeasurement">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotionDirection"/>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#motionOfROMMeasurement -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#motionOfROMMeasurement">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#terminology -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/cfa#terminology">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/datamodel#isDerivedFrom -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/datamodel#isDerivedFrom"/>
     
 
 
@@ -437,8 +318,6 @@
     <!-- http://purl.org/facsimile/cfa#flexion -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#flexion">
-        <rdfs:label rdf:datatype="&xsd;string">flexion (forward flexion)</rdfs:label>
-        <rdfs:comment rdf:datatype="&xsd;string">Also called &quot;forward flexion&quot;.</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#rangeOfMotion"/>
     </owl:DatatypeProperty>
     
@@ -462,26 +341,10 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#hasAddress -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasAddress">
-        <rdfs:comment rdf:datatype="&xsd;string">Address</rdfs:comment>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#hasCategory -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasCategory">
         <rdfs:comment rdf:datatype="&xsd;string">A category of observations (such as Diagnosis). </rdfs:comment>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasDOB -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasDOB">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     </owl:DatatypeProperty>
     
 
@@ -504,67 +367,10 @@
     
 
 
-    <!-- http://purl.org/facsimile/cfa#hasFaxNumber -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasFaxNumber"/>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#hasHeading -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasHeading">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasID -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasID">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">hasID</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasMedicalLicenseNumber -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasMedicalLicenseNumber">
-        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasName -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasName">
-        <rdfs:label xml:lang="en">hasName</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasPatientName -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPatientName">
-        <rdfs:comment rdf:datatype="&xsd;string">Patient Name</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasName"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasPhoneNumber -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPhoneNumber">
-        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#hasPhysicianName -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#hasPhysicianName">
-        <rdfs:comment rdf:datatype="&xsd;string">Physician Name</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#hasName"/>
     </owl:DatatypeProperty>
     
 
@@ -661,7 +467,6 @@ It is not to be confused with the ICF qualifier for impairment, which can take m
     <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#romEndpoint">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:comment rdf:datatype="&xsd;string">Represents the degrees where a given range of motion (ROM) ends.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#rangeOfMotion"/>
         <rdfs:range rdf:resource="&xsd;integer"/>
     </owl:DatatypeProperty>
@@ -674,18 +479,8 @@ It is not to be confused with the ICF qualifier for impairment, which can take m
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:comment rdf:datatype="&xsd;string">Represents the degrees where there is objctive evidence that a given range of motion (ROM) begins to be painful.
 Assert -1 as the value of this property if there is &quot;No objective evidence of painful motion&quot;.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/facsimile/cfa#rangeOfMotion"/>
         <rdfs:range rdf:resource="&xsd;integer"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#validTime -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/facsimile/cfa#validTime">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -767,7 +562,7 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#AssessedAttribute -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#AssessedAttribute">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:Class>
     
 
@@ -775,7 +570,13 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#Assessment -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#Assessment">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ObservableEntity"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#AssessedAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -817,7 +618,7 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
                 </owl:oneOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -833,23 +634,27 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#BooleanValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#BooleanValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
 
-    <!-- http://purl.org/facsimile/cfa#CodedValue -->
+    <!-- http://purl.org/facsimile/cfa#CFADataElementDescriptorValue -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#CodedValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#CFADataElementValue -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#CommunicationValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#CommunicationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -857,7 +662,7 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#ConsciousnessValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ConsciousnessValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -868,39 +673,16 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Assessment"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
-                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#contributing_factor"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAssessmentTarget"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment rdf:datatype="&xsd;string">A RelationalFinding is a finding for which there exists a relationship (hasRelation) to another finding (hasTarget)</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#DataElementDescription -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#DataElementDescription"/>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#DataElementDescriptorValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#DataElementDescriptorValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ValueSet"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#DataElementValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#DataElementValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ValueSet"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#contributing_factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -908,7 +690,7 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#DataQualifier -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#DataQualifier">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:Class>
     
 
@@ -916,7 +698,7 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     <!-- http://purl.org/facsimile/cfa#DeepTendonReflexValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#DeepTendonReflexValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -957,42 +739,9 @@ Assert -1 as the value of this property if there is &quot;No objective evidence 
     
 
 
-    <!-- http://purl.org/facsimile/cfa#ExternallyCodedValue -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#ExternallyCodedValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasExternalCode"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#descriptionOfExternalCode"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#terminology"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Terminology"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#Finding -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#Finding">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:allValuesFrom rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Finding is a condition of a subject that stands by itself (as opposed to an ObservableEntity that must be completed by some value). The data record for a finding is an observation that whose focus is the finding, and the value is either Boolean or Presence/Absence
 
 associatedText: &quot;&quot;
@@ -1025,6 +774,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#FourIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;4&quot; in a {0, 1, 2, 3, 4} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1098,20 +848,14 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
                 <owl:someValuesFrom rdf:resource="&xsd;boolean"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#causedBy"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1129,27 +873,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICFMappedFunctionalAssessment -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ICFMappedFunctionalAssessment">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isRelatedTo"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&icf;ICFCategory"/>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#terminology"/>
-                                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Assessment"/>
     </owl:Class>
     
@@ -1158,32 +881,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICFMappedFunctionalFinding -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ICFMappedFunctionalFinding">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#FunctionalFinding"/>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&icf;ICFCategory"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isRelatedTo"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#terminology"/>
-                                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
-                            </owl:Restriction>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
     </owl:Class>
     
 
@@ -1191,7 +889,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction">
-        <rdfs:label rdf:datatype="&xsd;string">Impairment of thoracolumbar spine function</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
     </owl:Class>
     
@@ -1200,16 +897,14 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#IntegerValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#IntegerValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
 
     <!-- http://purl.org/facsimile/cfa#InternallyCodedValue -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#InternallyCodedValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CodedValue"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#InternallyCodedValue"/>
     
 
 
@@ -1320,7 +1015,13 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#Measurement -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#Measurement">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ObservableEntity"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#AssessedAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1344,7 +1045,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#MotorActivityValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#MotorActivityValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1352,7 +1053,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#MuscleStrengthValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#MuscleStrengthValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1360,7 +1061,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#NerveRootInvolvement -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#NerveRootInvolvement">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1368,7 +1069,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#NeurobehavioralEffectsValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#NeurobehavioralEffectsValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1384,7 +1085,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ObservableEntity -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ObservableEntity">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ObsoleteTerm"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
@@ -1396,10 +1097,17 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     
 
 
+    <!-- http://purl.org/facsimile/cfa#ObsoleteTerm -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#ObsoleteTerm"/>
+    
+
+
     <!-- http://purl.org/facsimile/cfa#OneIn2ValueSeverityScaleValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#OneIn2ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#TwoValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;1&quot; in a {0, 1} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1408,6 +1116,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#OneIn4ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FourValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;1&quot; in a {0, 1, 2, 3} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1416,6 +1125,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#OneIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;1&quot; in a {0, 1, 2, 3, 4} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1423,7 +1133,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#OrientationValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#OrientationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1460,17 +1170,17 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#PhysicalQuantity -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#PhysicalQuantity">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasUnit"/>
                 <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#UnitOfMeasurement"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1517,54 +1227,10 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     
 
 
-    <!-- http://purl.org/facsimile/cfa#RangeOfMotionMeasurement -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#Measurement"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#contextOfROMMeasurement"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementContext"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#motionOfROMMeasurement"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasValue"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Angle"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#Laterality"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#motionDirectionOfROMMeasurement"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotionDirection"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
-                <owl:someValuesFrom rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMeasuredAttribute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/facsimile/cfa#RelationValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#RelationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1572,7 +1238,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#SensationValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SensationValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1622,7 +1288,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#SeverityScaleValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SeverityScaleValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1630,7 +1296,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#SocialInteractionValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SocialInteractionValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1654,7 +1320,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#StraightLegRaiseValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#StraightLegRaiseValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1662,7 +1328,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#StringValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#StringValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1676,7 +1342,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#SubjectiveSymptomsValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#SubjectiveSymptomsValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1684,7 +1350,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#TendonReflexValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#TendonReflexValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
     
 
@@ -1692,7 +1358,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#Terminology -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#Terminology">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:Class>
     
 
@@ -1734,6 +1400,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ThreeIn4ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FourValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;3&quot; in a {0, 1, 2, 3} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1742,6 +1409,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ThreeIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;3&quot; in a {0, 1, 2, 3, 4} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1800,6 +1468,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#TwoIn4ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FourValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;2&quot; in a {0, 1, 2, 3} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1808,6 +1477,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#TwoIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;2&quot; in a {0, 1, 2, 3, 4} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1822,9 +1492,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <!-- http://purl.org/facsimile/cfa#UnitOfMeasurement -->
 
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#UnitOfMeasurement">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#ValueSet"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#UnitOfMeasurement"/>
     
 
 
@@ -1840,14 +1508,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#UseFrequencyValue -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#UseFrequencyValue">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#DataElementValue"/>
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#CFADataElementValue"/>
     </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#ValueSet -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#ValueSet"/>
     
 
 
@@ -1871,6 +1533,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ZeroIn2ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#TwoValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;0&quot; in a {0, 1} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1879,6 +1542,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ZeroIn4ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FourValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;0&quot; in a {0, 1, 2, 3} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1887,6 +1551,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#ZeroIn5ValueSeverityScaleValue">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#FiveValueSeverityScaleValue"/>
+        <rdfs:comment>A scale value that corresponds to a &quot;0&quot; in a {0, 1, 2, 3, 4} scale.</rdfs:comment>
     </owl:Class>
     
 
@@ -1895,22 +1560,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#constant_pain_left_lower_extremity">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityOfPainSensationCausedByRadiculopathy"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&icf;s750"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAssessedFunction"/>
@@ -1937,6 +1586,22 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&icf;s750"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
+                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#measuredOrAssessedAttribute"/>
                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#severity"/>
             </owl:Restriction>
@@ -1949,22 +1614,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:Class rdf:about="http://purl.org/facsimile/cfa#constant_pain_right_lower_extremity">
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityOfPainSensationCausedByRadiculopathy"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&icf;s750"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
@@ -1995,14 +1644,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/facsimile/cfa#intermittent_pain_left_lower_extremity -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/cfa#intermittent_pain_left_lower_extremity">
-        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityOfPainSensationCausedByRadiculopathy"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
@@ -2012,13 +1653,21 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                             <rdf:Description rdf:about="&icf;s750"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
+                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/facsimile/cfa#intermittent_pain_left_lower_extremity -->
+
+    <owl:Class rdf:about="http://purl.org/facsimile/cfa#intermittent_pain_left_lower_extremity">
+        <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/cfa#SeverityOfPainSensationCausedByRadiculopathy"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAssessedFunction"/>
@@ -2037,6 +1686,22 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
                                 <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#intermittently"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&icf;s750"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
+                                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -2319,12 +1984,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     
 
 
-    <!-- http://purl.org/facsimile/datamodel#Observation -->
-
-    <owl:Class rdf:about="http://purl.org/facsimile/datamodel#Observation"/>
-    
-
-
     <!-- http://who.int/icf#b -->
 
     <rdf:Description rdf:about="&icf;b">
@@ -2376,12 +2035,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#AbnormalSpinalContour">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="&icf;s120"/>
-            </owl:Restriction>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -2454,12 +2107,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#CranialNerveDysfunction">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="&icf;s1106"/>
-            </owl:Restriction>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -2566,12 +2213,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                <owl:someValuesFrom rdf:resource="&icf;s6305"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isRelatedTo"/>
                 <owl:someValuesFrom rdf:resource="&icf;b640"/>
             </owl:Restriction>
@@ -2602,7 +2243,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#FlareUpsOfThoracolumbarSpine">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
         <rdfs:comment rdf:datatype="&xsd;string">Flare-up of thoracolumbar spine</rdfs:comment>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#CodeForThoracolumbarSpine"/>
     </owl:NamedIndividual>
     
 
@@ -2695,10 +2335,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b110 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b110">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Consciousness functions</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b110</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2706,10 +2344,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b114 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b114">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Orientation functions</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b114</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2717,10 +2353,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b1141 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b1141">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Orientation to place</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b1141</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2728,10 +2362,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b140 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b140">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Attention functions</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b140</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2739,10 +2371,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b1400 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b1400">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Sustaining attention</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b1400</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2750,10 +2380,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b144 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b144">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Memory functions</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b144</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2761,10 +2389,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b1641 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b1641">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Organization and planning</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b1641</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2772,11 +2398,9 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b7101 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b7101">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Mobility of several joints</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b7101</hasExternalCode>
         <rdfs:comment rdf:datatype="&xsd;string">b7101. Mobility of several joints</rdfs:comment>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2784,10 +2408,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_b750-b789 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_b750-b789">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Movement functions</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b750-b789</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2795,10 +2417,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d3 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d3">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">CHAPTER 3 COMMUNICATION</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d3</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2806,11 +2426,9 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d430 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d430">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Lifting and carrying objects</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d430</hasExternalCode>
         <rdfs:comment rdf:datatype="&xsd;string">d430. Lifting and carrying objects</rdfs:comment>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2818,11 +2436,9 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d4300 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d4300">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Lifting</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d4300</hasExternalCode>
         <rdfs:comment rdf:datatype="&xsd;string">d4300. Lifting</rdfs:comment>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2830,7 +2446,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d4301_d4302_d4303_d4304 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d4301_d4302_d4303_d4304">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <rdfs:comment rdf:datatype="&xsd;string">Carrying (including different ICF codes)</rdfs:comment>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Carrying in the arms</descriptionOfExternalCode>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Carrying in the hands</descriptionOfExternalCode>
@@ -2840,7 +2455,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <hasExternalCode rdf:datatype="&xsd;string">d4302</hasExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d4303</hasExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d4304</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2848,11 +2462,9 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d4305 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d4305">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Putting down objects</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d4305</hasExternalCode>
         <rdfs:comment rdf:datatype="&xsd;string">d4305. Putting down objects</rdfs:comment>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2860,10 +2472,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#ICF_d7 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ICF_d7">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">CHAPTER 7 INTERPERSONAL INTERACTIONS AND RELATIONSHIPS</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">d7</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -2872,6 +2482,12 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ImpairmentInROMOfThoracolumbarSpineAfterRepetitiveUse">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
+            </owl:Restriction>
+        </rdf:type>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
@@ -2885,15 +2501,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
-            </owl:Restriction>
-        </rdf:type>
         <rdfs:label rdf:datatype="&xsd;string">Impairment in range of motion of thoracolumbar spine after repetitive use</rdfs:label>
         <isImpaired rdf:datatype="&xsd;boolean">true</isImpaired>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#CodeForThoracolumbarSpine"/>
         <isRelatedTo rdf:resource="http://purl.org/facsimile/cfa#SNOMED_RangeOfMotion_36456400"/>
         <hasQualifier rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
     </owl:NamedIndividual>
@@ -2924,7 +2533,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
             </owl:Restriction>
         </rdf:type>
         <isImpaired rdf:datatype="&xsd;boolean">true</isImpaired>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#CodeForThoracolumbarSpine"/>
         <causedBy rdf:resource="http://purl.org/facsimile/cfa#FlareUpsOfThoracolumbarSpine"/>
         <isRelatedTo rdf:resource="http://purl.org/facsimile/cfa#ICF_b7101"/>
     </owl:NamedIndividual>
@@ -2935,12 +2543,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalFinding"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
-            </owl:Restriction>
-        </rdf:type>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
@@ -2958,6 +2560,12 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isImpaired"/>
                 <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b7101"/>
             </owl:Restriction>
         </rdf:type>
         <isImpaired rdf:datatype="&xsd;boolean">true</isImpaired>
@@ -3330,47 +2938,34 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_Apathy -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Apathy">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#SNOMED-CT"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Apathy"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_Dysesthesia -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Dysesthesia">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Dysesthesia"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_FeelingIrritable -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_FeelingIrritable">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <hasExternalCode rdf:datatype="&xsd;string">55929007</hasExternalCode>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">feeling irritable (finding)</descriptionOfExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#SNOMED-CT"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_LackOfEmpathy -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_LackOfEmpathy">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#SNOMED-CT"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_LackOfEmpathy"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_LackOfMotivation -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_LackOfMotivation">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#SNOMED-CT"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_LackOfMotivation"/>
     
 
 
@@ -3382,36 +2977,28 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_Paresthesia -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Paresthesia">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_Paresthesia"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_PhysicalAggression -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_PhysicalAggression">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_PhysicalAggression"/>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_RangeOfMotion_36456400 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_RangeOfMotion_36456400">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <hasExternalCode rdf:datatype="&xsd;string">36456400</hasExternalCode>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Range of joint movement</descriptionOfExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#SNOMED-CT"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://purl.org/facsimile/cfa#SNOMED_VerbalAggression -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_VerbalAggression">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#SNOMED_VerbalAggression"/>
     
 
 
@@ -3511,7 +3098,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#ThoracolumbarCondition">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#CodeForThoracolumbarSpine"/>
     </owl:NamedIndividual>
     
 
@@ -3711,7 +3297,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#back_disability_contributing_factor_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#back_disability_contributing_factor_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -3865,7 +3451,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#deep_tendon_reflex_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#deep_tendon_reflex_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -4309,8 +3895,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#flexion">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ROMMeasurementMotion"/>
-        <rdfs:label rdf:datatype="&xsd;string">flexion (forward flexion)</rdfs:label>
-        <rdfs:comment rdf:datatype="&xsd;string">Also called &quot;forward flexion&quot;.</rdfs:comment>
     </owl:NamedIndividual>
     
 
@@ -4416,10 +4000,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#icf_b1645 -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#icf_b1645">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
         <descriptionOfExternalCode rdf:datatype="&xsd;string">Judgement</descriptionOfExternalCode>
         <hasExternalCode rdf:datatype="&xsd;string">b1645</hasExternalCode>
-        <terminology rdf:resource="http://purl.org/facsimile/cfa#ICF"/>
     </owl:NamedIndividual>
     
 
@@ -4628,11 +4210,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_extension_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_extension_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4641,11 +4220,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_extension_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_extension_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4654,11 +4230,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_extension_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_extension_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4675,11 +4248,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_flexion_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_flexion_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4688,11 +4258,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_flexion_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_flexion_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4701,11 +4268,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#left_knee_flexion_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#left_knee_flexion_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#left"/>
     </owl:NamedIndividual>
     
@@ -4984,7 +4548,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#muscle_strength_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#muscle_strength_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -5129,6 +4693,12 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#numbness_caused_by_radiculopathy_right_lower_extremity">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isExactMatchOf"/>
+                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -5151,12 +4721,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isExactMatchOf"/>
-                <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
-            </owl:Restriction>
         </rdf:type>
         <isExactMatchOf rdf:resource="http://purl.org/facsimile/cfa#SNOMED_Numbness"/>
     </owl:NamedIndividual>
@@ -5488,11 +5052,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_extension_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_extension_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5501,11 +5062,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_extension_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_extension_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5514,11 +5072,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_extension_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_extension_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#extension"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5535,11 +5090,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_flexion_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_flexion_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5548,11 +5100,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_flexion_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_flexion_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5561,11 +5110,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#right_knee_flexion_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#right_knee_flexion_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#knee"/>
         <hasLaterality rdf:resource="http://purl.org/facsimile/cfa#right"/>
     </owl:NamedIndividual>
     
@@ -5632,12 +5178,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
         <rdf:type>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b265"/>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -5657,6 +5197,12 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b265"/>
+            </owl:Restriction>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5665,12 +5211,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_thigh_or_knee_right">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                <owl:someValuesFrom rdf:resource="&icf;b265"/>
-            </owl:Restriction>
-        </rdf:type>
         <rdf:type>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocation"/>
@@ -5690,6 +5230,12 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
+                <owl:someValuesFrom rdf:resource="&icf;b265"/>
             </owl:Restriction>
         </rdf:type>
     </owl:NamedIndividual>
@@ -5745,7 +5291,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#sensation_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#sensation_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -5840,30 +5386,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#straight_left_leg_raising">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LegStructure"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#left"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                        <owl:someValuesFrom rdf:resource="&icf;b7100"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5871,7 +5393,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#straight_leg_raise_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#straight_leg_raise_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -5880,30 +5402,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#straight_right_leg_raising">
         <rdf:type rdf:resource="http://purl.org/facsimile/cfa#FunctionalAssessment"/>
-        <rdf:type>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasAnatomicalLocationCode"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#LegStructure"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#hasLaterality"/>
-                                        <owl:hasValue rdf:resource="http://purl.org/facsimile/cfa#right"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/facsimile/cfa#isSpecializationOf"/>
-                        <owl:someValuesFrom rdf:resource="&icf;b7100"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -5951,11 +5449,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_extension_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#hyperextension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -5963,11 +5458,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_extension_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#hyperextension"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -5975,11 +5467,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_extension_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_extension_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#hyperextension"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -5987,11 +5476,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -5999,11 +5485,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -6011,11 +5494,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_flexion_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_flexion_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
     </owl:NamedIndividual>
     
 
@@ -6023,11 +5503,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6036,11 +5513,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6049,11 +5523,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_flexion_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6062,11 +5533,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6075,11 +5543,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6088,11 +5553,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_left_lateral_rotation_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_left"/>
     </owl:NamedIndividual>
     
@@ -6101,11 +5563,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6114,11 +5573,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6127,11 +5583,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_flexion_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#lateral_flexion"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6140,11 +5593,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6153,11 +5603,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_painful_initial">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_start_of_pain"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#initial"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6166,11 +5613,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#trunk_right_lateral_rotation_post_test">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#RangeOfMotionMeasurement"/>
         <contextOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#after_repetitive_use"/>
         <measuredOrAssessedAttribute rdf:resource="http://purl.org/facsimile/cfa#angle_at_end"/>
-        <hasAnatomicalLocationCode rdf:resource="http://purl.org/facsimile/cfa#lumbar-thoracic_spine"/>
-        <motionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#rotation"/>
         <motionDirectionOfROMMeasurement rdf:resource="http://purl.org/facsimile/cfa#to_the_right"/>
     </owl:NamedIndividual>
     
@@ -6210,9 +5654,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
 
     <!-- http://purl.org/facsimile/cfa#upper_anterior_thigh -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#upper_anterior_thigh">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#ExternallyCodedValue"/>
-    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#upper_anterior_thigh"/>
     
 
 
@@ -6227,7 +5669,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- http://purl.org/facsimile/cfa#use_frequency_value_set -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/cfa#use_frequency_value_set">
-        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#DataElementDescriptorValue"/>
+        <rdf:type rdf:resource="http://purl.org/facsimile/cfa#CFADataElementDescriptorValue"/>
     </owl:NamedIndividual>
     
 
@@ -6379,6 +5821,27 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ImpairmentOfThoracolumbarSpineFunction">
+        <rdfs:label rdf:datatype="&xsd;string">Impairment of thoracolumbar spine function</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ContributingFactorsOfBackImpairment">
+        <rdfs:comment rdf:datatype="&xsd;string">A RelationalFinding is a finding for which there exists a relationship (hasRelation) to another finding (hasTarget)</rdfs:comment>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://purl.org/facsimile/cfa#flexion">
+        <rdfs:label rdf:datatype="&xsd;string">flexion (forward flexion)</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string">Also called &quot;forward flexion&quot;.</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -6387,10 +5850,10 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_left_upper_anterior_thigh"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_thigh_or_knee_left"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_thigh_or_knee_right"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_upper_anterior_thigh_right"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#OneIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThreeIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#TwoIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ZeroIn4ValueSeverityScaleValue"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -6419,10 +5882,10 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#OneIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ThreeIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#TwoIn4ValueSeverityScaleValue"/>
-            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#ZeroIn4ValueSeverityScaleValue"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_left_upper_anterior_thigh"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_thigh_or_knee_left"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_thigh_or_knee_right"/>
+            <rdf:Description rdf:about="http://purl.org/facsimile/cfa#sensation_to_light_touch_upper_anterior_thigh_right"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -6495,6 +5958,49 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -6512,7 +6018,7 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
                         <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                     </rdf:Description>
                 </rdf:first>
@@ -6521,14 +6027,6 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -6539,8 +6037,8 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                                 <rdf:first>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
                                         <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
                                         <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                                     </rdf:Description>
                                 </rdf:first>
@@ -6550,86 +6048,25 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                                 <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                             </rdf:Description>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#once"/>
+                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
                         <swrl:argument1 rdf:resource="urn:swrl#ded"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
         </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#occasionally"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
-                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#DataElementDescription"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
         <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -6657,10 +6094,36 @@ We need a relationship to a diagnosis or medical condition</rdfs:comment>
                 </rdf:rest>
             </rdf:Description>
         </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://purl.org/facsimile/cfa#frequently"/>
+                                <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/cfa#hasQualifier"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/cfa#Finding"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ded"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 

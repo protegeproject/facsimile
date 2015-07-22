@@ -30,7 +30,7 @@
      xmlns:v="urn:swrl#"
      xmlns:cfa="http://purl.org/facsimile/cfa#">
     <owl:Ontology rdf:about="http://purl.org/facsimile/criteria">
-        <owl:imports rdf:resource="http://purl.org/facsimile/datamodel"/>
+        <owl:imports rdf:resource="http://purl.org/facsimile/cfa_datamodel"/>
         <owl:imports rdf:resource="http://purl.org/facsimile/mos"/>
     </owl:Ontology>
     
@@ -39,7 +39,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Object Properties
+    // Data properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -47,15 +47,9 @@
     
 
 
-    <!-- http://purl.org/facsimile/criteria#satisfiedByObservation -->
+    <!-- http://purl.org/facsimile/cfa#hasID -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-    
-
-
-    <!-- http://purl.org/facsimile/criteria#satisfiesCriteria -->
-
-    <owl:ObjectProperty rdf:about="http://purl.org/facsimile/criteria#satisfiesCriteria"/>
+    <owl:DatatypeProperty rdf:about="&cfa;hasID"/>
     
 
 
@@ -87,7 +81,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&datamodel;Observation"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -114,11 +108,11 @@
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;DataElementDescription"/>
+                                    <rdf:Description rdf:about="&datamodel;DataElementDescription"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="&cfa;hasQualifier"/>
                                         <owl:hasValue rdf:resource="&cfa;able_to"/>
@@ -147,11 +141,11 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&datamodel;Observation"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:hasValue rdf:resource="&cfa;Yes"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:hasValue rdf:resource="&cfa;AbnormalGait"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -207,7 +201,7 @@ We use SWRL rules to classify the cases as members of this class.
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&datamodel;Observation"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -234,11 +228,11 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;DataElementDescription"/>
+                                    <rdf:Description rdf:about="&datamodel;DataElementDescription"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="&cfa;hasQualifier"/>
                                         <owl:hasValue rdf:resource="&cfa;frequently"/>
@@ -262,54 +256,6 @@ We use SWRL rules to classify the cases as members of this class.
     <!-- http://purl.org/facsimile/criteria#KneeFlexionTo90Expression -->
 
     <owl:Class rdf:about="http://purl.org/facsimile/criteria#KneeFlexionTo90Expression">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&datamodel;Observation"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;Angle"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                                        <owl:someValuesFrom>
-                                            <rdfs:Datatype>
-                                                <owl:onDatatype rdf:resource="&xsd;integer"/>
-                                                <owl:withRestrictions rdf:parseType="Collection">
-                                                    <rdf:Description>
-                                                        <xsd:minExclusive rdf:datatype="&xsd;integer">90</xsd:minExclusive>
-                                                    </rdf:Description>
-                                                </owl:withRestrictions>
-                                            </rdfs:Datatype>
-                                        </owl:someValuesFrom>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;RangeOfMotionMeasurement"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="&cfa;hasAnatomicalLocationCode"/>
-                                        <owl:hasValue rdf:resource="&cfa;knee"/>
-                                    </owl:Restriction>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="&cfa;motionOfROMMeasurement"/>
-                                        <owl:hasValue rdf:resource="&cfa;flexion"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.org/facsimile/criteria#CriteriaExpression"/>
     </owl:Class>
     
@@ -371,7 +317,7 @@ We use SWRL rules to classify the cases as members of this class.
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&datamodel;Observation"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -398,7 +344,7 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -425,11 +371,11 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;DataElementDescription"/>
+                                    <rdf:Description rdf:about="&datamodel;DataElementDescription"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="&cfa;hasQualifier"/>
                                         <owl:hasValue rdf:resource="&cfa;able_to"/>
@@ -443,11 +389,11 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;DataElementDescription"/>
+                                    <rdf:Description rdf:about="&datamodel;DataElementDescription"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="&cfa;hasQualifier"/>
                                         <owl:hasValue rdf:resource="&cfa;able_to"/>
@@ -476,7 +422,7 @@ We use SWRL rules to classify the cases as members of this class.
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&datamodel;Observation"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -503,7 +449,7 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;hasValue"/>
+                        <owl:onProperty rdf:resource="&datamodel;hasValue"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
@@ -530,11 +476,11 @@ We use SWRL rules to classify the cases as members of this class.
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&cfa;isAbout"/>
+                        <owl:onProperty rdf:resource="&datamodel;isAbout"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&cfa;DataElementDescription"/>
+                                    <rdf:Description rdf:about="&datamodel;DataElementDescription"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="&cfa;hasQualifier"/>
                                         <owl:hasValue rdf:resource="&cfa;able_to"/>
@@ -580,79 +526,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#AbnormalGaitWithKneeFlexionTo90Degrees">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#AR40_501Criteria"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&datamodel;Observation"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="&cfa;Angle"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="&cfa;hasDataValue"/>
-                                                <owl:someValuesFrom>
-                                                    <rdfs:Datatype>
-                                                        <owl:onDatatype rdf:resource="&xsd;int"/>
-                                                        <owl:withRestrictions rdf:parseType="Collection">
-                                                            <rdf:Description>
-                                                                <xsd:minExclusive rdf:datatype="&xsd;integer">90</xsd:minExclusive>
-                                                            </rdf:Description>
-                                                        </owl:withRestrictions>
-                                                    </rdfs:Datatype>
-                                                </owl:someValuesFrom>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&cfa;isAbout"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="&cfa;RangeOfMotionMeasurement"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="&cfa;hasAnatomicalLocationCode"/>
-                                                <owl:hasValue rdf:resource="&cfa;knee"/>
-                                            </owl:Restriction>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="&cfa;motionOfROMMeasurement"/>
-                                                <owl:hasValue rdf:resource="&cfa;flexion"/>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&datamodel;Observation"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&cfa;hasValue"/>
-                                <owl:hasValue rdf:resource="&cfa;Yes"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&cfa;isAbout"/>
-                                <owl:hasValue rdf:resource="&cfa;AbnormalGait"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -661,7 +534,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#KneeFlexionTo90Degree">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#LowerExtremityCriteria"/>
-        <satisfiedByObservation rdf:resource="http://purl.org/facsimile/criteria#KneeFlexionTo90Expression"/>
     </owl:NamedIndividual>
     
 
@@ -676,7 +548,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#MOSCriteria1">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#MOSBookCriteria"/>
-        <satisfiedByObservation rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria1Expression"/>
     </owl:NamedIndividual>
     
 
@@ -691,7 +562,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#MOSCriteria2">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#MOSBookCriteria"/>
-        <satisfiedByObservation rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria1Expression"/>
     </owl:NamedIndividual>
     
 
@@ -700,7 +570,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#MOSCriteria3">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#MOSBookCriteria"/>
-        <satisfiedByObservation rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria3Expression"/>
     </owl:NamedIndividual>
     
 
@@ -715,7 +584,6 @@ We use SWRL rules to classify the cases as members of this class.
 
     <owl:NamedIndividual rdf:about="http://purl.org/facsimile/criteria#ObservationAbnormalGait">
         <rdf:type rdf:resource="http://purl.org/facsimile/criteria#FindingCriteria"/>
-        <satisfiedByObservation rdf:resource="http://purl.org/facsimile/criteria#AbnormalGaitExpression"/>
     </owl:NamedIndividual>
     
 
@@ -731,9 +599,6 @@ We use SWRL rules to classify the cases as members of this class.
     <rdf:Description rdf:about="&v;case">
         <rdf:type rdf:resource="&swrl;Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&v;crit">
-        <rdf:type rdf:resource="&swrl;Variable"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&v;obs">
         <rdf:type rdf:resource="&swrl;Variable"/>
     </rdf:Description>
@@ -742,350 +607,29 @@ We use SWRL rules to classify the cases as members of this class.
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiesCriteria"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                        <swrl:argument2 rdf:resource="&v;crit"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Case"/>
+                        <swrl:argument1 rdf:resource="&v;case"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                                <swrl:classPredicate rdf:resource="&datamodel;Observation"/>
-                                                <swrl:argument1 rdf:resource="&v;obs"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                <rdf:first>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria3Expression"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-                                                        <swrl:argument1 rdf:resource="&v;crit"/>
-                                                    </rdf:Description>
-                                                </rdf:first>
-                                                <rdf:rest>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                        <rdf:rest>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                                                <rdf:first>
-                                                                    <rdf:Description>
-                                                                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                        <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                        <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                                                    </rdf:Description>
-                                                                </rdf:first>
-                                                            </rdf:Description>
-                                                        </rdf:rest>
-                                                        <rdf:first>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                <swrl:argument1 rdf:resource="&v;case"/>
-                                                            </rdf:Description>
-                                                        </rdf:first>
-                                                    </rdf:Description>
-                                                </rdf:rest>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                    </rdf:Description>
-                                </rdf:rest>
                                 <rdf:first>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria3ExpressionA"/>
+                                        <swrl:classPredicate rdf:resource="&datamodel;Observation"/>
                                         <swrl:argument1 rdf:resource="&v;obs"/>
                                     </rdf:Description>
                                 </rdf:first>
-                            </rdf:Description>
-                        </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Criteria"/>
-                                <swrl:argument1 rdf:resource="&v;crit"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Case"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                                <swrl:classPredicate rdf:resource="&datamodel;Observation"/>
-                                                <swrl:argument1 rdf:resource="&v;obs"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                <rdf:rest>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                        <rdf:rest>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                                                <rdf:first>
-                                                                    <rdf:Description>
-                                                                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                        <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                        <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                                                    </rdf:Description>
-                                                                </rdf:first>
-                                                            </rdf:Description>
-                                                        </rdf:rest>
-                                                        <rdf:first>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                <swrl:argument1 rdf:resource="&v;case"/>
-                                                            </rdf:Description>
-                                                        </rdf:first>
-                                                    </rdf:Description>
-                                                </rdf:rest>
-                                                <rdf:first>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria1Expression"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-                                                        <swrl:argument1 rdf:resource="&v;crit"/>
-                                                    </rdf:Description>
-                                                </rdf:first>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                    </rdf:Description>
-                                </rdf:rest>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#MOSCriteria1Expression"/>
-                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                            </rdf:Description>
-                        </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Criteria"/>
-                                <swrl:argument1 rdf:resource="&v;crit"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Case"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiesCriteria"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                        <swrl:argument2 rdf:resource="&v;crit"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Criteria"/>
-                                <swrl:argument1 rdf:resource="&v;crit"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                                <swrl:classPredicate rdf:resource="&datamodel;Observation"/>
-                                                <swrl:argument1 rdf:resource="&v;obs"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                <rdf:rest>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                        <rdf:first>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                <swrl:argument1 rdf:resource="&v;case"/>
-                                                            </rdf:Description>
-                                                        </rdf:first>
-                                                        <rdf:rest>
-                                                            <rdf:Description>
-                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                                                <rdf:first>
-                                                                    <rdf:Description>
-                                                                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                                                        <swrl:propertyPredicate rdf:resource="&cfa;hasID"/>
-                                                                        <swrl:argument2 rdf:resource="&v;ID"/>
-                                                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                                                    </rdf:Description>
-                                                                </rdf:first>
-                                                            </rdf:Description>
-                                                        </rdf:rest>
-                                                    </rdf:Description>
-                                                </rdf:rest>
-                                                <rdf:first>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                        <swrl:argument2 rdf:resource="http://purl.org/facsimile/criteria#KneeFlexionTo90Expression"/>
-                                                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiedByObservation"/>
-                                                        <swrl:argument1 rdf:resource="&v;crit"/>
-                                                    </rdf:Description>
-                                                </rdf:first>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                    </rdf:Description>
-                                </rdf:rest>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#KneeFlexionTo90Expression"/>
-                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                            </rdf:Description>
-                        </rdf:rest>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Case"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://purl.org/facsimile/criteria#satisfiesCriteria"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                        <swrl:argument2 rdf:resource="&v;crit"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#CaseThatSatisfiesKneeFlexionTo90Criterion"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#Case"/>
-                        <swrl:argument1 rdf:resource="&v;case"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;AtomList"/>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -1113,13 +657,6 @@ We use SWRL rules to classify the cases as members of this class.
                                         </rdf:first>
                                     </rdf:Description>
                                 </rdf:rest>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="&datamodel;Observation"/>
-                                        <swrl:argument1 rdf:resource="&v;obs"/>
-                                    </rdf:Description>
-                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
                         <rdf:first>
@@ -1133,10 +670,23 @@ We use SWRL rules to classify the cases as members of this class.
                 </rdf:rest>
             </rdf:Description>
         </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://purl.org/facsimile/criteria#CaseThatSatisfiesKneeFlexionTo90Criterion"/>
+                        <swrl:argument1 rdf:resource="&v;case"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 
