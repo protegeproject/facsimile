@@ -21,47 +21,29 @@
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="example" IRI="http://purl.org/facsimile/example#"/>
+    <Prefix name="datamodel" IRI="http://purl.org/facsimile/datamodel#"/>
+    <Import>http://purl.org/facsimile/datamodel</Import>
     <Declaration>
         <Class IRI="#AestheticsValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#AnnotatedData"/>
+        <Class IRI="#Answer"/>
     </Declaration>
     <Declaration>
         <Class IRI="#BooleanValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#DataElement"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#DataValue"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#EaseOfUseValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Form"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#FormData"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#FormElement"/>
+        <Class IRI="#FormGenerationTool"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ListValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Observation"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Question"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#SatisfactionValue"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Section"/>
     </Declaration>
     <Declaration>
         <Class IRI="#StringValue"/>
@@ -73,37 +55,16 @@
         <Class IRI="#UserInformation"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasAnswer"/>
+        <Class IRI="#UserInterface"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasComponent"/>
+        <Class IRI="#Weather"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasForm"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#hasValue"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#isComponentOf"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#isResponseTo"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#hasDataValue"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#hasHeading"/>
+        <ObjectProperty IRI="#hasCriteria"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#hasID"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#hasName"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#hasText"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#hasUserName"/>
@@ -119,6 +80,9 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#fairly_satisfied"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#form_generation_tool"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#hard"/>
@@ -146,9 +110,6 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#question_s1_q1_1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#question_s1_q1_2"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#question_s1_q2"/>
@@ -199,66 +160,64 @@
         <NamedIndividual IRI="#user_info_form"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#user_interface"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#very_easy"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#very_hard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#weather"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#AestheticsValue"/>
         <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#AnnotatedData"/>
-        <Class IRI="#DataElement"/>
+        <Class IRI="#Answer"/>
+        <Class abbreviatedIRI="datamodel:Data"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#BooleanValue"/>
-        <Class IRI="#DataValue"/>
+        <Class abbreviatedIRI="datamodel:DataElementValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#EaseOfUseValue"/>
         <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Form"/>
-        <Class IRI="#FormElement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#FormData"/>
-        <Class IRI="#DataElement"/>
+        <Class IRI="#FormGenerationTool"/>
+        <Class abbreviatedIRI="datamodel:DataElementDescription"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#ListValue"/>
-        <Class IRI="#DataValue"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Observation"/>
-        <Class IRI="#DataElement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Question"/>
-        <Class IRI="#FormElement"/>
+        <Class abbreviatedIRI="datamodel:DataElementValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SatisfactionValue"/>
         <Class IRI="#ListValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Section"/>
-        <Class IRI="#FormElement"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#StringValue"/>
-        <Class IRI="#DataValue"/>
+        <Class abbreviatedIRI="datamodel:DataElementValue"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#UserInfo"/>
-        <Class IRI="#FormElement"/>
+        <Class abbreviatedIRI="datamodel:Section"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#UserInformation"/>
-        <Class IRI="#DataElement"/>
+        <Class abbreviatedIRI="datamodel:Data"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserInterface"/>
+        <Class abbreviatedIRI="datamodel:DataElementDescription"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Weather"/>
+        <Class abbreviatedIRI="datamodel:DataElementDescription"/>
     </SubClassOf>
     <ClassAssertion>
         <Class IRI="#BooleanValue"/>
@@ -275,6 +234,10 @@
     <ClassAssertion>
         <Class IRI="#SatisfactionValue"/>
         <NamedIndividual IRI="#fairly_satisfied"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#FormGenerationTool"/>
+        <NamedIndividual IRI="#form_generation_tool"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#EaseOfUseValue"/>
@@ -305,78 +268,67 @@
         <NamedIndividual IRI="#pretty_ugly"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s1_q1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#BooleanValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s1_q1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s1_q1_1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#StringValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s1_q1_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
-        <NamedIndividual IRI="#question_s1_q1_2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
-            <Class IRI="#StringValue"/>
-        </ObjectSomeValuesFrom>
-        <NamedIndividual IRI="#question_s1_q1_2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s1_q2"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#BooleanValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s1_q2"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s1_q2_1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#BooleanValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s1_q2_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s1_q2_1_1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#StringValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s1_q2_1_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s2_q1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <ObjectOneOf>
                 <NamedIndividual IRI="#very_easy"/>
                 <NamedIndividual IRI="#hard"/>
@@ -388,23 +340,23 @@
         <NamedIndividual IRI="#question_s2_q1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s2_q1_1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#StringValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s2_q1_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s2_q2"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <ObjectOneOf>
                 <NamedIndividual IRI="#mildly_satisfied"/>
                 <NamedIndividual IRI="#satisfied"/>
@@ -415,23 +367,23 @@
         <NamedIndividual IRI="#question_s2_q2"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s2_q2_1"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <Class IRI="#BooleanValue"/>
         </ObjectSomeValuesFrom>
         <NamedIndividual IRI="#question_s2_q2_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Question"/>
+        <Class abbreviatedIRI="datamodel:Question"/>
         <NamedIndividual IRI="#question_s2_q3"/>
     </ClassAssertion>
     <ClassAssertion>
         <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasValue"/>
+            <ObjectProperty abbreviatedIRI="datamodel:hasValue"/>
             <ObjectOneOf>
                 <NamedIndividual IRI="#ok"/>
                 <NamedIndividual IRI="#pretty"/>
@@ -446,11 +398,11 @@
         <NamedIndividual IRI="#satisfied"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Section"/>
+        <Class abbreviatedIRI="datamodel:Section"/>
         <NamedIndividual IRI="#section_1"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Section"/>
+        <Class abbreviatedIRI="datamodel:Section"/>
         <NamedIndividual IRI="#section_2"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -470,8 +422,12 @@
         <NamedIndividual IRI="#user_details"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Form"/>
+        <Class abbreviatedIRI="datamodel:Form"/>
         <NamedIndividual IRI="#user_info_form"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#UserInterface"/>
+        <NamedIndividual IRI="#user_interface"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#EaseOfUseValue"/>
@@ -481,123 +437,132 @@
         <Class IRI="#EaseOfUseValue"/>
         <NamedIndividual IRI="#very_hard"/>
     </ClassAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q1"/>
-        <Literal datatypeIRI="&xsd;string">An example boolean-type question, where clicking &apos;Yes&apos; triggers subquestions</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q1_1"/>
-        <Literal datatypeIRI="&xsd;string">Un-numbered subquestion of type &apos;text&apos;</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q1_2"/>
-        <Literal datatypeIRI="&xsd;string">Un-numbered subquestion of type &apos;textarea&apos;</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
-        <NamedIndividual IRI="#question_s1_q2"/>
-        <Literal datatypeIRI="&xsd;string">Do you feel like answering the subquestion below?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+    <ClassAssertion>
+        <Class IRI="#Weather"/>
+        <NamedIndividual IRI="#weather"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s1_q2_1"/>
-        <Literal datatypeIRI="&xsd;string">Is the weather nice today?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#weather"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s1_q2_1_1"/>
-        <Literal datatypeIRI="&xsd;string">Precisely how nice is it, please describe:</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#weather"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s2_q1"/>
-        <Literal datatypeIRI="&xsd;string">In your opinion, how difficult is it to put together a configuration file and ontology for this tool?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#form_generation_tool"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s2_q1_1"/>
-        <Literal datatypeIRI="&xsd;string">If it was really that hard, how exactly did you get to this point? Please elaborate:</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#form_generation_tool"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s2_q2"/>
-        <Literal datatypeIRI="&xsd;string">How satisfied are you with the output of this form generator?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#user_interface"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
+        <NamedIndividual IRI="#question_s2_q2"/>
+        <NamedIndividual IRI="#form_generation_tool"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s2_q2_1"/>
-        <Literal datatypeIRI="&xsd;string">Are you sure about that answer?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasText"/>
+        <NamedIndividual IRI="#form_generation_tool"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+        <NamedIndividual IRI="#user_interface"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:isAbout"/>
         <NamedIndividual IRI="#question_s2_q3"/>
-        <Literal datatypeIRI="&xsd;string">How pretty would you say the user interface is?</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasHeading"/>
-        <NamedIndividual IRI="#section_1"/>
-        <Literal datatypeIRI="&xsd;string">First Section</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasHeading"/>
+        <NamedIndividual IRI="#user_interface"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="datamodel:hasFocus"/>
         <NamedIndividual IRI="#section_2"/>
-        <Literal datatypeIRI="&xsd;string">Second Section</Literal>
+        <NamedIndividual IRI="#weather"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s1_q1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">An example boolean-type question, where clicking &apos;Yes&apos; triggers subquestions</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
-        <DataProperty IRI="#hasHeading"/>
-        <NamedIndividual IRI="#user_details"/>
-        <Literal datatypeIRI="&xsd;string">User Information</Literal>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s1_q1_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Un-numbered subquestion of type &apos;text&apos;</Literal>
     </DataPropertyAssertion>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="#isResponseTo"/>
-        <ObjectProperty IRI="#hasAnswer"/>
-    </InverseObjectProperties>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="#hasComponent"/>
-        <ObjectProperty IRI="#isComponentOf"/>
-    </InverseObjectProperties>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="#hasForm"/>
-    </FunctionalObjectProperty>
-    <TransitiveObjectProperty>
-        <ObjectProperty IRI="#hasComponent"/>
-    </TransitiveObjectProperty>
-    <TransitiveObjectProperty>
-        <ObjectProperty IRI="#isComponentOf"/>
-    </TransitiveObjectProperty>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasForm"/>
-        <Class IRI="#Form"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasValue"/>
-        <Class IRI="#DataValue"/>
-    </ObjectPropertyRange>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s1_q2"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Do you feel like answering the subquestion below?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Is the weather nice today?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s1_q2_1_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Please describe the current weather</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s2_q1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">In your opinion, how difficult is it to put together a configuration file and ontology for this tool?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s2_q1_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">If it was really that hard, how exactly did you get to this point? Please elaborate:</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s2_q2"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">How satisfied are you with the output of this form generator?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s2_q2_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Are you sure about that answer?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasText"/>
+        <NamedIndividual IRI="#question_s2_q3"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">How pretty would you say the user interface is?</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasHeading"/>
+        <NamedIndividual IRI="#section_1"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">First Section</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasHeading"/>
+        <NamedIndividual IRI="#section_2"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">Second Section</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="datamodel:hasHeading"/>
+        <NamedIndividual IRI="#user_details"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">User details</Literal>
+    </DataPropertyAssertion>
     <SubDataPropertyOf>
         <DataProperty IRI="#hasUserName"/>
-        <DataProperty IRI="#hasName"/>
+        <DataProperty abbreviatedIRI="datamodel:hasName"/>
     </SubDataPropertyOf>
     <FunctionalDataProperty>
         <DataProperty IRI="#hasID"/>
     </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="#hasText"/>
-    </FunctionalDataProperty>
-    <DataPropertyRange>
-        <DataProperty IRI="#hasHeading"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#hasName"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#hasText"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#easy</IRI>
@@ -687,5 +652,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE configuration SYSTEM "conf.dtd">
+<!DOCTYPE configuration SYSTEM "/Users/rgoncalves/Documents/workspace/facsimile/conf/conf.dtd">
 <configuration>
 	<input>
 		<ontology>ontology/example.owl</ontology>
+		<imports>
+			<ontology iri="http://purl.org/facsimile/datamodel">/Users/rgoncalves/Documents/workspace/facsimile/ontology/datamodel.owl</ontology>
+		</imports>
 	</input>
 	<output>
 		<file title="Example Form"/>
@@ -11,29 +14,29 @@
 	<bindings>
 		<!-- question and section classes bindings -->
 		<classBindings>
-			<binding id="data">http://purl.org/facsimile/example#AnnotatedData</binding>
-			<binding id="data_element">http://purl.org/facsimile/example#DataValue</binding>
-			<binding id="form_data">http://purl.org/facsimile/example#FormData</binding>
-			<binding id="question_section">http://purl.org/facsimile/example#Observation</binding>
+			<binding id="data">http://purl.org/facsimile/datamodel#Data</binding>
+			<binding id="data_element">http://purl.org/facsimile/datamodel#DataElementValue</binding>
+			<binding id="form_data">http://purl.org/facsimile/datamodel#FormData</binding>
+			<binding id="question_section">http://purl.org/facsimile/example#Answer</binding>
 			<binding id="subject_section">http://purl.org/facsimile/example#UserInformation</binding>
-		</classBindings>		
+		</classBindings>
 		<propertyBindings>
 			<!-- global property bindings -->
-			<binding id="has_component">http://purl.org/facsimile/example#hasComponent</binding>
-			<binding id="is_component_of">http://purl.org/facsimile/example#isComponentOf</binding>
-			<binding id="has_form">http://purl.org/facsimile/example#isDerivedFrom</binding>
-			<binding id="has_date">http://purl.org/facsimile/example#hasDate</binding>
+			<binding id="has_component">http://purl.org/facsimile/datamodel#hasComponent</binding>
+			<binding id="is_component_of">http://purl.org/facsimile/datamodel#isComponentOf</binding>
+			<binding id="has_form">http://purl.org/facsimile/datamodel#isDerivedFrom</binding>
+			<binding id="has_date">http://purl.org/facsimile/datamodel#hasDateValue</binding>
 			<!-- question property bindings -->
-			<binding id="questiontext">http://purl.org/facsimile/example#hasText</binding>
-			<binding id="questionfocus">http://purl.org/facsimile/example#hasFocus</binding>
-			<binding id="questionvalue">http://purl.org/facsimile/example#hasValue</binding>
-			<binding id="questiondatavalue">http://purl.org/facsimile/example#hasDataValue</binding>
+			<binding id="questiontext">http://purl.org/facsimile/datamodel#hasText</binding>
+			<binding id="questionfocus">http://purl.org/facsimile/datamodel#hasFocus</binding>
+			<binding id="questionvalue">http://purl.org/facsimile/datamodel#hasValue</binding>
+			<binding id="questiondatavalue">http://purl.org/facsimile/datamodel#hasDataValue</binding>
 			<!-- section property bindings -->
-			<binding id="sectionheading">http://purl.org/facsimile/example#hasHeading</binding>
-			<binding id="sectiontext">http://purl.org/facsimile/example#hasText</binding>
+			<binding id="sectionheading">http://purl.org/facsimile/datamodel#hasHeading</binding>
+			<binding id="sectiontext">http://purl.org/facsimile/datamodel#hasText</binding>
 			<!-- output bindings -->
-			<binding id="is_answer_to">http://purl.org/facsimile/example#isResponseTo</binding>
-			<binding id="has_answer">http://purl.org/facsimile/example#hasAnswer</binding>
+			<binding id="is_answer_to">http://purl.org/facsimile/datamodel#isAnswerTo</binding>
+			<binding id="has_answer">http://purl.org/facsimile/datamodel#hasAnswer</binding>
 		</propertyBindings>
 		<questionTypeBindings>
 			<binding id="textarea">http://purl.org/facsimile/example#StringValue</binding>
@@ -48,20 +51,17 @@
 			<iri>http://purl.org/facsimile/example#user_details</iri>
 			<infoList>
 				<info type="text" property="http://purl.org/facsimile/example#hasUserName" required="true"/>
-				<info type="text" property="http://purl.org/facsimile/example#hasID" required="true"/>
+				<info type="text" property="http://purl.org/facsimile/datamodel#hasID" required="true"/>
 			</infoList>
 		</section>
 		<section>
 			<iri>http://purl.org/facsimile/example#section_1</iri>
 			<questionList>
-				<question required="true" showSubquestionsForAnswer="http://purl.org/facsimile/example#Yes">
+				<question type="radio" required="true" showSubquestionsForAnswer="http://purl.org/facsimile/example#Yes">
 					<iri>http://purl.org/facsimile/example#question_s1_q1</iri>
 					<questionList>
 						<question type="text" numbered="false">
 							<iri>http://purl.org/facsimile/example#question_s1_q1_1</iri>
-						</question>
-						<question numbered="false">
-							<iri>http://purl.org/facsimile/example#question_s1_q1_2</iri>
 						</question>
 					</questionList>
 				</question>

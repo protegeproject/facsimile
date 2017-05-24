@@ -36,7 +36,7 @@
 >
 <!ATTLIST section 
 	numbered (true|false) #IMPLIED
-	type (patient_section|question_section|physician_section) #IMPLIED
+	type (subject_section|question_section|evaluator_section) #IMPLIED
 >
 <!ATTLIST questionList 
 	type (normal|inline) #IMPLIED

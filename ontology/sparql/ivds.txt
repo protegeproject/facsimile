@@ -7,29 +7,24 @@ prefix datamodel: <http://purl.org/facsimile/datamodel#>
 prefix dbq: <http://purl.org/facsimile/dbq#>
 
 select ?patient ?physician where {
-  	# get patient names
-  	?pat a datamodel:PatientInformation .
-  	?pat cfa:hasPatientName ?patient .
-
-    # get patient AnnotatedData instance
-    ?pat datamodel:isResponseTo ?ad1 .
-  	?ad1 a datamodel:AnnotatedData .
+  # get patient names
+  ?pat a datamodel:SubjectInformation .
+  ?pat cfa:hasPatientName ?patient .
   
-  	# get patient FormData instance
-	?ad1 cfa:isComponentOf ?fd .
-  	?fd a datamodel:FormData .
+  # get patient FormData instance
+  ?pat cfa:isComponentOf ?fd .
+  ?fd a datamodel:FormData .
        
-  	# find a 'Yes' answer to Q14A
-  	?fd cfa:hasComponent ?z . 
-  	?z datamodel:isResponseTo dbq:DBQ_Back_Q14A .
- 	?z datamodel:hasAnswer ?obs .
-  	?obs cfa:hasValue cfa:Yes 
+  # find a 'Yes' answer to Q14A
+  ?fd cfa:hasComponent ?comp . 
+  ?z cfa:isComponentOf ?comp . 
+  ?z datamodel:isDerivedFrom dbq:DBQ_Back_Q14A .
+  ?z cfa:hasValue cfa:Yes 
     
-    OPTIONAL {
-		# get physician name
-	    ?pd a datamodel:PhysicianInformation .
-  		?pd datamodel:isResponseTo ?ad2 .
-	  	?ad2 cfa:isComponentOf ?fd .
-    	?pd cfa:hasPhysicianName ?physician  
-	}
+  OPTIONAL {
+    # get physician name
+    ?pd a datamodel:EvaluatorInformation .
+    ?pd cfa:isComponentOf ?fd .
+    ?pd cfa:hasPhysicianName ?physician
+  }
 }

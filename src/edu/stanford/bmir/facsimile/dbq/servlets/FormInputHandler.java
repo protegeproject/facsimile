@@ -419,8 +419,11 @@ public class FormInputHandler extends HttpServlet {
 					addObjPropAssertAxiom(ont, conf.getQuestionValuePropertyBinding(), answerInd, valInd);	// { answer hasValue val }
 				}
 				hasvalue = true;
-				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty())
+				if(!inputOnt.containsEntityInSignature(IRI.create(aIri), Imports.INCLUDED) && !aIri.isEmpty()) {
 					addAxiom(ont, df.getOWLAnnotationAssertionAxiom(df.getRDFSLabel(), valInd.getIRI(), df.getOWLLiteral(aIri)));	// { rdfs:label(val) }
+					addAxiom(ont, df.getOWLDataPropertyAssertionAxiom(df.getOWLDataProperty(conf.getQuestionTextPropertyBinding()), 
+							df.getOWLNamedIndividual(valInd.getIRI()), df.getOWLLiteral(aIri) ));
+				}
 			}
 			else {
 				if(answerInd == null)
@@ -446,9 +449,9 @@ public class FormInputHandler extends HttpServlet {
 		if(type.equals(SectionType.QUESTION_SECTION))
 			output = qIri + mid;
 		else if(type.equals(SectionType.SUBJECT_SECTION))
-			output = nmsp + "patient" + mid;
+			output = nmsp + "subject" + mid;
 		else if(type.equals(SectionType.EVALUATOR_SECTION))
-			output = nmsp + "physician" + mid;
+			output = nmsp + "evaluator" + mid;
 		return output;
 	}
 	
